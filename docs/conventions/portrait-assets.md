@@ -18,9 +18,11 @@ CC BY 4.0 の適用範囲に含めてよい MAY。
 
 | キャラ名（asset_key） | 作画者 | 原本所在 | 配置パス | 更新日付 | 版数 / 備考 |
 |---|---|---|---|---|---|
-| narrator-default | （未記入） | （未記入） | `public/portraits/narrator-default.png` | （未納品） | v1（ラフ・仮絵可、T29 完了条件） |
-| listener-default | （未記入） | （未記入） | `public/portraits/listener-default.png` | （未納品） | v1（ラフ・仮絵可、T29 完了条件） |
+| narrator-default | Claude（Laterna の imagegen、FLUX.2 [klein] 4B で生成。主人の指示と選択 2026-09-26） | `materials/portraits/narrator-v2-bust-raw.png`（緑背景の生成原本。記録 `narrator-v2-bust-raw.png.json`・`materials/portraits/README.md`） | `public/portraits/narrator-default.png` | 2026-09-26 | v2（v1 ラフ（`narrator-draft-v1.kra`）→ v2 バストアップの生成画、2026-09-26 差し替え。全身版 `materials/portraits/narrator-v2-full.png`） |
+| listener-default | Claude（Laterna の imagegen、FLUX.2 [klein] 4B で生成。主人の指示と選択 2026-09-26） | `materials/portraits/listener-v2-bust-raw.png`（緑背景の生成原本。記録 `listener-v2-bust-raw.png.json`・`materials/portraits/README.md`） | `public/portraits/listener-default.png` | 2026-09-26 | v2（v1 ラフ（`listener-draft-v1.kra`）→ v2 ランタン意匠（頭頂のランタン型アンテナ・胸のランタン）の生成画、2026-09-26 差し替え。全身版 `materials/portraits/listener-v2-full.png`） |
 
+> 2026-09-26（Laterna Wave 2）：v2 を記入した。生成の記録（モデル・プロンプト・seed・加工）は `materials/portraits/README.md`。
+>
 > 本テーブルは T20 時点でプレースホルダとして作成する。T29（ユーザー立ち絵納品）完了時、
 > 納品者（作画者）・原本ファイルの所在・実際の更新日付・版数を追記すること MUST
 > （design §11.3「バージョン記録: 使用した立ち絵素材のデザイン版数を記録する SHOULD」）。

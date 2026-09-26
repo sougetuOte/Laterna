@@ -1,0 +1,24 @@
+{
+  "workflow": "klein_edit",
+  "prompt": "The same small floating robot mascot as the reference image (white round body, black glossy screen face with two big glowing orange eyes and a small smiling mouth, orange ear discs, white body with an orange chest panel and blue accents), redesigned with a lantern motif: the antenna on top of the head ends in a small glowing amber lantern, and the chest panel holds a glowing amber lantern-like core. Same proportions and colors otherwise. Framed close with the head and upper body large, three-quarter view turned slightly to the viewer's left, eyes open. Clean anime illustration style with flat shading and clean lineart. Plain solid bright green background, no other objects, no text.",
+  "seed": 2,
+  "width": 832,
+  "height": 1216,
+  "png": {
+    "width": 832,
+    "height": 1216,
+    "sha256": "61d075dff3211320a7b7c4a11f159f1d867e641b54cc6fe61a7507a318208fe0"
+  },
+  "refs": [
+    {
+      "path": "imagegen\\output\\refs\\listener-ref-green.png",
+      "sha256": "f95243a34fd9e0f936d988c3486faa7a318d9a422706e12a07264fdc503136c7"
+    }
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "comfyui_version": "0.37.0",
+  "pytorch_version": "2.11.0+cu130",
+  "prompt_id": "a8c1262d-63ce-4fd6-8627-5a1765a6c1a3",
+  "wall_s": 7.02,
+  "generated_at": "2026-09-26T20:33:23+09:00"
+}

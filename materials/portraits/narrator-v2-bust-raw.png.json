@@ -1,0 +1,24 @@
+{
+  "workflow": "klein_edit",
+  "prompt": "Bust-up portrait of the same character as the reference image: a young man with short dark navy hair, black-rimmed glasses, a gentle closed-mouth smile, white collared shirt, blue cardigan, and a lanyard with an ID card. Waist-up framing with the face large and clearly visible, three-quarter view turned slightly to the viewer's right, eyes open, friendly calm expression. Clean anime illustration style with flat shading and clean lineart, same colors as the reference. Plain solid bright green background, no other objects, no text.",
+  "seed": 2,
+  "width": 832,
+  "height": 1216,
+  "png": {
+    "width": 832,
+    "height": 1216,
+    "sha256": "c876b8b35e51caf08893b42a1b6f45f03f47163669d25dfd44dfe284d97ed274"
+  },
+  "refs": [
+    {
+      "path": "imagegen\\output\\refs\\narrator-ref-green.png",
+      "sha256": "c07a3fadc9d543376e58707b688144d6cc2c22e0ca90a225585ab51c20146ddd"
+    }
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "comfyui_version": "0.37.0",
+  "pytorch_version": "2.11.0+cu130",
+  "prompt_id": "8ca818a5-ed51-4865-8e99-757d2caa51d3",
+  "wall_s": 6.97,
+  "generated_at": "2026-09-26T20:33:00+09:00"
+}

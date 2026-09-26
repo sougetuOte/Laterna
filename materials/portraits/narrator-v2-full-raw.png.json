@@ -1,0 +1,24 @@
+{
+  "workflow": "klein_edit",
+  "prompt": "Full-body standing portrait of the same character as the reference image: a young man with short dark navy hair, black-rimmed glasses, a gentle closed-mouth smile, white collared shirt, blue cardigan, lanyard with an ID card, dark slacks and sneakers. Whole body visible from head to shoes with small margins, standing straight with arms relaxed, three-quarter view turned slightly to the viewer's right. Clean anime illustration style with flat shading and clean lineart, same colors as the reference. Plain solid bright green background, no other objects, no text.",
+  "seed": 2,
+  "width": 832,
+  "height": 1216,
+  "png": {
+    "width": 832,
+    "height": 1216,
+    "sha256": "36b9651fe1c112062bb5189a5b4c9655c6488f0977ce6af8932ea9c9536e05ff"
+  },
+  "refs": [
+    {
+      "path": "imagegen\\output\\refs\\narrator-ref-green.png",
+      "sha256": "c07a3fadc9d543376e58707b688144d6cc2c22e0ca90a225585ab51c20146ddd"
+    }
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "comfyui_version": "0.37.0",
+  "pytorch_version": "2.11.0+cu130",
+  "prompt_id": "40aa9406-b25f-4862-98ec-83f7b12c0859",
+  "wall_s": 6.97,
+  "generated_at": "2026-09-26T20:33:59+09:00"
+}
