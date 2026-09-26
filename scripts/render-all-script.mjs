@@ -37,7 +37,7 @@ if (!scriptId) {
   console.error(usage());
   process.exit(1);
 }
-// build-script-pdf.mjs / compile-script.mjs と同型の防御的チェック。
+// build-script-pdf.mjs と同型の防御的チェック（文字種の規則は、最初の段の compile（cli.ts）が当てる）。
 if (scriptId.includes("/") || scriptId.includes("\\")) {
   console.error(`Error: script-id にパス区切り文字を含めることはできません: "${scriptId}".`);
   console.error(usage());
@@ -83,7 +83,8 @@ runStep("compile", process.execPath, ["scripts/compile-script.mjs", scriptId]);
 // --- Step 2: render (MP4) ---
 // T18 申し送り: defaultProps 依存にせず --props を明示する。build-script-pdf.mjs と同型に、
 // Windows のコマンドライン引用符エスケープの癖を避けるため props はファイル経由で渡す。
-const propsPath = path.join(OUTPUT_DIR, `${scriptId}-render-props.json`);
+// 名前に process.pid を入れる（同じ script-id の並行実行で、先に終わった run が他方の props を消さないため）。
+const propsPath = path.join(OUTPUT_DIR, `${scriptId}-${process.pid}-render-props.json`);
 await writeFile(propsPath, JSON.stringify({ scriptId }), "utf-8");
 const mp4Path = path.join(OUTPUT_DIR, `${scriptId}.mp4`);
 

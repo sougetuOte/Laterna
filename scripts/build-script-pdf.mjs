@@ -98,8 +98,10 @@ console.log(`[build-script-pdf] output:   ${outputPath}`);
 
 // --- props ファイル書き出し（Windows のコマンドライン引用符エスケープの癖を避けるため、
 //     インライン JSON ではなく --props=<file> のファイル経路を使う。remotion CLI の
-//     getInputProps はファイルパス / インライン JSON のいずれも受け付ける）。 ---
-const propsPath = path.join(TEMP_DIR, `${scriptId}-props.json`);
+//     getInputProps はファイルパス / インライン JSON のいずれも受け付ける）。
+//     名前に process.pid を入れるのは下の FIX-7b と同じ理由（同じ script-id の並行実行で、
+//     先に終わった run が他方の props を消さないため）。 ---
+const propsPath = path.join(TEMP_DIR, `${scriptId}-${process.pid}-props.json`);
 await writeFile(propsPath, JSON.stringify({ scriptId }), "utf-8");
 tempPaths.push(propsPath);
 
