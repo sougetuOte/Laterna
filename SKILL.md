@@ -143,6 +143,7 @@ SHA-256 が `out/` と一致することを確かめる。最後に、尺・章�
 
 - 仕様：透過 PNG（アルファ付き）、縦長（1 本目は 832×1216）、`public/portraits/<asset_key>.png`。`asset_key` は `docs/conventions/speaker-profiles.yaml` の `portrait.asset_key`（変えない）。
 - 作り方（1 本目の実例）：`imagegen/` を起動し、`imagegen/scripts/gen.py --workflow klein_edit --ref <参照画像> --prompt "..." --seed N` で緑背景の候補を作り、主人に一覧（`magick +append`）を見せて選んでもらう。緑背景は `materials/portraits/README.md` の 3 行の `magick`（クロマキー＋despill）で抜く。
+- **向き**：左カラム（narrator）のファイルは画面内側＝向かって右を向かせる。右カラム（listener）のファイルは画面**外側**＝向かって右を向かせる（レンダラーが `scaleX(-1)` で反転して内側を向く）。つまり**どちらのファイルも「向かって右」を向いた絵**にする。内向きに生成した絵は `magick <png> -flop <出力>` で反転してから置く（1 本目で聞き役が画面外を向いた原因。render 後にフレームを切り出して向きを見る）。
 - 記録：原本（緑背景）と `.json` を `materials/portraits/` に置き、`README.md` に「モデル・プロンプト・seed・加工」を書く。`docs/conventions/portrait-assets.md` §1 の台帳を上書き更新する（行は足さない）。
 - 立ち絵の表示は `src/script-engine/render/SpeakerPortrait.tsx`（左 12%・右 8% のカラムに `objectFit: contain`、右は左右反転、発話中 100%／非発話中 55% の明度）。
 

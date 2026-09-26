@@ -68,6 +68,7 @@ public/portraits/<asset_key>.png
 
 - `narrator` 役の立ち絵: `public/portraits/narrator-default.png`
 - `listener` 役の立ち絵: `public/portraits/listener-default.png`
+- **向き**：2 枚とも「向かって右」を向いた絵にする。右カラム（listener）はレンダラー `SpeakerPortrait.tsx` が `scaleX(-1)` で反転して画面内側を向かせる（2026-09-26、v2 の聞き役を内向きに生成して置いたら画面外を向いた。`-flop` で反転して置き直した）
 - `<asset_key>` は `docs/conventions/speaker-profiles.yaml` の `portrait.asset_key` と
   一致させること MUST（論理キー経由の解決規約、design §3.3）
 - **commit 対象**（第三者素材ではないため NFR-3 v2.1 の同梱禁止は適用されない）。gitignore

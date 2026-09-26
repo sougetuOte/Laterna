@@ -5,29 +5,32 @@
 ## これは何か
 
 授業用の解説動画（掛け合い）＋復習 PDF を「この題材で 1 本」で作るプロジェクト。Kyozai-Athanor のエンジンを移植し、統治の層は持ち込まない。
-1 本目の期限は **2026-10-01**（10/2 の高専 1 年・初回授業で使う）。
+1 本目「ソースから実行ファイルまで」（`source-to-exe`）は **2026-09-26 に納品**（`deliver/source-to-exe/`）。期限は 2026-10-01（10/2 の高専 1 年・初回授業で使う）。
 
 ## 読む順序
 
 1. `README.md`（30 行）
 2. `docs/brief.md`（約 120 行。決定 D1〜D10 と §9 の訂正節 D8・D9）
-3. `goal.md`（Wave 1「目星」＝完了、Wave 2「1 本目」＝承認済み 2026-09-26・進行中）
-4. `docs/inventory.md`（棚卸し表と依存の表。342 行）
-5. `docs/design.md`（設計草案 6 節。155 行）
-6. `docs/research/2026-09-26-image-env.md`（画像環境をプロジェクト内部に建てる検討）／`imagegen/README.md`
+3. `goal.md`（Wave 1「目星」＝完了、Wave 2「1 本目」＝承認済み 2026-09-26・納品済み・検収中）
+4. `SKILL.md`（手順書 157 行。「この題材で 1 本」の入口。1 本目を作った手順そのもの）
+5. `materials/source-to-exe/`（`outline.md`・`build-log.md`・`description.md`）、`materials/portraits/README.md`（立ち絵の生成記録）
+6. `docs/inventory.md`（棚卸し表。342 行）／`docs/design.md`（設計草案 6 節。155 行）／`imagegen/README.md`
 7. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
 
 ## 現在地
 
-- **Wave 1「目星」は完了**（2026-09-26。完了条件 1〜5 がすべて columba の検収を通った）。
-- 動いている物（実測 2026-09-26）：Kyozai-Athanor から持っていく 90 件を切り出し、`npm install`（343 パッケージ）／`npm test` 15 files・261 tests PASS／`npm run lint` exit 0／`compile:script -- java-vs-js` は合成 0・skip 13／`render:all:script -- java-vs-js` で MP4（h264+aac、100.885333 秒）と PDF（4 ページ）。どちらも Kyozai の参照と SHA-256 が一致。
-- まだ無い物：手順書 `SKILL.md` 本文、確定した立ち絵、承認済みの台本、`deliver/`。
-- **Wave 2「1 本目」進行中**（G0 承認 2026-09-26。`goal.md` の Wave 2 節）。script-id は `source-to-exe`。2026-09-26 のセッション末で一段落（主人の答え待ち 2 件）。
-  - **P1 画像環境**：建った（`843bdfd`。setup／`-VerifyOnly`／start／smoke（t2i 7.2 s・edit 7.5 s）／stop すべて exit 0）。**検収は未**。サーバーは停止中（`imagegen\scripts\start.ps1` で約 7 秒で上がる）。
-  - **P2 台本**：下書き済み（`42817b1`。27 発話・1,715 文字・概算 263 秒。`materials/source-to-exe/outline.md` に対象・尺・章立て・出典）。**主人の承認待ち**（表はチャットで提示済み）。承認後：`outline.md` に「台本承認：YYYY-MM-DD 主人」→ `npm run compile:script -- source-to-exe`。
-  - **P3 立ち絵**：候補 12 枚を生成済み（`imagegen/output/portraits/`。一覧 `sheet-narrator-bust.png`・`sheet-listener-lantern.png`・`sheet-others.png`。git 管理外、ディスク上。各 PNG の隣に生成記録 `.json`）。**主人の選択待ち**。選択後：緑背景を `magick <in> -fuzz 12% -transparent "#00FF00" <out>` で抜く → `public/portraits/<role>-default.png` と `materials/portraits/<role>-v2-full.png` → `materials/portraits/README.md`（`.json` からモデル・プロンプト・seed・加工）→ `docs/conventions/portrait-assets.md` の台帳。
-  - **P4 動画・PDF・クレジット・`SKILL.md`・納品**：未着手。エンジン側は準備済み（`43b8ad9`：台本の `extra_credits`、custom 部品 `PipelineFlow`）。`materials/source-to-exe/build-log.md` に手順番号つきの記録を続ける。
-  - **P5 持ち越し検証**：columba の採点時に行う（`goal.md` Wave 2 の 9 番）。
+- **Wave 1「目星」は完了**（2026-09-26。完了条件 1〜5 が columba の検収を通った）。
+- **Wave 2「1 本目」は完了条件 1〜9 をすべて建てた**（2026-09-26）。検収：
+  - 完了条件 1（画像環境）：columba **PASS**（1 回目。付記のみ：冪等性は検証行が無いので未測、`gen.py` は条文に無いが README に記載）。
+  - 完了条件 2〜9：columba に出した 1 回目（21:41）は、主人の指摘（聞き役の向き）で前提が変わったため開始直後に止めた（判定なし）。直して出し直した（2 回目、22:06）。**結果は本ファイルの次の更新で書く。**
+  - **検証 9(ii) は条文のままでは通らない見込み**：java-vs-js の MP4 は `public/portraits/` を映すので、完了条件 2 で v2 に差し替えた時点で Kyozai の参照（v1 で render）と SHA-256 が一致しなくなる（PDF は立ち絵を含まないので一致する）。契約の側の不整合なので、主人へ訂正節の案を出した（下の未決）。
+- 動いている物（実測 2026-09-26）：
+  - `imagegen/`（ComfyUI v0.37.0、klein 4B、GPU 1、port 8288）。`setup.ps1 -VerifyOnly`／`start`／`smoke`／`stop` すべて exit 0。**いまは停止中。**
+  - VOICEVOX 0.25.2（50021）。`compile:script -- source-to-exe`：合成 27 件、実測 8575 frames（285.8 秒、fps 30）。
+  - `render:all:script -- source-to-exe`：1 回の実行で MP4（h264+aac、285.888 秒、15.66 MB）と PDF（10 ページ）。`deliver/` の SHA-256 は `out/` と一致。
+  - 立ち絵 v2：`public/portraits/` に解説役バストアップ・聞き役ランタン意匠（832×1216、透過）。全身版は `materials/portraits/*-v2-full.png`。
+  - `npm test` 15 files / 266 tests PASS、`npm run lint` exit 0。
+- まだ無い物：主人の受け入れ（10/2 の授業で使えるか。columba の採点対象外）。`manifest-registry.ts` 廃止の試み（(c)。Wave 3）。brief §6 の答えの本文への反映。
 
 ## これまで（git log が持たない解釈だけ）
 
@@ -37,17 +40,20 @@
 | `6aafd4d` | 主人が承認した D8・D9 の訂正節を brief §9 に反映（分類器に一度止められ、主人の「書込許可」の後に Edit で通った） |
 | `7ee1d02` | フェーズ (A) 棚卸し。検収 1 回目 **FAIL**（表に無い参照 1 件：`package.json` の `require('fs')`） |
 | `08b76a5` | (A) 訂正。検収 2 回目 **PASS**（付記：行番号等の食い違い 6 件） |
-| `f7f4d6b` | (A) PASS 後の付記 6 件の訂正。**採点されていない** → Wave 2 G0 草案の 8 番で検証行にした |
-| `b6ef72d` | SESSION_STATE.md を置く |
+| `f7f4d6b` | (A) PASS 後の付記 6 件の訂正。採点されていない → Wave 2 の検証 9(i) にした |
 | `805d312` | フェーズ (B) 切り出し実証（90 件＋4 ファイル編集）。検収 1 回目 **PASS** |
-| `230dbbc` | フェーズ (C) 設計草案＋Wave 2 G0 草案。検収 1 回目 **PASS**（付記：草案の完了条件 4「1 回で」・6「手順と一致」に対応する検証手順が弱い） |
-| `6aafd4d`〜`cc21562` | 主人の判断 3 件を反映（brief §9 訂正節・LICENSE 2 本・画像環境の検討と G0 第 2 版）。`cd2e315` のメッセージが過大だったので `cc21562` で訂正 |
+| `230dbbc` | フェーズ (C) 設計草案＋Wave 2 G0 草案。検収 1 回目 **PASS** |
 | `8980aed` | Wave 2 の G0 承認。草案を畳んだ |
-| `843bdfd` | P1 imagegen。**未検収** |
+| `843bdfd` | P1 imagegen。検収 1 回目 **PASS**（2026-09-26） |
 | `43b8ad9` | エンジン追加（`extra_credits`・`PipelineFlow`）。テスト 266 件 PASS |
 | `42817b1` | P2 台本の下書き（承認待ち）と outline・build-log |
+| `e81e6b4` | 台本の箇条書き 2 行（先頭 `**`）を引用符で囲む。**js-yaml が alias と読んで compile が通らなかった**（次のセッションが最初に見つけた） |
+| `ddf12d6` | 台本承認（主人「問い1：OK」）と compile。予測 260 秒 → 実測 285.8 秒（クレジット・表示保証尺を含む） |
+| `5c4990b` | 立ち絵 v2（主人「推奨でGO」→ 解説役 s2・聞き役ランタン s2）。聞き役の全身版はランタン s2 を参照に seed 1〜3 で作り直し、seed 2 を採用 |
+| `85390b7` | render・SKILL.md・概要欄・納品。**1 回目の render の試写で 2 件の不具合**（図解の段階名が箱に重なる／code の各行が中央寄せ）を見つけて直し、2 回目で出した |
+| （次） | 主人の指摘：聞き役が画面外を向いていた。レンダラーは右カラムを `scaleX(-1)` で反転するのでファイルは外向きが正。`-flop` で置き直して 3 回目の render・再納品。向きの規則を README・台帳・SKILL.md に書いた |
 
-retro の起動条件（loop.md）：縦の停止なし（同一フェーズで FAIL 2 回はなかった）・主人の差し戻しなし・出荷物なし。**起動しない。**
+retro の起動条件（loop.md）：縦の停止なし（同一フェーズで FAIL 2 回はなかった）・主人の差し戻しなし。**出荷物あり**（1 本目）── 次の回で直しの対象になったら 3 番で retro。
 
 ## 決定（蒸し返さない）
 
@@ -55,47 +61,55 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 1. 使用場面は学校の授業で流す。情報系は高専機構の教材が勝つが、プログラム系は自作するしかない。
 2. 1 本目の期限は 10/1。10/2 の初回授業（高専 1 年）用。
-3. 題材は「プログラムとは」「ソースから実行ファイルまで」「開発環境とは（CLI から VSCode まで）」「AI 時代に手書きをする意義」から 1 つ。
-4. 立ち絵は Claude が主体で新しく作る（バストアップ＋全身）。img2 は変えずに呼ぶ（D8 訂正）。img2 の起動は Claude がしてよい。
-5. 可能な限り公開して実績にする（ライセンスは未決）。
-6. Wave 1 で `public/audio`・`public/manifests`・`materials/portraits/*.kra` は git で追跡する（`docs/inventory.md` §1.7）。
-7. ライセンスは MIT（コード）＋CC BY 4.0（台本・図解・教材本文。合成音声・第三者素材は対象外。生成画像は著作権が及ぶ範囲で CC BY）。主人承諾 2026-09-26。`package.json` の `license` は `MIT`。
-8. 画像環境は Laterna の中に `imagegen/` として建てる（主人の指示で検討。時間・トークンは度外視）。img2 は予備経路。
-9. 1 本目の題材は「ソースから実行ファイルまで」、尺 3〜5 分、納品先は `deliver/<script-id>/`、立ち絵は既存 2 人を引き継ぎつつ聞き役にランタン意匠を試す（だめなら既定）。
+3. 題材は「ソースから実行ファイルまで」、尺 3〜5 分、納品先は `deliver/<script-id>/`。
+4. 立ち絵は Claude が主体で新しく作る（バストアップ＋全身）。**採用は解説役バストアップ s2・聞き役ランタン版 s2**（主人「推奨でGO」）。
+5. 可能な限り公開して実績にする。ライセンスは MIT（コード）＋CC BY 4.0（台本・図解・教材本文。合成音声・第三者素材は対象外）。主人承諾 2026-09-26。
+6. `public/audio`・`public/manifests`・`materials/portraits/*.kra` は git で追跡する（`docs/inventory.md` §1.7）。
+7. 画像環境は Laterna の中に `imagegen/` として建てる（時間・トークンは度外視）。img2 は予備経路。
+8. 台本の本文は compile の前に表で主人に見せて承認をもらう（1 本目は 2026-09-26 に承認）。
+9. **`manifest-registry.ts` は手動追記 1 回で出した**（goal.md が許す経路）。(c) の廃止の試み（1 時間枠）は Wave 3 の着手時に回す ── 納品を優先し、検収中は `src/` を触らない。
+10. custom スライドは部品側で白いパネルを描いて標準スライド（bullets・code）と見た目を揃える（`PipelineFlow.tsx`）。
+11. code スライドは `<pre>` を inline-block・左揃え・40px にする（`ScriptSlideRenderer.tsx`）。java-vs-js は code を使わないので再現性（検証 9(ii)）に影響しない。
 
 ## 採らなかった案
 
 | 案 | 却下理由 |
 |---|---|
-| 立ち絵を主人が手元で生成して納品 | 主人が不得意。後工程を見越した設計は Claude 主体の方がよい（主人 2026-09-26） |
-| 立ち絵を SVG（コード）で描く | 既存の立ち絵がアニメ調の生成画で、質を落とす。検討のみで提案せず |
-| 専用画像環境を 10/1 までに建てる | 間に合わない。D8 訂正で img2 を変えずに使う |
+| 立ち絵を主人が手元で生成して納品 | 主人が不得意。後工程を見越した設計は Claude 主体のほうがよい（主人 2026-09-26） |
+| 立ち絵を SVG（コード）で描く | 既存の立ち絵がアニメ調の生成画で、質を落とす |
+| 聞き役の全身版に最初の候補（listener-full-s1／s2）を使う | ランタンが体から離れて描かれ、バストアップ s2 と意匠が揃わない → s2 を参照に作り直した |
+| bullets スライドの中央寄せ（マーカーと本文の位置）を直す | `Slide.tsx` は凍結資産。java-vs-js が bullets を使うので直すと検証 9(ii) の SHA-256 一致が崩れる。Wave 3 で検討 |
 | `outline-video-1` の音声 37 MB を持ち込む | 再合成できる。台本だけ持ち込む |
-| `manifest-registry` の廃止を Wave 1 で実装 | 方針まで（goal.md やらないこと）。`docs/design.md` (c) |
-| `tasks.md`（specs 3 点セット）を作る | Kyozai の `docs/specs/` は持ち込まない（goal.md）。フェーズは本ファイルで追う |
+| `tasks.md`（specs 3 点セット）を作る | Kyozai の `docs/specs/` は持ち込まない。フェーズは本ファイルで追う |
 
 ## 未決（主人の判断待ち）
 
-- **台本の承認**（`content/scripts/source-to-exe.script.yaml`。表は 2026-09-26 のチャットで提示。授業の言語が C／gcc でなければ直す）。
-- **立ち絵の選択**：解説役バストアップ s1／s2／s3（推奨 s2）、聞き役はランタン版 s1／s2／s3（推奨 s2）か既定版 s1／s2。全身版は解説役 s1／s2、聞き役（ランタン）s1／s2。
-- brief §6 の答え（上の「決定」1〜5・8・9）を brief に写すか（写すなら主人の承認で）。
+- **10/2 の授業での受け入れ**（使えなかった点は Wave 3 の G0 に書く）。
+- **goal.md Wave 2 検証 9(ii) の訂正節**（案：MP4 の SHA-256 は `public/portraits/` を commit `805d312` の v1 に一時的に戻して render した物で比べ、比べたら `git checkout -- public/portraits` で v2 に戻す。PDF と manifest と `npm test` は現行どおり）。主人の承認が要る（goal.md は G2）。
+- brief §6 の答え（上の「決定」1〜5・7）を brief 本文に写すか（写すなら主人の承認で）。
+- 公開の時期と場所（GitHub 等）。公開前に `npm audit`（11 件。Kyozai の lock を引き継いだ物）を見る。
 
 ## 未決（実測・作業待ち）
 
-- `docs/design.md` (c)：`calculateMetadata` の `fetch(staticFile())` が `remotion render` で通るか（Wave 2 着手時に 1 回試す）。
-- ComfyUI_img2 の外部向けラッパー（`img2client/`・`examples/`）の読み取りが分類器に止められた。Wave 2 で HTTP を直接使うか、主人に許可設定を頼むか。
-- `npm install` が 11 件の脆弱性を報告（2 low・3 moderate・6 high。Kyozai の lock を引き継いだ物）。動画制作には効かないが、公開前に `npm audit` を見る。
+- `docs/design.md` (c)：`calculateMetadata` の `fetch(staticFile())` が `remotion render` で通るか（Wave 3 の着手時に 1 時間枠で 1 回試す）。
+- 字幕の要否（(f)①）：授業で流して見てから決める。
+- bullets スライドのマーカー位置（上の「採らなかった案」）。
+- ComfyUI_img2 の外部向けラッパーの読み取りが分類器に止められた件（imagegen を建てたので、当面は不要）。
 
 ## 次の一手
 
-主人の答え（台本承認・立ち絵の選択）を受けて、P3 の背景抜きと配置 → P2 の compile（尺 180〜300 秒の確認）→ P4 の render・PDF・`SKILL.md`・納品。columba は P1 から順に出す（P1 は主人の答えを待たず出せる）。
+columba の検収（完了条件 2〜9）の結果を受ける。PASS なら Wave 2 を完了と記録し、主人の 10/2 の受け入れを待つ。FAIL なら直して再検収（同一フェーズで 2 回 FAIL なら MAGI、契約の側なら主人へ）。その後、Wave 3 の G0 は面接から。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
-- Kyozai-Athanor は読み取り専用。状態は `git ls-files`・`git log`、`git status` は `--no-optional-locks`。
-- 検収は `seneschal:columba` に出す。採点範囲は本フェーズの成果コミットに限る。主人の別指示は別コミット。PASS 後の直しは次の G0 の検証行に載せる。
-- VOICEVOX は 50021、ffprobe は `C:fmpeg-essentialsin`、ImageMagick は `magick`。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（Kyozai 側からコピーした。270 MB）。
+- Kyozai-Athanor は読み取り専用。状態は `git ls-files`・`git log`・`git show`、`git status` は `--no-optional-locks`。
+- 検収は `seneschal:columba` に出す。採点範囲は本フェーズの成果コミットに限る。主人の別指示は別コミット。PASS 後の直しは次の G0 の検証行に載せる。**columba が compile／render している間は `src/`・`public/`・`out/` を触らない。imagegen の start／stop も columba と同時に使わない**（P1 の検収が start/stop を含む）。
+- VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、PDF のページ数は `pdf-lib`（node_modules）。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（270 MB）。
 - 分類器（auto mode）が止めた操作は別経路で追わない。フェーズ末に主人へまとめて出す（主人が「書込許可」と言えば Edit ツールで通った）。
-- Bash の作業ディレクトリは呼び出しをまたいで残る。並行した `cd` が `git add` を壊したので、git は `git -C /d/work8/Laterna` で呼ぶ。
-- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。コマンド本文にその文字列があるだけでも止まる。HTTP は `urllib` かファイル経由にし、複数行の Python は `python - <<'EOF'` かスクリプトファイルで渡す（`python -c` の複数行は shim が壊す）。
-- `.ps1` は BOM 付き UTF-8 で書く（無いと PowerShell 5.1 で構文エラー）。PowerShell の出力は cp932。`sleep` 先頭の待ちは止められるので、待つなら `run_in_background` の `until` ループ。
+- Bash の作業ディレクトリは呼び出しをまたいで残る。git は `git -C /d/work8/Laterna` で呼ぶ。
+- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。コマンド本文にその文字列があるだけでも止まる。HTTP は `urllib` かファイル経由にし、複数行の Python は `python - <<'EOF'` で渡す（`python -c` の複数行は shim が壊す）。
+- **150 行超のヒアドキュメント（引用符・バッククォートを含む）は bash が「unexpected EOF」で失敗した。**長い文書は Write ツールで書く。
+- `.ps1` は BOM 付き UTF-8 で書く。PowerShell の出力は cp932（`| iconv -f cp932 -t utf-8`）。`sleep` 先頭の待ちは止められるので、待つなら `until … ; do sleep 5; done` の形。
+- 台本 YAML：値が `**`・`*`・`&`・`[` で始まる箇条書きは `"…"` で囲む（js-yaml が alias／anchor と読む）。`node -e` で js-yaml が読めることを compile の前に確かめる。
+- render の後は `ffmpeg -ss <秒> -i <mp4> -frames:v 1 <png>` でフレームを切り出し、Read で目視する（1 本目の図解の不具合はこれで見つけた）。
+- 立ち絵の向き：`public/portraits/` の 2 枚はどちらも「向かって右」を向いた絵にする（右カラムはレンダラーが反転する）。内向きに生成した絵は `magick -flop` で反転してから置く。

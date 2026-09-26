@@ -26,6 +26,8 @@ magick <原本> -alpha off -channel G -fx "u.g > max(u.r,u.b) ? max(u.r,u.b) : u
 magick despill.png mask.png -alpha off -compose CopyOpacity -composite <出力>
 ```
 
+**向き**：`public/portraits/` に置く 2 枚は、どちらも「向かって右」を向いた絵にする。左カラム（narrator）はそのまま内側を向き、右カラム（listener）はレンダラーが反転して内側を向く。内向きに生成した絵は `-flop` で反転してから置く。
+
 参照画像（v1 の平坦化）の作り方：`magick <v1 の透過 PNG> -background "#00FF00" -flatten <ref>.png`（2026-09-26 に `magick compare -metric AE` で差 0 を確認）。
 
 ## 各立ち絵の記録
@@ -58,7 +60,7 @@ magick despill.png mask.png -alpha off -compose CopyOpacity -composite <出力>
 - **プロンプト**：The same small floating robot mascot as the reference image (white round body, black glossy screen face with two big glowing orange eyes and a small smiling mouth, orange ear discs, white body with an orange chest panel and blue accents), redesigned with a lantern motif: the antenna on top of the head ends in a small glowing amber lantern, and the chest panel holds a glowing amber lantern-like core. Same proportions and colors otherwise. Framed close with the head and upper body large, three-quarter view turned slightly to the viewer's left, eyes open. Clean anime illustration style with flat shading and clean lineart. Plain solid bright green background, no other objects, no text.
 - **seed**：2、832×1216、生成 2026-09-26T20:33:23+09:00（7.02 秒）、prompt_id `a8c1262d-63ce-4fd6-8627-5a1765a6c1a3`
 - **原本 sha256**：`61d075dff3211320a7b7c4a11f159f1d867e641b54cc6fe61a7507a318208fe0`（実測 `61d075dff3211320a7b7c4a11f159f1d867e641b54cc6fe61a7507a318208fe0`）
-- **加工**：上の 3 行のクロマキー → `public/portraits/listener-default.png`（透過 PNG、832×1216。sha256 `889b09fc01181e13c9abbcbf7b0ce0a89e8896400a2cfd25f557790a7c984af3`）。それ以外の加工（トリミング・色調整・描き足し）はしていない
+- **加工**：上の 3 行のクロマキー → さらに `magick <抜いた PNG> -flop <出力>` で左右反転 → `public/portraits/listener-default.png`（透過 PNG、832×1216。sha256 `bb4044b3247fdf87106e9d516d27061b8fc5729d87c724862aa21f43d1258950`）。反転の理由：レンダラー `src/script-engine/render/SpeakerPortrait.tsx` は右カラムの立ち絵を `scaleX(-1)` で反転して画面内側を向かせるので、ファイルは画面**外側**（向かって右）を向いていなければならない。生成画は左向き（内側）だったため、反転せずに置くと画面外を見た（2026-09-26 主人の指摘で修正）。それ以外の加工（トリミング・色調整・描き足し）はしていない
 
 ### 聞き役（listener）全身（ランタン意匠）（`listener-v2-full-raw.png`）
 

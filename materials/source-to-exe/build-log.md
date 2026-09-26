@@ -34,3 +34,7 @@
 | 6 | 2026-09-26 21:39 | `ffprobe -v error -show_entries stream=codec_type,codec_name -show_entries format=duration -of default=nw=1 out/script-engine/source-to-exe.mp4` | 0 | h264 video ＋ aac audio、duration 285.888 秒（manifest 8575/30 = 285.83 秒、差 0.06 秒） |
 | 6 | 2026-09-26 21:39 | `node -e` で pdf-lib の `getPageCount()`／`ffmpeg -ss 50・90・150 と -sseof -3` でフレームを切り出して目視 | 0 | PDF 10 ページ（pdf-manifest の total_pages=10 と一致）。code・図解（stage 0・3）・末尾クレジット（VOICEVOX 2 行＋立ち絵 1 行）を確認。manifest の credits[] は 3 行 |
 | 7 | 2026-09-26 21:40 | `mkdir -p deliver/source-to-exe` → `cp` で MP4・PDF・description.md → `sha256sum` で out/ と照合 | 0 | 3 点。MP4・PDF の SHA-256 が out/script-engine/ と一致 |
+| 0 | 2026-09-26 21:58 | `magick public/portraits/listener-default.png -flop public/portraits/listener-default.png` | 0 | 主人の指摘：聞き役が画面外を向いていた。レンダラーは右カラムを scaleX(-1) で反転するので、ファイルは外向き（向かって右）が正。README・台帳・SKILL.md に向きの規則を追記 |
+| 5 | 2026-09-26 22:00 | `rm -f out/script-engine/source-to-exe.{mp4,pdf}` → `npm run render:all:script -- source-to-exe`（3 回目） | 0 | 聞き役の向き修正後。1 回の実行で MP4 と PDF |
+| 6 | 2026-09-26 22:04 | `ffprobe`（映像・音声、285.888 秒）／pdf-lib（10 ページ）／`ffmpeg -ss 12・150` のフレームを目視 | 0 | ロボットが画面内側（人間の側）を向いた。PDF は立ち絵を含まないので SHA-256 は前回と同じ |
+| 7 | 2026-09-26 22:05 | `cp` で MP4・PDF・description.md を `deliver/source-to-exe/` へ → `sha256sum` | 0 | MP4 は新しい物（43a78b42…）、PDF は同じ（c94e503f…）。out/ と一致 |
