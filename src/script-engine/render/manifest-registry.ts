@@ -4,7 +4,7 @@
 // `resolvePdfManifest`）を追加（design §8.1 decision: PDF ページ分割は compile 段で確定し
 // `public/manifests/<script-id>.pdf-manifest.json` を成果物として書き出す MUST）。
 //
-// **新規台本追加時の手順（docs/conventions/video-creation-rules.md §8 にも記載）**:
+// **新規台本追加時の手順（`SKILL.md` 手順4 の 2 にも記載）**:
 //   1. `npm run compile:script -- <script-id>` で `public/manifests/<script-id>.manifest.json` と
 //      `public/manifests/<script-id>.pdf-manifest.json` を生成
 //   2. 本ファイル冒頭に

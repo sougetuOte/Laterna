@@ -149,7 +149,7 @@ SHA-256 が `out/` と一致することを確かめる。最後に、尺・章�
 
 ## 困ったとき
 
-- **VOICEVOX が無応答**：`curl http://127.0.0.1:50021/version` が返らない。Engine を起動し直す（`voicevox-engine-setup.md`）。compile は合成済みの WAV をキャッシュから使うので、Engine が無くても再 compile は通る（新規発話があると止まる）。
+- **VOICEVOX が無応答**：`curl http://127.0.0.1:50021/version` が返らない。Engine を起動し直す（`voicevox-engine-setup.md`）。compile は最初に Engine の `/version` を確かめるので、Engine が止まっていると compile も `render:all:script` も止まる（合成済みの WAV は再利用されるので、起動し直せば合成は走らない）。
 - **尺が目標から ±25% 超**：台本の発話を足す・削る。1 発話 ≒ 解説役 7 字/秒・聞き役 5.7 字/秒。`pause_after` と表示保証尺（スライド切替直後の最低表示時間）とクレジット区間の分、実測は予測より 20〜30 秒長くなる。
 - **compile が YAML の読み込みで落ちる**（`unidentified alias` など）：`**` や `*` で始まる値を `"…"` で囲む（手順3）。
 - **render が「manifest for scriptId … is not registered」で止まる**：`manifest-registry.ts` に登録していない（手順4 の 2）。

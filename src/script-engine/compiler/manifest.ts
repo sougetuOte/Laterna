@@ -270,7 +270,8 @@ function resolveCredits(script: ScriptDocument, speakerProfiles: SpeakersRegistr
  * design §4.3 v3.6（T15 着手時ギャップ裁定）: 台本に登場した話者役割名 → 描画用話者情報のマップを
  * 組み立てる（登場話者のみ、credits と同じ選別規則）。`portrait.asset_key` 欠落は fail-fast エラー
  * とする MUST（credits の credit 欠落と同型。立ち絵欠落の黙認続行は design §4.4 MUST NOT）。
- * 未知話者役割のエラーは resolveCredits が先に検出するため、ここでは asset_key 欠落のみを扱う。
+ * 未知の話者役割名は parse（`schema/script.ts`）が、プロファイルの欠落は estimate（`resolveSpeakerProfile`）が
+ * 先に止めるので、ここでの役割名とプロファイルの検査は二重の守りになる。
  *
  * **v3.7 追加（HGA W-1 対応、design §4.4）**: 話者役割名が `narrator`/`listener` 以外の場合は
  * compile 時に fail-fast する MUST。v1 のレイアウトは 2 役割固定（design §7）であり、未知役割名は
