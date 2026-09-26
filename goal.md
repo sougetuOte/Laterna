@@ -165,3 +165,90 @@ columba が採点する。各項は上の完了条件と同じ番号で対応す
 **検証 9(ii) 訂正（2026-09-26 主人承認。チャット「承認」）**：
 何を誤ったか ── 検証 9(ii) は「`java-vs-js.mp4`・`.pdf` の SHA-256 が Kyozai の `out/script-engine/` の物と一致」を求めるが、java-vs-js の MP4 には `public/portraits/` の立ち絵が映る。完了条件 2 で立ち絵を v2 に差し替えた時点で、v1 の立ち絵で作られた Kyozai の参照とは一致しなくなる（PDF は立ち絵を含まないので一致する）。完了条件 2 と検証 9(ii) が両立しない書き方だった。
 訂正 ── MP4・PDF の SHA-256 は、`public/portraits/` の 2 枚を commit `805d312` の v1 に一時的に戻して `npm run render:all:script -- java-vs-js` した物で Kyozai の参照と比べる。比べた後は `git checkout -- public/portraits` で v2 に戻し、`git status` に `public/portraits` の差分が無いことを報告に書く。manifest 2 本の同一性と `npm test` の件数（261 件以上 PASS）は現行どおり。**この節が検証 9(ii) に優先する。**
+
+---
+
+# Wave 2.5「点検」（Laterna）
+
+**状態：承認済み（2026-09-27 06:15 JST ＝ 2026-09-26T21:15:22Z、主人「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`）。**
+承認後に誤りが見つかったら、本文を消さずに訂正節を足す（Seneschal `core/handoff.md`）。
+**種別：feature（構造の直し）。**Seneschal のフェーズ種別にリファクタリングは無いので、feature として G0 を通す（Seneschal `docs/research/2026-09-25-review-test-refactor-acceptance.md` §6.2）。
+**位置：**Wave 2（1 本目）と Wave 3（2 本目）の間に挟む。既存の条文が「Wave 3」と書いた物（字幕・(c)・10/2 の受け入れの結果など）は、そのまま Wave 3 で扱う。
+**止め時：2026-10-01（木）。**越えそうなら、その時点で終わっている分で締め、残りは Wave 3 の G0 に回す。
+**1 本目の直しとの関係：**10/2 までに 1 本目（`source-to-exe`）の直しが要ると分かったら、そちらを先にする。その直しは main に別コミットで入れ、本 Wave の採点範囲から除く。直しで 1 本目の出力が変わったら、検証 3(b) の参照値が無効になるので、その時点で本 Wave を締め、残りは Wave 3 の G0 で参照値を取り直す。
+**起点：`6cbaf95`**（Wave 2 の締めと GitHub 公開の時点）。この節の追記は main に入れ、作業はブランチ `wave2.5-review` で進める。検収 PASS の後に main へ合流して push する（早送りできなければ merge commit。rebase はしない）。
+**採点範囲：**本 Wave の成果コミット（`6cbaf95..HEAD` のうち、この節の追記、主人の別指示による直し、`SESSION_STATE.md` の締めを除く）。点検の記録は成果に含む（検収の前に commit する）。
+**主人の指示**（2026-09-27 05:19 JST ＝ 2026-09-26T20:19:34Z、セッション `15a2552d-a599-4152-954c-132b22769ae3`）：「レビューとリファクタリングをやろう。役立つスキルがあれば、公式もseneschalのものもフルに使って下さい。私に許可を得たいことが有れば提案してください。」
+brief §8「重い手法（MAGI・full-review）は既定では使わない」は、この指示により本 Wave では full-review を使う（起動は主人。`/seneschal:full-review`）。MAGI は縦の停止のときだけ（`loop.md` のまま）。
+**評価器の書き込み：**検証 3 の手順で、評価器が `out/`・`public/manifests/`（compile の再生成）・`public/portraits/`（一時的に v1 に戻す）を書き換えてよい（Wave 2 の訂正節と同じ）。
+
+## 主人への問いと答え（2026-09-27 06:15 JST、チャット）
+
+| 問い | 答え |
+|---|---|
+| 1. この G0 を承認するか（`goal.md` への追記を含む） | 承認 |
+| 2. full-review を主人が起動するか（`disable-model-invocation` のため Claude からは起動できない。直しの後に Claude が合図する） | OK |
+| 3. `npm audit fix`（`--force` なし）を当ててよいか。脆弱性 11 件のうち 9 件が直り、入れ替わるパッケージは 34 個（vite 8.1→8.3・rolldown 1.1→1.2・js-yaml 5.2→5.4 ほか。Remotion 本体は変わらない）。出力が 1 バイトでも変わったら戻す | OK |
+
+## 完了条件
+
+1. **点検の記録**：`docs/research/2026-09-27-review.md`（消滅条件つき）がある。対象は `src/`・`scripts/`・`imagegen/scripts/`・設定ファイル（`package.json`・`tsconfig.json`・`eslint.config.mjs`・`remotion.config.ts`）と `SKILL.md` の事実の記述。
+   節は「対象」「使った道具」「所見」「full-review の結果」。「使った道具」には各道具の回ごとに日時・範囲・指摘数（0 件も書く）。「所見」は表で、各行に「出所」「重さ」「場所（ファイル:行）」「内容」「処置」。処置は「直した（commit と直した場所）」「Wave 3 以降へ（理由）」「直さない（理由）」のどれか。対象のうち所見が 0 件の物は、その旨の行がある。
+   「full-review の結果」は、主人が起動した場合は Green か・周の数・周ごとの指摘数とテストの結果・直さずに残した物と理由、起動しなかった場合は「起動なし」。
+   ほかに、足したテストの期待値の出所と、`npm audit` の 2026-09-27 の実測がある。
+2. **直し**：処置が「直した」の所見が、本 Wave の成果コミットで直っている。成果コミットの型は `refactor`・`fix`・`test`・`chore`・`docs`（`feat` なし）。`src/` を直す `fix` はテストケースの追加を含み、`scripts/`・`imagegen/` を直す `fix` は確かめたコマンドと結果が記録にある。
+3. **振る舞いを変えない**：`source-to-exe` の compile の出力（manifest・音声）と render の出力（MP4・PDF）が、起点（＝納品物）と 1 バイトも違わない。`java-vs-js` の compile の出力が起点と、render の出力が立ち絵を v1 に戻した状態で Kyozai-Athanor の参照と 1 バイトも違わない。`deliver/` は変わらない。
+4. **テストと lint**：`npm test` が全件 PASS（266 件以上）、`npm run lint` が exit 0。テストケースの削除・skip・期待値の書き換えが無い（足すのはよい）。
+5. **手順書が通る**：`SKILL.md` の npm scripts がそのまま使え、`SKILL.md` が指すファイルを削除・改名していない。`SKILL.md` の事実の誤りを直した場合は、記録の所見に対応する行がある。
+6. **依存の更新**（問い 3 が OK の場合）：`npm audit fix`（`--force` なし）を当て、fix 可の 9 件が直っていて、3 と 4 が通る。出力が変わった場合は当てずに戻してあり、その旨と変わった値が記録にある。
+7. **imagegen**（`imagegen/` を変えた場合だけ）：画像環境が Wave 2 と同じく建って動く。
+8. **Wave 2 からの持ち越し**（Seneschal `loop.md`）：Wave 2 の検収 PASS（HEAD `ac7b2e5`）の後に入った 3 コミット（`e0f720a`・`36fe414`・`6cbaf95`）について、`36fe414` の中身と、`SESSION_STATE.md` に書いた次の状態の主張（検証 8(ii) の列挙）と、主人の言葉を引く行が確かめられている。
+
+## 検証方法
+
+columba が採点する。各項は上の完了条件と同じ番号で対応する（8 対 8、対応の無い条件は無い）。
+
+1. 記録ファイルに見出し「対象」「使った道具」「所見」「full-review の結果」と「消滅条件」の行がある。所見の表の各行で 5 列が埋まっている（空欄 0）。「対象」に挙げた各物について、所見の行か「0 件」の行がある。
+   「使った道具」に、built-in の `/code-review`・`/simplify`・`/security-review` と `engineering:tech-debt` の各回（日時・範囲・指摘数）があり、それぞれの起動が本 Wave のセッションの transcript（記録に ID を書く）に在る。full-review は、主人が起動していれば「full-review の結果」の節に Green か否か・周の数・周ごとの指摘数・テストの結果・残した物と理由があり、起動が transcript に在る。起動していなければ「起動なし」と書いてあれば足りる。
+   足したテストケースごとに期待値の出所（仕様・実測・主人の確定値）がある。`npm audit` の実測（11 件：high 6・moderate 3・low 2）がある。
+2. 採点範囲のコミットの件名の型が `refactor`・`fix`・`test`・`chore`・`docs` のどれか（`feat` が 0）。「直した」の各行の commit が採点範囲にあり、その変更ファイルに行の「直した場所」が含まれる。`src/` を変える `fix` の各コミットは、テストファイルでのテストケースの追加を含む。`scripts/`・`imagegen/` を変える `fix` は、記録の該当行に確かめたコマンドと結果がある。
+3. VOICEVOX（127.0.0.1:50021）が起動していて `/version` が `0.25.2` を返す状態で、評価器が自分で走らせる。そうでなければ、その行は「未検証」と書く（PASS にしない）。
+   (a) `npm run compile:script -- source-to-exe` と `npm run compile:script -- java-vs-js` が exit 0。その後 `git diff --exit-code 6cbaf95 -- public/manifests public/audio` が exit 0（差分なし）。
+   (b) `out/script-engine/` を空にして `npm run render:all:script -- source-to-exe` が exit 0。`source-to-exe.mp4` の SHA-256 が `43a78b42bdcdba2ba7ed7e1590d1001a9003431dea313409a5d737be293d9c4e`、`source-to-exe.pdf` が `c94e503fb993548520cad084dc9735e0f537898f70c33cc1551cb19282f8db55`。`deliver/source-to-exe/` の 3 ファイルの SHA-256 が、この 2 つと `description.md` の `509da0c423aff6e39291e7e6988318bdd7b05a1c28120a2d1928629cd2bbab16`。
+   (c) `public/portraits/` の 2 枚を `git show 805d312:<パス>` で v1 に一時的に戻して `npm run render:all:script -- java-vs-js` が exit 0。`java-vs-js.mp4` の SHA-256 が `e121b7993e0b467584e590b61be49263b6f2e210f7bfdc71bf42cac27fd9ab5d`、`java-vs-js.pdf` が `ef4002301f4663884e13035f541611ecf716487c8ec9851ffb72dbcc9f5b0ddf`（どちらも Kyozai-Athanor の `out/script-engine/` の物と同じ値）。比べた後 `git checkout HEAD -- public/portraits` で戻し、`git status --porcelain` に `public/portraits` が無いことを報告に書く。
+4. 評価器が `npm test` を自分で走らせ、全件 PASS・テストファイル 15 本以上・テスト 266 件以上（数を報告に書く）。`npm run lint` が exit 0。
+   `git diff 6cbaf95..HEAD` のテストファイル（`*.test.ts`・`*.test.tsx`）で、(i) 消えたテストケース（`it(`・`test(` の行が消え、同じ名前で足されていない物）が 0、(ii) `.skip`・`.todo`・`.only`・`skipIf`・`runIf` の追加が 0、(iii) 期待値（matcher の引数）の値が変わる変更が 0、(iv) `expect(…)` の実測側を定数や期待値そのものに置き換える変更が 0。import・呼び出し名・定数名の付け替えで値が同じ物は数えない。起点のテストの期待値の出所は Wave 1・2 のまま（`docs/inventory.md` §2.4 ほか）。
+5. `SKILL.md` に現れる `npm run <名前>`（`compile:script`・`lint`・`preview:script`・`render:all:script`）と `npm test` が `package.json` の `scripts` にあり、`git diff 6cbaf95..HEAD -- package.json` の `scripts` 節に差分が無い。`git diff --name-status 6cbaf95..HEAD` で削除（D）・改名（R）されたファイルの名前が `SKILL.md` に現れない。`SKILL.md` に差分があれば、変えた行ごとに記録の所見に対応する行がある。
+6. （問い 3 が OK の場合）`package-lock.json` で次の版以上：`js-yaml` 5.4.2（`@eslint/eslintrc` 配下は 4.3.2）・`vitest` と `@vitest/mocker` 4.1.11・`postcss` 8.5.28・`nanoid` 3.3.19・`fast-uri` 3.1.8・`browserslist` 4.29.1・`brace-expansion` 1.1.21／2.1.7・`baseline-browser-mapping` 2.11.26。この状態で 3 と 4 が通る。戻した場合：`package-lock.json` が起点と同じで、記録に「戻した」と変わった値がある。（問い 3 が否の場合）`package-lock.json` が起点と同じ。
+7. `git diff --stat 6cbaf95..HEAD -- imagegen` が空なら「該当なし」。空でなければ Wave 2 の検証 1 と同じ手順（`setup.ps1 -VerifyOnly` exit 0、`start.ps1` の後に `http://127.0.0.1:8288/system_stats` が応答、`smoke.py` が exit 0 で t2i と edit の PNG を指定寸法で出す、`stop.ps1` の後にポートが空く）。
+8. (i) `36fe414`：`README.md` に見出し「ライセンス」と、MIT・CC BY 4.0・対象外の 3 行がある。`LICENSE-CONTENT` に VOICEVOX の規約 URL が 3 つ（`virvoxproject.com`・`zunko.jp/con_ongen_kiyaku.html`・`voicevox.hiroshiba.jp/term/`）と、再配布時に義務（クレジット・機械学習への使用禁止）を引き継ぐ 1 文がある。3 つの URL を取得して該当する規約のページかを見る。取得できなくても、記述があれば PASS してよい（取得できたかを報告に書く）。
+   (ii) `e0f720a`・`6cbaf95` で `SESSION_STATE.md` に書いた状態の主張のうち、次の物を指す場所で確かめる ──「`deliver/` の SHA-256 は `out/` と一致」（→ 3(b)）／「MP4 は h264＋aac・285.888 秒、PDF は 10 ページ」（`deliver/` の物を `ffprobe`・`pdf-lib` で）／「`compile:script -- source-to-exe` は 27 発話・8575 frames」（manifest の発話数と `total_duration_frames`）／「立ち絵 v2 は 832×1216・透過」（`magick identify -format "%w %h %[channels]"` で `public/portraits/` の 2 枚）／「`npm test` 15 files・266 tests、`npm run lint` exit 0」（→ 4。以上で読む）／「`out/script-engine/java-vs-js.mp4` は v1 の立ち絵で render した物で Kyozai と同一」（→ 3(c)）／「imagegen の `setup.ps1 -VerifyOnly` が exit 0」（評価器が走らせる。`start`・`smoke`・`stop` は P1 の検収で採点済みなので、imagegen を変えた場合だけ 7 で見る）／「GitHub に Public で公開」（`gh api repos/sougetuOte/Laterna --jq .visibility` が `public`）／「`npm audit` 11 件」（記録に 2026-09-27 の実測）／「Wave 2 の完了条件 2〜9 は columba 全体 PASS」（セッション `3073bd24-f73a-4514-ab5a-e656bc089bee` の columba の返り値に在る）。
+   時間で変わる状態（「imagegen はいまは停止中」「`gh` は sougetuOte でログイン済み」）は採点しない。
+   (iii) 主人の言葉を引く行 ── セッション `3073bd24-f73a-4514-ab5a-e656bc089bee` の 2026-09-26T13:20:52Z の主人の発話に「metral@sougetu.netは公開アドレス。使っても問題ない」「a,b共に修正を行って。ライセンスは炎上の原因になるからね」「公開で作って」が在る（13:13:13Z は公開の可否を問う質問）。本 Wave の主人の指示と問い 1〜3 の答えが、上の状態行・指示の行が指すセッションと時刻の transcript に主人の発話として在る。
+
+## やらないこと
+
+### この Wave ではやらない（Wave 3 以降で扱う）
+
+- 機能の追加：字幕・SRT、口パク・まばたき、audio_query の保存、画像スライドと出典台帳（`docs/design.md` (b)）、`manifest-registry.ts` の廃止（(c)）
+- 見た目や出力が変わる直し（bullets のマーカー位置など）と、テストが誤った振る舞いを固定している型の直し（期待値が変わる）。所見は記録に書いて Wave 3 以降へ
+- 2 本目の題材の検討と、10/2 の受け入れの結果の反映（Wave 3 の G0）
+- `npm audit fix --force`（eslint を 9.19.0 から 9.39.5 へ上げる。low 2 件。lint の規則が変わりうる）
+- 文書の書き直し（`docs/inventory.md`・`docs/design.md`・`docs/research/` の既存資料、`SKILL.md` の構成）。`SKILL.md` とコード中のコメントの事実の誤りは直してよい（コメントだけの一括書き換えはしない）
+- 研究資料 `docs/research/2026-09-26-image-env.md` の畳み（Wave 3 の着手時のまま）
+- CI（GitHub Actions）、点検用の常設スクリプト、計測の仕組みを足すこと
+
+### 起きてはならない
+
+- `deliver/` の変更（1 本目は 10/2 の授業で使う）
+- 既存 2 本の compile・render の出力が変わること（検証 3 の物差し）
+- テストケースの削除・skip・期待値の書き換え
+- 使う側が 1 か所しかない新しい抽象化（汎用化・設定化・層）を足すこと
+- `SKILL.md` が指すファイルの削除・改名と、npm scripts の名前・中身の変更
+- GitHub に PR・コメントを出すこと（`/code-review` の `--comment` を含む）
+- Kyozai-Athanor・Seneschal・ComfyUI_img2 への書き込み、`reference/` の改変と commit
+- `CLAUDE.md`・`goal.md`・`docs/brief.md` の無承認変更
+- imagegen の版・モデル・ワークフローの変更（`imagegen/versions/`・`imagegen/workflows/`）
+- VOICEVOX 音声・第三者素材を CC BY 等で再ライセンスする記述
+- 公開リポジトリに秘密情報・`deliver/`・`out/`・imagegen の本体（`ComfyUI/`・`.venv/`・`models/`・`output/`）を入れること
+- 検収 PASS の前に作業ブランチを main へ合流すること
