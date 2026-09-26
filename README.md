@@ -26,3 +26,9 @@ Laterna は「映して見せる道具」の名前にした。器ではなく、
 - `reference/yukkuri-reimu-marisa-videos/` ── 手順書の型を借りる参考スキル（読み取り専用。出所・ライセンス不明のため git 管理外）
 - `D:\work7\Kyozai-Athanor` ── エンジンの移植元（読み取り専用・凍結）
 - `docs/research/` ── 調査資料（決定ではない。各ファイルに消滅条件）
+
+## ライセンス
+
+- コード（`src/`・`scripts/`・`imagegen/scripts/` など）：MIT（`LICENSE`）
+- 台本・図解・教材本文・生成した立ち絵（`content/`・`materials/`・`docs/`・`public/portraits/`）：CC BY 4.0（`LICENSE-CONTENT`）
+- **対象外**：VOICEVOX の合成音声（`public/audio/` と動画の音声）と第三者素材。各権利者の規約に従う（クレジット必須。規約の URL は `LICENSE-CONTENT`）。`reference/` は配布しない
