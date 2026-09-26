@@ -23,6 +23,7 @@
 - **Wave 2「1 本目」は完了**（2026-09-26）。検収：完了条件 1 は columba PASS（1 回目）。完了条件 2〜9 は columba **全体 PASS**（1 回目の判定。22:05）。9(ii) は訂正節（`ac7b2e5`、主人承認）に照らして PASS ── 評価器自身が `public/portraits/` を v1 に戻して render した java-vs-js の MP4 が Kyozai の参照と SHA-256 一致、戻した後の作業ツリーは clean。
   - 付記 A：`build-log.md` の 4 行（手順 1・2・3・6 の「書く」「取得」）はコマンド列が作業の記述で、shell コマンドではない。評価器は「列が埋まっている」と読んで PASS。
   - 付記 C：完了条件 9(iii) の「実 WAV 検証 8 件の削除」は、検証方法の `git diff ba991a4..805d312` では見えない（`ba991a4` にテストが無い）。Kyozai `01c727e` との比較でだけ見える（評価器の補助観測で確認済み）。次の G0 で検証行を書くときは比較の起点を Kyozai にする。
+- **GitHub に公開済み**（2026-09-26、https://github.com/sougetuOte/Laterna 、Public。主人指示。commit の author メールは公開アドレスとしてそのまま。README にライセンス節、`LICENSE-CONTENT` に VOICEVOX 各規約の URL を足してから push）。
 - **残っているのは主人の受け入れだけ**（10/2 の授業で使えるか。columba の採点対象外。使えなかった点は Wave 3 の G0 に書く）。
 - 動いている物（実測 2026-09-26）：
   - `imagegen/`（ComfyUI v0.37.0、klein 4B、GPU 1、port 8288）。`setup.ps1 -VerifyOnly`／`start`／`smoke`／`stop` すべて exit 0。**いまは停止中。**
@@ -90,9 +91,10 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 - **10/2 の授業での受け入れ**（使えなかった点は Wave 3 の G0 に書く）。
 - brief §6 の答え（上の「決定」1〜5・7）を brief 本文に写すか（写すなら主人の承認で）。
-- 公開の時期と場所（GitHub 等）。公開前に `npm audit`（11 件。Kyozai の lock を引き継いだ物）を見る。
 
 ## 未決（実測・作業待ち）
+
+- `npm audit` の 11 件（Kyozai の lock を引き継いだ物。動画制作には効かない）。公開後なので早めに見る。
 
 - `docs/design.md` (c)：`calculateMetadata` の `fetch(staticFile())` が `remotion render` で通るか（Wave 3 の着手時に 1 時間枠で 1 回試す）。
 - 字幕の要否（(f)①）：授業で流して見てから決める。
@@ -110,6 +112,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 - VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、PDF のページ数は `pdf-lib`（node_modules）。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（270 MB）。
 - 分類器（auto mode）が止めた操作は別経路で追わない。フェーズ末に主人へまとめて出す（主人が「書込許可」と言えば Edit ツールで通った）。goal.md の訂正節は、主人の「承認」の後に Edit ツールで書けた。
 - Bash の作業ディレクトリは呼び出しをまたいで残る。git は `git -C /d/work8/Laterna` で呼ぶ。
+- リモートは `origin`（GitHub、https）。commit したら `git -C /d/work8/Laterna push` で公開側も進める。`gh` は sougetuOte でログイン済み。
 - 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。コマンド本文にその文字列があるだけでも止まる（`curl` と `| sha256sum` を含む一括コマンドも止まった）。HTTP は `urllib` かファイル経由にし、複数行の Python は `python - <<'EOF'` で渡す（`python -c` の複数行は shim が壊す）。
 - **150 行超のヒアドキュメント（引用符・バッククォートを含む）は bash が「unexpected EOF」で失敗した。**長い文書は Write ツールで書く。
 - `.ps1` は BOM 付き UTF-8 で書く。PowerShell の出力は cp932（`| iconv -f cp932 -t utf-8`）。`sleep` 先頭の待ちは止められるので、待つなら `until … ; do sleep 5; done` の形。
