@@ -67,9 +67,10 @@ export interface DurationErrorRate {
 
 /**
  * design §9.1: `char_count` は発話 text から空白類を除いた文字数
- * （句読点・記号は含む）と定義される。
+ * （句読点・記号は含む）と定義される。PDF のページ分割（`pdf/script-pdf-manifest.ts`）も
+ * 同じ定義で数えるので export する。
  */
-function countSpeechCharacters(text: string): number {
+export function countSpeechCharacters(text: string): number {
   return text.replace(/\s/g, "").length;
 }
 

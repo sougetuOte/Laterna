@@ -19,6 +19,7 @@
  */
 
 import path from "node:path";
+import { countSpeechCharacters } from "../compiler/estimate";
 import type { ScriptDocument, Utterance } from "../schema/script";
 import { KNOWN_SPEAKER_ROLES } from "../schema/script";
 import type { TimelineManifest } from "../schema/timeline-manifest";
@@ -75,15 +76,6 @@ export interface PdfManifest {
  * 追加検証が不要なレベルの余白を実測）。
  */
 export const PDF_PAGE_CHAR_LIMIT = 900;
-
-/**
- * design §9.1: `char_count` は発話 text から空白類を除いた文字数（句読点・記号は含む）と定義される。
- * `compiler/estimate.ts` の `countSpeechCharacters`（非 export）と同一定義をここでも用いる
- * （design §9.1 が SSOT。PDF 分割用途のため import 経路を分けず同定義をこのファイルにも持つ）。
- */
-function countPdfCharacters(text: string): number {
-  return text.replace(/\s/g, "").length;
-}
 
 /** `public/manifests/<script-id>.pdf-manifest.json` の既定書出し先。 */
 export function resolveDefaultPdfManifestOutputPath(scriptId: string): string {
@@ -162,7 +154,7 @@ function assignUtterancesToSlideGroups(
 
 /**
  * design §8.3: 1 スライド分のブロック列を文字数上限でページ分割する。発話（ブロック）は
- * 分割の最小単位であり途中で切らない。累計文字数（`countPdfCharacters`）が `charLimit` を
+ * 分割の最小単位であり途中で切らない。累計文字数（`countSpeechCharacters`）が `charLimit` を
  * 超える直前でページを切る（ちょうど上限に達する場合は同一ページに残す）。
  *
  * ブロックが 0 件の場合でも 1 ページ（`blocks: []`）を返す（design §8.1: スライド画像自体は
@@ -184,7 +176,7 @@ function paginateSlideBlocks(
   let currentChars = 0;
 
   for (const block of blocks) {
-    const blockChars = countPdfCharacters(block.text);
+    const blockChars = countSpeechCharacters(block.text);
 
     if (blockChars > charLimit) {
       throw new Error(
