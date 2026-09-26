@@ -1,0 +1,122 @@
+# java-vs-js.script.yaml — パイロット台本「JavaとJavaScriptはどう違うの？」
+#
+# 出自: materials/java-vs-js/scenario-handoff.txt（ユーザー脚本、2026-07-10 受領）
+# 対応タスク: docs/specs/script-engine/tasks.md W15-script-engine-T24（FR-9）
+# スキーマ: src/script-engine/schema/script.ts（ScriptDocument）
+#
+# 注意:
+# - custom スライドの component（JavaJsCompare / JsNamingTimeline）の名前は
+#   src/script-engine/shared/component-names.ts に登録済み（T8）。React 実装は
+#   Wave 3 T13 スコープ（実装まで「宣言済み・実体未登録」の期間がある）。
+#   SVG 下絵は materials/java-vs-js/*.svg
+# - pause_before/pause_after は秒。負値 MUST NOT（design §2.3）
+# - 発話 text は折り畳みスカラー（>-）を使わない。改行が半角スペースに置換され、
+#   VOICEVOX 入力・PDF 本文・内容ハッシュ・文字数カウントを汚染するため（HGA F-1）
+
+# 2026-07-11 T25 実測裁定 (b): 実測動画尺 100.8 秒（クレジット込み）に基づき max 90 → 105 に改訂
+# （ユーザー裁定 2026-07-11。台本圧縮案 (a) は脚本原文保持を優先して棄却。
+#   docs/artifacts/t25-pilot-compile-2026-07-11.md §3）
+target_duration_range:
+  min: 60
+  max: 105
+
+speaker_profile_ref: default
+
+utterances:
+  - id: u-001
+    speaker: narrator
+    text: 今日は「JavaとJavaScriptはどう違うの？」という話をします。
+    pause_after: 0.3
+  - id: u-002
+    speaker: listener
+    text: え、名前がそっくりですし、兄弟みたいな言語じゃないんですか？
+  - id: u-003
+    speaker: narrator
+    text: 実はこの2つ、まったくの別物です。よく「メロンとメロンパンくらい違う」と言われます。
+  - id: u-004
+    speaker: listener
+    text: そんなにですか？じゃあ、なぜ名前がこんなに似ているんでしょう？
+  - id: u-005
+    speaker: narrator
+    text: そこには1995年の、ちょっとした事情があるんです。
+    pause_after: 0.6
+  - id: u-006
+    speaker: narrator
+    text: JavaScriptは、ネットスケープ社のブレンダン・アイクさんが、およそ10日間で最初の形を作った言語です。名前は最初「Mocha」、次に「LiveScript」でした。
+  - id: u-007
+    speaker: listener
+    text: あれ、最初はJavaのJの字もないんですね。
+  - id: u-008
+    speaker: narrator
+    text: そうなんです。ところが同じ1995年、サン・マイクロシステムズの「Java」が大きな話題になっていました。
+  - id: u-009
+    speaker: narrator
+    text: そこでネットスケープはサン社と手を組み、流行のJavaにあやかって「JavaScript」へ改名しました。つまり、宣伝のための名前だったんです。
+  - id: u-010
+    speaker: listener
+    text: 名前の由来が、技術ではなくマーケティングだったんですか？
+    pause_after: 0.4
+  - id: u-011
+    speaker: narrator
+    text: そのとおりです。中身も対照的で、Javaは型をきっちり決めてから動かす、大きなシステム向けの言語。JavaScriptはブラウザの中で気軽に動かせる、Webページ向けの言語として生まれました。
+  - id: u-012
+    speaker: listener
+    text: 似ているのは本当に名前だけなんですね。
+    pause_after: 0.4
+  - id: u-013
+    speaker: narrator
+    text: まとめます。JavaとJavaScriptは別の言語。似た名前は、1995年の流行に乗った歴史の名残です。次回は、このJavaScriptがどう標準化されたのか、「ECMAScript」の話をしましょう。
+
+slides:
+  # 冒頭: 対比カードのタイトル提示（特徴リストは伏せる）
+  - id: slide-compare-intro
+    type: custom
+    component: JavaJsCompare
+    props:
+      stage: intro
+  # 中盤: 命名経緯の年表
+  - id: slide-timeline
+    type: custom
+    component: JsNamingTimeline
+  # 終盤: 対比カードの特徴リスト全開示
+  - id: slide-compare-full
+    type: custom
+    component: JavaJsCompare
+    props:
+      stage: full
+  # 締め: まとめ（標準 bullets タイプ。narration-style.md「まとめは3点以内」）
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - JavaとJavaScriptは**別の言語**
+      - 似た名前は1995年の流行に乗った歴史の名残
+      - 次回は標準化の話「ECMAScript」
+
+slide_events:
+  - id: ev-001
+    slide: slide-compare-intro
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+# ev-002 は end + offset アンカーの実データ検証を兼ねる（HGA F-12）。
+# u-005 終了 + 0.6 秒 = pause_after 経由で u-006 開始と同時刻（意味は不変）
+  - id: ev-002
+    slide: slide-timeline
+    anchor:
+      utterance: u-005
+      position: end
+      offset: 0.6
+  - id: ev-003
+    slide: slide-compare-full
+    anchor:
+      utterance: u-011
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-summary
+    anchor:
+      utterance: u-013
+      position: start
+      offset: 0

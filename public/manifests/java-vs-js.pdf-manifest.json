@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "script_id": "java-vs-js",
+  "char_limit": 900,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-compare-intro",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "narrator",
+          "text": "今日は「JavaとJavaScriptはどう違うの？」という話をします。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-002",
+          "speaker": "listener",
+          "text": "え、名前がそっくりですし、兄弟みたいな言語じゃないんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "実はこの2つ、まったくの別物です。よく「メロンとメロンパンくらい違う」と言われます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-004",
+          "speaker": "listener",
+          "text": "そんなにですか？じゃあ、なぜ名前がこんなに似ているんでしょう？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-005",
+          "speaker": "narrator",
+          "text": "そこには1995年の、ちょっとした事情があるんです。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-timeline",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-006",
+          "speaker": "narrator",
+          "text": "JavaScriptは、ネットスケープ社のブレンダン・アイクさんが、およそ10日間で最初の形を作った言語です。名前は最初「Mocha」、次に「LiveScript」でした。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "listener",
+          "text": "あれ、最初はJavaのJの字もないんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "narrator",
+          "text": "そうなんです。ところが同じ1995年、サン・マイクロシステムズの「Java」が大きな話題になっていました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-009",
+          "speaker": "narrator",
+          "text": "そこでネットスケープはサン社と手を組み、流行のJavaにあやかって「JavaScript」へ改名しました。つまり、宣伝のための名前だったんです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-010",
+          "speaker": "listener",
+          "text": "名前の由来が、技術ではなくマーケティングだったんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-compare-full",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-011",
+          "speaker": "narrator",
+          "text": "そのとおりです。中身も対照的で、Javaは型をきっちり決めてから動かす、大きなシステム向けの言語。JavaScriptはブラウザの中で気軽に動かせる、Webページ向けの言語として生まれました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-012",
+          "speaker": "listener",
+          "text": "似ているのは本当に名前だけなんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "まとめます。JavaとJavaScriptは別の言語。似た名前は、1995年の流行に乗った歴史の名残です。次回は、このJavaScriptがどう標準化されたのか、「ECMAScript」の話をしましょう。",
+          "style": "body"
+        }
+      ]
+    }
+  ],
+  "total_pages": 4
+}

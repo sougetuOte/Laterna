@@ -1,0 +1,93 @@
+{
+  "accent_phrases": [
+    {
+      "moras": [
+        {
+          "text": "コ",
+          "consonant": "k",
+          "consonant_length": 0.06332462280988693,
+          "vowel": "o",
+          "vowel_length": 0.059061504900455475,
+          "pitch": 4.725255489349365
+        },
+        {
+          "text": "レ",
+          "consonant": "r",
+          "consonant_length": 0.03470224887132645,
+          "vowel": "e",
+          "vowel_length": 0.05638458579778671,
+          "pitch": 4.803778648376465
+        },
+        {
+          "text": "ワ",
+          "consonant": "w",
+          "consonant_length": 0.041231945157051086,
+          "vowel": "a",
+          "vowel_length": 0.07013165205717087,
+          "pitch": 4.843258857727051
+        }
+      ],
+      "accent": 3,
+      "pause_mora": null,
+      "is_interrogative": false
+    },
+    {
+      "moras": [
+        {
+          "text": "テ",
+          "consonant": "t",
+          "consonant_length": 0.056715428829193115,
+          "vowel": "e",
+          "vowel_length": 0.06833667308092117,
+          "pitch": 5.138365268707275
+        },
+        {
+          "text": "ス",
+          "consonant": "s",
+          "consonant_length": 0.05116862803697586,
+          "vowel": "U",
+          "vowel_length": 0.04743549972772598,
+          "pitch": 0.0
+        },
+        {
+          "text": "ト",
+          "consonant": "t",
+          "consonant_length": 0.045701220631599426,
+          "vowel": "o",
+          "vowel_length": 0.04399784654378891,
+          "pitch": 4.879309177398682
+        },
+        {
+          "text": "デ",
+          "consonant": "d",
+          "consonant_length": 0.02920851856470108,
+          "vowel": "e",
+          "vowel_length": 0.06695576757192612,
+          "pitch": 4.63453483581543
+        },
+        {
+          "text": "ス",
+          "consonant": "s",
+          "consonant_length": 0.09114638715982437,
+          "vowel": "U",
+          "vowel_length": 0.060393571853637695,
+          "pitch": 0.0
+        }
+      ],
+      "accent": 1,
+      "pause_mora": null,
+      "is_interrogative": false
+    }
+  ],
+  "speedScale": 1.0,
+  "pitchScale": 0.0,
+  "intonationScale": 1.0,
+  "volumeScale": 1.0,
+  "prePhonemeLength": 0.1,
+  "postPhonemeLength": 0.1,
+  "pauseLength": null,
+  "pauseLengthScale": 1.0,
+  "outputSamplingRate": 24000,
+  "outputStereo": false,
+  "kana": "コレワ'/テ'_ストデ_ス"
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  java-js-compare.svg — Java と JavaScript の対比カード
+
+  目的：「名前が似ているだけの別物」を 2 枚のカードの並置で視覚化する。
+  冒頭ではタイトルと 2 つの名前だけ見せ、終盤で中身（4 行の特徴）を開示する 2 段階利用を想定。
+
+  Remotion実装時の注意：
+  - 冒頭利用時はカード内の特徴リスト（.details 相当の行）を非表示にする
+  - 終盤で特徴リストを上から 1 行ずつフェードインさせる演出を想定
+  - 商標ロゴ（コーヒーカップ等）は使わない。図形は自作の抽象アイコンのみ
+
+  対象層：プログラミング初学者（Java と JavaScript を混同している）
+  メッセージ：似ているのは名前だけ（メロンとメロンパン）
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="450" fill="#f5f2ec"/>
+
+  <!-- タイトル -->
+  <text x="400" y="46" text-anchor="middle" fill="#1a3a52" font-size="26" font-weight="bold">JavaとJavaScript、どう違う？</text>
+
+  <!-- ===== 左カード: Java ===== -->
+  <rect x="50" y="80" width="320" height="290" rx="12" fill="#ffffff" stroke="#2c5878" stroke-width="2.5"/>
+  <rect x="50" y="80" width="320" height="64" rx="12" fill="#2c5878"/>
+  <rect x="50" y="120" width="320" height="24" fill="#2c5878"/>
+  <text x="210" y="122" text-anchor="middle" fill="#ffffff" font-size="26" font-weight="bold">Java</text>
+
+  <!-- 抽象アイコン: 積み上げたブロック（堅牢な大規模システム） -->
+  <rect x="180" y="162" width="60" height="16" rx="3" fill="#2c5878" opacity="0.9"/>
+  <rect x="172" y="182" width="76" height="16" rx="3" fill="#2c5878" opacity="0.7"/>
+  <rect x="164" y="202" width="92" height="16" rx="3" fill="#2c5878" opacity="0.5"/>
+
+  <text x="210" y="248" text-anchor="middle" fill="#333" font-size="14">1995年　サン・マイクロシステムズ</text>
+  <text x="210" y="278" text-anchor="middle" fill="#333" font-size="14">型をきっちり決めてから動かす</text>
+  <text x="210" y="308" text-anchor="middle" fill="#333" font-size="14">大きなシステム・業務アプリ向け</text>
+  <text x="210" y="338" text-anchor="middle" fill="#666" font-size="13">専用の実行環境（JVM）の上で動く</text>
+
+  <!-- ===== 右カード: JavaScript ===== -->
+  <rect x="430" y="80" width="320" height="290" rx="12" fill="#ffffff" stroke="#b8452c" stroke-width="2.5"/>
+  <rect x="430" y="80" width="320" height="64" rx="12" fill="#b8452c"/>
+  <rect x="430" y="120" width="320" height="24" fill="#b8452c"/>
+  <text x="590" y="122" text-anchor="middle" fill="#ffffff" font-size="26" font-weight="bold">JavaScript</text>
+
+  <!-- 抽象アイコン: ブラウザウィンドウ（Webページ） -->
+  <rect x="556" y="160" width="68" height="52" rx="5" fill="none" stroke="#b8452c" stroke-width="2.5"/>
+  <line x1="556" y1="174" x2="624" y2="174" stroke="#b8452c" stroke-width="2.5"/>
+  <circle cx="564" cy="167" r="2.5" fill="#b8452c"/>
+  <circle cx="572" cy="167" r="2.5" fill="#b8452c"/>
+  <path d="M 570 192 L 580 200 L 570 208" fill="none" stroke="#b8452c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="588" y1="204" x2="606" y2="204" stroke="#b8452c" stroke-width="2.5" stroke-linecap="round"/>
+
+  <text x="590" y="248" text-anchor="middle" fill="#333" font-size="14">1995年　ネットスケープ社</text>
+  <text x="590" y="278" text-anchor="middle" fill="#333" font-size="14">動かしながら気軽に書ける</text>
+  <text x="590" y="308" text-anchor="middle" fill="#333" font-size="14">Webページ・ブラウザ向け</text>
+  <text x="590" y="338" text-anchor="middle" fill="#666" font-size="13">ブラウザがあればどこでも動く</text>
+
+  <!-- 中央の VS -->
+  <circle cx="400" cy="225" r="26" fill="#c9a227"/>
+  <text x="400" y="231" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="bold">VS</text>
+
+  <!-- フッター: メロンとメロンパン -->
+  <text x="400" y="412" text-anchor="middle" fill="#1a3a52" font-size="16" font-weight="bold">似ているのは名前だけ ——「メロンとメロンパン」くらい別物</text>
+</svg>

@@ -1,0 +1,19 @@
+# 台本: JavaとJavaScriptはどう違うの？（JS 命名の経緯）
+# 想定尺: 60〜90 秒 / narrator = 解説役（玄野武宏） / listener = 聞き役（ずんだもん）
+
+# slide: java-js-compare.svg（タイトル提示のみ、特徴リストは伏せる）
+narrator: 今日は「JavaとJavaScriptはどう違うの？」という話をします。
+listener: え、名前がそっくりですし、兄弟みたいな言語じゃないんですか？
+narrator: 実はこの2つ、まったくの別物です。よく「メロンとメロンパンくらい違う」と言われます。
+listener: そんなにですか？じゃあ、なぜ名前がこんなに似ているんでしょう？
+narrator: そこには1995年の、ちょっとした事情があるんです。
+# slide: js-naming-timeline.svg
+narrator: JavaScriptは、ネットスケープ社のブレンダン・アイクさんが、およそ10日間で最初の形を作った言語です。名前は最初「Mocha」、次に「LiveScript」でした。
+listener: あれ、最初はJavaのJの字もないんですね。
+narrator: そうなんです。ところが同じ1995年、サン・マイクロシステムズの「Java」が大きな話題になっていました。
+narrator: そこでネットスケープはサン社と手を組み、流行のJavaにあやかって「JavaScript」へ改名しました。つまり、宣伝のための名前だったんです。
+listener: 名前の由来が、技術ではなくマーケティングだったんですか？
+# slide: java-js-compare.svg（特徴リストを全開示）
+narrator: そのとおりです。中身も対照的で、Javaは型をきっちり決めてから動かす、大きなシステム向けの言語。JavaScriptはブラウザの中で気軽に動かせる、Webページ向けの言語として生まれました。
+listener: 似ているのは本当に名前だけなんですね。
+narrator: まとめます。JavaとJavaScriptは別の言語。似た名前は、1995年の流行に乗った歴史の名残です。次回は、このJavaScriptがどう標準化されたのか、「ECMAScript」の話をしましょう。

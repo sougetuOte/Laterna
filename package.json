@@ -1,0 +1,42 @@
+{
+  "name": "laterna",
+  "version": "0.1.0",
+  "description": "授業用の解説動画（掛け合い形式）と復習用 PDF を、台本 YAML から作る",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "@remotion/media": "^4.0.484",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.484",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "js-yaml": "^5.2.1",
+    "pdf-lib": "^1.17.1",
+    "prettier": "3.8.1",
+    "tsx": "^4.23.0",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "test": "vitest run",
+    "compile:script": "node scripts/compile-script.mjs",
+    "render:script": "remotion render src/index.ts ScriptComposition",
+    "pdf:script": "node scripts/build-script-pdf.mjs",
+    "preview:script": "remotion studio",
+    "render:all:script": "node scripts/render-all-script.mjs"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

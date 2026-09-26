@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  js-naming-timeline.svg — JavaScript 命名経緯の年表
+
+  目的：1995 年の数ヶ月間に Mocha → LiveScript → JavaScript と改名された経緯と、
+  同年の Java ブームが改名の動機だったことを 1 枚で示す。
+
+  Remotion実装時の注意：
+  - 上段（Java レーン）を先に見せ、下段の改名の流れを左から順に出す演出を想定
+  - 「あやかり改名」の点線矢印は narrator の「宣伝のための名前」の台詞に同期させる
+
+  対象層：プログラミング初学者（Java と JavaScript を混同している）
+  メッセージ：JavaScript という名前はマーケティングの産物
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="sans-serif">
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="450" fill="#f5f2ec"/>
+
+  <!-- タイトル -->
+  <text x="400" y="42" text-anchor="middle" fill="#1a3a52" font-size="24" font-weight="bold">1995年、名前はこうして決まった</text>
+
+  <!-- ===== 上段: Java レーン ===== -->
+  <rect x="40" y="70" width="720" height="90" rx="8" fill="#e8f0f5" stroke="#2c5878" stroke-width="1.5"/>
+  <text x="60" y="98" fill="#2c5878" font-size="14" font-weight="bold">サン・マイクロシステムズ</text>
+
+  <rect x="60" y="108" width="170" height="40" rx="6" fill="#2c5878"/>
+  <text x="145" y="128" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Java 正式発表</text>
+  <text x="145" y="143" text-anchor="middle" fill="#cfe0ec" font-size="11">1995年5月</text>
+
+  <!-- Java ブームの帯 -->
+  <rect x="250" y="115" width="480" height="26" rx="13" fill="#c9a227" opacity="0.85"/>
+  <text x="490" y="133" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Java 大ブーム（業界の話題を独占）</text>
+
+  <!-- ===== 下段: Netscape レーン ===== -->
+  <rect x="40" y="230" width="720" height="150" rx="8" fill="#ffffff" stroke="#666" stroke-width="1.5"/>
+  <text x="60" y="258" fill="#555" font-size="14" font-weight="bold">ネットスケープ社（ブレンダン・アイク）</text>
+
+  <!-- タイムライン軸 -->
+  <line x1="80" y1="330" x2="720" y2="330" stroke="#999" stroke-width="2"/>
+
+  <!-- Mocha -->
+  <circle cx="150" cy="330" r="7" fill="#8a6d3b"/>
+  <rect x="90" y="272" width="120" height="42" rx="6" fill="#8a6d3b"/>
+  <text x="150" y="290" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">Mocha</text>
+  <text x="150" y="306" text-anchor="middle" fill="#f0e6d6" font-size="10">約10日間で誕生</text>
+  <text x="150" y="356" text-anchor="middle" fill="#666" font-size="11">1995年5月頃</text>
+
+  <!-- 矢印 1 -->
+  <line x1="215" y1="330" x2="325" y2="330" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- LiveScript -->
+  <circle cx="400" cy="330" r="7" fill="#5b7a5e"/>
+  <rect x="335" y="272" width="130" height="42" rx="6" fill="#5b7a5e"/>
+  <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">LiveScript</text>
+  <text x="400" y="306" text-anchor="middle" fill="#e2ecdf" font-size="10">ベータ版で公開</text>
+  <text x="400" y="356" text-anchor="middle" fill="#666" font-size="11">1995年9月</text>
+
+  <!-- 矢印 2 -->
+  <line x1="470" y1="330" x2="580" y2="330" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- JavaScript -->
+  <circle cx="655" cy="330" r="7" fill="#b8452c"/>
+  <rect x="588" y="272" width="134" height="42" rx="6" fill="#b8452c"/>
+  <text x="655" y="290" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">JavaScript</text>
+  <text x="655" y="306" text-anchor="middle" fill="#f4ddd5" font-size="10">サンと提携し改名</text>
+  <text x="655" y="356" text-anchor="middle" fill="#666" font-size="11">1995年12月</text>
+
+  <!-- あやかり改名の点線矢印（Java ブーム → JavaScript） -->
+  <path d="M 600 145 Q 680 190 660 265" fill="none" stroke="#b8452c" stroke-width="2.5" stroke-dasharray="7,5" marker-end="url(#arrowRed)"/>
+  <text x="700" y="205" text-anchor="middle" fill="#b8452c" font-size="13" font-weight="bold">流行にあやかって</text>
+  <text x="700" y="222" text-anchor="middle" fill="#b8452c" font-size="13" font-weight="bold">改名（宣伝目的）</text>
+
+  <!-- 注記 -->
+  <text x="400" y="420" text-anchor="middle" fill="#888" font-size="12">言語の中身は Mocha の時点からずっと別物。変わったのは名前だけ。</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#666"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#b8452c"/>
+    </marker>
+  </defs>
+</svg>

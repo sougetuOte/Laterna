@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  iceberg.svg — 氷山図下絵
+
+  目的：「実装は氷山の一角」というメッセージを視覚化する。
+  水面の上下で「見える仕事」と「見えない仕事」を対比する。
+
+  Remotion実装時の注意：
+  - 最初コードだけ見えている状態から始める
+  - ズームアウトすると水面下の全体が現れる演出
+  - 工数比（横軸15-20%）を最終フレームで併記
+
+  対象層：高専・電気情報系学生
+  メッセージ：コードが書けるだけでは戦えない
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="sans-serif">
+
+  <!-- 背景：空 -->
+  <rect x="0" y="0" width="800" height="200" fill="#e8f0f5"/>
+
+  <!-- 背景：水中 -->
+  <rect x="0" y="200" width="800" height="400" fill="#2c5878"/>
+
+  <!-- 水面ライン -->
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#1a3a52" stroke-width="3"/>
+  <text x="20" y="195" fill="#1a3a52" font-size="14" font-weight="bold">水面（見える仕事と見えない仕事の境界）</text>
+
+  <!-- 氷山の上部（水面の上） -->
+  <polygon points="350,200 400,80 450,200" fill="#ffffff" stroke="#666" stroke-width="2"/>
+
+  <!-- 氷山上部ラベル -->
+  <text x="400" y="130" text-anchor="middle" fill="#1a3a52" font-size="16" font-weight="bold">実装</text>
+  <text x="400" y="155" text-anchor="middle" fill="#1a3a52" font-size="14">（コーディング）</text>
+  <text x="400" y="180" text-anchor="middle" fill="#666" font-size="12">≒ 工数全体の15〜20%</text>
+
+  <!-- 矢印：学生が思う「プログラム開発」 -->
+  <line x1="600" y1="120" x2="460" y2="120" stroke="#c33" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <text x="610" y="115" fill="#c33" font-size="12">学生がイメージする</text>
+  <text x="610" y="130" fill="#c33" font-size="12">「プログラム開発」</text>
+
+  <!-- 氷山の下部（水面の下） -->
+  <polygon points="350,200 200,560 600,560 450,200" fill="#a8c5d9" stroke="#444" stroke-width="2" opacity="0.95"/>
+
+  <!-- 氷山下部の項目たち -->
+  <text x="400" y="240" text-anchor="middle" fill="#1a3a52" font-size="15" font-weight="bold">要件定義 / ユーザーヒアリング</text>
+  <text x="400" y="275" text-anchor="middle" fill="#1a3a52" font-size="14">PMの役割（QCD + スコープ管理）</text>
+  <text x="400" y="310" text-anchor="middle" fill="#1a3a52" font-size="14">情報の表現の選択（設計の核）</text>
+  <text x="400" y="345" text-anchor="middle" fill="#1a3a52" font-size="14">システム設計 / アルゴリズム設計</text>
+  <text x="400" y="380" text-anchor="middle" fill="#1a3a52" font-size="14">プロトタイプによる確認</text>
+  <text x="400" y="415" text-anchor="middle" fill="#1a3a52" font-size="14">テスト（単体・結合・受け入れ）</text>
+  <text x="400" y="450" text-anchor="middle" fill="#1a3a52" font-size="14">リリース後の運用・保守</text>
+  <text x="400" y="485" text-anchor="middle" fill="#1a3a52" font-size="14">バグ対応・改善サイクル</text>
+  <text x="400" y="520" text-anchor="middle" fill="#1a3a52" font-size="14">法的責任（個情法・電気通信事業法・AI責任）</text>
+
+  <!-- 矢印：実際の「システム開発」 -->
+  <line x1="640" y1="380" x2="540" y2="380" stroke="#080" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="650" y="375" fill="#080" font-size="12">実際の</text>
+  <text x="650" y="390" fill="#080" font-size="12">「システム開発」</text>
+
+  <!-- メッセージ -->
+  <rect x="50" y="540" width="700" height="50" rx="5" fill="#fff" opacity="0.9" stroke="#444"/>
+  <text x="400" y="565" text-anchor="middle" fill="#1a3a52" font-size="16" font-weight="bold">コードが書けるだけでは戦えない。書ける上で「何ができるか」が問われる。</text>
+  <text x="400" y="582" text-anchor="middle" fill="#666" font-size="11">高専・第12週 / プログラミング言語、要件定義とシステム開発、情報の表現</text>
+
+  <!-- 矢印マーカー定義 -->
+  <defs>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#c33"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#080"/>
+    </marker>
+  </defs>
+
+  <!-- 波線（装飾） -->
+  <path d="M 0 200 Q 50 195, 100 200 T 200 200 T 300 200 T 400 200 T 500 200 T 600 200 T 700 200 T 800 200"
+        fill="none" stroke="#1a3a52" stroke-width="1" opacity="0.5"/>
+
+</svg>

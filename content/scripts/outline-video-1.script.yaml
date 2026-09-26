@@ -1,0 +1,450 @@
+# outline-video-1.script.yaml — 教材動画「実装は氷山の一角」第1ドラフト
+#
+# 出自: materials/outline.md（高専・第12週原版）を YouTube 一般層向けに再構成
+# 対応タスク: docs/specs/outline-video-1/tasks.md W2-outline-video-1-T5
+# 構成の正: docs/artifacts/outline-video-1-composition-mapping.md（採否・章構成・L1裁定の全て）
+# スキーマ: src/script-engine/schema/script.ts（ScriptDocument）
+#
+# 注意:
+# - 発話 text は折り畳みスカラー（>-）を使わない。全発話が単一行のため、
+#   content/scripts/java-vs-js.script.yaml と同様にプレーンスカラーで記述する
+#   （改行を含む発話がないため block scalar `|` は不要。折り畳みによる空白汚染=HGA F-1のみ回避対象）
+# - pause_before/pause_after は本ドラフトでは要所のみ指定（省略時デフォルト0、design §2.3）。
+#   細かい間の調整は試写（V-4）後のリファインで追加する
+# - Iceberg コンポーネントは src/script-engine/shared/component-names.ts に
+#   標準セット（svg-ref 用途）として登録済み（design §2.6）。props は未指定
+#   （既存台本に使用実績がなく書式が未確認のため、省略可能な optional として扱う。design §2.6）
+# - 対象視聴者: IT・プログラミングに興味はあるが実務未経験の一般層（高校生〜社会人初学者）
+#   （構成マッピング §2）。高専固有文脈（学校種別・授業運用・シラバス等）は全除去済み
+#   （構成マッピング §5 除去リスト準拠）
+
+target_duration_range:
+  min: 600
+  max: 900
+
+speaker_profile_ref: default
+
+utterances:
+  # --- 導入（マッピング §3.1 行1） ---
+  - id: u-001
+    speaker: narrator
+    text: 今日は、身近な「じゃんけんアプリ」を例に、システム開発の全体像を見ていきます。
+  - id: u-002
+    speaker: listener
+    text: え、じゃんけんですか？なんだかシンプルな題材ですね。
+  - id: u-003
+    speaker: narrator
+    text: 例えばこのじゃんけんアプリ、画面をタップするとコンピューターと対戦できます。これを動かすには、いったい何が必要だったと思いますか？
+  - id: u-004
+    speaker: listener
+    text: うーん…プログラムのコード、ですかね？
+  - id: u-005
+    speaker: narrator
+    text: 正解です。でも、それだけじゃありません。ルールを決めた人、画面のデザインを考えた人、ちゃんと動くか確かめた人…実はコードを書く以外の仕事がたくさん隠れています。
+  - id: u-006
+    speaker: listener
+    text: え、そんなに関わってるんですか？てっきり、プログラムが書ければそれで完成だと思っていました。
+  - id: u-007
+    speaker: narrator
+    text: 多くの人がそう思っています。でも実際には、コードを書く工程は、開発全体のほんの一部分にすぎません。今日は「コードを書くこと」以外の話を、たっぷりお届けします。
+  - id: u-008
+    speaker: listener
+    text: そんなに裏側があるなら、どこから見ていけばいいですか？
+  - id: u-009
+    speaker: narrator
+    text: 順番に見ていきましょう。まずは、アプリが作られる「前」の話からです。
+    pause_after: 0.4
+
+  # --- 章1: 作る前（マッピング §3.2 行3: 1-2 ヒアリングの限界／行4: 1-3 要件定義） ---
+  - id: u-010
+    speaker: narrator
+    text: じゃんけんアプリを作るとき、いきなりコードを書き始める人はいません。まず必要なのが「要件定義」、つまり「何を作るか」をはっきりさせる作業です。
+  - id: u-011
+    speaker: listener
+    text: 「何を作るか」って、頼んだ人に聞けばいいだけじゃないんですか？
+  - id: u-012
+    speaker: narrator
+    text: それが、そう簡単にはいかないんです。実は、頼んだ人自身が「自分が何を求めているか」をうまく言葉にできないことが多いんです。
+  - id: u-013
+    speaker: listener
+    text: え、頼んだ本人なのに分からないんですか？
+  - id: u-014
+    speaker: narrator
+    text: はい。毎日当たり前にやっていることほど、人は言葉にしにくいんです。「何が当たり前か」を聞かれて、初めて気づくこともあります。これを暗黙知の壁と呼んだりします。
+  - id: u-015
+    speaker: listener
+    text: なるほど…当たり前すぎて、説明する発想がないんですね。
+  - id: u-015a
+    speaker: listener
+    text: 具体的には、どういうことですか？
+  - id: u-015b
+    speaker: narrator
+    text: 例えば、長年同じ仕事をしているベテランほど、「わざわざ言うまでもない」と思っている手順がたくさんあります。それを聞き出すのが、最初の関門になるんです。
+  - id: u-016
+    speaker: narrator
+    text: さらに厄介なのが「常識のズレ」です。業界や部署が違うだけで、「在庫」や「顧客」といった言葉の意味すら変わることがあります。
+  - id: u-017
+    speaker: listener
+    text: 同じ日本語を話しているのに、ですか？
+  - id: u-018
+    speaker: narrator
+    text: 例えば「在庫」という言葉も、営業を担当する人からすれば「今すぐお客様に売れる数」ですが、倉庫を管理する人からすれば「棚に積んである数」を指すことがあります。
+  - id: u-019
+    speaker: listener
+    text: え、同じ会社の中でも、部署によって意味が変わってしまうんですか？
+  - id: u-020
+    speaker: narrator
+    text: はい。開発者が言葉だけを聞いて分かったつもりになると、実際に必要だったものとは違うシステムを作ってしまう危険があります。言葉は通じているのに、話がかみ合わない。そんな事故が起きるんです。
+  - id: u-021
+    speaker: listener
+    text: それ、けっこう怖いですね…この問題、どうやって解決するんですか？
+  - id: u-022
+    speaker: narrator
+    text: いい質問です。その答えは、あとで出てくる「試作」の話で回収します。少し覚えておいてください。
+  - id: u-023
+    speaker: narrator
+    text: 実際にシステム開発の現場でも、こうした認識のズレが原因で、作り直しになってしまうケースは少なくありません。
+  - id: u-024
+    speaker: listener
+    text: 一度作ったものを、また一から作り直すんですか？それは大変そうです。
+  - id: u-025
+    speaker: narrator
+    text: はい。だからこそ、開発が始まる前の段階で、できる限り認識をすり合わせておくことが重要なんです。
+    pause_after: 0.4
+  - id: u-026
+    speaker: narrator
+    text: さて、聞き取った内容は「要件定義」としてまとめます。要件には2種類あって、「機能要件」＝何ができるか、と、「非機能要件」＝どれくらいの性能や安全性が必要か、があります。
+  - id: u-027
+    speaker: listener
+    text: 機能要件は分かる気がしますけど、非機能要件って何ですか？
+  - id: u-028
+    speaker: narrator
+    text: 例えばじゃんけんアプリなら、「1秒以内に反応する」という性能、「深夜でも動く」という可用性、「不適切な言葉を出さない」という安全性…目には見えにくい品質の条件です。
+  - id: u-029
+    speaker: listener
+    text: 安全性というと、具体的にはどんなことですか？
+  - id: u-030
+    speaker: narrator
+    text: 例えば、外部から不正にアクセスされない仕組みや、通信内容を暗号化しておくことなどが挙げられます。目立たない要件ほど、後から重要だと気づかされることが多いんです。
+  - id: u-030a
+    speaker: listener
+    text: 機能要件はお客さんも気づきやすいけど、非機能要件は言われないと気づかない感じですね。
+  - id: u-030b
+    speaker: narrator
+    text: そのとおりです。だからこそ、開発者の側から「これで十分ですか」と質問して、抜けを埋めていく姿勢が欠かせません。
+  - id: u-031
+    speaker: listener
+    text: 「ちゃんと動く」の中身にも、こんなに細かい約束事があるんですね。
+  - id: u-032
+    speaker: narrator
+    text: これも立派な仕様の一部です。機能要件だけを決めて安心してしまうと、後から「思っていたのと違う」というトラブルにつながりやすいんです。
+  - id: u-033
+    speaker: listener
+    text: 地味に見えて、実はすごく重要な工程なんですね。
+  - id: u-034
+    speaker: narrator
+    text: そのとおりです。だからこそ、要件定義は面倒でも省略できない工程なんです。
+    pause_after: 0.4
+
+  # --- 章2: 実装（言語）は一瞬で通過（マッピング §3.4 行11: 3-3 由来） ---
+  - id: u-035
+    speaker: narrator
+    text: 要件が固まったら、いよいよコードを書く番です。Scratch、C言語、Python…プログラミング言語はいろいろありますが、同じ処理を全く違う書き方で実現できます。
+  - id: u-036
+    speaker: listener
+    text: 言語によって書き方は全然違うのに、結果は同じにできるんですか？
+  - id: u-037
+    speaker: narrator
+    text: そうなんです。文法が違っても、実現したい手順そのもの、つまりアルゴリズムが同じなら、言語が違っても本質は変わりません。
+  - id: u-038
+    speaker: listener
+    text: へえ、見た目は全然違うのに、中身は同じ考え方なんですね。
+  - id: u-039
+    speaker: narrator
+    text: 実は、この「コードを書く」工程自体は、開発全体から見ればあっという間に終わる、ほんの一瞬の作業なんです。
+  - id: u-040
+    speaker: listener
+    text: え、一番大変そうな部分だと思ってました。てっきり、ここが開発の中心だと。
+  - id: u-041
+    speaker: narrator
+    text: 多くの人がそう感じます。でも実際にかかる時間で比べると、コードを書く時間はごく短いんです。
+    pause_after: 0.4
+
+  # --- ★試作と確認（伏線回収、マッピング §3.5 行13。ほぼ原版維持） ---
+  - id: u-042
+    speaker: narrator
+    text: ここで、さっきの問題を思い出してください。「ユーザーは自分の仕事をうまく言葉にできない」という壁です。この壁を越える方法が、試作、つまりプロトタイプです。
+  - id: u-043
+    speaker: listener
+    text: いきなり完成品を目指さずに、まず試しに作ってみるってことですか？
+  - id: u-044
+    speaker: narrator
+    text: その通りです。動くものを実際に見せると、人は急に具体的な意見を言い始めます。「あ、ここはこうしてほしい」と。
+  - id: u-045
+    speaker: listener
+    text: 頭の中で考えているだけでは、意見が出てこないものなんですね。
+  - id: u-046
+    speaker: narrator
+    text: プロトタイプの段階でズレが見つかれば、直すコストはまだ小さくて済みます。逆に、完成してから「話が違う」と言われるのが、一番困るシナリオです。
+  - id: u-047
+    speaker: listener
+    text: 後になればなるほど、直すのが大変になっていくんですね。
+  - id: u-048
+    speaker: narrator
+    text: まさにそうです。試作して、確認して、修正する。このサイクルを回すことで、ようやく「作る前」の問題が解決していくんです。
+    pause_after: 0.4
+
+  # --- 章3: 作った後（マッピング §3.6 行14: 4-1 テスト／行15: 4-2 導入1文／行16: 4-3 チャットアプリ落とし穴／行17: 4-4 締め1文） ---
+  - id: u-049
+    speaker: narrator
+    text: コードが書き終わったら、それで終わりではありません。まず行うのが「テスト」です。単体テスト、組み合わせて確かめる結合テスト、そして最後に「受け入れテスト」があります。
+  - id: u-050
+    speaker: narrator
+    text: 単体テストは部品ひとつひとつが正しく動くかを確認するテスト。結合テストは、それらを組み合わせたときにきちんと機能するかを確かめるテストです。
+  - id: u-051
+    speaker: listener
+    text: 受け入れテストって、誰がやるんですか？
+  - id: u-052
+    speaker: narrator
+    text: これは開発者ではなく、実際に使う「ユーザー」自身が行うテストです。
+  - id: u-053
+    speaker: listener
+    text: 開発した本人じゃなくて、使う側が確認するんですね。
+  - id: u-054
+    speaker: narrator
+    text: そうです。バグは早く見つかるほど、直す手間もお金も少なく済みます。テストを軽視すると、公開したあとに大きな問題として跳ね返ってきます。
+  - id: u-055
+    speaker: listener
+    text: テストって、地味だけど手が抜けない工程なんですね。
+  - id: u-056
+    speaker: narrator
+    text: そのとおりです。動いているように見えても、想定していない使い方をされた瞬間に、不具合が表面化することがあります。
+  - id: u-056a
+    speaker: listener
+    text: だからこそ、公開前にしっかり確認しておく必要があるんですね。
+  - id: u-056b
+    speaker: narrator
+    text: はい。テストにかける時間は、後々のトラブル対応の時間を減らすための投資でもあるんです。
+  - id: u-057
+    speaker: narrator
+    text: そして、公開する前に忘れてはいけないことがあります。個人情報を扱うシステムには、法律が関わってくるということです。
+  - id: u-058
+    speaker: listener
+    text: 法律…プログラムを書くだけじゃなくて、そこまで気にしないといけないんですか？
+  - id: u-059
+    speaker: narrator
+    text: はい。ここで、個人でも作りがちな「チャットアプリ」を例に見てみましょう。ノリで作ったチャットアプリでも、DM機能やメッセンジャー、Web会議のような「他人同士の通信を仲介する」機能を持つと、電気通信事業法上の届出が必要になることがあります。
+  - id: u-060
+    speaker: listener
+    text: え、個人が趣味で作ったアプリでもですか？
+  - id: u-061
+    speaker: narrator
+    text: クラウドサービスを使っていても対象になり得ます。逆に、みんなが投稿を見られるSNSのような1対多の仕組みは、届出が不要な区分になりますが、それでも通信の秘密は守らなければいけません。
+  - id: u-062
+    speaker: listener
+    text: 投稿を見せるだけのアプリなら、比較的安全ということですか？
+  - id: u-063
+    speaker: narrator
+    text: 少なくとも届出という点では区分が変わります。ただし、どちらの場合でも、利用者のやり取りを不用意にのぞいたり、外に漏らしたりしてはいけないというのは共通のルールです。
+  - id: u-061a
+    speaker: listener
+    text: 学生や個人が「ちょっと便利なアプリ」のつもりで作ったものでも、対象になるということですよね。
+  - id: u-061b
+    speaker: narrator
+    text: そうです。「規模が小さいから関係ない」とは考えず、機能の中身で判断する必要があります。
+  - id: u-064
+    speaker: listener
+    text: 想像以上に、法律って身近なところに関わってくるんですね。
+  - id: u-065
+    speaker: narrator
+    text: そうなんです。「動くものを作れた」ことと、「世に出していいもの」であることは、別の話なんです。
+  - id: u-066
+    speaker: listener
+    text: 届出をしないと、どうなるんですか？
+  - id: u-067
+    speaker: narrator
+    text: 未届出のまま事業を行うと、6か月以下の懲役、または50万円以下の罰金という罰則が定められています。
+  - id: u-067a
+    speaker: narrator
+    text: 罰則の重さからも、この届出義務がどれだけ重要視されているかが伝わってきます。
+  - id: u-068
+    speaker: listener
+    text: 知らなかったでは済まされないんですね…。
+    pause_after: 0.3
+  - id: u-069
+    speaker: narrator
+    text: 「作る前に法律を調べる」、これがどれだけ大事か分かりますよね。趣味のつもりで作ったものが、思わぬ形で法律に触れてしまうことがあるんです。
+  - id: u-070
+    speaker: narrator
+    text: 最後にもう一つ。最近はAIにコードを書かせて作ることも増えていますが、AIが作ったからといって、責任が消えるわけではありません。プロンプトを与えて採用を判断した本人に、責任があるとされています。
+  - id: u-071
+    speaker: listener
+    text: 「AIが作ったので」は、言い訳にならないんですね。
+  - id: u-072
+    speaker: narrator
+    text: そのとおりです。便利な道具を使うほど、使う側の判断がより重くなる、と考えるとよいかもしれません。
+  - id: u-073
+    speaker: narrator
+    text: こうして見ると、公開までにも、テスト、法律、責任…実にたくさんの検討事項があることが分かります。
+    pause_after: 0.5
+
+  # --- クライマックス: 氷山の提示（マッピング §3.7 行19、単独章へ格上げ） ---
+  - id: u-074
+    speaker: narrator
+    text: ここまで見てきたように、じゃんけんアプリを1つ作るだけでも、要件定義、試作、テスト、法律の確認…驚くほど多くの工程がありました。
+  - id: u-075
+    speaker: listener
+    text: コードを書いていたのは、本当に一瞬でしたね。
+  - id: u-076
+    speaker: narrator
+    text: これを図にすると、こうなります。海に浮かぶ氷山です。水面の上に見えているのは、コーディング。
+  - id: u-077
+    speaker: listener
+    text: 見えている部分は、これだけなんですか？
+  - id: u-078
+    speaker: narrator
+    text: そうなんです。でも水面の下には、要件定義、企画、設計、テスト、運用、そして法的な責任まで、見えない部分がずっしりと広がっています。
+  - id: u-078a
+    speaker: listener
+    text: 想像していたより、ずっと大きな氷山ですね。
+  - id: u-078b
+    speaker: narrator
+    text: そうなんです。見た目のサイズと、実際の中身のサイズは、まったく違うんです。
+  - id: u-079
+    speaker: listener
+    text: 全部合わせると、ずいぶん幅広いですね。
+  - id: u-080
+    speaker: narrator
+    text: そうなんです。要件を聞き取る力、情報を整理する力、動くものを確かめるテストの目、法律を踏まえた判断力…どれも欠かせないスキルです。
+  - id: u-081
+    speaker: listener
+    text: コードを書く力だけでは、足りないということですね。
+  - id: u-082
+    speaker: narrator
+    text: そうです。コードを書く力は大切な一つのピースですが、それだけでは氷山全体を支えられません。
+  - id: u-083
+    speaker: listener
+    text: 見えている部分は、ほんの一角にすぎないんですね。
+  - id: u-084
+    speaker: narrator
+    text: そうです。実際の工数で比べても、コーディングが占めるのはおよそ15から20パーセント程度と言われています。残りの80パーセント以上は、水面の下の仕事なんです。
+    pause_after: 0.5
+
+  # --- まとめ（マッピング §3.7 行20） ---
+  - id: u-085
+    speaker: narrator
+    text: 今日は「じゃんけんアプリ」を通して、システム開発の全体像を見てきました。要件定義、試作、実装、テスト、そして運用まで、道のりは長く続きます。
+  - id: u-086
+    speaker: listener
+    text: 「実装は氷山の一角」、覚えておきます。
+  - id: u-087
+    speaker: narrator
+    text: みなさんがこれから関わる場所は、コードを書くことだけではありません。むしろ、その手前と後ろにこそ、大事な仕事がたくさん眠っています。
+  - id: u-088
+    speaker: narrator
+    text: プログラミングを学ぶことはもちろん大切です。でも、それと同じくらい、要件を聞き取る力や、法律を踏まえて考える視点も、これからのシステム開発には欠かせません。
+  - id: u-089
+    speaker: listener
+    text: コードを書く以外にも、学ぶことがたくさんありそうです。
+  - id: u-089a
+    speaker: narrator
+    text: そうです。相手の話を聞く力、情報を整理する力、法律やルールを踏まえて考える視点…これらは、コードを書く技術と同じくらい、システム開発を支える力になります。
+  - id: u-089b
+    speaker: listener
+    text: 実装以外の部分にも、これからはしっかり目を向けてみようと思います。
+  - id: u-090
+    speaker: narrator
+    text: 次にプログラムを書くときは、ぜひ、その水面の下にある工程にも思いを馳せてみてください。誰かが要件を聞き取り、誰かが試作を確かめ、誰かが法律を調べたからこそ、そのプログラムは世に出せるんです。今日の話が、その広がりを知るきっかけになれば幸いです。
+
+slides:
+  - id: slide-title-main
+    type: title
+    title: 実装は氷山の一角
+    subtitle: じゃんけんアプリで見るシステム開発の全体像
+  - id: slide-bullets-hearing
+    type: bullets
+    title: ヒアリングの壁
+    items:
+      - 暗黙知：当たり前なほど言葉にしにくい
+      - 常識のズレ：同じ言葉でも意味が違う
+  - id: slide-bullets-requirements
+    type: bullets
+    title: 要件定義
+    items:
+      - 機能要件：何ができるか
+      - 非機能要件：性能・可用性・安全性など
+  - id: slide-title-language
+    type: title
+    title: コードを書く工程
+    subtitle: 言語が違っても本質は同じ
+  - id: slide-title-prototype
+    type: title
+    title: 試作と確認
+    subtitle: 動くものを見せると意見が出る
+  - id: slide-bullets-afterward
+    type: bullets
+    title: 作った後の工程
+    items:
+      - テスト：単体・結合・受け入れ
+      - 法律：個人情報保護法・電気通信事業法
+      - 責任：AIが作っても責任は使った人に
+  - id: slide-iceberg
+    type: svg-ref
+    component: Iceberg
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - 実装はコード＝氷山の一角
+      - 要件定義・試作・テスト・法律・運用も工程
+      - 関われる場所はコード以外にもたくさんある
+
+slide_events:
+  - id: ev-001
+    slide: slide-title-main
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+  - id: ev-002
+    slide: slide-bullets-hearing
+    anchor:
+      utterance: u-012
+      position: start
+      offset: 0
+  - id: ev-003
+    slide: slide-bullets-requirements
+    anchor:
+      utterance: u-026
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-title-language
+    anchor:
+      utterance: u-035
+      position: start
+      offset: 0
+  - id: ev-005
+    slide: slide-title-prototype
+    anchor:
+      utterance: u-042
+      position: start
+      offset: 0
+  - id: ev-006
+    slide: slide-bullets-afterward
+    anchor:
+      utterance: u-049
+      position: start
+      offset: 0
+  - id: ev-007
+    slide: slide-iceberg
+    anchor:
+      utterance: u-076
+      position: start
+      offset: 0
+  - id: ev-008
+    slide: slide-summary
+    anchor:
+      utterance: u-085
+      position: start
+      offset: 0

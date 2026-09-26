@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "script_id": "java-vs-js",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "narrator",
+      "content_hash": "254d2d2c",
+      "wav_path": "audio/java-vs-js/u-001-254d2d2c.wav",
+      "duration_seconds": 4.586666666666667,
+      "start_frame": 0,
+      "end_frame": 147,
+      "audio_end_frame": 138
+    },
+    {
+      "id": "u-002",
+      "speaker": "listener",
+      "content_hash": "1eced8e7",
+      "wav_path": "audio/java-vs-js/u-002-1eced8e7.wav",
+      "duration_seconds": 5.76,
+      "start_frame": 147,
+      "end_frame": 319,
+      "audio_end_frame": 319
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "e8925791",
+      "wav_path": "audio/java-vs-js/u-003-e8925791.wav",
+      "duration_seconds": 6.570666666666667,
+      "start_frame": 319,
+      "end_frame": 517,
+      "audio_end_frame": 517
+    },
+    {
+      "id": "u-004",
+      "speaker": "listener",
+      "content_hash": "66901194",
+      "wav_path": "audio/java-vs-js/u-004-66901194.wav",
+      "duration_seconds": 5.504,
+      "start_frame": 517,
+      "end_frame": 682,
+      "audio_end_frame": 682
+    },
+    {
+      "id": "u-005",
+      "speaker": "narrator",
+      "content_hash": "00eb7053",
+      "wav_path": "audio/java-vs-js/u-005-00eb7053.wav",
+      "duration_seconds": 4.149333333333334,
+      "start_frame": 682,
+      "end_frame": 824,
+      "audio_end_frame": 806
+    },
+    {
+      "id": "u-006",
+      "speaker": "narrator",
+      "content_hash": "9d40645e",
+      "wav_path": "audio/java-vs-js/u-006-9d40645e.wav",
+      "duration_seconds": 12.085333333333333,
+      "start_frame": 824,
+      "end_frame": 1187,
+      "audio_end_frame": 1187
+    },
+    {
+      "id": "u-007",
+      "speaker": "listener",
+      "content_hash": "93422445",
+      "wav_path": "audio/java-vs-js/u-007-93422445.wav",
+      "duration_seconds": 3.6906666666666665,
+      "start_frame": 1187,
+      "end_frame": 1297,
+      "audio_end_frame": 1297
+    },
+    {
+      "id": "u-008",
+      "speaker": "narrator",
+      "content_hash": "5d816f27",
+      "wav_path": "audio/java-vs-js/u-008-5d816f27.wav",
+      "duration_seconds": 8.789333333333333,
+      "start_frame": 1297,
+      "end_frame": 1561,
+      "audio_end_frame": 1561
+    },
+    {
+      "id": "u-009",
+      "speaker": "narrator",
+      "content_hash": "c742066f",
+      "wav_path": "audio/java-vs-js/u-009-c742066f.wav",
+      "duration_seconds": 9.802666666666667,
+      "start_frame": 1561,
+      "end_frame": 1855,
+      "audio_end_frame": 1855
+    },
+    {
+      "id": "u-010",
+      "speaker": "listener",
+      "content_hash": "ce0efee3",
+      "wav_path": "audio/java-vs-js/u-010-ce0efee3.wav",
+      "duration_seconds": 4.661333333333333,
+      "start_frame": 1855,
+      "end_frame": 2007,
+      "audio_end_frame": 1995
+    },
+    {
+      "id": "u-011",
+      "speaker": "narrator",
+      "content_hash": "45d4ddd3",
+      "wav_path": "audio/java-vs-js/u-011-45d4ddd3.wav",
+      "duration_seconds": 12.672,
+      "start_frame": 2007,
+      "end_frame": 2387,
+      "audio_end_frame": 2387
+    },
+    {
+      "id": "u-012",
+      "speaker": "listener",
+      "content_hash": "e9b8361b",
+      "wav_path": "audio/java-vs-js/u-012-e9b8361b.wav",
+      "duration_seconds": 3.136,
+      "start_frame": 2387,
+      "end_frame": 2493,
+      "audio_end_frame": 2481
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "db636830",
+      "wav_path": "audio/java-vs-js/u-013-db636830.wav",
+      "duration_seconds": 14.709333333333333,
+      "start_frame": 2493,
+      "end_frame": 2935,
+      "audio_end_frame": 2935
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-compare-intro",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-timeline",
+      "start_frame": 824
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-compare-full",
+      "start_frame": 2007
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-summary",
+      "start_frame": 2493
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-compare-intro",
+      "type": "custom",
+      "component": "JavaJsCompare",
+      "props": {
+        "stage": "intro"
+      }
+    },
+    {
+      "id": "slide-timeline",
+      "type": "custom",
+      "component": "JsNamingTimeline"
+    },
+    {
+      "id": "slide-compare-full",
+      "type": "custom",
+      "component": "JavaJsCompare",
+      "props": {
+        "stage": "full"
+      }
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "JavaとJavaScriptは**別の言語**",
+        "似た名前は1995年の流行に乗った歴史の名残",
+        "次回は標準化の話「ECMAScript」"
+      ],
+      "title": "まとめ"
+    }
+  ],
+  "speakers": {
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    },
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    }
+  },
+  "credits": [
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "VOICEVOX:ずんだもん"
+  ],
+  "total_duration_frames": 3025
+}

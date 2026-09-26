@@ -6,4 +6,7 @@ node_modules/
 out/
 *.log
 
-# public/audio・public/manifests を追跡するかは Wave 1 の棚卸しで決める（Kyozai-Athanor は追跡していた）
+# public/audio・public/manifests は追跡する（docs/inventory.md §1.7）
+
+# Krita の自動バックアップ（materials/portraits/*.kra は追跡する）
+*.kra~

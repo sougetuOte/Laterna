@@ -1,0 +1,47 @@
+# speaker-profiles.yaml — script-engine 話者プロファイル（共通デフォルト）
+#
+# 出自: docs/specs/script-engine/design.md §3.1（スキーマ）/ §3.2（配置・書式決定）
+# 対応タスク: docs/specs/script-engine/tasks.md W1-script-engine-T20
+#
+# 台本ファイル（content/scripts/*.script.yaml）は本ファイルを `speaker_profile_ref: default` で参照する。
+# 台本固有の上書きが必要な場合は台本内 `speaker_overrides` セクションで部分上書きする
+# （design §3.2。v1 では speech_rate_factor 等の尺予測系フィールドのみ上書き対象、VOICEVOX
+# synthesis_params は上書き対象外）。
+#
+# ============================================================================
+# 運用ルール（MUST / design §3.2 より転記）:
+#   本ファイルの変更自体は permission-levels.md のパスベース分類（docs/ 配下、
+#   docs/specs/・docs/adr/ を除く）に従い SE 級（修正後に報告でよい）。
+#   ただし「デフォルトキャストの変更」（narrator/listener に割り当てる
+#   キャラクター自体の差し替え・追加等、プロジェクトの「顔」となる選定の変更）は、
+#   権限等級とは別の運用ルールとして、変更前に必ずユーザー承認を得ること MUST。
+#   speech_rate_factor 等の数値パラメータ調整（例: T25 のパイロット実測後の更正）は
+#   キャスト変更ではないため、この承認ルールの対象外（通常の SE 級運用で可）。
+# ============================================================================
+
+schema_version: 1
+
+speakers:
+  narrator:
+    voicevox_speaker_id: 11          # 玄野武宏（ノーマル）
+    display_name: "玄野武宏"
+    credit: "VOICEVOX:玄野武宏(CV:ガロ)"   # design §7.5 エンドロール・§12 Spike #7 確認済み表記
+    portrait:
+      asset_key: "narrator-default"   # 実ファイル: public/portraits/narrator-default.png（§11.3, T29 成果物）
+    speech_rate_factor: 0.874         # 尺予測式（design §9.1）専用の基準係数。VOICEVOX synthesis の
+                                       # speedScale 等（design §4.2 固定定数）とは無関係、混同しないこと
+                                       # 2026-07-11 T25 パイロット実測更正（初期調整）: 8 発話 513 字 / 73.37 秒
+                                       # → 実測 419.5 字/分 → 419.5/480 = 0.874（旧仮値 1.0）。
+                                       # 標準尺台本の蓄積後に再評価する（design §9.2 外挿の限界注記）
+
+  listener:
+    voicevox_speaker_id: 3            # ずんだもん（ノーマル）
+    display_name: "ずんだもん"
+    credit: "VOICEVOX:ずんだもん"
+    portrait:
+      asset_key: "listener-default"   # 実ファイル: public/portraits/listener-default.png（§11.3, T29 成果物）
+    speech_rate_factor: 0.714         # 2026-07-11 T25 パイロット実測更正（初期調整）: 5 発話 130 字 / 22.75 秒
+                                       # → 実測 342.8 字/分 → 342.8/480 = 0.714（旧仮値 1.05）。
+                                       # 短発話（平均 26 字）は WAV 前後の無音 handle が比率として効くため
+                                       # 過小推定気味の可能性あり。標準尺台本の蓄積後に再評価する
+                                       # （design §9.2 外挿の限界注記）
