@@ -159,3 +159,9 @@ columba が採点する。各項は上の完了条件と同じ番号で対応す
 - VOICEVOX 音声・第三者素材を CC BY 等で再ライセンスする記述
 - `CLAUDE.md`・`goal.md`・`docs/brief.md` の無承認変更、`reference/` の改変と commit
 - 期限を越える範囲の拡大：10/1 に間に合わないと分かったら、章と尺を削って出す。機能を足して間に合わせようとしない
+
+## 訂正節（本文は消さない。ここが優先する）
+
+**検証 9(ii) 訂正（2026-09-26 主人承認。チャット「承認」）**：
+何を誤ったか ── 検証 9(ii) は「`java-vs-js.mp4`・`.pdf` の SHA-256 が Kyozai の `out/script-engine/` の物と一致」を求めるが、java-vs-js の MP4 には `public/portraits/` の立ち絵が映る。完了条件 2 で立ち絵を v2 に差し替えた時点で、v1 の立ち絵で作られた Kyozai の参照とは一致しなくなる（PDF は立ち絵を含まないので一致する）。完了条件 2 と検証 9(ii) が両立しない書き方だった。
+訂正 ── MP4・PDF の SHA-256 は、`public/portraits/` の 2 枚を commit `805d312` の v1 に一時的に戻して `npm run render:all:script -- java-vs-js` した物で Kyozai の参照と比べる。比べた後は `git checkout -- public/portraits` で v2 に戻し、`git status` に `public/portraits` の差分が無いことを報告に書く。manifest 2 本の同一性と `npm test` の件数（261 件以上 PASS）は現行どおり。**この節が検証 9(ii) に優先する。**
