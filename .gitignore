@@ -1,0 +1,9 @@
+# 参考スキル（出所・ライセンス不明。第三者素材を含む。ディスク上で読むだけで、commit しない）
+reference/yukkuri-reimu-marisa-videos/
+
+# 依存・生成物
+node_modules/
+out/
+*.log
+
+# public/audio・public/manifests を追跡するかは Wave 1 の棚卸しで決める（Kyozai-Athanor は追跡していた）
