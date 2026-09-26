@@ -32,7 +32,7 @@ import process from "node:process";
 
 import { PDFDocument } from "pdf-lib";
 
-import { exitUnlessValidScriptId } from "./script-id.mjs";
+import { REMOTION_CLI } from "./remotion-cli.mjs";
 
 const TEMP_DIR = "out/script-engine-pdf-temp";
 const OUTPUT_DIR = "out/script-engine";
@@ -46,8 +46,18 @@ function usage() {
 }
 
 const scriptId = process.argv[2];
-// 下の npx 呼び出しは Windows で shell: true になる。シェルに渡る前に文字種を検査する（scripts/script-id.mjs）。
-exitUnlessValidScriptId(scriptId, usage());
+
+if (!scriptId) {
+  console.error("Error: script-id is required.");
+  console.error(usage());
+  process.exit(1);
+}
+// design §11.1: 台本パスと同じ防御的チェック（cli.ts parseCliArgs と同様の考え方）。
+if (scriptId.includes("/") || scriptId.includes("\\")) {
+  console.error(`Error: script-id にパス区切り文字を含めることはできません: "${scriptId}".`);
+  console.error(usage());
+  process.exit(1);
+}
 
 const pdfManifestPath = path.resolve(
   "public/manifests",
@@ -105,10 +115,10 @@ for (let frame = 0; frame < totalPages; frame += 1) {
 
   console.log(`[${humanIndex}/${totalPages}] Rendering frame ${frame} -> ${tempFile}`);
 
-  // execFileSync + 引数配列。Windows では npx（npx.cmd）を呼ぶために shell: true が要り、そのとき引数は
-  // エスケープされない（シェルが解釈する）。script-id は冒頭で文字種を検査済み（scripts/script-id.mjs）。
-  const npxArgs = [
-    "remotion",
+  // シェルを通さずに、node で Remotion CLI の本体を直接呼ぶ（scripts/remotion-cli.mjs）。
+  // 引数はつながれずにそのまま届くので、script-id やパスの文字がシェルに解釈されることはない。
+  const cliArgs = [
+    REMOTION_CLI,
     "still",
     `--frame=${frame}`,
     `--props=${propsPath}`,
@@ -118,15 +128,12 @@ for (let frame = 0; frame < totalPages; frame += 1) {
   ];
 
   try {
-    execFileSync("npx", npxArgs, {
-      stdio: "inherit",
-      shell: process.platform === "win32",
-    });
+    execFileSync(process.execPath, cliArgs, { stdio: "inherit" });
   } catch (err) {
     console.error(
       `[build-script-pdf] FAILED to render frame ${frame} for composition '${COMPOSITION_ID}'.`,
     );
-    console.error(`[build-script-pdf] command: npx ${npxArgs.join(" ")}`);
+    console.error(`[build-script-pdf] command: ${process.execPath} ${cliArgs.join(" ")}`);
     console.error(`[build-script-pdf] error: ${err && err.message ? err.message : err}`);
     console.error(
       `[build-script-pdf] Leaving ${TEMP_DIR} intact for debugging (no cleanup performed).`,

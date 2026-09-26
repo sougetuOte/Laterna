@@ -21,7 +21,7 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
-import { exitUnlessValidScriptId } from "./script-id.mjs";
+import { REMOTION_CLI } from "./remotion-cli.mjs";
 
 const OUTPUT_DIR = "out/script-engine";
 const COMPOSITION_ID = "ScriptComposition";
@@ -31,8 +31,18 @@ function usage() {
 }
 
 const scriptId = process.argv[2];
-// 下の runStep は Windows で shell: true になる。シェルに渡る前に文字種を検査する（scripts/script-id.mjs）。
-exitUnlessValidScriptId(scriptId, usage());
+
+if (!scriptId) {
+  console.error("Error: script-id is required.");
+  console.error(usage());
+  process.exit(1);
+}
+// build-script-pdf.mjs / compile-script.mjs と同型の防御的チェック。
+if (scriptId.includes("/") || scriptId.includes("\\")) {
+  console.error(`Error: script-id にパス区切り文字を含めることはできません: "${scriptId}".`);
+  console.error(usage());
+  process.exit(1);
+}
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -43,15 +53,15 @@ mkdirSync(OUTPUT_DIR, { recursive: true });
  * `process.exit()` は JS の例外送出を経由せず即座にプロセスを終了するため、呼び出し元の
  * try/finally には引っかからない（finally が実行されない既知の挙動）。そのため失敗パスの
  * クリーンアップは呼び出し元の finally ではなく、ここで明示的に呼び出す必要がある。
+ *
+ * シェルは通さない（引数はつながれずにそのまま子プロセスに届く）。3 段とも node を
+ * `process.execPath` で起動し、render の段は Remotion CLI の本体を直接渡す（scripts/remotion-cli.mjs）。
  */
 function runStep(stepName, command, args, { onFailure } = {}) {
   console.log(`[render-all-script] [${stepName}] START: ${command} ${args.join(" ")}`);
   const startedAt = Date.now();
   try {
-    execFileSync(command, args, {
-      stdio: "inherit",
-      shell: process.platform === "win32",
-    });
+    execFileSync(command, args, { stdio: "inherit" });
   } catch (err) {
     console.error(`[render-all-script] [${stepName}] FAILED.`);
     console.error(`[render-all-script] command: ${command} ${args.join(" ")}`);
@@ -68,7 +78,7 @@ function runStep(stepName, command, args, { onFailure } = {}) {
 console.log(`[render-all-script] script-id='${scriptId}'`);
 
 // --- Step 1: compile ---
-runStep("compile", "node", ["scripts/compile-script.mjs", scriptId]);
+runStep("compile", process.execPath, ["scripts/compile-script.mjs", scriptId]);
 
 // --- Step 2: render (MP4) ---
 // T18 申し送り: defaultProps 依存にせず --props を明示する。build-script-pdf.mjs と同型に、
@@ -95,14 +105,14 @@ function cleanupRenderPropsFile() {
 
 runStep(
   "render",
-  "npx",
-  ["remotion", "render", "src/index.ts", COMPOSITION_ID, mp4Path, `--props=${propsPath}`],
+  process.execPath,
+  [REMOTION_CLI, "render", "src/index.ts", COMPOSITION_ID, mp4Path, `--props=${propsPath}`],
   { onFailure: cleanupRenderPropsFile },
 );
 cleanupRenderPropsFile();
 
 // --- Step 3: pdf ---
-runStep("pdf", "node", ["scripts/build-script-pdf.mjs", scriptId]);
+runStep("pdf", process.execPath, ["scripts/build-script-pdf.mjs", scriptId]);
 
 console.log(`[render-all-script] ✓ done. outputs:`);
 console.log(`  - ${mp4Path}`);
