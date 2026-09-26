@@ -24,13 +24,13 @@
 - **Wave 1「目星」**・**Wave 2「1 本目」**は完了（2026-09-26。columba の検収 PASS）。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
 - **Wave 2.5「点検」**（2026-09-27 着手。G0 承認 06:15 JST「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`。止め時 10/1）：
   - 済：依存の更新（`ae82551`。脆弱性 11 件 → low 2 件）／点検（built-in `/code-review` high、`engineering:tech-debt`）／出力を変えない直し（`0b3c2ab`・`c787f90`・`e0f711c`・`6c7606f`・`9939fa1`・`dece5bb`）／`/simplify`（読み手 `seneschal:lens` 4 人）とその直し（`38957fa`・`1d3f122`）。
-  - 未：主人に 2 つ頼む（下の「未決」）→ full-review → `/security-review` → columba の検収 → 締め。
+  - 未：主人が次のセッションで `/seneschal:full-review` を打つ（主人「2 full-reviewは次で打つ」2026-09-27 07:04 JST）→ full-review → `/security-review` → columba の検収 → 締め。
 - 動いている物（実測 2026-09-27、ブランチ `1d3f122` の状態）：
   - `npm test` 15 files / 268 tests PASS、`npm run lint` exit 0。
   - 書き出しの一致（goal.md 検証 3）：compile 2 本の manifest・音声が `6cbaf95` と同一。source-to-exe の MP4・PDF が納品物と SHA-256 一致。java-vs-js（立ち絵を v1 に戻して）の MP4・PDF が Kyozai の参照と一致。シェル無しの Remotion 呼び出し（`38957fa`）の後にも 2 本とも確かめた。
   - `npm audit`：low 2 件（eslint 系。`--force` は Wave 3）。
   - VOICEVOX 0.25.2（50021）は起動中だった。imagegen は 2026-09-27 に起動していない。
-- 1 本目の納品物に出ている不具合（**直していない**。主人の判断待ち）：R1 全体図（79〜100 秒）で hello.c だけが光る／R2 強調した矢印の矢じりが線に埋もれる（100 秒〜）／R3 PDF 最終ページの注記「立ち絵は各権利者の規約に従います」が `LICENSE-CONTENT`（立ち絵も CC BY 4.0）と食い違う。
+- 1 本目の納品物に出ている不具合（**直していない**。主人の判断「1 推奨で直さない」2026-09-27 07:04 JST ── 10/2 は今の版で使い、Wave 3 で直す）：R1 全体図（79〜100 秒）で hello.c だけが光る／R2 強調した矢印の矢じりが線に埋もれる（100 秒〜）／R3 PDF 最終ページの注記「立ち絵は各権利者の規約に従います」が `LICENSE-CONTENT`（立ち絵も CC BY 4.0）と食い違う。
 - まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・画像スライド（Wave 3）。
 
 ## これまで（git log が持たない解釈だけ）
@@ -53,7 +53,7 @@
 | `cf23a24` | 点検の記録。納品 MP4 のフレームを切り出して R1・R2 を目視で確かめた |
 | `9939fa1` → `38957fa` | script-id の文字種を絞る直し（R4）を、`/simplify` の直す深さの指摘で、シェルを通さない Remotion 呼び出しに作り直した |
 
-retro の起動条件（loop.md）：Wave 2.5 では FAIL 0 回、主人の差し戻し 0 回。R1〜R3 は出荷した 1 本目の不具合なので、**直すことになれば条件 3（出荷物が次の回で直しの対象になった）に当たる**。
+retro の起動条件（loop.md）：Wave 2.5 では FAIL 0 回、主人の差し戻し 0 回。R1〜R3 は出荷した 1 本目の不具合で、主人の判断で Wave 3 に回した。**Wave 3 で直せば条件 3（出荷物が次の回で直しの対象になった）に当たる**。
 
 ## 決定（蒸し返さない）
 
@@ -74,6 +74,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 13. 本 Wave は full-review を使う。起動は主人（`/seneschal:full-review`）。brief §8 の「重い手法は既定では使わない」は、主人の指示で本 Wave に限り外した。
 14. `npm audit fix` は `--force` なしだけ（主人 OK）。eslint を上げる `--force` は Wave 3。
 15. Remotion CLI はシェルを通さず、`process.execPath` ＋ `@remotion/cli/remotion-cli.js` で呼ぶ（`scripts/remotion-cli.mjs`）。script-id の文字種の規則は compile の入口（`cli.ts`）の 1 か所。
+16. **1 本目の R1〜R3（図解の強調 2 件・PDF のライセンス注記）は直さず、10/2 は今の版で使う。Wave 3 で直す**（主人「1 推奨で直さない」2026-09-27 07:04 JST）。
 
 ## 採らなかった案
 
@@ -90,8 +91,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 未決（主人の判断待ち）
 
-- **1 本目の R1・R2（図解）と R3（PDF 注記）を 10/2 の前に直すか**。推奨は、直さず今の版で使い、Wave 3 で直す（見た目の小さな不具合で、理解は妨げない。R3 は権利を狭く言う向きなので害は無い）。直す場合は main に別コミットで入れる。そうすると本 Wave の検証 3(b) の参照値が無効になるので、goal.md の定めどおり本 Wave を締めるか、参照値を差し替える訂正節を出す（R3 は java-vs-js の PDF も変える）。
-- **`/seneschal:full-review` の起動**（主人が打つ。引数案は点検の記録の「full-review の結果」節）。
+- **`/seneschal:full-review` の起動**（主人が次のセッションで打つ。引数案は点検の記録の「full-review の結果」節）。
 - 10/2 の授業での受け入れ（使えなかった点は Wave 3 の G0 に書く）。
 - brief §6 の答え（上の「決定」1〜5・7）を brief 本文に写すか。
 - Wave 3 以降に回した依存の変更：`@types/node` の宣言（R10）、使われていない `@remotion/media` の削除（R9）、eslint の `--force`。
@@ -104,7 +104,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 次の一手
 
-主人に 1 通で頼む ── 1 本目 R1〜R3 を直すかの判断と、`/seneschal:full-review` の起動。
+主人が `/seneschal:full-review` を打ったら、点検の記録の引数案を揃えて（testCommands の 3 本目に書き出しの一致を回すスクリプトのパス）、SKILL.md の手順どおり Workflow を起動する。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
