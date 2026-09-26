@@ -8,13 +8,18 @@
  */
 
 import { describe, expect, it } from "vitest";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import {
   manifestRegistry,
   pdfManifestRegistry,
   resolveManifest,
   resolvePdfManifest,
 } from "./manifest-registry";
+import { componentRegistry } from "./component-registry";
 import type { TimelineManifest } from "../schema/timeline-manifest";
+
+const PUBLIC_DIR = join(__dirname, "..", "..", "..", "public");
 
 describe("manifestRegistry", () => {
   it("java-vs-js が登録済み", () => {
@@ -134,5 +139,54 @@ describe("resolvePdfManifest (W4-script-engine-T18)", () => {
     expect(() => resolvePdfManifest("not-registered-script")).toThrow(
       /java-vs-js/,
     );
+  });
+});
+
+describe("source-to-exe（10/2 納品の 1 本目）の登録と実データの突合", () => {
+  it("manifestRegistry と pdfManifestRegistry の両方に登録され、resolve できる", () => {
+    const manifest = resolveManifest("source-to-exe");
+    expect(manifest.script_id).toBe("source-to-exe");
+    expect(manifest.total_duration_frames).toBeGreaterThan(0);
+
+    const pdf = resolvePdfManifest("source-to-exe");
+    expect(pdf.script_id).toBe("source-to-exe");
+    expect(pdf.pages.length).toBe(pdf.total_pages);
+  });
+
+  it("manifest に title・code スライドが焼き込まれている（java-vs-js には無い種別）", () => {
+    const types = manifestRegistry["source-to-exe"].slides.map((s) => s.type);
+    expect(types).toContain("title");
+    expect(types).toContain("code");
+  });
+
+  it("slide_events[].slide と pdf-manifest の pages[].slide_id が、どれも manifest の slides[].id を指す", () => {
+    const manifest = manifestRegistry["source-to-exe"];
+    const slideIds = new Set(manifest.slides.map((s) => s.id));
+    for (const event of manifest.slide_events) {
+      expect(slideIds.has(event.slide), `${event.id} → ${event.slide}`).toBe(true);
+    }
+    for (const page of pdfManifestRegistry["source-to-exe"].pages) {
+      expect(slideIds.has(page.slide_id), `page ${page.page_number} → ${page.slide_id}`).toBe(true);
+    }
+  });
+
+  it("custom スライドの component が componentRegistry に実在し、立ち絵 PNG と全 WAV が public/ にある", () => {
+    const manifest = manifestRegistry["source-to-exe"];
+    for (const slide of manifest.slides) {
+      if (slide.type === "custom" || slide.type === "svg-ref") {
+        expect(
+          typeof (componentRegistry as Record<string, unknown>)[slide.component],
+          `${slide.id} component=${slide.component}`,
+        ).toBe("function");
+      }
+    }
+    for (const [role, speaker] of Object.entries(manifest.speakers)) {
+      const p = join(PUBLIC_DIR, "portraits", `${speaker.portrait_asset_key}.png`);
+      expect(existsSync(p), `role=${role} → ${p}`).toBe(true);
+    }
+    for (const u of manifest.utterances) {
+      const p = join(PUBLIC_DIR, ...u.wav_path.split("/"));
+      expect(existsSync(p), `${u.id} → ${p}`).toBe(true);
+    }
   });
 });

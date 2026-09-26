@@ -43,6 +43,20 @@ describe("ScriptSlideRenderer (標準スライドタイプ)", () => {
     expect((content.props as { backgroundColor?: string }).backgroundColor).toBe("#123456");
   });
 
+  it('"title" は第 4 引数（Sequence のローカル尺）を Section の durationInFrames に渡す（D-25）', () => {
+    const slide: Slide = { id: "s-1", type: "title", title: "t" };
+    const content = unwrapContent(
+      ScriptSlideRenderer(slide, componentRegistry, 30, 123),
+    ) as React.ReactElement;
+    expect((content.props as { durationInFrames?: number }).durationInFrames).toBe(123);
+  });
+
+  it('"title" で第 4 引数を省くと Section の durationInFrames は undefined（useVideoConfig の尺に戻る。PDF の経路）', () => {
+    const slide: Slide = { id: "s-1", type: "title", title: "t" };
+    const content = unwrapContent(ScriptSlideRenderer(slide, componentRegistry, 30)) as React.ReactElement;
+    expect((content.props as { durationInFrames?: number }).durationInFrames).toBeUndefined();
+  });
+
   it('"bullets" は <Slide> を生成し items を <li> に展開する', () => {
     const slide: Slide = {
       id: "s-2",

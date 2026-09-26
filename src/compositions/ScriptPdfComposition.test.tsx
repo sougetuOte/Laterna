@@ -38,28 +38,16 @@ describe("calculateScriptPdfMetadata", () => {
 });
 
 /**
- * 監査前軽量レビュー指摘 P-3（docs/artifacts/pre-audit-review-2026-07-14.md §2）対応。
+ * 外殻コンポーネント `ScriptPdfComposition`（hooks を使わない）を直接呼び、`resolvePdfManifest` /
+ * `resolveManifest` で解決した manifest が内部コンポーネントへ正しく props 配線されることを見る。
  *
- * `ScriptPdfComposition` の描画ロジック本体（contain-fit 計算 / 見出し解決 `resolveSlideHeading` /
- * `LicenseFooter` / frame 不整合 fail-fast）は、`ScriptPdfCompositionInner` という**非 export** の
- * 内部コンポーネントに閉じ込められており、かつ内部で `useCurrentFrame()`（remotion）を呼ぶ。
- * `useCurrentFrame()` は `CanUseRemotionHooks` context（`<Composition>` 登録時にのみ供給される、
- * remotion パッケージが public API として export していない内部 context）が無いと明示 throw する
- * 実装（`node_modules/remotion/dist/cjs/use-current-frame.js:16-21` で確認済み）。
- *
- * 本プロジェクトには jsdom / testing-library / react-test-renderer が未導入（ScriptSlideRenderer.test.tsx
- * / ScriptComposition.test.tsx と同じ制約）であり、かつ remotion の `package.json` `exports` フィールドが
- * `"."` / `"./version"` / `"./no-react"` 以外のサブパスを Node の解決レベルで禁止しているため
- * （確認済み、`ERR_PACKAGE_PATH_NOT_EXPORTED` になる）、`CanUseRemotionHooks` の Provider を
- * テストコードから供給する手段がない。したがって `ScriptPdfCompositionInner` を実際に描画して
- * a) contain-fit 計算 / b) 見出し解決 / c) ライセンス footer / d) frame 不整合 fail-fast を検証することは、
- * ソース側の export 追加（本タスクで禁止）なしには構造的に不可能。
- *
- * 代わりに、hooks を使わない外殻コンポーネント `ScriptPdfComposition`（export 済み）を直接関数呼び出しし、
- * `resolvePdfManifest` / `resolveManifest` で解決した manifest が内部コンポーネントへ正しく props 配線
- * されることのみを検証する（a-d 自体のカバーではなく、a-d が動作する前提条件の配線確認）。
+ * 内部コンポーネント `ScriptPdfCompositionInner` の描画（ページの選び方・見出し解決・最終ページだけの
+ * LicenseFooter・frame 不整合の fail-fast）は ScriptPdfCompositionTree.test.tsx が見る。そちらは
+ * remotion の `useCurrentFrame` を vi.mock で差し替え、外殻が返す要素の `type`（＝内部コンポーネント）を
+ * 直接呼ぶ（export の追加は要らない）。ここで vi.mock を使わないのは、外殻が内部を実行しないことを
+ * 本物の remotion のまま確かめるため。
  */
-describe("ScriptPdfComposition (props 配線 / a-d 直接カバー不可の理由は上記コメント参照)", () => {
+describe("ScriptPdfComposition (props 配線 / 描画ツリーは ScriptPdfCompositionTree.test.tsx)", () => {
   it("登録済み scriptId (java-vs-js) では解決済み pdf-manifest / timeline manifest がそのまま内部コンポーネントへ渡る", () => {
     // ScriptPdfComposition 自体は useCurrentFrame 等の hooks を呼ばないため、JSX 生成
     // （React.createElement 相当）のみが走り、内部コンポーネントの実行（hooks 呼び出し）はされない。
