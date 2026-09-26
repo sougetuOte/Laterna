@@ -14,3 +14,8 @@
 | 0 | 2026-09-26 21:13 | `powershell -ExecutionPolicy Bypass -File imagegen\scripts\setup.ps1 -VerifyOnly` | 0 | 版・ロック・モデルの sha256 が一致 |
 | 1 | 2026-09-26 20:45 | 一次資料の取得（GCC manual Overall Options／cppreference translation phases／Microsoft PE Format） | 0 | `materials/source-to-exe/outline.md` の「出典」 |
 | 2 | 2026-09-26 20:50 | `materials/source-to-exe/outline.md` を書く（対象・尺・章立て 5 章・出典） | 0 | 完了条件 3 |
+| 3 | 2026-09-26 21:30 | `content/scripts/source-to-exe.script.yaml` を書く（27 発話・1,715 文字・概算 263 秒） | 0 | 主人の承認待ち。承認後に compile |
+| 3 | 2026-09-26 21:35 | `npm test`（extra_credits・PipelineFlow の追加後） | 0 | 15 files / 266 tests passed。`npm run lint` exit 0 |
+| 0 | 2026-09-26 21:40 | `imagegen\.venv\Scripts\python.exe imagegen\scripts\gen.py --workflow klein_edit --ref imagegen/output/refs/<role>-ref-green.png ...`（12 回） | 0 | 立ち絵候補 12 枚 → `imagegen/output/portraits/`（一覧 `sheet-*.png`）。主人の選択待ち |
+| 0 | 2026-09-26 21:50 | `powershell -ExecutionPolicy Bypass -File imagegen\scripts\stop.ps1` | 0 | セッションの区切りで停止 |
+

@@ -21,8 +21,13 @@
 
 - **Wave 1「目星」は完了**（2026-09-26。完了条件 1〜5 がすべて columba の検収を通った）。
 - 動いている物（実測 2026-09-26）：Kyozai-Athanor から持っていく 90 件を切り出し、`npm install`（343 パッケージ）／`npm test` 15 files・261 tests PASS／`npm run lint` exit 0／`compile:script -- java-vs-js` は合成 0・skip 13／`render:all:script -- java-vs-js` で MP4（h264+aac、100.885333 秒）と PDF（4 ページ）。どちらも Kyozai の参照と SHA-256 が一致。
-- まだ無い物：手順書 `SKILL.md` 本文、新しい立ち絵、1 本目の台本、画像環境 `imagegen/`、Wave 2 の `goal.md`。
-- **Wave 2「1 本目」に着手**（G0 承認 2026-09-26。`goal.md` の Wave 2 節。草案は畳んだ）。フェーズ：P1 画像環境 `imagegen/`（構築中）／P2 構成と台本（`materials/source-to-exe/`）／P3 立ち絵／P4 動画・PDF・クレジット・手順書・納品／P5 Wave 1 からの持ち越し検証。script-id は `source-to-exe`。
+- まだ無い物：手順書 `SKILL.md` 本文、確定した立ち絵、承認済みの台本、`deliver/`。
+- **Wave 2「1 本目」進行中**（G0 承認 2026-09-26。`goal.md` の Wave 2 節）。script-id は `source-to-exe`。2026-09-26 のセッション末で一段落（主人の答え待ち 2 件）。
+  - **P1 画像環境**：建った（`843bdfd`。setup／`-VerifyOnly`／start／smoke（t2i 7.2 s・edit 7.5 s）／stop すべて exit 0）。**検収は未**。サーバーは停止中（`imagegen\scripts\start.ps1` で約 7 秒で上がる）。
+  - **P2 台本**：下書き済み（`42817b1`。27 発話・1,715 文字・概算 263 秒。`materials/source-to-exe/outline.md` に対象・尺・章立て・出典）。**主人の承認待ち**（表はチャットで提示済み）。承認後：`outline.md` に「台本承認：YYYY-MM-DD 主人」→ `npm run compile:script -- source-to-exe`。
+  - **P3 立ち絵**：候補 12 枚を生成済み（`imagegen/output/portraits/`。一覧 `sheet-narrator-bust.png`・`sheet-listener-lantern.png`・`sheet-others.png`。git 管理外、ディスク上。各 PNG の隣に生成記録 `.json`）。**主人の選択待ち**。選択後：緑背景を `magick <in> -fuzz 12% -transparent "#00FF00" <out>` で抜く → `public/portraits/<role>-default.png` と `materials/portraits/<role>-v2-full.png` → `materials/portraits/README.md`（`.json` からモデル・プロンプト・seed・加工）→ `docs/conventions/portrait-assets.md` の台帳。
+  - **P4 動画・PDF・クレジット・`SKILL.md`・納品**：未着手。エンジン側は準備済み（`43b8ad9`：台本の `extra_credits`、custom 部品 `PipelineFlow`）。`materials/source-to-exe/build-log.md` に手順番号つきの記録を続ける。
+  - **P5 持ち越し検証**：columba の採点時に行う（`goal.md` Wave 2 の 9 番）。
 
 ## これまで（git log が持たない解釈だけ）
 
@@ -36,6 +41,11 @@
 | `b6ef72d` | SESSION_STATE.md を置く |
 | `805d312` | フェーズ (B) 切り出し実証（90 件＋4 ファイル編集）。検収 1 回目 **PASS** |
 | `230dbbc` | フェーズ (C) 設計草案＋Wave 2 G0 草案。検収 1 回目 **PASS**（付記：草案の完了条件 4「1 回で」・6「手順と一致」に対応する検証手順が弱い） |
+| `6aafd4d`〜`cc21562` | 主人の判断 3 件を反映（brief §9 訂正節・LICENSE 2 本・画像環境の検討と G0 第 2 版）。`cd2e315` のメッセージが過大だったので `cc21562` で訂正 |
+| `8980aed` | Wave 2 の G0 承認。草案を畳んだ |
+| `843bdfd` | P1 imagegen。**未検収** |
+| `43b8ad9` | エンジン追加（`extra_credits`・`PipelineFlow`）。テスト 266 件 PASS |
+| `42817b1` | P2 台本の下書き（承認待ち）と outline・build-log |
 
 retro の起動条件（loop.md）：縦の停止なし（同一フェーズで FAIL 2 回はなかった）・主人の差し戻しなし・出荷物なし。**起動しない。**
 
@@ -66,6 +76,8 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 ## 未決（主人の判断待ち）
 
+- **台本の承認**（`content/scripts/source-to-exe.script.yaml`。表は 2026-09-26 のチャットで提示。授業の言語が C／gcc でなければ直す）。
+- **立ち絵の選択**：解説役バストアップ s1／s2／s3（推奨 s2）、聞き役はランタン版 s1／s2／s3（推奨 s2）か既定版 s1／s2。全身版は解説役 s1／s2、聞き役（ランタン）s1／s2。
 - brief §6 の答え（上の「決定」1〜5・8・9）を brief に写すか（写すなら主人の承認で）。
 
 ## 未決（実測・作業待ち）
@@ -76,11 +88,14 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 ## 次の一手
 
-P1：`imagegen/scripts/setup.ps1` の完了を確かめ、start → smoke → stop を通して commit し、columba に出す。並行して P2 の `materials/source-to-exe/outline.md`。
+主人の答え（台本承認・立ち絵の選択）を受けて、P3 の背景抜きと配置 → P2 の compile（尺 180〜300 秒の確認）→ P4 の render・PDF・`SKILL.md`・納品。columba は P1 から順に出す（P1 は主人の答えを待たず出せる）。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
 - Kyozai-Athanor は読み取り専用。状態は `git ls-files`・`git log`、`git status` は `--no-optional-locks`。
 - 検収は `seneschal:columba` に出す。採点範囲は本フェーズの成果コミットに限る。主人の別指示は別コミット。PASS 後の直しは次の G0 の検証行に載せる。
 - VOICEVOX は 50021、ffprobe は `C:fmpeg-essentialsin`、ImageMagick は `magick`。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（Kyozai 側からコピーした。270 MB）。
-- 分類器（auto mode）が止めた操作は別経路で追わない。フェーズ末に主人へまとめて出す。
+- 分類器（auto mode）が止めた操作は別経路で追わない。フェーズ末に主人へまとめて出す（主人が「書込許可」と言えば Edit ツールで通った）。
+- Bash の作業ディレクトリは呼び出しをまたいで残る。並行した `cd` が `git add` を壊したので、git は `git -C /d/work8/Laterna` で呼ぶ。
+- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。コマンド本文にその文字列があるだけでも止まる。HTTP は `urllib` かファイル経由にし、複数行の Python は `python - <<'EOF'` かスクリプトファイルで渡す（`python -c` の複数行は shim が壊す）。
+- `.ps1` は BOM 付き UTF-8 で書く（無いと PowerShell 5.1 で構文エラー）。PowerShell の出力は cp932。`sleep` 先頭の待ちは止められるので、待つなら `run_in_background` の `until` ループ。
