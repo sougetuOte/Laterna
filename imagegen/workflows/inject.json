@@ -1,0 +1,31 @@
+{
+  "_comment": "差し込み位置（ノード ID と入力名）。ComfyUI_img2 の workflows/inject.json から klein の 2 本を借りた。port だけ 8288 に変えた。scripts/smoke.py と gen.py が読む",
+  "klein_t2i": {
+    "port": 8288,
+    "prompt": [["74", "text"]],
+    "seed": [["73", "noise_seed"]],
+    "width": [["62", "width"], ["66", "width"]],
+    "height": [["62", "height"], ["66", "height"]],
+    "unet": [["70", "unet_name"]],
+    "save": "9",
+    "filename_prefix": [["9", "filename_prefix"]]
+  },
+  "klein_edit": {
+    "port": 8288,
+    "prompt": [["74", "text"]],
+    "seed": [["73", "noise_seed"]],
+    "width": [["62", "width"], ["66", "width"]],
+    "height": [["62", "height"], ["66", "height"]],
+    "unet": [["70", "unet_name"]],
+    "save": "9",
+    "filename_prefix": [["9", "filename_prefix"]],
+    "refs": [["76", "image"]],
+    "ref_chain": {
+      "text": "74",
+      "negative_base": "82",
+      "vae": "72",
+      "guider": "63",
+      "first": {"load": "76", "scale": "80", "encode": "122", "pos": "123", "neg": "121"}
+    }
+  }
+}

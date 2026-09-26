@@ -10,3 +10,19 @@ out/
 
 # Krita の自動バックアップ（materials/portraits/*.kra は追跡する）
 *.kra~
+
+# imagegen（ComfyUI 本体・Python 環境・重み・生成物は入れない。versions/ にタグとロックだけ）
+/imagegen/ComfyUI/
+/imagegen/.venv/
+/imagegen/python/
+/imagegen/models/
+/imagegen/output/
+/imagegen/runtime/
+/imagegen/logs/
+/imagegen/.cache/
+*.safetensors
+__pycache__/
+*.pyc
+
+# 納品物（deliver/<script-id>/。out/ の複製）
+/deliver/
