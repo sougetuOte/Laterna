@@ -21,6 +21,8 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { exitUnlessValidScriptId } from "./script-id.mjs";
+
 const OUTPUT_DIR = "out/script-engine";
 const COMPOSITION_ID = "ScriptComposition";
 
@@ -29,18 +31,8 @@ function usage() {
 }
 
 const scriptId = process.argv[2];
-
-if (!scriptId) {
-  console.error("Error: script-id is required.");
-  console.error(usage());
-  process.exit(1);
-}
-// build-script-pdf.mjs / compile-script.mjs と同型の防御的チェック。
-if (scriptId.includes("/") || scriptId.includes("\\")) {
-  console.error(`Error: script-id にパス区切り文字を含めることはできません: "${scriptId}".`);
-  console.error(usage());
-  process.exit(1);
-}
+// 下の runStep は Windows で shell: true になる。シェルに渡る前に文字種を検査する（scripts/script-id.mjs）。
+exitUnlessValidScriptId(scriptId, usage());
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 

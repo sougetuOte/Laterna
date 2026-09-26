@@ -84,6 +84,18 @@ describe("parseCliArgs", () => {
     );
     expect(() => parseCliArgs(["a\\b"])).toThrow(/^✗ script-id にパス区切り文字/);
   });
+
+  it("シェルが解釈する文字・空白・英数字以外で始まる script-id は fail-fast する", () => {
+    for (const id of ["x&calc", "a|b", "a>b", "%PATH%", "a b", "..", "-rf"]) {
+      expect(() => parseCliArgs([id])).toThrow(/^✗ script-id に使えるのは英数字/);
+    }
+  });
+
+  it("英数字・ハイフン・アンダースコアだけの script-id は通る", () => {
+    for (const id of ["source-to-exe", "java-vs-js", "outline-video-1", "Wave3_demo"]) {
+      expect(parseCliArgs([id]).scriptId).toBe(id);
+    }
+  });
 });
 
 describe("resolveDefaultScriptPath", () => {

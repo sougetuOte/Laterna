@@ -32,6 +32,8 @@ import process from "node:process";
 
 import { PDFDocument } from "pdf-lib";
 
+import { exitUnlessValidScriptId } from "./script-id.mjs";
+
 const TEMP_DIR = "out/script-engine-pdf-temp";
 const OUTPUT_DIR = "out/script-engine";
 const COMPOSITION_ID = "ScriptPdfComposition";
@@ -44,18 +46,8 @@ function usage() {
 }
 
 const scriptId = process.argv[2];
-
-if (!scriptId) {
-  console.error("Error: script-id is required.");
-  console.error(usage());
-  process.exit(1);
-}
-// design §11.1: 台本パスと同じ防御的チェック（cli.ts parseCliArgs と同様の考え方）。
-if (scriptId.includes("/") || scriptId.includes("\\")) {
-  console.error(`Error: script-id にパス区切り文字を含めることはできません: "${scriptId}".`);
-  console.error(usage());
-  process.exit(1);
-}
+// 下の npx 呼び出しは Windows で shell: true になる。シェルに渡る前に文字種を検査する（scripts/script-id.mjs）。
+exitUnlessValidScriptId(scriptId, usage());
 
 const pdfManifestPath = path.resolve(
   "public/manifests",
@@ -113,8 +105,8 @@ for (let frame = 0; frame < totalPages; frame += 1) {
 
   console.log(`[${humanIndex}/${totalPages}] Rendering frame ${frame} -> ${tempFile}`);
 
-  // build-pdf.mjs と同型: execFileSync + 引数配列（シェル経由のコマンドインジェクション回避）。
-  // Windows では npx.cmd 解決のため shell: true が必要（execFileSync の仕様）。
+  // execFileSync + 引数配列。Windows では npx（npx.cmd）を呼ぶために shell: true が要り、そのとき引数は
+  // エスケープされない（シェルが解釈する）。script-id は冒頭で文字種を検査済み（scripts/script-id.mjs）。
   const npxArgs = [
     "remotion",
     "still",

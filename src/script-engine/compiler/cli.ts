@@ -44,6 +44,13 @@ export const CLI_USAGE =
 /** T31 完了条件 5（HGA C-3）: 全発話強制再合成フラグ */
 export const FORCE_RESYNTH_FLAG = "--force-resynth";
 
+/**
+ * script-id に使える文字（英数字・ハイフン・アンダースコア。先頭は英数字）。Windows では render と PDF の段が
+ * npx を shell 経由で呼ぶので（`scripts/render-all-script.mjs`・`build-script-pdf.mjs`）、cmd が解釈する文字
+ * （`&` `|` `>` `%` など）や空白を script-id に入れない。同じ規則を `scripts/script-id.mjs` も持つ。
+ */
+export const SCRIPT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
+
 /** parseCliArgs の結果 */
 export interface CliArgs {
   scriptId: string;
@@ -84,6 +91,11 @@ export function parseCliArgs(argv: string[]): CliArgs {
   if (scriptId.includes("/") || scriptId.includes("\\")) {
     throw new Error(
       `✗ script-id にパス区切り文字（/ や \\）を含めることはできません: "${scriptId}"。${CLI_USAGE}`,
+    );
+  }
+  if (!SCRIPT_ID_PATTERN.test(scriptId)) {
+    throw new Error(
+      `✗ script-id に使えるのは英数字・ハイフン・アンダースコアだけです（先頭は英数字）: "${scriptId}"。${CLI_USAGE}`,
     );
   }
 
