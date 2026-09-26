@@ -26,6 +26,7 @@ import { Flowchart } from "../../components/Flowchart";
 import { Citation } from "../../components/Citation";
 import { JavaJsCompare } from "./pilot/JavaJsCompare";
 import { JsNamingTimeline } from "./pilot/JsNamingTimeline";
+import { PipelineFlow } from "./source-to-exe/PipelineFlow";
 import {
   REGISTERED_COMPONENT_NAMES,
   type RegisteredComponentName,
@@ -50,10 +51,11 @@ export const componentRegistry: ComponentRegistry = {
   Citation,
   JavaJsCompare,
   JsNamingTimeline,
+  PipelineFlow,
 };
 
 /**
- * `componentRegistry` に `component-names.ts` の正規リスト全 5 名が実体登録済みであることを
+ * `componentRegistry` に `component-names.ts` の正規リスト全 6 名が実体登録済みであることを
  * 実行時に確認する（component-registry.test.ts から呼び出す整合テスト用）。
  */
 export function assertComponentRegistryComplete(): void {

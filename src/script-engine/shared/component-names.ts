@@ -17,6 +17,7 @@
  * - `JavaJsCompare` / `JsNamingTimeline`: java-vs-js パイロット台本（W15-script-engine-T24）が
  *   参照する custom コンポーネント。実装自体は tasks.md T13 のスコープだが、
  *   parse 時 fail-fast 検証（本タスク W2-script-engine-T8）のため名前登録のみ先行させる
+ * - `PipelineFlow`: source-to-exe 台本（Laterna Wave 2、2026-09-26）の custom 部品
  */
 export const REGISTERED_COMPONENT_NAMES = [
   "Iceberg",
@@ -24,6 +25,7 @@ export const REGISTERED_COMPONENT_NAMES = [
   "Citation",
   "JavaJsCompare",
   "JsNamingTimeline",
+  "PipelineFlow",
 ] as const;
 
 /** 登録済みコンポーネント名の型（正規リストからの導出、design §2.6） */

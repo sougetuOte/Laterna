@@ -1042,3 +1042,28 @@ describe("generateManifest (prune, design §4.2 / §4.4)", () => {
     expect(result.pruneWarnings).toEqual([]);
   });
 });
+
+describe("generateManifest (extra_credits、Laterna 追加 2026-09-26)", () => {
+  it("台本の extra_credits を credits の末尾に足す（初出順・重複なし）", async () => {
+    const script = makeMinimalScript({
+      utterances: [{ id: "u-1", speaker: "narrator", text: "a" }],
+      extra_credits: ["立ち絵：Laterna オリジナル", "VOICEVOX:テスト話者A"],
+    });
+    const utterancesWithWav: UtteranceWithMeasuredWav[] = [
+      {
+        utterance_id: "u-1",
+        speaker: "narrator",
+        content_hash: "h1",
+        wav_path: "/fake/u-1.wav",
+        duration_seconds: 1.0,
+      },
+    ];
+    const result = await generateManifest(script, utterancesWithWav, MOCK_SPEAKER_PROFILES, {
+      scriptId: "extra-credits",
+      voicevoxEngineVersion: "0.25.2-test",
+      writeManifestFile: false,
+      prune: false,
+    });
+    expect(result.manifest.credits).toEqual(["VOICEVOX:テスト話者A", "立ち絵：Laterna オリジナル"]);
+  });
+});

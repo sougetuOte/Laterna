@@ -212,6 +212,11 @@ export interface ScriptConfig {
    * // 役割名キー別か単一オブジェクトかの構造を明示しない。ここでは役割名キー別と仮定した。
    */
   speaker_overrides?: Record<string, SpeakerOverrides>;
+  /**
+   * Laterna 追加（2026-09-26、Wave 2）: 話者以外のクレジット行（例: 立ち絵の出所）。
+   * compile が manifest `credits[]` の末尾に初出順・重複なしで足す（`src/script-engine/compiler/manifest.ts`）。
+   */
+  extra_credits?: string[];
 }
 
 /**
@@ -474,6 +479,22 @@ function parseSlideEvent(raw: unknown, index: number): SlideEvent {
 const KNOWN_SPEAKER_ROLES = new Set(["narrator", "listener"]);
 
 // ============================================================================
+/**
+ * Laterna 追加（2026-09-26）: `extra_credits`（任意）。文字列の配列で、空文字は不可。
+ */
+function parseExtraCredits(value: unknown): string[] | undefined {
+  if (value === undefined) return undefined;
+  const items = requireArray(value, "extra_credits").map((item, i) =>
+    requireString(item, `extra_credits[${i}]`),
+  );
+  items.forEach((item, i) => {
+    if (item.trim() === "") {
+      throw new Error(`✗ フィールド extra_credits[${i}] が空文字です`);
+    }
+  });
+  return items;
+}
+
 // ScriptConfig 側フィールド（target_duration_range / speaker_overrides）の parse
 // ============================================================================
 
@@ -554,6 +575,7 @@ export function parseScriptDocument(raw: unknown): ScriptDocument {
   );
   const targetDurationRange = parseTargetDurationRange(raw.target_duration_range);
   const speakerOverrides = parseSpeakerOverrides(raw.speaker_overrides);
+  const extraCredits = parseExtraCredits(raw.extra_credits);
 
   const utterances = requireArray(raw.utterances, "utterances").map((u, i) =>
     parseUtterance(u, i),
@@ -630,6 +652,9 @@ export function parseScriptDocument(raw: unknown): ScriptDocument {
   }
   if (speakerOverrides !== undefined) {
     document.speaker_overrides = speakerOverrides;
+  }
+  if (extraCredits !== undefined) {
+    document.extra_credits = extraCredits;
   }
   return document;
 }

@@ -262,6 +262,10 @@ function resolveCredits(script: ScriptDocument, speakerProfiles: SpeakersRegistr
     }
     credits.push(profile.credit);
   }
+  // Laterna 追加（2026-09-26）: 台本の extra_credits（立ち絵の出所など）を末尾に足す（初出順・重複なし）。
+  for (const extra of script.extra_credits ?? []) {
+    if (!credits.includes(extra)) credits.push(extra);
+  }
   return credits;
 }
 

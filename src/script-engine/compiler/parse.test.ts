@@ -294,4 +294,19 @@ describe("parseScriptDocument (異常系: 最小 mock)", () => {
       /✗ フィールド slides\[1\]\.props\.when は JSON 直列化可能な値である必要があります/,
     );
   });
+
+  it("extra_credits（Laterna 追加 2026-09-26）: 文字列配列を受理して document.extra_credits に入る", () => {
+    const doc = parseScriptDocument({ ...validBase(), extra_credits: ["立ち絵：Laterna オリジナル"] });
+    expect(doc.extra_credits).toEqual(["立ち絵：Laterna オリジナル"]);
+  });
+
+  it("extra_credits（Laterna 追加）: 省略すると document に含まれない", () => {
+    expect(parseScriptDocument(validBase()).extra_credits).toBeUndefined();
+  });
+
+  it("extra_credits（Laterna 追加）: 空文字を含むとエラーになる", () => {
+    expect(() => parseScriptDocument({ ...validBase(), extra_credits: [""] })).toThrow(
+      /extra_credits\[0\]/,
+    );
+  });
 });
