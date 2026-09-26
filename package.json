@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "授業用の解説動画（掛け合い形式）と復習用 PDF を、台本 YAML から作る",
   "repository": {},
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.484",
