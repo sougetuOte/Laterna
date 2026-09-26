@@ -473,10 +473,10 @@ function parseSlideEvent(raw: unknown, index: number): SlideEvent {
 
 /**
  * design §4.4 v3.7（HGA W-1 対応）: v1 が受理する話者役割名（§7 で narrator/listener の 2 役割固定）。
- * `compiler/manifest.ts` の `resolveSpeakers` にも同名の集合が定義されている（defense-in-depth。
- * ここでの parse 時 fail-fast が主経路、manifest.ts 側は二重防御として維持する）。
+ * 正本はここ 1 つ。parse 時の fail-fast が主経路で、`compiler/manifest.ts` の `resolveSpeakers` と
+ * `pdf/script-pdf-manifest.ts` も同じ集合を import して二重に守る。
  */
-const KNOWN_SPEAKER_ROLES = new Set(["narrator", "listener"]);
+export const KNOWN_SPEAKER_ROLES: ReadonlySet<string> = new Set(["narrator", "listener"]);
 
 // ============================================================================
 /**

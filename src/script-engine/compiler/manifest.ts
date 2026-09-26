@@ -19,6 +19,7 @@
 import { mkdir, readdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { ScriptDocument, SlideEvent, Utterance } from "../schema/script";
+import { KNOWN_SPEAKER_ROLES } from "../schema/script";
 import type { SpeakersRegistry } from "../schema/speaker-profile";
 import type {
   ManifestSlideEvent,
@@ -268,9 +269,6 @@ function resolveCredits(script: ScriptDocument, speakerProfiles: SpeakersRegistr
   }
   return credits;
 }
-
-/** design §4.4 v3.7（HGA W-1 対応）: v1 レイアウトが受理する話者役割名（§7 で 2 役割固定）。 */
-const KNOWN_SPEAKER_ROLES = new Set(["narrator", "listener"]);
 
 /**
  * design §4.3 v3.6（T15 着手時ギャップ裁定）: 台本に登場した話者役割名 → 描画用話者情報のマップを

@@ -20,6 +20,7 @@
 
 import path from "node:path";
 import type { ScriptDocument, Utterance } from "../schema/script";
+import { KNOWN_SPEAKER_ROLES } from "../schema/script";
 import type { TimelineManifest } from "../schema/timeline-manifest";
 
 /**
@@ -74,9 +75,6 @@ export interface PdfManifest {
  * 追加検証が不要なレベルの余白を実測）。
  */
 export const PDF_PAGE_CHAR_LIMIT = 900;
-
-/** design §4.4 v3.7 と同じ v1 固定の話者役割名（PDF 側は narrator/listener のみ対応）。 */
-const KNOWN_SPEAKER_ROLES = new Set(["narrator", "listener"]);
 
 /**
  * design §9.1: `char_count` は発話 text から空白類を除いた文字数（句読点・記号は含む）と定義される。
