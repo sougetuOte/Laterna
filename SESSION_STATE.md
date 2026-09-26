@@ -11,10 +11,10 @@
 
 1. `README.md`（30 行）
 2. `docs/brief.md`（約 120 行。決定 D1〜D10 と §9 の訂正節 D8・D9）
-3. `goal.md`（Wave 1「目星」。承認済み 2026-09-26。**Wave 1 は完了**）
+3. `goal.md`（Wave 1「目星」＝完了、Wave 2「1 本目」＝承認済み 2026-09-26・進行中）
 4. `docs/inventory.md`（棚卸し表と依存の表。342 行）
 5. `docs/design.md`（設計草案 6 節。155 行）
-6. `docs/research/wave2-g0-draft.md`（Wave 2 の 3 項。完了条件 8 ↔ 検証方法 8。**次の G0 の起点**）
+6. `docs/research/2026-09-26-image-env.md`（画像環境をプロジェクト内部に建てる検討）／`imagegen/README.md`
 7. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
 
 ## 現在地
@@ -22,7 +22,7 @@
 - **Wave 1「目星」は完了**（2026-09-26。完了条件 1〜5 がすべて columba の検収を通った）。
 - 動いている物（実測 2026-09-26）：Kyozai-Athanor から持っていく 90 件を切り出し、`npm install`（343 パッケージ）／`npm test` 15 files・261 tests PASS／`npm run lint` exit 0／`compile:script -- java-vs-js` は合成 0・skip 13／`render:all:script -- java-vs-js` で MP4（h264+aac、100.885333 秒）と PDF（4 ページ）。どちらも Kyozai の参照と SHA-256 が一致。
 - まだ無い物：手順書 `SKILL.md` 本文、新しい立ち絵、1 本目の台本、画像環境 `imagegen/`、Wave 2 の `goal.md`。
-- 主人の答え（2026-09-26）を反映した G0 草案の**第 2 版**が `docs/research/wave2-g0-draft.md` にある（画像環境をプロジェクト内部に建てる：`docs/research/2026-09-26-image-env.md`）。**主人の承認待ち。**
+- **Wave 2「1 本目」に着手**（G0 承認 2026-09-26。`goal.md` の Wave 2 節。草案は畳んだ）。フェーズ：P1 画像環境 `imagegen/`（構築中）／P2 構成と台本（`materials/source-to-exe/`）／P3 立ち絵／P4 動画・PDF・クレジット・手順書・納品／P5 Wave 1 からの持ち越し検証。script-id は `source-to-exe`。
 
 ## これまで（git log が持たない解釈だけ）
 
@@ -66,7 +66,6 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 ## 未決（主人の判断待ち）
 
-- **Wave 2 の G0**：`docs/research/wave2-g0-draft.md`（第 2 版）の承認。承認が出たら `goal.md` に Wave 2 節を足す。
 - brief §6 の答え（上の「決定」1〜5・8・9）を brief に写すか（写すなら主人の承認で）。
 
 ## 未決（実測・作業待ち）
@@ -77,7 +76,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物（2026-09-26�
 
 ## 次の一手
 
-Wave 2 の G0（面接）。`docs/research/wave2-g0-draft.md` を主人に出し、5 問の答えと承認を取ってから `goal.md` に Wave 2 節を足す。
+P1：`imagegen/scripts/setup.ps1` の完了を確かめ、start → smoke → stop を通して commit し、columba に出す。並行して P2 の `materials/source-to-exe/outline.md`。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
