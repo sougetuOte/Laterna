@@ -29,7 +29,7 @@ import type {
 } from "../schema/timeline-manifest";
 import { CREDIT_REGION_SECONDS } from "../shared/credit-region";
 import type { SynthesizedUtterance } from "./synthesize";
-import { resolveDefaultOutputDir, toPosixPath } from "./synthesize";
+import { resolveDefaultOutputDir } from "./synthesize";
 
 /** design §5.1: fps 前提（既存 Composition 全てが 30fps）。 */
 export const DEFAULT_FPS = 30;
@@ -112,13 +112,19 @@ export function resolveDefaultManifestOutputPath(scriptId: string): string {
  * 入力（T10 `synthesize.ts` の実絶対パス）から basename を取り、scriptId と組み合わせて
  * 再構成する（絶対パスをそのまま記録するとマシン固有情報の焼き付きとなり、クロス環境の
  * 決定性と Remotion `staticFile()` 解決の両方を壊すため MUST NOT）。
- * `path.sep` に依存せず `/`・`\` の両方をセパレータとして扱う（クロス OS 入力に対応するため
- * `path.basename` ではなく {@link toPosixPath} 後の手動分割を用いる）。
  */
 function toPublicRelativeWavPath(wavPath: string, scriptId: string): string {
-  const segments = toPosixPath(wavPath).split("/");
-  const basename = segments[segments.length - 1];
-  return `audio/${scriptId}/${basename}`;
+  return `audio/${scriptId}/${wavBasename(wavPath)}`;
+}
+
+/**
+ * WAV のファイル名を取る。OS に依らず `/`・`\` の両方をセパレータとして扱う
+ * （`path.basename` と `synthesize.ts` の `toPosixPath` は実行中の OS の区切りしか見ないので、POSIX 上で
+ * `C:\...\u-1.wav` を渡すとパスまるごとが返る）。manifest の `wav_path` と prune の照合の両方がこれを使う。
+ */
+function wavBasename(wavPath: string): string {
+  const segments = wavPath.split(/[/\\]/);
+  return segments[segments.length - 1];
 }
 
 /** 秒 → frame 変換（design §5.2: 累積秒に対して 1 回だけ丸める）。 */
@@ -491,7 +497,7 @@ export async function generateManifest(
   }
 
   const wavDir = options.wavDir ?? resolveDefaultOutputDir(options.scriptId);
-  const referencedBasenames = new Set(utterancesWithWav.map((u) => path.basename(u.wav_path)));
+  const referencedBasenames = new Set(utterancesWithWav.map((u) => wavBasename(u.wav_path)));
   const { pruned, pruneWarnings } =
     options.prune ?? true
       ? await pruneUnreferencedWavFiles(wavDir, referencedBasenames, options.unlinkImpl ?? unlink)

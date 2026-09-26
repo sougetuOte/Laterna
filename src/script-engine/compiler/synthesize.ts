@@ -65,9 +65,9 @@ export function resolveDefaultOutputDir(scriptId: string): string {
 
 /**
  * Windows の `\` を `/` に正規化する（design §4.3 MUST: manifest 内のパス区切りは `/` 固定）。
- * `compiler/manifest.ts` も同じ正規化を使うので export する。
+ * manifest.ts は OS に依らない分割（`wavBasename`）で読むので、ここは実行中の OS の区切りだけを直す。
  */
-export function toPosixPath(filePath: string): string {
+function toPosixPath(filePath: string): string {
   return filePath.split(path.sep).join("/");
 }
 

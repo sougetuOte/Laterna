@@ -358,6 +358,43 @@ describe("generateManifest (累積丸めの回帰テスト、design §5.2 の二
   });
 });
 
+describe("generateManifest (pause_before、design §5.2 の累積秒)", () => {
+  it("pause_before は start_sec を決める前に cum_sec へ足される（点検 R3-2）", async () => {
+    // fps=30。u-1: pause_before=1, duration=2, pause_after=0.5 / u-2: pause_before=0.5, duration=1
+    //   u-1: cum 0 → +1 → start 1.0(30) → +2 → audio_end 3.0(90) → +0.5 → end 3.5(105)
+    //   u-2: cum 3.5 → +0.5 → start 4.0(120) → +1 → audio_end 5.0(150) → end 5.0(150)
+    // pause_before を start の後に足す誤りなら u-1.start_frame は 0、落とすと u-2.start_frame は 105 になる。
+    await withTempDir(async (dir) => {
+      const script = makeMinimalScript({
+        utterances: [
+          { id: "u-1", speaker: "narrator", text: "a", pause_before: 1, pause_after: 0.5 },
+          { id: "u-2", speaker: "narrator", text: "b", pause_before: 0.5 },
+        ],
+      });
+      const durations: Record<string, number> = { "u-1": 2, "u-2": 1 };
+      const utterancesWithWav: UtteranceWithMeasuredWav[] = ["u-1", "u-2"].map((id) => ({
+        utterance_id: id,
+        speaker: "narrator",
+        content_hash: `hash-${id}`,
+        wav_path: `/fake/${id}.wav`,
+        duration_seconds: durations[id],
+      }));
+
+      const result = await generateManifest(script, utterancesWithWav, MOCK_SPEAKER_PROFILES, {
+        scriptId: "pause-before",
+        voicevoxEngineVersion: "0.25.2-test",
+        outputPath: path.join(dir, "m.manifest.json"),
+        wavDir: dir,
+        prune: false,
+      });
+
+      const [u1, u2] = result.manifest.utterances;
+      expect(u1).toMatchObject({ start_frame: 30, audio_end_frame: 90, end_frame: 105 });
+      expect(u2).toMatchObject({ start_frame: 120, audio_end_frame: 150, end_frame: 150 });
+    });
+  });
+});
+
 describe("generateManifest (total_duration_frames 一般則、design §5.4 v3)", () => {
   it("最終 slide_event + 表示保証尺 2 秒 が最終発話 end_frame を上回るケースを一般則で扱う", async () => {
     // u-1: duration=1s（end_frame=30）。slide は u-1 開始 + 5 秒後 → frame 150。
@@ -964,6 +1001,55 @@ describe("generateManifest (prune, design §4.2 / §4.4)", () => {
 
       const remaining = await readdir(dir);
       expect(remaining.sort()).toEqual(["not-a-wav.txt", "u-1-hash.wav"]);
+    });
+  });
+
+  it("wav_path の区切りが `\\` でも `/` でも、ファイル名で照合して掲載中の WAV を残す（点検 R40）", async () => {
+    await withTempDir(async (dir) => {
+      await writeFile(path.join(dir, "u-1-hash1.wav"), Buffer.from("keep-1"));
+      await writeFile(path.join(dir, "u-2-hash2.wav"), Buffer.from("keep-2"));
+      await writeFile(path.join(dir, "u-orphan-deadbeef.wav"), Buffer.from("orphan"));
+
+      const script = makeMinimalScript({
+        utterances: [
+          { id: "u-1", speaker: "narrator", text: "a" },
+          { id: "u-2", speaker: "narrator", text: "b" },
+        ],
+      });
+      // どちらも実行中の OS に依らない形。POSIX の path.basename は `\` を区切りと見ないので、
+      // 直す前は u-1 の照合名がパスまるごとになり、掲載中の u-1-hash1.wav が消えた。
+      const utterancesWithWav: UtteranceWithMeasuredWav[] = [
+        {
+          utterance_id: "u-1",
+          speaker: "narrator",
+          content_hash: "hash1",
+          wav_path: "C:\\work\\public\\audio\\prune-sep\\u-1-hash1.wav",
+          duration_seconds: 1.0,
+        },
+        {
+          utterance_id: "u-2",
+          speaker: "narrator",
+          content_hash: "hash2",
+          wav_path: "/work/public/audio/prune-sep/u-2-hash2.wav",
+          duration_seconds: 1.0,
+        },
+      ];
+
+      const result = await generateManifest(script, utterancesWithWav, MOCK_SPEAKER_PROFILES, {
+        scriptId: "prune-sep",
+        voicevoxEngineVersion: "0.25.2-test",
+        writeManifestFile: false,
+        wavDir: dir,
+        prune: true,
+      });
+
+      expect(result.pruned).toEqual(["u-orphan-deadbeef.wav"]);
+      expect(result.manifest.utterances.map((u) => u.wav_path)).toEqual([
+        "audio/prune-sep/u-1-hash1.wav",
+        "audio/prune-sep/u-2-hash2.wav",
+      ]);
+      const remaining = await readdir(dir);
+      expect(remaining.sort()).toEqual(["u-1-hash1.wav", "u-2-hash2.wav"]);
     });
   });
 

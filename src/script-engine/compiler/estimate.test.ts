@@ -162,6 +162,14 @@ describe("estimateScriptDuration (target_duration_range 警告判定, FR-5)", ()
     expect(result.duration_range_warning).toMatch(/target_duration_range/);
   });
 
+  it("pause_before と pause_after を発話の予測尺に足す（design §9.1、点検 R3-2）", () => {
+    // speech_seconds = 1（上記 baseScript と同じ 8 文字・factor 1.0）+ pause_before 0.7 + pause_after 0.2 = 1.9
+    const script = baseScript(undefined);
+    script.utterances[0] = { ...script.utterances[0], pause_before: 0.7, pause_after: 0.2 };
+    const result = estimateScriptDuration(script, speakerProfiles);
+    expect(result.predicted_total_seconds).toBeCloseTo(1.9, 9);
+  });
+
   it("予測総尺が max 超過なら警告メッセージを返す", () => {
     const result = estimateScriptDuration(baseScript({ min: 0, max: 0.5 }), speakerProfiles);
     expect(result.duration_range_warning).not.toBeNull();

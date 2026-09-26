@@ -262,7 +262,8 @@ function requireArray(value: unknown, fieldPath: string): unknown[] {
 }
 
 function requireNumber(value: unknown, fieldPath: string): number {
-  if (typeof value !== "number" || Number.isNaN(value)) {
+  // Number.isFinite は NaN も Infinity（YAML の .inf）も弾く。Infinity を通すと manifest の frame 値が null になる
+  if (typeof value !== "number" || !Number.isFinite(value)) {
     throw new Error(`✗ 必須フィールド ${fieldPath} が数値として指定されていません`);
   }
   return value;
@@ -286,7 +287,7 @@ function optionalNonNegativeNumber(
   fieldPath: string,
 ): number | undefined {
   if (value === undefined) return undefined;
-  if (typeof value !== "number" || Number.isNaN(value)) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
     throw new Error(`✗ フィールド ${fieldPath} は数値である必要があります`);
   }
   if (value < 0) {
@@ -352,11 +353,24 @@ function assertUniqueIds(ids: string[], fieldPath: string): void {
 // Utterance / Slide / SlideEvent の parse
 // ============================================================================
 
+/**
+ * 発話 id と script-id に使える文字（英数字・ハイフン・アンダースコア。先頭は英数字）。どちらも
+ * `public/` の下のファイル名（`audio/<script-id>/<id>-<content_hash>.wav`、synthesize.ts）と、描画時に
+ * 読む URL（`staticFile` に渡すパス）の一部になるので、パス区切りや `..`、空白、URL を壊す記号
+ * （`&` `%` `#` など）を入れない。規則はここ 1 か所（script-id は compiler/cli.ts がここから読む）。
+ */
+export const FILE_SAFE_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
+
 function parseUtterance(raw: unknown, index: number): Utterance {
   if (!isPlainObject(raw)) {
     throw new Error(`✗ utterances[${index}] がオブジェクトではありません`);
   }
   const id = requireString(raw.id, `utterances[${index}].id`);
+  if (!FILE_SAFE_ID_PATTERN.test(id)) {
+    throw new Error(
+      `✗ utterances[${index}].id に使えるのは英数字・ハイフン・アンダースコアだけです（先頭は英数字）: "${id}"`,
+    );
+  }
   const speaker = requireString(raw.speaker, `utterances[${index}].speaker`);
   const text = requireString(raw.text, `utterances[${index}].text`);
   const pauseBefore = optionalNonNegativeNumber(

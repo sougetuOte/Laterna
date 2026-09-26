@@ -12,6 +12,8 @@
 
 import { describe, expect, it, vi } from "vitest";
 import path from "node:path";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import {
   CLI_USAGE,
   FORCE_RESYNTH_FLAG,
@@ -20,6 +22,7 @@ import {
   readRecordedManifest,
   mergeMeasuredDurations,
   runCompileScriptCli,
+  writePdfManifestFile,
 } from "./cli";
 import type { CompileCliDeps } from "./cli";
 import type { ScriptDocument } from "../schema/script";
@@ -632,4 +635,31 @@ describe("runCompileScriptCli", () => {
     expect(errors[0]).toMatch(/^✗ 既存 manifest の JSON 解析に失敗しました/);
     expect(deps.synthesizeImpl).not.toHaveBeenCalled();
   });
+});
+
+// ============================================================================
+// writePdfManifestFile（DEFAULT_DEPS の pdf-manifest 書き出し。点検 R4-7）
+// ============================================================================
+
+describe("writePdfManifestFile", () => {
+  it.each(["source-to-exe", "java-vs-js"])(
+    "%s: 納品済みの pdf-manifest.json を読み直して書くと、同じバイト列になる（2 スペース字下げ・末尾改行。無いディレクトリは作る）",
+    async (scriptId) => {
+      const committedPath = path.resolve(
+        __dirname,
+        "../../../public/manifests",
+        `${scriptId}.pdf-manifest.json`,
+      );
+      // 改行は git の autocrlf で CRLF になっていることがあるので LF に揃えて比べる
+      const committed = (await readFile(committedPath, "utf-8")).replace(/\r\n/g, "\n");
+      const tempDir = await mkdtemp(path.join(tmpdir(), "laterna-cli-pdf-manifest-"));
+      try {
+        const outputPath = path.join(tempDir, "nested", `${scriptId}.pdf-manifest.json`);
+        await writePdfManifestFile(outputPath, JSON.parse(committed) as PdfManifest);
+        expect(await readFile(outputPath, "utf-8")).toBe(committed);
+      } finally {
+        await rm(tempDir, { recursive: true, force: true });
+      }
+    },
+  );
 });

@@ -35,6 +35,7 @@ import { generateManifest, resolveDefaultManifestOutputPath } from "./manifest";
 import type { UtteranceWithMeasuredWav } from "./manifest";
 import { buildPdfManifest, resolveDefaultPdfManifestOutputPath } from "../pdf/script-pdf-manifest";
 import type { PdfManifest } from "../pdf/script-pdf-manifest";
+import { FILE_SAFE_ID_PATTERN } from "../schema/script";
 
 /** CLI の使い方（引数エラー時に表示。design §11.2 の外形契約 + T31 の --force-resynth） */
 export const CLI_USAGE =
@@ -43,14 +44,6 @@ export const CLI_USAGE =
 
 /** T31 完了条件 5（HGA C-3）: 全発話強制再合成フラグ */
 export const FORCE_RESYNTH_FLAG = "--force-resynth";
-
-/**
- * script-id に使える文字（英数字・ハイフン・アンダースコア。先頭は英数字）。script-id は `public/` の下の
- * ファイル名と、描画時に読む URL（`staticFile` に渡す `audio/<script-id>/…`）の一部になるので、
- * 空白や記号（`&` `%` `#` など）を入れない。`npm run render:all:script` は最初の段がこの compile なので、
- * ここで止まれば後の段は走らない。
- */
-const SCRIPT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
 
 /** parseCliArgs の結果 */
 export interface CliArgs {
@@ -94,7 +87,9 @@ export function parseCliArgs(argv: string[]): CliArgs {
       `✗ script-id にパス区切り文字（/ や \\）を含めることはできません: "${scriptId}"。${CLI_USAGE}`,
     );
   }
-  if (!SCRIPT_ID_PATTERN.test(scriptId)) {
+  // 文字種の規則は発話 id と同じ（schema/script.ts の FILE_SAFE_ID_PATTERN）。
+  // `npm run render:all:script` は最初の段がこの compile なので、ここで止まれば後の段は走らない。
+  if (!FILE_SAFE_ID_PATTERN.test(scriptId)) {
     throw new Error(
       `✗ script-id に使えるのは英数字・ハイフン・アンダースコアだけです（先頭は英数字）: "${scriptId}"。${CLI_USAGE}`,
     );
@@ -231,6 +226,16 @@ export interface CompileCliDeps {
   error: (message: string) => void;
 }
 
+/**
+ * pdf-manifest を書き出す（`DEFAULT_DEPS.writePdfManifestFileImpl` の本体）。
+ * 書式（2 スペースの字下げ・末尾改行）は納品済みの pdf-manifest.json のバイト列そのものなので、
+ * テストが読めるように export する。
+ */
+export async function writePdfManifestFile(outputPath: string, manifest: PdfManifest): Promise<void> {
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf-8");
+}
+
 const DEFAULT_DEPS: CompileCliDeps = {
   parseScriptImpl: parseScript,
   loadSpeakerProfilesImpl: loadSpeakerProfiles,
@@ -239,10 +244,7 @@ const DEFAULT_DEPS: CompileCliDeps = {
   measureImpl: measureWavDuration,
   generateManifestImpl: generateManifest,
   buildPdfManifestImpl: buildPdfManifest,
-  writePdfManifestFileImpl: async (outputPath, manifest) => {
-    await mkdir(path.dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf-8");
-  },
+  writePdfManifestFileImpl: writePdfManifestFile,
   readFileImpl: readFile,
   log: (message) => console.log(message),
   warn: (message) => console.warn(message),
@@ -374,7 +376,9 @@ export async function runCompileScriptCli(
     const totalSeconds = result.manifest.total_duration_frames / result.manifest.fps;
 
     // --- 尺誤差警告（design §9.2/§9.3: 執筆時予測 vs WAV 実測後の総尺の誤差率、±15%/±25% 判定） ---
-    // 分母は実測尺（totalSeconds、design §9.2「誤差率の分母は WAV 実測尺とする」）。
+    // 分母は実測総尺（totalSeconds ＝ manifest の total_duration_frames / fps）。design §9.2 は
+    // 「分母は WAV 実測尺」と書くが、ここで渡すのはクレジット区間（3 秒）と表示保証尺（2 秒まで）を
+    // 含む総尺で、予測（estimate）はどちらも含まない。短い台本ほど誤差率が大きめに出る（点検 R46）。
     // 誤差 15% 以下は正常（メッセージなし）、15%超〜25%以下は警告、25%超は強い警告
     // （design §9.3。いずれも非ブロッキング、exit code は変えない）。
     const durationError = calculateDurationErrorRate(

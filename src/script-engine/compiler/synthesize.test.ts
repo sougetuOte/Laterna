@@ -16,7 +16,7 @@
  * ディレクトリで手動実施、リポジトリには残さない）でのみ行う。
  */
 
-import { describe, expect, it, beforeEach, afterEach } from "vitest";
+import { describe, expect, it, beforeEach, afterEach, vi } from "vitest";
 import { readFile, mkdtemp, rm, access, readdir, writeFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { tmpdir } from "node:os";
@@ -68,6 +68,8 @@ interface MockFetchCall {
   url: string;
   method: string | undefined;
   signal: AbortSignal | undefined | null;
+  /** 送った本文（/synthesis に渡す AudioQuery の JSON 文字列。本文が無い呼び出しは undefined） */
+  body: string | undefined;
 }
 
 interface MockFetchHandle {
@@ -82,6 +84,14 @@ interface MockFetchOptions {
   versionHttpError?: boolean;
   /** 2026-07-10 HGA W-4: 指定エンドポイントの呼び出しでタイムアウト相当のエラーを模擬する */
   timeoutOn?: "version" | "audio_query" | "synthesis";
+  /** 指定したフィールドで /audio_query の応答（fixture）を上書きする */
+  audioQueryOverrides?: Record<string, unknown>;
+  /** 指定エンドポイントが HTTP 503 を返す */
+  httpErrorOn?: "audio_query" | "synthesis";
+  /** 指定エンドポイントの呼び出しで、タイムアウト以外の接続エラーを模擬する */
+  networkErrorOn?: "audio_query" | "synthesis";
+  /** 指定した場合、/version がこの JSON 本文を返す（文字列以外の応答の模擬） */
+  versionBody?: string;
 }
 
 function createMockFetch(options: MockFetchOptions = {}): MockFetchHandle {
@@ -92,7 +102,12 @@ function createMockFetch(options: MockFetchOptions = {}): MockFetchHandle {
     init?: RequestInit,
   ): Promise<Response> => {
     const url = String(input);
-    calls.push({ url, method: init?.method, signal: init?.signal });
+    calls.push({
+      url,
+      method: init?.method,
+      signal: init?.signal,
+      body: typeof init?.body === "string" ? init.body : undefined,
+    });
 
     if (url.includes("/version")) {
       if (options.engineUnreachable) {
@@ -104,7 +119,9 @@ function createMockFetch(options: MockFetchOptions = {}): MockFetchHandle {
       if (options.timeoutOn === "version") {
         throw new DOMException("The operation was aborted due to timeout", "TimeoutError");
       }
-      const raw = await readFile(path.join(MOCKS_DIR, "voicevox-version.json"), "utf-8");
+      const raw =
+        options.versionBody ??
+        (await readFile(path.join(MOCKS_DIR, "voicevox-version.json"), "utf-8"));
       return new Response(raw, {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -115,10 +132,20 @@ function createMockFetch(options: MockFetchOptions = {}): MockFetchHandle {
       if (options.timeoutOn === "audio_query") {
         throw new DOMException("The operation was aborted due to timeout", "TimeoutError");
       }
-      const raw = await readFile(
+      if (options.networkErrorOn === "audio_query") {
+        throw new Error("ECONNRESET (mock)");
+      }
+      if (options.httpErrorOn === "audio_query") {
+        return new Response("engine busy", { status: 503 });
+      }
+      const fixture = await readFile(
         path.join(MOCKS_DIR, "voicevox-audio-query.json"),
         "utf-8",
       );
+      const raw =
+        options.audioQueryOverrides === undefined
+          ? fixture
+          : JSON.stringify({ ...JSON.parse(fixture), ...options.audioQueryOverrides });
       return new Response(raw, {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -128,6 +155,12 @@ function createMockFetch(options: MockFetchOptions = {}): MockFetchHandle {
     if (url.includes("/synthesis")) {
       if (options.timeoutOn === "synthesis") {
         throw new DOMException("The operation was aborted due to timeout", "TimeoutError");
+      }
+      if (options.networkErrorOn === "synthesis") {
+        throw new Error("ECONNRESET (mock)");
+      }
+      if (options.httpErrorOn === "synthesis") {
+        return new Response("engine busy", { status: 503 });
       }
       const wav = await readFile(path.join(MOCKS_DIR, "voicevox-synthesis.wav"));
       return new Response(wav, {
@@ -198,6 +231,17 @@ describe("computeContentHash（design §4.2 / spike-hash-logic-2026-07-09.md 移
       enableInterrogativeUpspeak: false,
     });
     expect(withUpspeak).not.toBe(withoutUpspeak);
+  });
+
+  it("既存の納品物の値を固定する: source-to-exe の u-002（聞き役、speaker 3）は 0f0357cb", () => {
+    // 期待値の出所: public/manifests/source-to-exe.manifest.json の u-002 の content_hash
+    // （本文は content/scripts/source-to-exe.script.yaml の u-002、speaker 3 は
+    // docs/conventions/speaker-profiles.yaml の listener）。ここが変わると全 WAV が再合成され、manifest も変わる。
+    const hash = computeContentHash({
+      text: "先生、プログラムって文字で書くんですよね。書いた文字をコンピュータが読んで、そのまま動くんじゃないんですか？",
+      voicevoxSpeakerId: 3,
+    });
+    expect(hash).toBe("0f0357cb");
   });
 
   it("synthesisParams 省略時は FIXED_SYNTHESIS_PARAMS を明示指定した場合と同一ハッシュになる", () => {
@@ -278,6 +322,30 @@ describe("synthesizeScriptAudio — 正常系（mock VOICEVOX API）", () => {
       expect(call.url).toContain("enable_interrogative_upspeak=true");
       expect(call.method).toBe("POST");
     }
+  });
+
+  it("発話ごとに、その話者の voicevox_speaker_id と本文を /audio_query・/synthesis に送る（点検 R4-3）", async () => {
+    const { fetchImpl, calls } = createMockFetch();
+    const script = makeScript([
+      { id: "u-001", speaker: "narrator", text: "こんにちは、これはテストです。" },
+      { id: "u-002", speaker: "listener", text: "はい、テストですね。" },
+    ]);
+
+    await synthesizeScriptAudio(script, SPEAKER_PROFILES, {
+      scriptId: "test-script",
+      outputDir: tempDir,
+      fetchImpl,
+    });
+
+    const params = (url: string) => new URL(url).searchParams;
+    const audioQueryCalls = calls.filter((c) => c.url.includes("/audio_query"));
+    expect(audioQueryCalls.map((c) => params(c.url).get("speaker"))).toEqual(["11", "3"]);
+    expect(audioQueryCalls.map((c) => params(c.url).get("text"))).toEqual([
+      "こんにちは、これはテストです。",
+      "はい、テストですね。",
+    ]);
+    const synthesisCalls = calls.filter((c) => c.url.includes("/synthesis"));
+    expect(synthesisCalls.map((c) => params(c.url).get("speaker"))).toEqual(["11", "3"]);
   });
 
   it("skip 経路（recordedHashes 省略時）: 既に同名 WAV が存在すれば VOICEVOX を呼ばず再利用する", async () => {
@@ -370,6 +438,37 @@ describe("synthesizeScriptAudio — 正常系（mock VOICEVOX API）", () => {
     expect(secondCalls.some((c) => c.url.includes("/audio_query"))).toBe(false);
   });
 
+  it("recordedHashes が空（--force-resynth）: 同名 WAV があっても skip せず再合成する", async () => {
+    const { fetchImpl: firstFetch } = createMockFetch();
+    const script = makeScript([
+      { id: "u-001", speaker: "narrator", text: "変わらないテキストです。" },
+    ]);
+
+    const first = await synthesizeScriptAudio(script, SPEAKER_PROFILES, {
+      scriptId: "test-script",
+      outputDir: tempDir,
+      fetchImpl: firstFetch,
+    });
+    // 同名 WAV が置かれていることを確かめてから（台本は変えないので、ファイル名もハッシュも同じ）
+    await expect(access(first.utterances_with_wav[0]!.wav_path)).resolves.not.toThrow();
+
+    const { fetchImpl: secondFetch, calls: secondCalls } = createMockFetch();
+    const second = await synthesizeScriptAudio(script, SPEAKER_PROFILES, {
+      scriptId: "test-script",
+      outputDir: tempDir,
+      fetchImpl: secondFetch,
+      recordedHashes: {},
+    });
+
+    expect(second.synthesized).toBe(1);
+    expect(second.skipped).toBe(0);
+    expect(second.utterances_with_wav[0]?.content_hash).toBe(
+      first.utterances_with_wav[0]?.content_hash,
+    );
+    expect(secondCalls.some((c) => c.url.includes("/audio_query"))).toBe(true);
+    expect(secondCalls.some((c) => c.url.includes("/synthesis"))).toBe(true);
+  });
+
   it("未知の話者役割は fail-fast エラーになる（design §4.4 と同様の方針、resolveSpeakerProfile 経由）", async () => {
     const { fetchImpl } = createMockFetch();
     const script = makeScript([
@@ -391,6 +490,31 @@ describe("synthesizeScriptAudio — 正常系（mock VOICEVOX API）", () => {
     const resolved = resolveDefaultOutputDir("path-check-script");
     expect(resolved.endsWith(path.join("public", "audio", "path-check-script"))).toBe(true);
     expect(path.isAbsolute(resolved)).toBe(true);
+  });
+});
+
+describe("synthesizeScriptAudio — /synthesis に送る AudioQuery の上書き（design §4.2 MUST）", () => {
+  it("/audio_query の応答の speedScale・pitchScale・intonationScale を FIXED_SYNTHESIS_PARAMS で上書きして送る", async () => {
+    // fixture の値は FIXED_SYNTHESIS_PARAMS と同じなので、Engine が違う値を返した場合を模擬する
+    const { fetchImpl, calls } = createMockFetch({
+      audioQueryOverrides: { speedScale: 1.5, pitchScale: 0.1, intonationScale: 1.8 },
+    });
+    const script = makeScript([
+      { id: "u-001", speaker: "narrator", text: "こんにちは。" },
+    ]);
+
+    await synthesizeScriptAudio(script, SPEAKER_PROFILES, {
+      scriptId: "test-script",
+      outputDir: tempDir,
+      fetchImpl,
+    });
+
+    const synthesisCalls = calls.filter((c) => c.url.includes("/synthesis"));
+    expect(synthesisCalls).toHaveLength(1);
+    const sent = JSON.parse(synthesisCalls[0].body ?? "null") as Record<string, unknown>;
+    expect(sent.speedScale).toBe(FIXED_SYNTHESIS_PARAMS.speedScale);
+    expect(sent.pitchScale).toBe(FIXED_SYNTHESIS_PARAMS.pitchScale);
+    expect(sent.intonationScale).toBe(FIXED_SYNTHESIS_PARAMS.intonationScale);
   });
 });
 
@@ -416,6 +540,36 @@ describe("synthesizeScriptAudio — fetch タイムアウト（design 2026-07-10
   it("timeoutMs 省略時は既定値（/version=10000ms, /audio_query・/synthesis=60000ms）を使う", () => {
     expect(DEFAULT_VERSION_TIMEOUT_MS).toBe(10_000);
     expect(DEFAULT_SYNTHESIS_TIMEOUT_MS).toBe(60_000);
+  });
+
+  it("timeoutMs 省略時、AbortSignal.timeout に /version は 10000ms・/audio_query と /synthesis は 60000ms が渡る（点検 R3-3）", async () => {
+    const { fetchImpl, calls } = createMockFetch();
+    const script = makeScript([
+      { id: "u-001", speaker: "narrator", text: "こんにちは。" },
+    ]);
+    // 元の実装はそのまま呼ぶ（spy は引数を記録するだけ）
+    const timeoutSpy = vi.spyOn(AbortSignal, "timeout");
+    try {
+      await synthesizeScriptAudio(script, SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      });
+      // AbortSignal.timeout は fetch の直前に 1 回ずつ呼ばれるので、呼ばれた順と calls の順が対応する
+      const msByUrl = calls.map((c, i) => [c.url, timeoutSpy.mock.calls[i]?.[0]] as const);
+      expect(timeoutSpy).toHaveBeenCalledTimes(calls.length);
+      for (const [url, ms] of msByUrl) {
+        if (url.includes("/version")) {
+          expect(ms).toBe(10_000);
+        } else if (url.includes("/audio_query") || url.includes("/synthesis")) {
+          expect(ms).toBe(60_000);
+        }
+      }
+      expect(msByUrl.some(([url]) => url.includes("/version"))).toBe(true);
+      expect(msByUrl.some(([url]) => url.includes("/synthesis"))).toBe(true);
+    } finally {
+      timeoutSpy.mockRestore();
+    }
   });
 
   it("/version がタイムアウトすると、応答なし・タイムアウト値・設定ドキュメントへの言及を含むエラーになる", async () => {
@@ -576,5 +730,70 @@ describe("__mocks__ fixture 整合性", () => {
     const buf = await readFile(path.join(MOCKS_DIR, "voicevox-synthesis.wav"));
     expect(buf.subarray(0, 4).toString("ascii")).toBe("RIFF");
     expect(buf.subarray(8, 12).toString("ascii")).toBe("WAVE");
+  });
+});
+
+describe("synthesizeScriptAudio — VOICEVOX のエラー応答（タイムアウト以外）", () => {
+  const script = () =>
+    makeScript([{ id: "u-001", speaker: "narrator", text: "こんにちは。" }]);
+
+  it("/version が文字列以外を返すと、想定外の形式としてエラーになる", async () => {
+    const { fetchImpl } = createMockFetch({ versionBody: '{"version":"0.25.2"}' });
+    await expect(
+      synthesizeScriptAudio(script(), SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/バージョン応答が想定外の形式/);
+  });
+
+  it("/audio_query が非 200 を返すと、HTTP の状態と本文を含むエラーになる", async () => {
+    const { fetchImpl, calls } = createMockFetch({ httpErrorOn: "audio_query" });
+    await expect(
+      synthesizeScriptAudio(script(), SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/audio_query がエラーを返しました（HTTP 503）: engine busy/);
+    expect(calls.some((c) => c.url.includes("/synthesis"))).toBe(false);
+  });
+
+  it("/audio_query の接続がタイムアウト以外で失敗すると、呼び出し失敗のエラーになる", async () => {
+    const { fetchImpl } = createMockFetch({ networkErrorOn: "audio_query" });
+    await expect(
+      synthesizeScriptAudio(script(), SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/audio_query 呼び出しに失敗しました.*ECONNRESET/);
+  });
+
+  it("/synthesis が非 200 を返すと、HTTP の状態を含むエラーになり、WAV を書かない", async () => {
+    const { fetchImpl } = createMockFetch({ httpErrorOn: "synthesis" });
+    await expect(
+      synthesizeScriptAudio(script(), SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/synthesis がエラーを返しました（HTTP 503）/);
+    const wavs = (await readdir(tempDir, { recursive: true })).filter((f) =>
+      String(f).endsWith(".wav"),
+    );
+    expect(wavs).toEqual([]);
+  });
+
+  it("/synthesis の接続がタイムアウト以外で失敗すると、呼び出し失敗のエラーになる", async () => {
+    const { fetchImpl } = createMockFetch({ networkErrorOn: "synthesis" });
+    await expect(
+      synthesizeScriptAudio(script(), SPEAKER_PROFILES, {
+        scriptId: "test-script",
+        outputDir: tempDir,
+        fetchImpl,
+      }),
+    ).rejects.toThrow(/synthesis 呼び出しに失敗しました.*ECONNRESET/);
   });
 });

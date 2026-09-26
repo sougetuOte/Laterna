@@ -22,6 +22,11 @@ const JAVA_VS_JS_SCRIPT_PATH = path.resolve(
   "../../../content/scripts/java-vs-js.script.yaml",
 );
 
+const SOURCE_TO_EXE_SCRIPT_PATH = path.resolve(
+  __dirname,
+  "../../../content/scripts/source-to-exe.script.yaml",
+);
+
 describe("parseScript (実データ: java-vs-js.script.yaml)", () => {
   it("parse に成功し、期待される型・件数のデータを返す", async () => {
     const doc = await parseScript(JAVA_VS_JS_SCRIPT_PATH);
@@ -66,6 +71,43 @@ describe("parseScript (実データ: java-vs-js.script.yaml)", () => {
   });
 });
 
+describe("parseScript (実データ: source-to-exe.script.yaml、10/2 納品の 1 本目)", () => {
+  it("parse に成功し、title・code スライドを含むスライド列を返す", async () => {
+    const doc = await parseScript(SOURCE_TO_EXE_SCRIPT_PATH);
+
+    expect(doc.speaker_profile_ref).toBe("default");
+    expect(doc.slides.map((s) => s.type)).toEqual([
+      "title",
+      "code",
+      "custom",
+      "custom",
+      "custom",
+      "custom",
+      "custom",
+      "bullets",
+      "bullets",
+      "bullets",
+    ]);
+    expect(doc.slide_events).toHaveLength(doc.slides.length);
+
+    // title スライド（java-vs-js には無い種別）
+    expect(doc.slides[0]).toEqual({
+      id: "slide-title",
+      type: "title",
+      title: "ソースから実行ファイルまで",
+      subtitle: "書いた文字は、どうやって動くのか",
+    });
+
+    // code スライド（java-vs-js には無い種別）: code は YAML のブロック文字列がそのまま入る
+    const code = doc.slides[1];
+    expect(code.type).toBe("code");
+    if (code.type !== "code") throw new Error("unreachable");
+    expect(code.id).toBe("slide-source");
+    expect(code.title).toBe("ソースコード（hello.c）── 人が読んで、直せる文字");
+    expect(code.code.startsWith("#include <stdio.h>\n")).toBe(true);
+  });
+});
+
 describe("parseScript (異常系: ファイル I/O)", () => {
   it("存在しないファイルパスを渡すとエラーになる", async () => {
     await expect(
@@ -97,11 +139,13 @@ describe("parseScriptDocument (異常系: 最小 mock)", () => {
     text: string;
     pause_after?: number;
     pause_before?: number;
+    pdf_visibility?: string;
   };
   type MockSlide = {
     id: string;
     type: string;
     title?: string;
+    code?: string;
     items?: string[];
     component?: string;
     props?: Record<string, unknown>;
@@ -163,6 +207,26 @@ describe("parseScriptDocument (異常系: 最小 mock)", () => {
     raw.utterances[0] = { ...raw.utterances[0], pause_before: -1 };
     expect(() => parseScriptDocument(raw)).toThrow(
       /✗ フィールド utterances\[0\]\.pause_before に負値は指定できません/,
+    );
+  });
+
+  // YAML の .inf は js-yaml で Infinity になる。通すと manifest の frame 値が JSON で null になる（点検 R3-1）
+  it("pause_after に Infinity（YAML の .inf）が指定されるとエラーになる", () => {
+    const raw = validBase();
+    raw.utterances[0] = { ...raw.utterances[0], pause_after: Infinity };
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ フィールド utterances\[0\]\.pause_after は数値である必要があります/,
+    );
+  });
+
+  it("slide_events[].anchor.offset に Infinity が指定されるとエラーになる", () => {
+    const raw = validBase();
+    raw.slide_events[0] = {
+      ...raw.slide_events[0],
+      anchor: { utterance: "u-001", position: "start", offset: Infinity },
+    };
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ 必須フィールド slide_events\[0\]\.anchor\.offset が数値として指定されていません/,
     );
   });
 
@@ -308,5 +372,74 @@ describe("parseScriptDocument (異常系: 最小 mock)", () => {
     expect(() => parseScriptDocument({ ...validBase(), extra_credits: [""] })).toThrow(
       /extra_credits\[0\]/,
     );
+  });
+
+  it('"code" スライド: code と title を受理する', () => {
+    const raw = validBase();
+    raw.slides.push({ id: "s-002", type: "code", title: "例", code: "int main(void) {}\n" });
+    expect(parseScriptDocument(raw).slides[1]).toEqual({
+      id: "s-002",
+      type: "code",
+      title: "例",
+      code: "int main(void) {}\n",
+    });
+  });
+
+  it('"code" スライド: title は省略できる', () => {
+    const raw = validBase();
+    raw.slides.push({ id: "s-002", type: "code", code: "x" });
+    expect(parseScriptDocument(raw).slides[1]).toEqual({ id: "s-002", type: "code", code: "x" });
+  });
+
+  it('"code" スライド: code が無いとエラーになる', () => {
+    const raw = validBase();
+    raw.slides.push({ id: "s-002", type: "code", title: "例" });
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ 必須フィールド slides\[1\]\.code が文字列として指定されていません/,
+    );
+  });
+
+  it("未知のスライド種別はエラーになる", () => {
+    const raw = validBase();
+    raw.slides.push({ id: "s-002", type: "video" });
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ slides\[1\]\.type が未知のスライド種別です.*video/,
+    );
+  });
+
+  it("pdf_visibility が visible / hidden 以外だとエラーになる", () => {
+    const raw = validBase();
+    raw.utterances[0] = { ...raw.utterances[0], pdf_visibility: "shown" };
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ フィールド utterances\[0\]\.pdf_visibility は "visible" または "hidden" である必要があります/,
+    );
+  });
+
+  it("slide_events[].anchor.position が start / end 以外だとエラーになる", () => {
+    const raw = validBase();
+    raw.slide_events[0] = {
+      ...raw.slide_events[0],
+      anchor: { utterance: "u-001", position: "middle", offset: 0 },
+    };
+    expect(() => parseScriptDocument(raw)).toThrow(
+      /✗ slide_events\[0\]\.anchor\.position は "start" または "end" である必要があります/,
+    );
+  });
+
+  it.each(["../../../src/evil", "u/001", "u\\001", "u#1", "u%1", "u 1", "-u1", "発話1"])(
+    "発話 id に英数字・ハイフン・アンダースコア以外（%s）を含むとエラーになる（id は WAV のファイル名になる）",
+    (badId) => {
+      const raw = validBase();
+      raw.utterances[1] = { ...raw.utterances[1], id: badId };
+      expect(() => parseScriptDocument(raw)).toThrow(
+        /✗ utterances\[1\]\.id に使えるのは英数字・ハイフン・アンダースコアだけです/,
+      );
+    },
+  );
+
+  it("発話 id: 英数字・ハイフン・アンダースコアなら受理する（実データの u-015a 型を含む）", () => {
+    const raw = validBase();
+    raw.utterances[1] = { ...raw.utterances[1], id: "u-015a_B2" };
+    expect(parseScriptDocument(raw).utterances[1].id).toBe("u-015a_B2");
   });
 });
