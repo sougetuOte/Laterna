@@ -18,4 +18,4 @@
 | 3 | 2026-09-26 21:35 | `npm test`（extra_credits・PipelineFlow の追加後） | 0 | 15 files / 266 tests passed。`npm run lint` exit 0 |
 | 0 | 2026-09-26 21:40 | `imagegen\.venv\Scripts\python.exe imagegen\scripts\gen.py --workflow klein_edit --ref imagegen/output/refs/<role>-ref-green.png ...`（12 回） | 0 | 立ち絵候補 12 枚 → `imagegen/output/portraits/`（一覧 `sheet-*.png`）。主人の選択待ち |
 | 0 | 2026-09-26 21:50 | `powershell -ExecutionPolicy Bypass -File imagegen\scripts\stop.ps1` | 0 | セッションの区切りで停止 |
-
+| 3 | 2026-09-26 21:12 | `node -e` で js-yaml が `content/scripts/source-to-exe.script.yaml` を読めるか確認 → 169・170 行の箇条書き（先頭 `**`）を alias と読んで失敗（`unidentified alias`）。2 行を `"…"` で囲んで再確認 | 0 | 本文（発話 text）は変えていない。27 発話のまま |
