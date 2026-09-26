@@ -13,7 +13,7 @@
 1. `README.md`（34 行）
 2. `docs/brief.md`（134 行。決定 D1〜D10 と §9 の訂正節 D8・D9）
 3. `goal.md`（254 行。Wave 1・2 は完了。**末尾の Wave 2.5「点検」節がいまの契約**）
-4. `docs/research/2026-09-27-review.md`（139 行。点検の記録 ── 所見 31 件の処置・優先度・full-review の引数案）
+4. `docs/research/2026-09-27-review.md`（196 行。点検の記録 ── 所見 R1〜R52 の処置・優先度・full-review の結果）
 5. `SKILL.md`（158 行。「この題材で 1 本」の手順書）
 6. `materials/source-to-exe/`、`materials/portraits/README.md`
 7. `docs/inventory.md`（343 行）／`docs/design.md`（155 行）／`imagegen/README.md`
@@ -24,10 +24,11 @@
 - **Wave 1「目星」**・**Wave 2「1 本目」**は完了（2026-09-26。columba の検収 PASS）。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
 - **Wave 2.5「点検」**（2026-09-27 着手。G0 承認 06:15 JST「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`。止め時 10/1）：
   - 済：依存の更新（`ae82551`。脆弱性 11 件 → low 2 件）／点検（built-in `/code-review` high、`engineering:tech-debt`）／出力を変えない直し（`0b3c2ab`・`c787f90`・`e0f711c`・`6c7606f`・`9939fa1`・`dece5bb`）／`/simplify`（読み手 `seneschal:lens` 4 人）とその直し（`38957fa`・`1d3f122`）。
-  - 未：主人が次のセッションで `/seneschal:full-review` を打つ（主人「2 full-reviewは次で打つ」2026-09-27 07:04 JST）→ full-review → `/security-review` → columba の検収 → 締め。
-- 動いている物（実測 2026-09-27、ブランチ `1d3f122` の状態）：
-  - `npm test` 15 files / 268 tests PASS、`npm run lint` exit 0。
-  - 書き出しの一致（goal.md 検証 3）：compile 2 本の manifest・音声が `6cbaf95` と同一。source-to-exe の MP4・PDF が納品物と SHA-256 一致。java-vs-js（立ち絵を v1 に戻して）の MP4・PDF が Kyozai の参照と一致。シェル無しの Remotion 呼び出し（`38957fa`）の後にも 2 本とも確かめた。
+  - 済：full-review（主人が起動、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`、Workflow `wf_cb7b7981-ddc`）。**Green ではない**（上限 5 周、指摘 13・10・6・12・6、テストは毎周すべて通過）。直しは `d732c3f`・`51f84c5`・`2322351`・`6859922`。残りと主人へ回した物は、主人の判断「推奨どおり」で Wave 3 以降へ／直さない（記録の R45〜R52）。
+  - 未：`/security-review` → columba の検収 → 締め。
+- 動いている物（実測 2026-09-27、full-review の直しの後）：
+  - `npm test` 18 files / 350 tests PASS、`npm run lint` exit 0（R47 のテストを足した後、本体が実測）。
+  - 書き出しの一致（goal.md 検証 3）：full-review の 5 周とも、試験役が直しの後の作業ツリーで測って一致（source-to-exe は納品物と、java-vs-js は Kyozai の参照と SHA-256 一致、manifest・音声は `6cbaf95` と同じ）。R47 のテストとコメント（R46）はその後の変更で、出力に関わらない。
   - `npm audit`：low 2 件（eslint 系。`--force` は Wave 3）。
   - VOICEVOX 0.25.2（50021）は起動中だった。imagegen は 2026-09-27 に起動していない。
 - 1 本目の納品物に出ている不具合（**直していない**。主人の判断「1 推奨で直さない」2026-09-27 07:04 JST ── 10/2 は今の版で使い、Wave 3 で直す）：R1 全体図（79〜100 秒）で hello.c だけが光る／R2 強調した矢印の矢じりが線に埋もれる（100 秒〜）／R3 PDF 最終ページの注記「立ち絵は各権利者の規約に従います」が `LICENSE-CONTENT`（立ち絵も CC BY 4.0）と食い違う。
@@ -73,7 +74,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 12. **Wave 2.5「点検」**は feature として G0 を通した（Seneschal にリファクタリングの種別が無い）。止め時 10/1。ブランチで進め、検収 PASS まで main に合流しない（2026-09-27 主人承認）。
 13. 本 Wave は full-review を使う。起動は主人（`/seneschal:full-review`）。brief §8 の「重い手法は既定では使わない」は、主人の指示で本 Wave に限り外した。
 14. `npm audit fix` は `--force` なしだけ（主人 OK）。eslint を上げる `--force` は Wave 3。
-15. Remotion CLI はシェルを通さず、`process.execPath` ＋ `@remotion/cli/remotion-cli.js` で呼ぶ（`scripts/remotion-cli.mjs`）。script-id の文字種の規則は compile の入口（`cli.ts`）の 1 か所。
+15. Remotion CLI はシェルを通さず、`process.execPath` ＋ `@remotion/cli/remotion-cli.js` で呼ぶ（`scripts/remotion-cli.mjs`）。script-id の文字種の検査は compile の入口（`cli.ts`）の 1 か所（規則の本体は `schema/script.ts` の `FILE_SAFE_ID_PATTERN` で、発話 id と共有。点検 R32）。
 16. **1 本目の R1〜R3（図解の強調 2 件・PDF のライセンス注記）は直さず、10/2 は今の版で使う。Wave 3 で直す**（主人「1 推奨で直さない」2026-09-27 07:04 JST）。
 
 ## 採らなかった案
@@ -91,20 +92,18 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 未決（主人の判断待ち）
 
-- **`/seneschal:full-review` の起動**（主人が次のセッションで打つ。引数案は点検の記録の「full-review の結果」節）。
 - 10/2 の授業での受け入れ（使えなかった点は Wave 3 の G0 に書く）。
 - brief §6 の答え（上の「決定」1〜5・7）を brief 本文に写すか。
 - Wave 3 以降に回した依存の変更：`@types/node` の宣言（R10）、使われていない `@remotion/media` の削除（R9）、eslint の `--force`。
 
 ## 未決（実測・作業待ち）
 
-- full-review の後：`/security-review`（本 Wave の最終差分）→ columba の検収（goal.md Wave 2.5 の検証 1〜8）→ 締め（本ファイルの更新、main へ合流、push）。
-- 点検の記録の「使った道具」に、次のセッションの ID と、full-review・`/security-review` の回を書き足す（検証 1 は transcript で起動を確かめる）。
+- `/security-review`（本 Wave の最終差分）→ 点検の記録の「使った道具」の行を埋める → columba の検収（goal.md Wave 2.5 の検証 1〜8）→ 締め（本ファイルの更新、main へ合流、push）。
 - `docs/design.md` (c)、字幕の要否、bullets のマーカー位置、`docs/research/2026-09-26-image-env.md` の消滅条件（Wave 3 の着手時）。
 
 ## 次の一手
 
-主人が `/seneschal:full-review` を打ったら、点検の記録の引数案を揃えて（testCommands の 3 本目に書き出しの一致を回すスクリプトのパス）、SKILL.md の手順どおり Workflow を起動する。
+`/security-review` を本 Wave の最終差分（`6cbaf95..HEAD`）に掛け、結果を点検の記録に書く。その後 columba に検収を出す。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
