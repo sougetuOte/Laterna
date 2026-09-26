@@ -16,6 +16,7 @@ import { componentRegistry } from "../script-engine/render/component-registry";
 import { ScriptSlideRenderer } from "../script-engine/render/ScriptSlideRenderer";
 import { SpeakerPortrait } from "../script-engine/render/SpeakerPortrait";
 import { CreditSection } from "../script-engine/render/CreditSection";
+import { CREDIT_REGION_SECONDS } from "../script-engine/shared/credit-region";
 import type {
   ManifestSlideEvent,
   ManifestUtterance,
@@ -25,17 +26,11 @@ import type { Slide } from "../script-engine/schema/script";
 
 /**
  * design §7.5: クレジット区間の尺（秒）。fps が異なる場合は 3 秒相当を fps から算出する
- * （`Math.round(CREDIT_REGION_SECONDS * manifest.fps)`）。compiler 側（`compiler/manifest.ts`
- * `CREDIT_REGION_SECONDS`）と同一値だが、compiler モジュールは Node 専用（`node:fs` 等に依存）で
- * ブラウザ実行の render 側からは import できないため、値をここで独立して再定義する
- * （design §6.1「render 側の入力は manifest のみ」原則: 総尺算出ロジック自体を manifest 生成側と
- * render 側の 2 箇所に持つのではなく、区間長という定数のみを重複させる）。
- * `export` する理由: probe テスト（manifest-integrity.probe.test.ts / frame-boundary.probe.test.ts）が
- * compiler 側実値と本定数の実値を直接突合してドリフトを検知できるようにするため
- * （テストが両方の値を import できない場合、片方をハードコードリテラルで代用してしまい、
- * どちらか一方だけが変更された際の乖離を検知できなくなる）。
+ * （`Math.round(CREDIT_REGION_SECONDS * manifest.fps)`）。正本は `shared/credit-region.ts` で、
+ * compile 側（`compiler/manifest.ts`）と同じ定数を読む。probe テスト（manifest-integrity.probe.test.ts /
+ * frame-boundary.probe.test.ts）がここから import するので、ここからも出す。
  */
-export const CREDIT_REGION_SECONDS = 3;
+export { CREDIT_REGION_SECONDS };
 
 export interface ScriptCompositionProps {
   scriptId: string;

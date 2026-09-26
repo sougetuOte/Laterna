@@ -27,6 +27,7 @@ import type {
   ManifestUtterance,
   TimelineManifest,
 } from "../schema/timeline-manifest";
+import { CREDIT_REGION_SECONDS } from "../shared/credit-region";
 import type { SynthesizedUtterance } from "./synthesize";
 import { resolveDefaultOutputDir, toPosixPath } from "./synthesize";
 
@@ -36,8 +37,8 @@ export const DEFAULT_FPS = 30;
 /** design §5.4: 末尾スライドイベントの表示保証尺（秒）。 */
 export const DISPLAY_GUARANTEE_SECONDS = 2;
 
-/** design §7.5: クレジット区間の尺（秒）。fps=30 で 90 frames 相当。 */
-export const CREDIT_REGION_SECONDS = 3;
+/** design §7.5: クレジット区間の尺（秒）。正本は `shared/credit-region.ts`（ここからも出す）。 */
+export { CREDIT_REGION_SECONDS };
 
 /**
  * T12 が受け取る「1 発話分の合成結果 + WAV 実測結果」の集約入力。
