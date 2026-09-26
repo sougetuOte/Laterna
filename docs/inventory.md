@@ -203,20 +203,20 @@
 | 1 | `src/Root.tsx` | L3-6 `./compositions/HelloWorld`・`./compositions/KosenW12`・`./compositions/KosenW12StudyGuide`・`./compositions/KosenW12StudySummary`、L7-12 `./pdf/manifest` | `src/compositions/HelloWorld.tsx`、`KosenW12*.tsx` 3 本、`src/pdf/manifest.ts` | **削る**。import 5 件と `<Composition>` 登録 4 件を消す。`PDF_PAGE_WIDTH/HEIGHT` は `ScriptPdfComposition` の export（既に import 済み）だけを使う。あわせて defaultProps の `scriptId` を `outline-video-1` から `java-vs-js` に**差し替える**（outline-video-1 は登録しないため） |
 | 2 | `src/script-engine/render/manifest-registry.ts` | L18-19 `../../../public/manifests/outline-video-1.manifest.json`・`.pdf-manifest.json` | `public/manifests/outline-video-1.*` 2 本 | **削る**。import 2 行と `manifestRegistry`／`pdfManifestRegistry` の entries 2 行。テストは `java-vs-js` しか見ない（`manifest-registry.test.ts`・`ScriptComposition.test.tsx`・`ScriptPdfComposition.test.tsx` で確認） |
 | 3 | `src/script-engine/compiler/measure.test.ts` | L195-217 `FFPROBE_KNOWN_DURATIONS` の `seg-1.wav`〜`seg-8.wav` を `path.resolve(__dirname, "../../../public/audio", fileName)` で読む | `public/audio/seg-1.wav`〜`seg-8.wav`（29 MB） | **差し替える**。同じ検証（ffprobe 実測値と ±1%）を java-vs-js の 13 本で行う。実測値は本セッションで `ffprobe -show_entries format=duration` により取得（§2.4） |
-| 4 | `package.json` | `scripts` の 17 本（`prerender`・`render:video`・`render:slide1-3`・`render:kosen-w12`・`still:kosen-w12-1..8`・`still:kosen-w12-all`・`render:all`・`pdf:study-guide`・`pdf:study-summary`・`pdf:all`） | Composition `HelloWorld`・`KosenW12`、`scripts/build-pdf.mjs`、`out/slides` | **削る**。残すのは `dev`・`build`・`upgrade`・`lint`・`test`・`compile:script`・`render:script`・`pdf:script`・`preview:script`・`render:all:script` の 10 本 |
+| 4 | `package.json` | `scripts` 29 本のうち 19 本（`prerender`・`render:video`・`render:slide1-3`・`render:kosen-w12`・`still:kosen-w12-1..8`・`still:kosen-w12-all`・`render:all`・`pdf:study-guide`・`pdf:study-summary`・`pdf:all`） | Composition `HelloWorld`・`KosenW12`、`scripts/build-pdf.mjs`、`out/slides` | **削る**。残すのは `dev`・`build`・`upgrade`・`lint`・`test`・`compile:script`・`render:script`・`pdf:script`・`preview:script`・`render:all:script` の 10 本 |
 | 5 | `docs/conventions/narration-style.md`・`portrait-assets.md`・`voicevox-engine-setup.md` | 本文中の `docs/specs/...`・`.claude/rules/...` への参照（文章。コードではない） | `docs/specs/`・`.claude/` | **そのまま持っていく**。手順書 `SKILL.md` を書く Wave 2 で統治参照を削る（本 Wave では本文執筆をしない） |
-| 6 | `eslint.config.mjs` | L9-10 コメントが `KosenW12.tsx`・`slideRenderers.tsx` に触れる | （コメントのみ） | **変更なし**。ルール自体は害がない |
+| 6 | `eslint.config.mjs` | L11 コメントが `KosenW12.tsx`・`slideRenderers.tsx` に触れる | （コメントのみ） | **変更なし**。ルール自体は害がない |
 
 ### 2.2 ファイル別の行き先（持っていく 90 件のうち、grep か grep 外の参照を持つ 49 件）
 
 | ファイル | import／require の行き先 | パス文字列の行き先 | grep 外・備考 |
 |---|---|---|---|
-| `eslint.config.mjs` | `@remotion/eslint-config-flat` (npm) | — | コメントが凍結資産（KosenW12.tsx 等）に触れるだけ。変更なし |
+| `eslint.config.mjs` | `@remotion/eslint-config-flat` (npm) | — | L11 のコメントが凍結資産（KosenW12.tsx 等）に触れるだけ。変更なし |
 | `package.json` | `fs` (node) | `out/slides` | `fs`：L38 `prerender` の `require('fs')`。Node 組み込み。scripts ごと削る → §2.1 の 4；`scripts/compile-script.mjs`：npm scripts の `compile:script`（持っていく側）；`scripts/build-script-pdf.mjs`：`pdf:script`（持っていく側）；`scripts/render-all-script.mjs`：`render:all:script`（持っていく側）；`src/index.ts`：`render:script`（持っていく側）；`scripts/build-pdf.mjs`：**置いていく**。`pdf:study-guide`／`pdf:study-summary` → §2.1 の 4；`out/slides`：生成物。`prerender` → §2.1 の 4；`HelloWorld`：**置いていく**（Composition）。`render:video`／`render:slide1-3` → §2.1 の 4；`KosenW12`：**置いていく**（Composition）。`render:kosen-w12`／`still:kosen-w12-*` → §2.1 の 4；**置いていく側 4 件** → §2.1 の 4 |
 | `remotion.config.ts` | `@remotion/cli/config` (npm) | — | — |
-| `scripts/build-script-pdf.mjs` | `node:child_process` (node)・`node:fs` (node)・`node:fs/promises` (node)・`node:path` (node)・`node:process` (node)・`pdf-lib` (npm) | — | `public/manifests`：L61 `path.resolve("public/manifests", ...)`。cwd 基準（持っていく側）；`src/index.ts`：L120 `npx remotion still ... src/index.ts ScriptPdfComposition`（持っていく側）；`out/script-engine`：出力先。生成物（`.gitignore` 済み） |
-| `scripts/compile-script.mjs` | `node:process` (node)・`tsx/cjs/api` (npm) | — | `../src/script-engine/compiler/cli.ts`：L24 `tsxRequire(...)`（持っていく側） |
-| `scripts/render-all-script.mjs` | `node:child_process` (node)・`node:fs` (node)・`node:fs/promises` (node)・`node:path` (node)・`node:process` (node) | — | `scripts/compile-script.mjs`：L81（持っていく側）；`scripts/build-script-pdf.mjs`：L113（持っていく側）；`src/index.ts`：L103 `npx remotion render src/index.ts ScriptComposition`（持っていく側）；`out/script-engine`：出力先。生成物 |
+| `scripts/build-script-pdf.mjs` | `node:child_process` (node)・`node:fs` (node)・`node:fs/promises` (node)・`node:path` (node)・`node:process` (node)・`pdf-lib` (npm) | — | `public/manifests`：L61 `path.resolve("public/manifests", ...)`。cwd 基準（持っていく側）；`src/index.ts`：L123 `npx remotion still ... src/index.ts ScriptPdfComposition`（持っていく側）；`out/script-engine`：出力先。生成物（`.gitignore` 済み） |
+| `scripts/compile-script.mjs` | `node:process` (node)・`tsx/cjs/api` (npm) | — | `../src/script-engine/compiler/cli.ts`：L24-25 `tsxRequire(...)`（持っていく側） |
+| `scripts/render-all-script.mjs` | `node:child_process` (node)・`node:fs` (node)・`node:fs/promises` (node)・`node:path` (node)・`node:process` (node) | — | `scripts/compile-script.mjs`：L79（持っていく側）；`scripts/build-script-pdf.mjs`：L113（持っていく側）；`src/index.ts`：L107 `npx remotion render src/index.ts ScriptComposition`（持っていく側）；`out/script-engine`：出力先。生成物 |
 | `src/Root.tsx` | `react` (npm)・`remotion` (npm)・`./compositions/HelloWorld` **→ 置いていく `src/compositions/HelloWorld.tsx`**・`./compositions/KosenW12` **→ 置いていく `src/compositions/KosenW12.tsx`**・`./compositions/KosenW12StudyGuide` **→ 置いていく `src/compositions/KosenW12StudyGuide.tsx`**・`./compositions/KosenW12StudySummary` **→ 置いていく `src/compositions/KosenW12StudySummary.tsx`**・`./pdf/manifest` **→ 置いていく `src/pdf/manifest.ts`**・`./compositions/ScriptComposition`・`./compositions/ScriptPdfComposition` | — | **置いていく側 5 件** → §2.1 の 1 |
 | `src/components/Citation.tsx` | `react` (npm)・`remotion` (npm) | — | — |
 | `src/components/Flowchart.tsx` | `react` (npm) | — | — |
@@ -252,7 +252,7 @@
 | `src/script-engine/render/SpeakerPortrait.tsx` | `react` (npm)・`remotion` (npm) | — | `portraits/${portraitAssetKey}.png`：L59 `staticFile(...)` → `public/portraits/*.png`（持っていく側） |
 | `src/script-engine/render/component-registry.test.ts` | `vitest` (npm)・`./component-registry`・`../shared/component-names` | — | — |
 | `src/script-engine/render/component-registry.ts` | `react` (npm)・`../../components/Iceberg`・`../../components/Flowchart`・`../../components/Citation`・`./pilot/JavaJsCompare`・`./pilot/JsNamingTimeline`・`../shared/component-names` | — | — |
-| `src/script-engine/render/manifest-integrity.probe.test.ts` | `vitest` (npm)・`node:fs` (node)・`node:path` (node)・`../../../public/manifests/java-vs-js.manifest.json`・`./component-registry`・`../compiler/manifest`・`../../compositions/ScriptComposition`・`../schema/timeline-manifest` | — | `join(__dirname, "..", "..", "..", "public")`：L21。`public/portraits/*.png` と manifest の `wav_path` の実在を見る（持っていく側） |
+| `src/script-engine/render/manifest-integrity.probe.test.ts` | `vitest` (npm)・`node:fs` (node)・`node:path` (node)・`../../../public/manifests/java-vs-js.manifest.json`・`./component-registry`・`../compiler/manifest`・`../../compositions/ScriptComposition`・`../schema/timeline-manifest` | — | `join(__dirname, "..", "..", "..", "public")`：L22。`public/portraits/*.png` と manifest の `wav_path` の実在を見る（持っていく側） |
 | `src/script-engine/render/manifest-registry.test.ts` | `vitest` (npm)・`./manifest-registry`・`../schema/timeline-manifest` | — | — |
 | `src/script-engine/render/manifest-registry.ts` | `../../../public/manifests/java-vs-js.manifest.json`・`../../../public/manifests/java-vs-js.pdf-manifest.json`・`../../../public/manifests/outline-video-1.manifest.json` **→ 置いていく `public/manifests/outline-video-1.manifest.json`**・`../../../public/manifests/outline-video-1.pdf-manifest.json` **→ 置いていく `public/manifests/outline-video-1.pdf-manifest.json`**・`../schema/timeline-manifest`・`../pdf/script-pdf-manifest` | — | **置いていく側 2 件** → §2.1 の 2 |
 | `src/script-engine/render/pilot/JavaJsCompare.tsx` | `react` (npm) | — | — |
@@ -263,7 +263,7 @@
 
 ### 2.3 参照を持たない持っていくファイル（41 件）
 
-grep の該当行が 0 で、grep 外の参照も無いもの。データ・素材・型定義。
+grep の該当行が 0 のもの（データ・素材・型定義）。コードではないファイルのデータ内参照は備考に書く。
 
 | ファイル | 備考 |
 |---|---|
