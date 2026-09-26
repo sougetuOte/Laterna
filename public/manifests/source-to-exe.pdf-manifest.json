@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "script_id": "source-to-exe",
+  "char_limit": 900,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-title",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "narrator",
+          "text": "今日は「ソースから実行ファイルまで」という話をします。プログラムを書いてから、それがコンピュータで動くまでに、何が起きているのかを見ていきます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-002",
+          "speaker": "listener",
+          "text": "先生、プログラムって文字で書くんですよね。書いた文字をコンピュータが読んで、そのまま動くんじゃないんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "いい質問です。実は、コンピュータの頭脳であるCPUが読めるのは、0と1で書かれた「命令」だけなんです。人が書いた文字は、そのままでは読めません。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-004",
+          "speaker": "listener",
+          "text": "えっ。じゃあ、私たちが書いた文字は、どうなるんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-005",
+          "speaker": "narrator",
+          "text": "翻訳してもらうんです。今日の主役は、その翻訳係です。まずは、人が書く側から見ていきましょう。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-source",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-006",
+          "speaker": "narrator",
+          "text": "これはC言語で書いた、画面に「Hello!」と表示するだけのプログラムです。人が書いて、人が読んで、人が直せる形をしています。これを「ソースコード」と呼びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "listener",
+          "text": "ソースって、ソースをかけるの「ソース」ですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "narrator",
+          "text": "発音は同じですが、こちらは「源」「元」という意味の英語です。ファイルの名前は「hello.c」のように、末尾に「.c」を付けます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-009",
+          "speaker": "listener",
+          "text": "なるほど。それで、この文字を翻訳するのが、さっきの翻訳係なんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-pipeline-0",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-010",
+          "speaker": "narrator",
+          "text": "そうです。翻訳係の名前は「コンパイラ」といいます。この授業で使うgccの説明書には、翻訳は最大で4つの段階を、必ずこの順番で進む、と書かれています。前処理、コンパイル、アセンブル、リンク、の4つです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-011",
+          "speaker": "listener",
+          "text": "4つもあるんですか。1つずつ教えてください。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-pipeline-1",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-012",
+          "speaker": "narrator",
+          "text": "1つ目は「前処理」です。ソースの先頭にあった、シャープ、インクルードの行は「別のファイルの中身を、ここに貼り付けてください」というお願いです。前処理は、そのとおりに貼り付けて、1枚の長い紙にまとめます。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "slide_id": "slide-pipeline-2",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "2つ目が、狭い意味での「コンパイル」です。人の言葉で書かれた文を、CPUの言葉に近い「アセンブリ」という文に書き換えます。ここで初めて、人の言葉から機械の言葉へ渡ります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-014",
+          "speaker": "listener",
+          "text": "機械の言葉に近い、ということは、まだ0と1ではないんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "slide_id": "slide-pipeline-3",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-015",
+          "speaker": "narrator",
+          "text": "そのとおりです。3つ目の「アセンブル」で、アセンブリの文を0と1、つまり機械語に置き換えます。できあがるのは「オブジェクトファイル」で、名前は「hello.o」のようになります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "slide_id": "slide-pipeline-4",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-016",
+          "speaker": "narrator",
+          "text": "4つ目が「リンク」です。さっきのプログラムは、画面に文字を出すのに、printfという部品を使っていました。その本体は、別の場所にある部品箱に入っています。リンクは、自分の機械語と部品箱の部品をつなぎ合わせて、1つの実行ファイルにします。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-017",
+          "speaker": "listener",
+          "text": "翻訳して、数字にして、部品とつなぐ。それでやっと、動く形になるんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-018",
+          "speaker": "narrator",
+          "text": "はい。ちなみにgccには、途中で止めるスイッチがあります。授業では、途中の産物を実際に開いて見てみましょう。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "slide_id": "slide-exe",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-019",
+          "speaker": "narrator",
+          "text": "こうしてできるのが「実行ファイル」です。Windowsでは名前の末尾が「.exe」になります。中身は、CPUが直接読む命令とデータの束です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-020",
+          "speaker": "listener",
+          "text": "ダブルクリックすると動くのは、そのファイルなんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-021",
+          "speaker": "narrator",
+          "text": "そうです。ダブルクリックすると、WindowsというOSがそのファイルをメモリに読み込んで、CPUに「ここから実行してください」と渡します。人が読む文字は、もうどこにもありません。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "slide_id": "slide-errors",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-022",
+          "speaker": "listener",
+          "text": "先生、途中で失敗することも、ありますよね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-023",
+          "speaker": "narrator",
+          "text": "あります。しかも、失敗には2種類あるんです。1つは、翻訳の途中で翻訳係が「読めません」と止まる「コンパイルエラー」。もう1つは、翻訳は通ったけれど、動かしてみたら思ったとおりに動かない「実行時エラー」です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-024",
+          "speaker": "listener",
+          "text": "翻訳は通ったのに動かない、というのは不思議ですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-025",
+          "speaker": "narrator",
+          "text": "文法は合っているけれど、意味が違っていた、ということです。日本語でも、文法は正しいのに、言いたいことと違う文になることがありますよね。だから、エラーが出たら「どの段階で止まったのか」を、まず見る。この癖を、今日から付けていきましょう。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-026",
+          "speaker": "narrator",
+          "text": "まとめます。ソースコードは、人が読む文字。コンパイラが、前処理、コンパイル、アセンブル、リンクの4段階で翻訳する。できあがった実行ファイルは、CPUが読む命令の束。次回は、この翻訳係をどこで動かすのか、「開発環境」の話をします。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-027",
+          "speaker": "listener",
+          "text": "書いたら、翻訳して、動かす。今日はこの流れを覚えます。ありがとうございました。",
+          "style": "aside"
+        }
+      ]
+    }
+  ],
+  "total_pages": 10
+}

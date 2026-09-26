@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "script_id": "source-to-exe",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "narrator",
+      "content_hash": "607ec697",
+      "wav_path": "audio/source-to-exe/u-001-607ec697.wav",
+      "duration_seconds": 9.866666666666667,
+      "start_frame": 0,
+      "end_frame": 305,
+      "audio_end_frame": 296
+    },
+    {
+      "id": "u-002",
+      "speaker": "listener",
+      "content_hash": "0f0357cb",
+      "wav_path": "audio/source-to-exe/u-002-0f0357cb.wav",
+      "duration_seconds": 8.778666666666666,
+      "start_frame": 305,
+      "end_frame": 568,
+      "audio_end_frame": 568
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "25e9c4e1",
+      "wav_path": "audio/source-to-exe/u-003-25e9c4e1.wav",
+      "duration_seconds": 11.136,
+      "start_frame": 568,
+      "end_frame": 902,
+      "audio_end_frame": 902
+    },
+    {
+      "id": "u-004",
+      "speaker": "listener",
+      "content_hash": "a5dbe929",
+      "wav_path": "audio/source-to-exe/u-004-a5dbe929.wav",
+      "duration_seconds": 5.792,
+      "start_frame": 902,
+      "end_frame": 1076,
+      "audio_end_frame": 1076
+    },
+    {
+      "id": "u-005",
+      "speaker": "narrator",
+      "content_hash": "7762350c",
+      "wav_path": "audio/source-to-exe/u-005-7762350c.wav",
+      "duration_seconds": 7.008,
+      "start_frame": 1076,
+      "end_frame": 1301,
+      "audio_end_frame": 1286
+    },
+    {
+      "id": "u-006",
+      "speaker": "narrator",
+      "content_hash": "a2de7206",
+      "wav_path": "audio/source-to-exe/u-006-a2de7206.wav",
+      "duration_seconds": 12.384,
+      "start_frame": 1301,
+      "end_frame": 1673,
+      "audio_end_frame": 1673
+    },
+    {
+      "id": "u-007",
+      "speaker": "listener",
+      "content_hash": "bc8c7e32",
+      "wav_path": "audio/source-to-exe/u-007-bc8c7e32.wav",
+      "duration_seconds": 4.384,
+      "start_frame": 1673,
+      "end_frame": 1804,
+      "audio_end_frame": 1804
+    },
+    {
+      "id": "u-008",
+      "speaker": "narrator",
+      "content_hash": "5197c3df",
+      "wav_path": "audio/source-to-exe/u-008-5197c3df.wav",
+      "duration_seconds": 12.074666666666667,
+      "start_frame": 1804,
+      "end_frame": 2167,
+      "audio_end_frame": 2167
+    },
+    {
+      "id": "u-009",
+      "speaker": "listener",
+      "content_hash": "b0674d5c",
+      "wav_path": "audio/source-to-exe/u-009-b0674d5c.wav",
+      "duration_seconds": 6.378666666666667,
+      "start_frame": 2167,
+      "end_frame": 2370,
+      "audio_end_frame": 2358
+    },
+    {
+      "id": "u-010",
+      "speaker": "narrator",
+      "content_hash": "e1170ff0",
+      "wav_path": "audio/source-to-exe/u-010-e1170ff0.wav",
+      "duration_seconds": 17.386666666666667,
+      "start_frame": 2370,
+      "end_frame": 2892,
+      "audio_end_frame": 2892
+    },
+    {
+      "id": "u-011",
+      "speaker": "listener",
+      "content_hash": "e13577cc",
+      "wav_path": "audio/source-to-exe/u-011-e13577cc.wav",
+      "duration_seconds": 3.7973333333333334,
+      "start_frame": 2892,
+      "end_frame": 3015,
+      "audio_end_frame": 3006
+    },
+    {
+      "id": "u-012",
+      "speaker": "narrator",
+      "content_hash": "0cccb5c6",
+      "wav_path": "audio/source-to-exe/u-012-0cccb5c6.wav",
+      "duration_seconds": 15.904,
+      "start_frame": 3015,
+      "end_frame": 3501,
+      "audio_end_frame": 3492
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "19028140",
+      "wav_path": "audio/source-to-exe/u-013-19028140.wav",
+      "duration_seconds": 14.08,
+      "start_frame": 3501,
+      "end_frame": 3923,
+      "audio_end_frame": 3923
+    },
+    {
+      "id": "u-014",
+      "speaker": "listener",
+      "content_hash": "d691837a",
+      "wav_path": "audio/source-to-exe/u-014-d691837a.wav",
+      "duration_seconds": 5.408,
+      "start_frame": 3923,
+      "end_frame": 4094,
+      "audio_end_frame": 4085
+    },
+    {
+      "id": "u-015",
+      "speaker": "narrator",
+      "content_hash": "a9d10cd8",
+      "wav_path": "audio/source-to-exe/u-015-a9d10cd8.wav",
+      "duration_seconds": 14.197333333333333,
+      "start_frame": 4094,
+      "end_frame": 4529,
+      "audio_end_frame": 4520
+    },
+    {
+      "id": "u-016",
+      "speaker": "narrator",
+      "content_hash": "fa29d0f9",
+      "wav_path": "audio/source-to-exe/u-016-fa29d0f9.wav",
+      "duration_seconds": 17.813333333333333,
+      "start_frame": 4529,
+      "end_frame": 5064,
+      "audio_end_frame": 5064
+    },
+    {
+      "id": "u-017",
+      "speaker": "listener",
+      "content_hash": "0f8af7ff",
+      "wav_path": "audio/source-to-exe/u-017-0f8af7ff.wav",
+      "duration_seconds": 7.189333333333333,
+      "start_frame": 5064,
+      "end_frame": 5279,
+      "audio_end_frame": 5279
+    },
+    {
+      "id": "u-018",
+      "speaker": "narrator",
+      "content_hash": "e214c4b5",
+      "wav_path": "audio/source-to-exe/u-018-e214c4b5.wav",
+      "duration_seconds": 8.330666666666668,
+      "start_frame": 5279,
+      "end_frame": 5544,
+      "audio_end_frame": 5529
+    },
+    {
+      "id": "u-019",
+      "speaker": "narrator",
+      "content_hash": "0e39e49f",
+      "wav_path": "audio/source-to-exe/u-019-0e39e49f.wav",
+      "duration_seconds": 10.922666666666666,
+      "start_frame": 5544,
+      "end_frame": 5872,
+      "audio_end_frame": 5872
+    },
+    {
+      "id": "u-020",
+      "speaker": "listener",
+      "content_hash": "02013334",
+      "wav_path": "audio/source-to-exe/u-020-02013334.wav",
+      "duration_seconds": 4.074666666666666,
+      "start_frame": 5872,
+      "end_frame": 5994,
+      "audio_end_frame": 5994
+    },
+    {
+      "id": "u-021",
+      "speaker": "narrator",
+      "content_hash": "ef0a8e0f",
+      "wav_path": "audio/source-to-exe/u-021-ef0a8e0f.wav",
+      "duration_seconds": 12.501333333333333,
+      "start_frame": 5994,
+      "end_frame": 6384,
+      "audio_end_frame": 6369
+    },
+    {
+      "id": "u-022",
+      "speaker": "listener",
+      "content_hash": "cc7bd2c6",
+      "wav_path": "audio/source-to-exe/u-022-cc7bd2c6.wav",
+      "duration_seconds": 4.362666666666667,
+      "start_frame": 6384,
+      "end_frame": 6515,
+      "audio_end_frame": 6515
+    },
+    {
+      "id": "u-023",
+      "speaker": "narrator",
+      "content_hash": "94ca8670",
+      "wav_path": "audio/source-to-exe/u-023-94ca8670.wav",
+      "duration_seconds": 17.088,
+      "start_frame": 6515,
+      "end_frame": 7028,
+      "audio_end_frame": 7028
+    },
+    {
+      "id": "u-024",
+      "speaker": "listener",
+      "content_hash": "7b8d7241",
+      "wav_path": "audio/source-to-exe/u-024-7b8d7241.wav",
+      "duration_seconds": 4.341333333333333,
+      "start_frame": 7028,
+      "end_frame": 7158,
+      "audio_end_frame": 7158
+    },
+    {
+      "id": "u-025",
+      "speaker": "narrator",
+      "content_hash": "93313e39",
+      "wav_path": "audio/source-to-exe/u-025-93313e39.wav",
+      "duration_seconds": 17.397333333333332,
+      "start_frame": 7158,
+      "end_frame": 7695,
+      "audio_end_frame": 7680
+    },
+    {
+      "id": "u-026",
+      "speaker": "narrator",
+      "content_hash": "2a6f19c3",
+      "wav_path": "audio/source-to-exe/u-026-2a6f19c3.wav",
+      "duration_seconds": 19.285333333333334,
+      "start_frame": 7695,
+      "end_frame": 8273,
+      "audio_end_frame": 8273
+    },
+    {
+      "id": "u-027",
+      "speaker": "listener",
+      "content_hash": "d0bde093",
+      "wav_path": "audio/source-to-exe/u-027-d0bde093.wav",
+      "duration_seconds": 7.050666666666666,
+      "start_frame": 8273,
+      "end_frame": 8485,
+      "audio_end_frame": 8485
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-title",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-source",
+      "start_frame": 1301
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-pipeline-0",
+      "start_frame": 2370
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-pipeline-1",
+      "start_frame": 3015
+    },
+    {
+      "id": "ev-005",
+      "slide": "slide-pipeline-2",
+      "start_frame": 3501
+    },
+    {
+      "id": "ev-006",
+      "slide": "slide-pipeline-3",
+      "start_frame": 4094
+    },
+    {
+      "id": "ev-007",
+      "slide": "slide-pipeline-4",
+      "start_frame": 4529
+    },
+    {
+      "id": "ev-008",
+      "slide": "slide-exe",
+      "start_frame": 5544
+    },
+    {
+      "id": "ev-009",
+      "slide": "slide-errors",
+      "start_frame": 6384
+    },
+    {
+      "id": "ev-010",
+      "slide": "slide-summary",
+      "start_frame": 7695
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-title",
+      "type": "title",
+      "title": "ソースから実行ファイルまで",
+      "subtitle": "書いた文字は、どうやって動くのか"
+    },
+    {
+      "id": "slide-source",
+      "type": "code",
+      "code": "#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello!\\n\");\n    return 0;\n}\n",
+      "title": "ソースコード（hello.c）── 人が読んで、直せる文字"
+    },
+    {
+      "id": "slide-pipeline-0",
+      "type": "custom",
+      "component": "PipelineFlow",
+      "props": {
+        "stage": 0,
+        "title": "翻訳係「コンパイラ」の 4 段階"
+      }
+    },
+    {
+      "id": "slide-pipeline-1",
+      "type": "custom",
+      "component": "PipelineFlow",
+      "props": {
+        "stage": 1,
+        "title": "1. 前処理"
+      }
+    },
+    {
+      "id": "slide-pipeline-2",
+      "type": "custom",
+      "component": "PipelineFlow",
+      "props": {
+        "stage": 2,
+        "title": "2. コンパイル"
+      }
+    },
+    {
+      "id": "slide-pipeline-3",
+      "type": "custom",
+      "component": "PipelineFlow",
+      "props": {
+        "stage": 3,
+        "title": "3. アセンブル"
+      }
+    },
+    {
+      "id": "slide-pipeline-4",
+      "type": "custom",
+      "component": "PipelineFlow",
+      "props": {
+        "stage": 4,
+        "title": "4. リンク"
+      }
+    },
+    {
+      "id": "slide-exe",
+      "type": "bullets",
+      "items": [
+        "中身は **CPU が直接読む命令とデータ**",
+        "Windows では **PE 形式**。名前の末尾が .exe",
+        "ダブルクリック → OS がメモリに読み込み、CPU に渡す"
+      ],
+      "title": "実行ファイル（.exe）"
+    },
+    {
+      "id": "slide-errors",
+      "type": "bullets",
+      "items": [
+        "**コンパイルエラー**：翻訳の途中で「読めません」と止まる",
+        "**実行時エラー**：翻訳は通ったが、動かすと思ったとおりにならない",
+        "エラーが出たら「**どの段階で止まったか**」をまず見る"
+      ],
+      "title": "失敗は 2 種類"
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "ソースコードは、**人が読む文字**",
+        "コンパイラが **4 段階**で翻訳（前処理・コンパイル・アセンブル・リンク）",
+        "実行ファイルは、**CPU が読む命令の束**。次回は「開発環境」"
+      ],
+      "title": "まとめ"
+    }
+  ],
+  "speakers": {
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    },
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    }
+  },
+  "credits": [
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "VOICEVOX:ずんだもん",
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
+  ],
+  "total_duration_frames": 8575
+}
