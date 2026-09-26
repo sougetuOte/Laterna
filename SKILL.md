@@ -12,7 +12,7 @@ Laterna/
 ├─ content/scripts/          台本 YAML（1 本 = 1 script-id。<script-id>.script.yaml）
 ├─ src/                      エンジン（Kyozai-Athanor から移植。compile／render／pdf／schema）
 │   └─ script-engine/render/<script-id>/   台本専用の custom 部品（例：source-to-exe/PipelineFlow.tsx）
-├─ scripts/                  compile:script・pdf:script・render:all:script の 3 本
+├─ scripts/                  compile:script・pdf:script・render:all:script の 3 本と、その 2 本が使う remotion-cli.mjs
 ├─ docs/conventions/         話者設定（speaker-profiles.yaml）・文体（narration-style.md）・VOICEVOX 起動（voicevox-engine-setup.md）・立ち絵の台帳（portrait-assets.md）
 ├─ materials/<script-id>/    構成 outline.md（対象・尺・章立て・出典）・作業記録 build-log.md・概要欄 description.md
 ├─ materials/portraits/      立ち絵の原本と生成記録（README.md）
@@ -124,7 +124,7 @@ npm run render:all:script -- <script-id>
    ```
    node -e "const {PDFDocument}=require('pdf-lib');PDFDocument.load(require('fs').readFileSync('out/script-engine/<script-id>.pdf')).then(d=>console.log(d.getPageCount()))"
    ```
-3. クレジット：manifest の `credits[]` に `VOICEVOX:` の 2 行と立ち絵の 1 行があること。動画末尾の数秒を切り出して目視する（`ffmpeg -ss <尺-5> -i <mp4> -frames:v 1 credits.png`）。
+3. クレジット：manifest の `credits[]` に `VOICEVOX:` の 2 行と立ち絵の 1 行があること。動画末尾のクレジット区間（最後の 3 秒、`CREDIT_REGION_SECONDS`）から 1 枚切り出して目視する（`ffmpeg -ss <尺-1.5> -i <mp4> -frames:v 1 credits.png`）。
 4. 台本の内容が手順1 の出典と食い違っていないか、もう一度読む。
 5. `materials/<script-id>/description.md` を書く：内容紹介／「出典」／「クレジット」の見出し。
 
@@ -142,7 +142,7 @@ SHA-256 が `out/` と一致することを確かめる。最後に、尺・章�
 ## 立ち絵を差し替える・増やす
 
 - 仕様：透過 PNG（アルファ付き）、縦長（1 本目は 832×1216）、`public/portraits/<asset_key>.png`。`asset_key` は `docs/conventions/speaker-profiles.yaml` の `portrait.asset_key`（変えない）。
-- 作り方（1 本目の実例）：`imagegen/` を起動し、`imagegen/scripts/gen.py --workflow klein_edit --ref <参照画像> --prompt "..." --seed N` で緑背景の候補を作り、主人に一覧（`magick +append`）を見せて選んでもらう。緑背景は `materials/portraits/README.md` の 3 行の `magick`（クロマキー＋despill）で抜く。
+- 作り方（1 本目の実例）：`imagegen/` を起動し、`imagegen\.venv\Scripts\python.exe imagegen\scripts\gen.py --workflow klein_edit --ref <参照画像> --prompt "..." --seed N --out <出力 PNG>`（`--out` は必須。寸法の既定は `--width 832 --height 1216`）で緑背景の候補を作り、主人に一覧（`magick +append`）を見せて選んでもらう。緑背景は `materials/portraits/README.md` の 3 行の `magick`（クロマキー＋despill）で抜く。
 - **向き**：左カラム（narrator）のファイルは画面内側＝向かって右を向かせる。右カラム（listener）のファイルは画面**外側**＝向かって右を向かせる（レンダラーが `scaleX(-1)` で反転して内側を向く）。つまり**どちらのファイルも「向かって右」を向いた絵**にする。内向きに生成した絵は `magick <png> -flop <出力>` で反転してから置く（1 本目で聞き役が画面外を向いた原因。render 後にフレームを切り出して向きを見る）。
 - 記録：原本（緑背景）と `.json` を `materials/portraits/` に置き、`README.md` に「モデル・プロンプト・seed・加工」を書く。`docs/conventions/portrait-assets.md` §1 の台帳を上書き更新する（行は足さない）。
 - 立ち絵の表示は `src/script-engine/render/SpeakerPortrait.tsx`（左 12%・右 8% のカラムに `objectFit: contain`、右は左右反転、発話中 100%／非発話中 55% の明度）。
@@ -150,7 +150,7 @@ SHA-256 が `out/` と一致することを確かめる。最後に、尺・章�
 ## 困ったとき
 
 - **VOICEVOX が無応答**：`curl http://127.0.0.1:50021/version` が返らない。Engine を起動し直す（`voicevox-engine-setup.md`）。compile は最初に Engine の `/version` を確かめるので、Engine が止まっていると compile も `render:all:script` も止まる（合成済みの WAV は再利用されるので、起動し直せば合成は走らない）。
-- **尺が目標から ±25% 超**：台本の発話を足す・削る。1 発話 ≒ 解説役 7 字/秒・聞き役 5.7 字/秒。`pause_after` と表示保証尺（スライド切替直後の最低表示時間）とクレジット区間の分、実測は予測より 20〜30 秒長くなる。
+- **尺が目標から ±25% 超**：台本の発話を足す・削る。1 発話 ≒ 解説役 7 字/秒・聞き役 5.7 字/秒。予測は字数と `pause_before`・`pause_after` から出す。予測に入らないのは表示保証尺（末尾スライドの最低表示時間、2 秒まで）とクレジット区間（3 秒）の計 5 秒までで、残りのずれは実際の合成音声の話速が 1 発話の字数/秒の目安と違う分。実測は予測より 20〜30 秒長くなることがある。
 - **compile が YAML の読み込みで落ちる**（`unidentified alias` など）：`**` や `*` で始まる値を `"…"` で囲む（手順3）。
 - **render が「manifest for scriptId … is not registered」で止まる**：`manifest-registry.ts` に登録していない（手順4 の 2）。
 - **render が立ち絵で止まる**：`public/portraits/<asset_key>.png` が無い。置いてから再実行する。

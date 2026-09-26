@@ -13,7 +13,7 @@ Laterna/
 ├─ SKILL.md                  手順書（Wave 2 で執筆。目次案は (d)）。「この題材で 1 本」の入口
 ├─ content/scripts/          台本 YAML（1 本 = 1 script-id）
 ├─ src/                      エンジン（Kyozai-Athanor から移植。compile／render／pdf／schema）
-├─ scripts/                  compile:script・pdf:script・render:all:script の 3 本
+├─ scripts/                  compile:script・pdf:script・render:all:script の 3 本と、その 2 本が使う remotion-cli.mjs
 ├─ docs/conventions/         話者設定・文体・VOICEVOX 起動手順・立ち絵の仕様
 ├─ materials/<script-id>/    題材ごとの下絵・原稿・出典メモ
 ├─ materials/portraits/      立ち絵の原本と生成記録（プロンプト・モデル・seed）
