@@ -28,7 +28,7 @@ import type {
   TimelineManifest,
 } from "../schema/timeline-manifest";
 import type { SynthesizedUtterance } from "./synthesize";
-import { resolveDefaultOutputDir } from "./synthesize";
+import { resolveDefaultOutputDir, toPosixPath } from "./synthesize";
 
 /** design §5.1: fps 前提（既存 Composition 全てが 30fps）。 */
 export const DEFAULT_FPS = 30;
@@ -103,11 +103,6 @@ export interface GenerateManifestResult {
 /** manifest JSON の既定書出し先（design §4.1 パイプライン図）。 */
 export function resolveDefaultManifestOutputPath(scriptId: string): string {
   return path.resolve(__dirname, "../../../public/manifests", `${scriptId}.manifest.json`);
-}
-
-/** Windows の `\` を `/` に正規化する（design §4.3 MUST）。 */
-function toPosixPath(filePath: string): string {
-  return filePath.split(path.sep).join("/");
 }
 
 /**

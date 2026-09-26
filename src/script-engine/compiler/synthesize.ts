@@ -63,8 +63,11 @@ export function resolveDefaultOutputDir(scriptId: string): string {
   return path.resolve(__dirname, "../../../public/audio", scriptId);
 }
 
-/** Windows の `\` を `/` に正規化する（design §4.3 MUST: manifest 内のパス区切りは `/` 固定）。 */
-function toPosixPath(filePath: string): string {
+/**
+ * Windows の `\` を `/` に正規化する（design §4.3 MUST: manifest 内のパス区切りは `/` 固定）。
+ * `compiler/manifest.ts` も同じ正規化を使うので export する。
+ */
+export function toPosixPath(filePath: string): string {
   return filePath.split(path.sep).join("/");
 }
 
