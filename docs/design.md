@@ -126,7 +126,7 @@ slides:
 | `scripts/test-*.mjs`（spike 3 本） | 3 | 同じ検証を vitest の外でもう一度やる必要が出たとき（想定しない） |
 | `.gitignore`・`README.md` | 2 | 戻さない。Laterna は自前の物を持つ |
 | `.gitleaks.toml` | 1 | 公開前に秘密スキャンを回すと決めたとき（公開の判断は主人。brief §6） |
-| **保留** `LICENSE`・`LICENSE-CONTENT` | 2 | 主人が Laterna のライセンスを決めたとき。案は Kyozai と同じ MIT（コード）＋CC BY 4.0（台本・図解・教材本文。合成音声と第三者素材は対象外） |
+| **保留** `LICENSE`・`LICENSE-CONTENT` | 2 | 主人が Laterna のライセンスを決めたとき。案は Kyozai と同じ MIT（コード）＋CC BY 4.0（台本・図解・教材本文。合成音声と第三者素材は対象外）。**→ 2026-09-26 に承諾され、戻した** |
 | **保留** `docs/conventions/video-creation-rules.md` | 1 | `SKILL.md` を書くとき（Wave 2）。§1 の「最初に確認する 4 項目」・§4 のストーリー軸・§7 の視覚化指針を「入力」「手順 2」「手順 3」に取り込む。B 案方式（`scenario.md`／`shared/`）と §8 の registry 追記手順は取り込まない |
 
 ## (f) 既知の宿題への方針

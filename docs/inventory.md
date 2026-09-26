@@ -15,6 +15,8 @@
 
 表の行数は 132（ファイル行 123＋ディレクトリ行 9）。ディレクトリ行の配下件数：`src/pdf/` 6、`scripts/spec-ledger/` 7、`materials/kyozai-athanor-original/` 8、`public/audio/outline-video-1/` 103、`.claude/` 38、`docs/specs/` 22、`docs/artifacts/` 45、`docs/adr/` 9、`docs/daily/` 2。
 
+**更新（2026-09-26、主人の決定）**：`LICENSE`・`LICENSE-CONTENT` は主人がライセンス（MIT＋CC BY 4.0）を承諾したので持ってきた。表と集計は Wave 1 検収時のまま（保留 3 のうち 2 件が持っていくに変わった）。
+
 ## 1. 棚卸し表
 
 ### 1.1 ルート（11 件）
