@@ -119,7 +119,14 @@ function renderStandardSlide(
       return (
         <SlideComponent
           title={slide.title ?? ""}
-          body={<pre>{slide.code}</pre>}
+          body={
+            // 2026-09-26 source-to-exe の試写: Slide.tsx の本文は text-align: center のため <pre> の各行が
+            // 個別に中央寄せされ、インデントが崩れて見えた。inline-block + text-align: left で「ブロックは
+            // 中央、行は左揃え」にし、bullets と同じく 1080p 向けに拡大する（Slide.tsx は触らない）。
+            <pre style={{ display: "inline-block", textAlign: "left", fontSize: "40px", lineHeight: 1.5, margin: 0 }}>
+              {slide.code}
+            </pre>
+          }
           backgroundColor={slide.background}
         />
       );
