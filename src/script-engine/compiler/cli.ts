@@ -45,11 +45,12 @@ export const CLI_USAGE =
 export const FORCE_RESYNTH_FLAG = "--force-resynth";
 
 /**
- * script-id に使える文字（英数字・ハイフン・アンダースコア。先頭は英数字）。Windows では render と PDF の段が
- * npx を shell 経由で呼ぶので（`scripts/render-all-script.mjs`・`build-script-pdf.mjs`）、cmd が解釈する文字
- * （`&` `|` `>` `%` など）や空白を script-id に入れない。同じ規則を `scripts/script-id.mjs` も持つ。
+ * script-id に使える文字（英数字・ハイフン・アンダースコア。先頭は英数字）。script-id は `public/` の下の
+ * ファイル名と、描画時に読む URL（`staticFile` に渡す `audio/<script-id>/…`）の一部になるので、
+ * 空白や記号（`&` `%` `#` など）を入れない。`npm run render:all:script` は最初の段がこの compile なので、
+ * ここで止まれば後の段は走らない。
  */
-export const SCRIPT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
+const SCRIPT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
 
 /** parseCliArgs の結果 */
 export interface CliArgs {
