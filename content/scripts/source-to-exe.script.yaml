@@ -1,0 +1,240 @@
+# source-to-exe.script.yaml — 「ソースから実行ファイルまで」
+#
+# 出自: materials/source-to-exe/outline.md（対象・尺・章立て・出典）
+# 対象: 高専 1 年、プログラミングの初回授業（2026-10-02）。授業中に流す。尺 3〜5 分。
+# 図解: src/script-engine/render/source-to-exe/PipelineFlow.tsx（custom スライド、stage で段階を強調）
+# 注意:
+# - 発話 text は折り畳みスカラー（>-）を使わない（改行が半角スペースになり、VOICEVOX 入力と内容ハッシュを汚す）
+# - 「簡単」「必ず」を初学者向けに使わない（narration-style.md）。gcc マニュアルの引用部だけ「必ずこの順番」を残す
+# - 授業の言語は C（gcc）と仮定。違えば台本承認時に直す
+
+target_duration_range:
+  min: 180
+  max: 300
+
+speaker_profile_ref: default
+
+extra_credits:
+  - 立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）
+
+utterances:
+  - id: u-001
+    speaker: narrator
+    text: 今日は「ソースから実行ファイルまで」という話をします。プログラムを書いてから、それがコンピュータで動くまでに、何が起きているのかを見ていきます。
+    pause_after: 0.3
+  - id: u-002
+    speaker: listener
+    text: 先生、プログラムって文字で書くんですよね。書いた文字をコンピュータが読んで、そのまま動くんじゃないんですか？
+  - id: u-003
+    speaker: narrator
+    text: いい質問です。実は、コンピュータの頭脳であるCPUが読めるのは、0と1で書かれた「命令」だけなんです。人が書いた文字は、そのままでは読めません。
+  - id: u-004
+    speaker: listener
+    text: えっ。じゃあ、私たちが書いた文字は、どうなるんですか？
+  - id: u-005
+    speaker: narrator
+    text: 翻訳してもらうんです。今日の主役は、その翻訳係です。まずは、人が書く側から見ていきましょう。
+    pause_after: 0.5
+  - id: u-006
+    speaker: narrator
+    text: これはC言語で書いた、画面に「Hello!」と表示するだけのプログラムです。人が書いて、人が読んで、人が直せる形をしています。これを「ソースコード」と呼びます。
+  - id: u-007
+    speaker: listener
+    text: ソースって、ソースをかけるの「ソース」ですか？
+  - id: u-008
+    speaker: narrator
+    text: 発音は同じですが、こちらは「源」「元」という意味の英語です。ファイルの名前は「hello.c」のように、末尾に「.c」を付けます。
+  - id: u-009
+    speaker: listener
+    text: なるほど。それで、この文字を翻訳するのが、さっきの翻訳係なんですね。
+    pause_after: 0.4
+  - id: u-010
+    speaker: narrator
+    text: そうです。翻訳係の名前は「コンパイラ」といいます。この授業で使うgccの説明書には、翻訳は最大で4つの段階を、必ずこの順番で進む、と書かれています。前処理、コンパイル、アセンブル、リンク、の4つです。
+  - id: u-011
+    speaker: listener
+    text: 4つもあるんですか。1つずつ教えてください。
+    pause_after: 0.3
+  - id: u-012
+    speaker: narrator
+    text: 1つ目は「前処理」です。ソースの先頭にあった、シャープ、インクルードの行は「別のファイルの中身を、ここに貼り付けてください」というお願いです。前処理は、そのとおりに貼り付けて、1枚の長い紙にまとめます。
+    pause_after: 0.3
+  - id: u-013
+    speaker: narrator
+    text: 2つ目が、狭い意味での「コンパイル」です。人の言葉で書かれた文を、CPUの言葉に近い「アセンブリ」という文に書き換えます。ここで初めて、人の言葉から機械の言葉へ渡ります。
+  - id: u-014
+    speaker: listener
+    text: 機械の言葉に近い、ということは、まだ0と1ではないんですね。
+    pause_after: 0.3
+  - id: u-015
+    speaker: narrator
+    text: そのとおりです。3つ目の「アセンブル」で、アセンブリの文を0と1、つまり機械語に置き換えます。できあがるのは「オブジェクトファイル」で、名前は「hello.o」のようになります。
+    pause_after: 0.3
+  - id: u-016
+    speaker: narrator
+    text: 4つ目が「リンク」です。さっきのプログラムは、画面に文字を出すのに、printfという部品を使っていました。その本体は、別の場所にある部品箱に入っています。リンクは、自分の機械語と部品箱の部品をつなぎ合わせて、1つの実行ファイルにします。
+  - id: u-017
+    speaker: listener
+    text: 翻訳して、数字にして、部品とつなぐ。それでやっと、動く形になるんですね。
+  - id: u-018
+    speaker: narrator
+    text: はい。ちなみにgccには、途中で止めるスイッチがあります。授業では、途中の産物を実際に開いて見てみましょう。
+    pause_after: 0.5
+  - id: u-019
+    speaker: narrator
+    text: こうしてできるのが「実行ファイル」です。Windowsでは名前の末尾が「.exe」になります。中身は、CPUが直接読む命令とデータの束です。
+  - id: u-020
+    speaker: listener
+    text: ダブルクリックすると動くのは、そのファイルなんですね。
+  - id: u-021
+    speaker: narrator
+    text: そうです。ダブルクリックすると、WindowsというOSがそのファイルをメモリに読み込んで、CPUに「ここから実行してください」と渡します。人が読む文字は、もうどこにもありません。
+    pause_after: 0.5
+  - id: u-022
+    speaker: listener
+    text: 先生、途中で失敗することも、ありますよね。
+  - id: u-023
+    speaker: narrator
+    text: あります。しかも、失敗には2種類あるんです。1つは、翻訳の途中で翻訳係が「読めません」と止まる「コンパイルエラー」。もう1つは、翻訳は通ったけれど、動かしてみたら思ったとおりに動かない「実行時エラー」です。
+  - id: u-024
+    speaker: listener
+    text: 翻訳は通ったのに動かない、というのは不思議ですね。
+  - id: u-025
+    speaker: narrator
+    text: 文法は合っているけれど、意味が違っていた、ということです。日本語でも、文法は正しいのに、言いたいことと違う文になることがありますよね。だから、エラーが出たら「どの段階で止まったのか」を、まず見る。この癖を、今日から付けていきましょう。
+    pause_after: 0.5
+  - id: u-026
+    speaker: narrator
+    text: まとめます。ソースコードは、人が読む文字。コンパイラが、前処理、コンパイル、アセンブル、リンクの4段階で翻訳する。できあがった実行ファイルは、CPUが読む命令の束。次回は、この翻訳係をどこで動かすのか、「開発環境」の話をします。
+  - id: u-027
+    speaker: listener
+    text: 書いたら、翻訳して、動かす。今日はこの流れを覚えます。ありがとうございました。
+
+slides:
+  - id: slide-title
+    type: title
+    title: ソースから実行ファイルまで
+    subtitle: 書いた文字は、どうやって動くのか
+  - id: slide-source
+    type: code
+    title: ソースコード（hello.c）── 人が読んで、直せる文字
+    code: |
+      #include <stdio.h>
+
+      int main(void) {
+          printf("Hello!\n");
+          return 0;
+      }
+  - id: slide-pipeline-0
+    type: custom
+    component: PipelineFlow
+    props:
+      stage: 0
+      title: 翻訳係「コンパイラ」の 4 段階
+  - id: slide-pipeline-1
+    type: custom
+    component: PipelineFlow
+    props:
+      stage: 1
+      title: 1. 前処理
+  - id: slide-pipeline-2
+    type: custom
+    component: PipelineFlow
+    props:
+      stage: 2
+      title: 2. コンパイル
+  - id: slide-pipeline-3
+    type: custom
+    component: PipelineFlow
+    props:
+      stage: 3
+      title: 3. アセンブル
+  - id: slide-pipeline-4
+    type: custom
+    component: PipelineFlow
+    props:
+      stage: 4
+      title: 4. リンク
+  - id: slide-exe
+    type: bullets
+    title: 実行ファイル（.exe）
+    items:
+      - 中身は **CPU が直接読む命令とデータ**
+      - Windows では **PE 形式**。名前の末尾が .exe
+      - ダブルクリック → OS がメモリに読み込み、CPU に渡す
+  - id: slide-errors
+    type: bullets
+    title: 失敗は 2 種類
+    items:
+      - **コンパイルエラー**：翻訳の途中で「読めません」と止まる
+      - **実行時エラー**：翻訳は通ったが、動かすと思ったとおりにならない
+      - エラーが出たら「**どの段階で止まったか**」をまず見る
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - ソースコードは、**人が読む文字**
+      - コンパイラが **4 段階**で翻訳（前処理・コンパイル・アセンブル・リンク）
+      - 実行ファイルは、**CPU が読む命令の束**。次回は「開発環境」
+
+slide_events:
+  - id: ev-001
+    slide: slide-title
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+  - id: ev-002
+    slide: slide-source
+    anchor:
+      utterance: u-006
+      position: start
+      offset: 0
+  - id: ev-003
+    slide: slide-pipeline-0
+    anchor:
+      utterance: u-010
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-pipeline-1
+    anchor:
+      utterance: u-012
+      position: start
+      offset: 0
+  - id: ev-005
+    slide: slide-pipeline-2
+    anchor:
+      utterance: u-013
+      position: start
+      offset: 0
+  - id: ev-006
+    slide: slide-pipeline-3
+    anchor:
+      utterance: u-015
+      position: start
+      offset: 0
+  - id: ev-007
+    slide: slide-pipeline-4
+    anchor:
+      utterance: u-016
+      position: start
+      offset: 0
+  - id: ev-008
+    slide: slide-exe
+    anchor:
+      utterance: u-019
+      position: start
+      offset: 0
+  - id: ev-009
+    slide: slide-errors
+    anchor:
+      utterance: u-022
+      position: start
+      offset: 0
+  - id: ev-010
+    slide: slide-summary
+    anchor:
+      utterance: u-026
+      position: start
+      offset: 0
