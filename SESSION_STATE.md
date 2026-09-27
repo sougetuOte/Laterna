@@ -6,7 +6,7 @@
 
 授業用の解説動画（掛け合い）＋復習 PDF を「この題材で 1 本」で作るプロジェクト。Kyozai-Athanor のエンジンを移植し、統治の層は持ち込まない。
 1 本目「ソースから実行ファイルまで」（`source-to-exe`）は 2026-09-26 に納品し検収を通った（`deliver/source-to-exe/`）。10/2 の高専 1 年・初回授業で使う。
-**いまは Wave 2.5「点検」（レビューとリファクタリング）の途中。作業はブランチ `wave2.5-review`。検収 PASS まで main に合流しない。**
+**Wave 2.5「点検」（レビューとリファクタリング）は 2026-09-27 に検収 PASS で締め、main に合流した。次は Wave 3（2 本目）で、着手時に G0 を取る。**
 
 ## 読む順序
 
@@ -22,13 +22,15 @@
 ## 現在地
 
 - **Wave 1「目星」**・**Wave 2「1 本目」**は完了（2026-09-26。columba の検収 PASS）。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
-- **Wave 2.5「点検」**（2026-09-27 着手。G0 承認 06:15 JST「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`。止め時 10/1）：
+- **Wave 2.5「点検」は完了**（2026-09-27 着手・締め。G0 承認 06:15 JST「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`。止め時 10/1）：
   - 済：依存の更新（`ae82551`。脆弱性 11 件 → low 2 件）／点検（built-in `/code-review` high、`engineering:tech-debt`）／出力を変えない直し（`0b3c2ab`・`c787f90`・`e0f711c`・`6c7606f`・`9939fa1`・`dece5bb`）／`/simplify`（読み手 `seneschal:lens` 4 人）とその直し（`38957fa`・`1d3f122`）。
   - 済：full-review（主人が起動、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`、Workflow `wf_cb7b7981-ddc`）。**Green ではない**（上限 5 周、指摘 13・10・6・12・6、テストは毎周すべて通過）。直しは `d732c3f`・`51f84c5`・`2322351`・`6859922`。残りと主人へ回した物は、主人の判断「推奨どおり」で Wave 3 以降へ／直さない（記録の R45〜R52）。
-  - 未：`/security-review` → columba の検収 → 締め。
-- 動いている物（実測 2026-09-27、full-review の直しの後）：
-  - `npm test` 18 files / 350 tests PASS、`npm run lint` exit 0（R47 のテストを足した後、本体が実測）。
-  - 書き出しの一致（goal.md 検証 3）：full-review の 5 周とも、試験役が直しの後の作業ツリーで測って一致（source-to-exe は納品物と、java-vs-js は Kyozai の参照と SHA-256 一致、manifest・音声は `6cbaf95` と同じ）。R47 のテストとコメント（R46）はその後の変更で、出力に関わらない。
+  - 済：`/security-review`（0 件）。columba の検収 1 回目 **FAIL**（点検の記録の書き漏れ 3 点。コードと出力は通過）→ 記録を直して 2 回目 **PASS**（HEAD `985a8ed`、検証 1〜8。7 は該当なし）。2 回目が判定の外で挙げた記録の誤記 1 件（R41）は `464029b` で直した。
+  - 締め：`wave2.5-review` を main に fast-forward で合流し、push した。
+- 動いている物（実測 2026-09-27、columba の検収 2 回目、HEAD `985a8ed`）：
+  - `npm test` 18 files / 350 tests PASS、`npm run lint` exit 0。
+  - 書き出しの一致（goal.md 検証 3）：compile 2 本の manifest・音声が `6cbaf95` と同じ。source-to-exe の MP4・PDF が納品物と、java-vs-js（立ち絵 v1）の MP4・PDF が Kyozai の参照と SHA-256 一致。
+  - `out/script-engine-pdf-temp/` は空のディレクトリとして残る（`build-script-pdf.mjs` が作り、中身だけを消す）。
   - `npm audit`：low 2 件（eslint 系。`--force` は Wave 3）。
   - VOICEVOX 0.25.2（50021）は起動中だった。imagegen は 2026-09-27 に起動していない。
 - 1 本目の納品物に出ている不具合（**直していない**。主人の判断「1 推奨で直さない」2026-09-27 07:04 JST ── 10/2 は今の版で使い、Wave 3 で直す）：R1 全体図（79〜100 秒）で hello.c だけが光る／R2 強調した矢印の矢じりが線に埋もれる（100 秒〜）／R3 PDF 最終ページの注記「立ち絵は各権利者の規約に従います」が `LICENSE-CONTENT`（立ち絵も CC BY 4.0）と食い違う。
@@ -53,8 +55,10 @@
 | `ae82551` | `npm audit fix`（`--force` なし）。34 パッケージが入れ替わり、出力はバイト一致 |
 | `cf23a24` | 点検の記録。納品 MP4 のフレームを切り出して R1・R2 を目視で確かめた |
 | `9939fa1` → `38957fa` | script-id の文字種を絞る直し（R4）を、`/simplify` の直す深さの指摘で、シェルを通さない Remotion 呼び出しに作り直した |
+| `d732c3f`〜`6859922` | full-review（主人が起動）。5 周で Green にならず（13・10・6・12・6 件）。残りは主人の判断「推奨どおり」で Wave 3 以降へ／直さない（R45〜R52） |
+| `985a8ed` | Wave 2.5 の検収。1 回目 **FAIL**（記録の書き漏れ 3 点）→ 2 回目 **PASS**。本体が確かめずに書いた 1 文（R41）を 2 回目の評価器が見つけた（`464029b`） |
 
-retro の起動条件（loop.md）：Wave 2.5 では FAIL 0 回、主人の差し戻し 0 回。R1〜R3 は出荷した 1 本目の不具合で、主人の判断で Wave 3 に回した。**Wave 3 で直せば条件 3（出荷物が次の回で直しの対象になった）に当たる**。
+retro の起動条件（loop.md）：Wave 2.5 では FAIL 1 回（2 回で条件 1）、主人の差し戻し 0 回 ── 起動しない。R1〜R3 は出荷した 1 本目の不具合で、主人の判断で Wave 3 に回した。**Wave 3 で直せば条件 3（出荷物が次の回で直しの対象になった）に当たる**。
 
 ## 決定（蒸し返さない）
 
@@ -98,19 +102,19 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 未決（実測・作業待ち）
 
-- `/security-review`（本 Wave の最終差分）→ 点検の記録の「使った道具」の行を埋める → columba の検収（goal.md Wave 2.5 の検証 1〜8）→ 締め（本ファイルの更新、main へ合流、push）。
+- 点検の記録（`docs/research/2026-09-27-review.md`）の「Wave 3 以降へ」の行を、Wave 3 の `goal.md` か本ファイルの未決に移す（記録の消滅条件）。
 - `docs/design.md` (c)、字幕の要否、bullets のマーカー位置、`docs/research/2026-09-26-image-env.md` の消滅条件（Wave 3 の着手時）。
 
 ## 次の一手
 
-`/security-review` を本 Wave の最終差分（`6cbaf95..HEAD`）に掛け、結果を点検の記録に書く。その後 columba に検収を出す。
+10/2 の授業で 1 本目を使った結果を主人から聞き、Wave 3（2 本目）の G0 を面接で取る。G0 の草案には、点検の記録の「Wave 3 以降へ」の行（R1〜R3 の 1 本目の直しを含む）と、10/2 で使えなかった点を入れる。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
 - Kyozai-Athanor は読み取り専用。状態は `git ls-files`・`git log`・`git show`、`git status` は `--no-optional-locks`。
 - 検収は `seneschal:columba` に出す。採点範囲は本フェーズの成果コミットに限る（Wave 2.5 は goal.md の「採点範囲」）。主人の別指示は別コミット。**columba や自分が compile／render している間は `src/`・`public/`・`out/` を触らない。imagegen の start／stop も columba と同時に使わない。**
-- **書き出しの一致（goal.md Wave 2.5 検証 3）**の取り方：VOICEVOX 0.25.2 を起動して、(a) compile 2 本と `git diff --exit-code 6cbaf95 -- public/manifests public/audio`、(b) source-to-exe を render して納品物の SHA-256 と比べる、(c) 立ち絵を `git show 805d312:public/portraits/<名前>.png > …` で v1 に戻して java-vs-js を render し Kyozai の参照と比べ、`git checkout HEAD -- public/portraits` で戻す。2 本で 10 分ほど。前のセッションの scratchpad（`C:\Users\metral\AppData\Local\Temp\claude\D--work8-Laterna\15a2552d-a599-4152-954c-132b22769ae3\scratchpad\verify-identity.sh`）に手順を回すスクリプトがある。消えていたら goal.md の検証 3 から作り直す（常設スクリプトはリポジトリに入れない）。
-- full-review は `disable-model-invocation`。主人が `/seneschal:full-review` を打ったら、SKILL.md の手順どおり引数（点検の記録の案。testCommands の 3 本目に上のスクリプトのパスを入れる）を揃えて Workflow を起動する。結果は主人に見せてから commit する。
+- **書き出しの一致（goal.md Wave 2.5 検証 3）**の取り方：VOICEVOX 0.25.2 を起動して、(a) compile 2 本と `git diff --exit-code 6cbaf95 -- public/manifests public/audio`、(b) source-to-exe を render して納品物の SHA-256 と比べる、(c) 立ち絵を `git show 805d312:public/portraits/<名前>.png > …` で v1 に戻して java-vs-js を render し Kyozai の参照と比べ、`git checkout HEAD -- public/portraits` で戻す。2 本で 10 分ほど。前のセッションの scratchpad（`…\15a2552d-…\scratchpad\verify-identity.sh`、写しが `…\dbf265b1-…\scratchpad\`。引数 `ste`／`jvj`／`all`）に手順を回すスクリプトがある。消えていたら goal.md の検証 3 から作り直す（常設スクリプトはリポジトリに入れない）。
+- full-review は `disable-model-invocation`。主人が `/seneschal:full-review` を打ったら、SKILL.md の手順どおり引数（点検の記録の「full-review の結果」節）を揃えて Workflow を起動する。`scriptPath` の絶対パスはこのセッションからは受け付けられなかったので、Seneschal の `full-review.js` を読んで中身を `script` にそのまま渡した。書き出しの一致は 1 本 5 分ずつの 2 コマンドに分ける（Bash の上限 10 分）。結果は主人に見せてから commit する。
 - VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、PDF のページ数は `pdf-lib`。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（270 MB。`npm audit fix` では消えなかった）。
 - 分類器（auto mode）が止めた操作は別経路で追わない。統治文書（goal.md・brief.md）は、主人の「承認」「書込許可」の後に Edit ツールで書く。
 - Bash の作業ディレクトリは呼び出しをまたいで残る。git は `git -C /d/work8/Laterna` で呼ぶ。
