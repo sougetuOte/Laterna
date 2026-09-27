@@ -26,6 +26,9 @@ export const REGISTERED_COMPONENT_NAMES = [
   "JavaJsCompare",
   "JsNamingTimeline",
   "PipelineFlow",
+  "LanguageLevels",
+  "CTimeline",
+  "CourseMap",
 ] as const;
 
 /** 登録済みコンポーネント名の型（正規リストからの導出、design §2.6） */

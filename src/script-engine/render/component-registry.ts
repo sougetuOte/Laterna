@@ -27,6 +27,9 @@ import { Citation } from "../../components/Citation";
 import { JavaJsCompare } from "./pilot/JavaJsCompare";
 import { JsNamingTimeline } from "./pilot/JsNamingTimeline";
 import { PipelineFlow } from "./source-to-exe/PipelineFlow";
+import { LanguageLevels } from "./about-c/LanguageLevels";
+import { CTimeline } from "./about-c/CTimeline";
+import { CourseMap } from "./about-c/CourseMap";
 import {
   REGISTERED_COMPONENT_NAMES,
   type RegisteredComponentName,
@@ -52,10 +55,13 @@ export const componentRegistry: ComponentRegistry = {
   JavaJsCompare,
   JsNamingTimeline,
   PipelineFlow,
+  LanguageLevels,
+  CTimeline,
+  CourseMap,
 };
 
 /**
- * `componentRegistry` に `component-names.ts` の正規リスト全 6 名が実体登録済みであることを
+ * `componentRegistry` に `component-names.ts` の正規リストの全名が実体登録済みであることを
  * 実行時に確認する（component-registry.test.ts から呼び出す整合テスト用）。
  */
 export function assertComponentRegistryComplete(): void {
