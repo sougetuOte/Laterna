@@ -106,7 +106,10 @@ function renderStandardSlide(
           body={
             // T16 試写リファイン（2026-07-12）: Slide.tsx 既定の本文 28px は scale 0.78 で実効 22px と
             // 小さすぎるため、ul 側で拡大する（Slide.tsx は凍結資産のため触らない、design §6.3）。
-            <ul style={{ fontSize: "44px", lineHeight: 1.8 }}>
+            // 2026-09-27 about-c の試写（主人）: Slide.tsx の本文は text-align: center のため、<li> の文字は
+            // 行ごとに中央へ寄るのに点（マーカー）は左に残り、点と文字の間が行ごとにずれていた。code と同じく
+            // inline-block + text-align: left で「かたまりは中央、中身は左揃え」にする。
+            <ul style={{ display: "inline-block", textAlign: "left", margin: 0, fontSize: "44px", lineHeight: 1.8 }}>
               {slide.items.map((item, index) => (
                 <li key={index}>{renderBoldText(item)}</li>
               ))}

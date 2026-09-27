@@ -110,6 +110,22 @@ describe("ScriptPdfCompositionInner — ページの選び方と見出し", () =
   });
 });
 
+describe("LicenseFooter — 最終ページの注記（点検 R3）", () => {
+  it("立ち絵を CC BY 4.0 の側に含め、各権利者の規約に従うのはキャラクター音声だけと書く（LICENSE-CONTENT と同じ）", () => {
+    const pdf = pdfManifestRegistry["source-to-exe"];
+    const footer = findFooter(renderInner(outerElement("source-to-exe"), pdf.total_pages - 1))!;
+    const rendered = (footer.type as (p: Record<string, unknown>) => React.ReactNode)(footer.props);
+    const text = collectElements(rendered)
+      .flatMap((e) => (Array.isArray(e.props.children) ? e.props.children : [e.props.children]))
+      .filter((c): c is string => typeof c === "string")
+      .join("");
+
+    expect(text).toContain("本資料のテキスト・コード・自作図版・立ち絵は CC BY 4.0 の下で利用できます");
+    expect(text).toContain("（キャラクター音声は各権利者の規約に従います）");
+    expect(text).not.toContain("立ち絵は各権利者");
+  });
+});
+
 describe("ScriptPdfCompositionInner — fail-fast", () => {
   it("frame が pdf-manifest のページ数を超えると throw する", () => {
     const pdf = pdfManifestRegistry["java-vs-js"];

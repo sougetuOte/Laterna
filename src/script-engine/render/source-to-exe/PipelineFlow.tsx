@@ -13,6 +13,10 @@
  * 段階名＋説明は箱の上、産物の名前は箱の下に分けた。(2) 右端の a.exe の箱が viewBox からはみ出していた
  * ので中心間隔を 320 → 300 にした。(3) custom スライドは標準スライド（bullets・code）と違って白いパネルが
  * 無く、濃紺の文字が暗い背景に沈んでいたので、外側の div を白にして標準スライドと同じ見た目に揃えた。
+ *
+ * 2026-09-27 に 2 点を直した（点検 R1・R2、主人の判断で 1 本目を書き出し直すときに）：(1) stage 0（強調なし）
+ * でも hello.c の箱が強調されていた（産物の強調を stage === i で判定していたため）。(2) 強調した矢印の矢じり
+ * （高さ 8）が太さ 8 の線に埋もれて見えなかったので、強調用の矢じりを大きくした。
  */
 
 import React from "react";
@@ -82,8 +86,8 @@ export const PipelineFlow: React.FC<PipelineFlowProps> = ({ stage = 0, title }) 
           <marker id="pf-arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse">
             <polygon points="0 0, 12 4, 0 8" fill={C_ARROW} />
           </marker>
-          <marker id="pf-arrow-hi" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-            <polygon points="0 0, 12 4, 0 8" fill={C_HI_STROKE} />
+          <marker id="pf-arrow-hi" markerWidth="32" markerHeight="32" refX="22" refY="14" orient="auto" markerUnits="userSpaceOnUse">
+            <polygon points="0 0, 30 14, 0 28" fill={C_HI_STROKE} />
           </marker>
         </defs>
         {title !== undefined && (
@@ -125,7 +129,7 @@ export const PipelineFlow: React.FC<PipelineFlowProps> = ({ stage = 0, title }) 
         {/* 産物（箱と、その下の説明） */}
         {ARTIFACTS.map((a, i) => {
           const cx = X0 + i * STEP;
-          const hi = stage === i; // 段階 k の行き先は産物 k
+          const hi = stage > 0 && stage === i; // 段階 k（1〜4）の行き先は産物 k。stage 0 は強調なし
           return (
             <g key={a.name}>
               <rect

@@ -75,6 +75,16 @@ describe("ScriptSlideRenderer (標準スライドタイプ)", () => {
     expect(items[0].type).toBe("li");
   });
 
+  it('"bullets" の <ul> は「かたまりは中央、中身は左揃え」（inline-block + text-align: left。点と文字がずれない）', () => {
+    const slide: Slide = { id: "s-2c", type: "bullets", title: "t", items: ["短い", "とても長い項目の文"] };
+    const content = unwrapContent(ScriptSlideRenderer(slide, componentRegistry, 30)) as React.ReactElement;
+    const body = (content.props as { body: React.ReactElement }).body;
+    const style = (body.props as { style: React.CSSProperties }).style;
+
+    expect(style.display).toBe("inline-block");
+    expect(style.textAlign).toBe("left");
+  });
+
   it('"bullets" の title 省略時は空文字列を渡す', () => {
     const slide: Slide = { id: "s-2b", type: "bullets", items: ["a"] };
     const content = unwrapContent(ScriptSlideRenderer(slide, componentRegistry, 30)) as React.ReactElement;
