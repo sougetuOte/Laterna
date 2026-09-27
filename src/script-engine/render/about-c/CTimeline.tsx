@@ -2,7 +2,8 @@
  * CTimeline — 「C言語について」（script-id: about-c）専用の図解部品。
  *
  * 年表を横一列に描く。出来事は台本 YAML の props で渡す（年と出来事の出典は outline.md の「事実と出典の対応」）。
- * 見出しが重ならないよう、出来事の説明は線の上と下に交互に置く。`highlight` で 1 つを強調する。
+ * 年は線の上、出来事の説明は線の下に揃える（2026-09-27 の試写で、上下に交互に置いた版は読みにくかった）。
+ * 説明は 1 行を短くし、改行文字で行を分ける。`highlight` で 1 つを強調する。
  */
 
 import React from "react";
@@ -10,7 +11,7 @@ import React from "react";
 export interface CTimelineItem {
   /** 年（例：「1972」） */
   year: string;
-  /** 出来事（1〜2 行。改行は "\n"） */
+  /** 出来事（改行文字で行を分ける） */
   label: string;
 }
 
@@ -24,9 +25,12 @@ export interface CTimelineProps {
 
 const W = 1500;
 const H = 700;
-const LINE_Y = 400;
-const X0 = 120;
-const X1 = 1380;
+const LINE_Y = 300;
+const X0 = 150;
+const X1 = 1350;
+const YEAR_Y = LINE_Y - 44;
+const LABEL_Y0 = LINE_Y + 80;
+const LABEL_STEP = 44;
 
 const C_BG = "#ffffff";
 const C_LINE = "#2c5878";
@@ -58,31 +62,28 @@ export const CTimeline: React.FC<CTimelineProps> = ({ items, highlight, title })
         fontFamily="sans-serif"
       >
         {title !== undefined && (
-          <text x={W / 2} y={80} textAnchor="middle" fontSize={48} fontWeight={700} fill={C_TEXT}>
+          <text x={W / 2} y={90} textAnchor="middle" fontSize={52} fontWeight={700} fill={C_TEXT}>
             {title}
           </text>
         )}
-        <path d={`M ${X0 - 60},${LINE_Y} L ${X1 + 60},${LINE_Y}`} stroke={C_LINE} strokeWidth={6} fill="none" />
+        <path d={`M ${X0 - 80},${LINE_Y} L ${X1 + 80},${LINE_Y}`} stroke={C_LINE} strokeWidth={6} fill="none" />
         {items.map((it, i) => {
           const x = items.length > 1 ? X0 + i * step : W / 2;
           const hi = highlight === i;
-          const above = i % 2 === 0;
           const lines = it.label.split("\n");
-          const yearY = above ? LINE_Y + 70 : LINE_Y - 44;
-          const labelY0 = above ? LINE_Y - 60 - (lines.length - 1) * 38 : LINE_Y + 120;
           return (
             <g key={`${it.year}-${i}`}>
               <circle cx={x} cy={LINE_Y} r={hi ? 22 : 16} fill={hi ? C_HI : C_DOT} stroke={hi ? C_HI_STROKE : C_LINE} strokeWidth={hi ? 6 : 4} />
-              <text x={x} y={yearY} textAnchor="middle" fontSize={hi ? 44 : 38} fontWeight={700} fill={hi ? C_HI_STROKE : C_TEXT}>
+              <text x={x} y={YEAR_Y} textAnchor="middle" fontSize={hi ? 46 : 40} fontWeight={700} fill={hi ? C_HI_STROKE : C_TEXT}>
                 {it.year}
               </text>
               {lines.map((line, j) => (
                 <text
                   key={j}
                   x={x}
-                  y={labelY0 + j * 38}
+                  y={LABEL_Y0 + j * LABEL_STEP}
                   textAnchor="middle"
-                  fontSize={hi ? 32 : 28}
+                  fontSize={34}
                   fontWeight={hi ? 700 : 400}
                   fill={hi ? C_HI_STROKE : C_SUB}
                 >

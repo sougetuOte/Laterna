@@ -52,7 +52,7 @@ utterances:
     text: じゃあ、C言語はどっちなんですか？
   - id: u-010
     speaker: narrator
-    text: C言語は、その間にいます。作った本人は、Cは機械に近いけれど、別の機械にも持っていけるくらいには抽象的だ、と書いています。
+    text: C言語は、そのあいだにいます。作った本人は、Cは機械に近いけれど、別の機械にも持っていけるくらいには抽象的だ、と書いています。
   - id: u-011
     speaker: narrator
     text: メモリのどこに何を置くか、といった機械の中身に手が届く。それでいて、人が読める文で書ける。この両方を持っているのが、C言語の特徴です。
@@ -137,7 +137,7 @@ utterances:
     text: 信頼される、ならうれしいです。
   - id: u-037
     speaker: narrator
-    text: その分、間違ったことを書いても、止めてくれないことがあるんです。メモリの扱いを間違えると、おかしな動きをします。だからこそ、C言語を学ぶと、コンピュータの中で何が起きているかを考えながら書く力が付きます。
+    text: そのぶん、間違ったことを書いても、止めてくれないことがあるんです。メモリの扱いを間違えると、おかしな動きをします。だからこそ、C言語を学ぶと、コンピュータの中で何が起きているかを考えながら書く力が付きます。
   - id: u-038
     speaker: narrator
     text: ちなみに、言語の人気を表すランキングの1つ、ティオベの2026年9月の順位で、C言語は2位でした。古い言語ですが、今もよく使われています。
@@ -154,7 +154,7 @@ utterances:
     text: 同じ2年生の実験では、アルドゥイーノというマイコンで、LEDや光センサを動かします。アルドゥイーノのプログラムは、Cの仲間であるC++に変換されて動きます。
   - id: u-042
     speaker: narrator
-    text: そして3年生のプログラミング言語にでは、前期にキャスルツーというアセンブリ言語を学びます。機械語に近い、低水準の言語です。
+    text: そして3年生になると、プログラミング言語にという授業の前期に、キャスルツーというアセンブリ言語を学びます。機械語に近い、低水準の言語です。
   - id: u-043
     speaker: listener
     text: 最初に出てきた、機械に近い言葉ですね。
@@ -244,17 +244,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
   - id: slide-history-1
     type: custom
     component: CTimeline
@@ -262,17 +262,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
       highlight: 0
   - id: slide-history-2
     type: custom
@@ -281,17 +281,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
       highlight: 1
   - id: slide-history-3
     type: custom
@@ -300,17 +300,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
       highlight: 2
   - id: slide-history-4
     type: custom
@@ -319,17 +319,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
       highlight: 3
   - id: slide-history-5
     type: custom
@@ -338,17 +338,17 @@ slides:
       title: C 言語の歩み
       items:
         - year: "1969〜1973"
-          label: "C が生まれる\n（中心は 1972 年）"
+          label: "C が\n生まれる\n（中心は\n1972 年）"
         - year: "1973"
-          label: "UNIX を C で\n書き直す"
+          label: "UNIX を\nC で\n書き直す"
         - year: "1978"
-          label: "解説書（K&R）"
+          label: "解説書\n（K&R）"
         - year: "1989"
-          label: "ANSI の規格\n（C89）"
+          label: "ANSI の\n規格\n（C89）"
         - year: "1999"
           label: "C99"
         - year: "2024"
-          label: "最新の規格\nC23"
+          label: "最新の\n規格\nC23"
       highlight: 5
   - id: slide-run
     type: bullets
@@ -378,16 +378,16 @@ slides:
       title: C はこの先の授業につながる
       columns: [今年, 来年, 再来年]
       rows:
-        - label: 電気情報工学科
+        - label: "電気情報工学科\n（いま 1 年）"
           cells:
-            - [プログラミング言語入門（1 年・後期）：C]
-            - [プログラミング言語Ⅰ（2 年・通年）：C, 電気情報工学実験Ⅰ（2 年）：Arduino]
-            - [プログラミング言語Ⅱ（3 年・通年）：CASLⅡ]
-        - label: 機械工学科
+            - ["プログラミング\n言語入門（後期）\nC"]
+            - ["プログラミング\n言語Ⅰ（通年）\nC", "電気情報\n工学実験Ⅰ\nArduino"]
+            - ["プログラミング\n言語Ⅱ（通年）\nCASLⅡ"]
+        - label: "機械工学科\n（いま 3 年）"
           cells:
-            - [情報処理Ⅰ（3 年・後期）：C]
-            - [計測工学（4 年）：センサ]
-            - [工学実験Ⅲ（5 年）：DC モータの PID 制御]
+            - ["情報処理Ⅰ\n（後期）\nC"]
+            - ["計測工学\nセンサ"]
+            - ["工学実験Ⅲ\nDC モータの\nPID 制御"]
       highlight: 0
   - id: slide-course-m
     type: custom
@@ -396,16 +396,16 @@ slides:
       title: C はこの先の授業につながる
       columns: [今年, 来年, 再来年]
       rows:
-        - label: 電気情報工学科
+        - label: "電気情報工学科\n（いま 1 年）"
           cells:
-            - [プログラミング言語入門（1 年・後期）：C]
-            - [プログラミング言語Ⅰ（2 年・通年）：C, 電気情報工学実験Ⅰ（2 年）：Arduino]
-            - [プログラミング言語Ⅱ（3 年・通年）：CASLⅡ]
-        - label: 機械工学科
+            - ["プログラミング\n言語入門（後期）\nC"]
+            - ["プログラミング\n言語Ⅰ（通年）\nC", "電気情報\n工学実験Ⅰ\nArduino"]
+            - ["プログラミング\n言語Ⅱ（通年）\nCASLⅡ"]
+        - label: "機械工学科\n（いま 3 年）"
           cells:
-            - [情報処理Ⅰ（3 年・後期）：C]
-            - [計測工学（4 年）：センサ]
-            - [工学実験Ⅲ（5 年）：DC モータの PID 制御]
+            - ["情報処理Ⅰ\n（後期）\nC"]
+            - ["計測工学\nセンサ"]
+            - ["工学実験Ⅲ\nDC モータの\nPID 制御"]
       highlight: 1
   - id: slide-course-all
     type: custom
@@ -414,16 +414,16 @@ slides:
       title: C はこの先の授業につながる
       columns: [今年, 来年, 再来年]
       rows:
-        - label: 電気情報工学科
+        - label: "電気情報工学科\n（いま 1 年）"
           cells:
-            - [プログラミング言語入門（1 年・後期）：C]
-            - [プログラミング言語Ⅰ（2 年・通年）：C, 電気情報工学実験Ⅰ（2 年）：Arduino]
-            - [プログラミング言語Ⅱ（3 年・通年）：CASLⅡ]
-        - label: 機械工学科
+            - ["プログラミング\n言語入門（後期）\nC"]
+            - ["プログラミング\n言語Ⅰ（通年）\nC", "電気情報\n工学実験Ⅰ\nArduino"]
+            - ["プログラミング\n言語Ⅱ（通年）\nCASLⅡ"]
+        - label: "機械工学科\n（いま 3 年）"
           cells:
-            - [情報処理Ⅰ（3 年・後期）：C]
-            - [計測工学（4 年）：センサ]
-            - [工学実験Ⅲ（5 年）：DC モータの PID 制御]
+            - ["情報処理Ⅰ\n（後期）\nC"]
+            - ["計測工学\nセンサ"]
+            - ["工学実験Ⅲ\nDC モータの\nPID 制御"]
   - id: slide-ai
     type: bullets
     title: AI の時代に、手で書いて学ぶ理由

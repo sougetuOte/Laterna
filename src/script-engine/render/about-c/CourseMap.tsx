@@ -10,7 +10,7 @@ import React from "react";
 export interface CourseMapRow {
   /** 行の見出し（例：「電気情報工学科」） */
   label: string;
-  /** 列ごとの科目名（columns と同じ数） */
+  /** 列ごとの科目名（columns と同じ数）。改行文字で行を分ける */
   cells: string[][];
 }
 
@@ -30,7 +30,6 @@ const C_CELL = "#d9eaf7";
 const C_HI = "#fff3cd";
 const C_HI_STROKE = "#e85d1a";
 const C_TEXT = "#1a3a52";
-const C_DIM = "#8a98a6";
 
 export const CourseMap: React.FC<CourseMapProps> = ({ columns, rows, highlight, title }) => {
   const dimmed = (i: number) => highlight !== undefined && highlight !== i;
@@ -51,13 +50,13 @@ export const CourseMap: React.FC<CourseMapProps> = ({ columns, rows, highlight, 
       }}
     >
       {title !== undefined && (
-        <div style={{ fontSize: 44, fontWeight: 700, marginBottom: 24 }}>{title}</div>
+        <div style={{ fontSize: 56, fontWeight: 700, marginBottom: 32 }}>{title}</div>
       )}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: `220px repeat(${columns.length}, 1fr)`,
-          gap: 10,
+          gridTemplateColumns: `260px repeat(${columns.length}, 1fr)`,
+          gap: 14,
           width: "100%",
         }}
       >
@@ -68,10 +67,10 @@ export const CourseMap: React.FC<CourseMapProps> = ({ columns, rows, highlight, 
             style={{
               background: C_HEAD,
               color: "#ffffff",
-              fontSize: 28,
+              fontSize: 42,
               fontWeight: 700,
               textAlign: "center",
-              padding: "10px 6px",
+              padding: "12px 6px",
               borderRadius: 10,
             }}
           >
@@ -84,11 +83,14 @@ export const CourseMap: React.FC<CourseMapProps> = ({ columns, rows, highlight, 
             <React.Fragment key={r.label}>
               <div
                 style={{
-                  fontSize: 28,
+                  fontSize: 34,
                   fontWeight: 700,
                   display: "flex",
                   alignItems: "center",
-                  color: dimmed(i) ? C_DIM : hi ? C_HI_STROKE : C_TEXT,
+                  whiteSpace: "pre-line",
+                  lineHeight: 1.3,
+                  color: hi ? C_HI_STROKE : C_TEXT,
+                  opacity: dimmed(i) ? 0.45 : 1,
                 }}
               >
                 {r.label}
@@ -100,15 +102,17 @@ export const CourseMap: React.FC<CourseMapProps> = ({ columns, rows, highlight, 
                     background: hi ? C_HI : C_CELL,
                     border: `3px solid ${hi ? C_HI_STROKE : "transparent"}`,
                     borderRadius: 10,
-                    padding: "12px 14px",
-                    fontSize: 26,
-                    lineHeight: 1.45,
-                    color: dimmed(i) ? C_DIM : C_TEXT,
-                    opacity: dimmed(i) ? 0.6 : 1,
+                    padding: "16px 18px",
+                    fontSize: 38,
+                    lineHeight: 1.35,
+                    color: C_TEXT,
+                    opacity: dimmed(i) ? 0.45 : 1,
                   }}
                 >
                   {cell.map((name) => (
-                    <div key={name}>{name}</div>
+                    <div key={name} style={{ whiteSpace: "pre-line", marginBottom: 8 }}>
+                      {name}
+                    </div>
                   ))}
                 </div>
               ))}

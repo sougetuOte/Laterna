@@ -1,0 +1,1125 @@
+{
+  "schema_version": 1,
+  "script_id": "about-c",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "narrator",
+      "content_hash": "ef075dc5",
+      "wav_path": "audio/about-c/u-001-ef075dc5.wav",
+      "duration_seconds": 10.048,
+      "start_frame": 0,
+      "end_frame": 310,
+      "audio_end_frame": 301
+    },
+    {
+      "id": "u-002",
+      "speaker": "listener",
+      "content_hash": "a1e5db01",
+      "wav_path": "audio/about-c/u-002-a1e5db01.wav",
+      "duration_seconds": 7.349333333333333,
+      "start_frame": 310,
+      "end_frame": 531,
+      "audio_end_frame": 531
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "c37d2733",
+      "wav_path": "audio/about-c/u-003-c37d2733.wav",
+      "duration_seconds": 14.666666666666666,
+      "start_frame": 531,
+      "end_frame": 986,
+      "audio_end_frame": 971
+    },
+    {
+      "id": "u-004",
+      "speaker": "narrator",
+      "content_hash": "b083c224",
+      "wav_path": "audio/about-c/u-004-b083c224.wav",
+      "duration_seconds": 10.197333333333333,
+      "start_frame": 986,
+      "end_frame": 1292,
+      "audio_end_frame": 1292
+    },
+    {
+      "id": "u-005",
+      "speaker": "listener",
+      "content_hash": "53208691",
+      "wav_path": "audio/about-c/u-005-53208691.wav",
+      "duration_seconds": 3.9146666666666667,
+      "start_frame": 1292,
+      "end_frame": 1409,
+      "audio_end_frame": 1409
+    },
+    {
+      "id": "u-006",
+      "speaker": "narrator",
+      "content_hash": "cb6fa13c",
+      "wav_path": "audio/about-c/u-006-cb6fa13c.wav",
+      "duration_seconds": 13.781333333333333,
+      "start_frame": 1409,
+      "end_frame": 1823,
+      "audio_end_frame": 1823
+    },
+    {
+      "id": "u-007",
+      "speaker": "listener",
+      "content_hash": "bbdd801d",
+      "wav_path": "audio/about-c/u-007-bbdd801d.wav",
+      "duration_seconds": 4.8533333333333335,
+      "start_frame": 1823,
+      "end_frame": 1968,
+      "audio_end_frame": 1968
+    },
+    {
+      "id": "u-008",
+      "speaker": "narrator",
+      "content_hash": "78147e89",
+      "wav_path": "audio/about-c/u-008-78147e89.wav",
+      "duration_seconds": 9.664,
+      "start_frame": 1968,
+      "end_frame": 2258,
+      "audio_end_frame": 2258
+    },
+    {
+      "id": "u-009",
+      "speaker": "listener",
+      "content_hash": "ad12f9d4",
+      "wav_path": "audio/about-c/u-009-ad12f9d4.wav",
+      "duration_seconds": 3.264,
+      "start_frame": 2258,
+      "end_frame": 2356,
+      "audio_end_frame": 2356
+    },
+    {
+      "id": "u-010",
+      "speaker": "narrator",
+      "content_hash": "84e6d817",
+      "wav_path": "audio/about-c/u-010-84e6d817.wav",
+      "duration_seconds": 9.813333333333333,
+      "start_frame": 2356,
+      "end_frame": 2651,
+      "audio_end_frame": 2651
+    },
+    {
+      "id": "u-011",
+      "speaker": "narrator",
+      "content_hash": "7f010b4c",
+      "wav_path": "audio/about-c/u-011-7f010b4c.wav",
+      "duration_seconds": 10.058666666666667,
+      "start_frame": 2651,
+      "end_frame": 2952,
+      "audio_end_frame": 2952
+    },
+    {
+      "id": "u-012",
+      "speaker": "listener",
+      "content_hash": "c306991a",
+      "wav_path": "audio/about-c/u-012-c306991a.wav",
+      "duration_seconds": 4.896,
+      "start_frame": 2952,
+      "end_frame": 3114,
+      "audio_end_frame": 3099
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "b1944571",
+      "wav_path": "audio/about-c/u-013-b1944571.wav",
+      "duration_seconds": 8.458666666666666,
+      "start_frame": 3114,
+      "end_frame": 3368,
+      "audio_end_frame": 3368
+    },
+    {
+      "id": "u-014",
+      "speaker": "listener",
+      "content_hash": "e5ad9795",
+      "wav_path": "audio/about-c/u-014-e5ad9795.wav",
+      "duration_seconds": 3.552,
+      "start_frame": 3368,
+      "end_frame": 3475,
+      "audio_end_frame": 3475
+    },
+    {
+      "id": "u-015",
+      "speaker": "narrator",
+      "content_hash": "270a266f",
+      "wav_path": "audio/about-c/u-015-270a266f.wav",
+      "duration_seconds": 11.925333333333333,
+      "start_frame": 3475,
+      "end_frame": 3832,
+      "audio_end_frame": 3832
+    },
+    {
+      "id": "u-016",
+      "speaker": "narrator",
+      "content_hash": "99d37892",
+      "wav_path": "audio/about-c/u-016-99d37892.wav",
+      "duration_seconds": 19.30666666666667,
+      "start_frame": 3832,
+      "end_frame": 4411,
+      "audio_end_frame": 4411
+    },
+    {
+      "id": "u-017",
+      "speaker": "listener",
+      "content_hash": "5887bda4",
+      "wav_path": "audio/about-c/u-017-5887bda4.wav",
+      "duration_seconds": 2.72,
+      "start_frame": 4411,
+      "end_frame": 4493,
+      "audio_end_frame": 4493
+    },
+    {
+      "id": "u-018",
+      "speaker": "narrator",
+      "content_hash": "e174626c",
+      "wav_path": "audio/about-c/u-018-e174626c.wav",
+      "duration_seconds": 8.917333333333334,
+      "start_frame": 4493,
+      "end_frame": 4761,
+      "audio_end_frame": 4761
+    },
+    {
+      "id": "u-019",
+      "speaker": "listener",
+      "content_hash": "c8e9f834",
+      "wav_path": "audio/about-c/u-019-c8e9f834.wav",
+      "duration_seconds": 2.5813333333333333,
+      "start_frame": 4761,
+      "end_frame": 4838,
+      "audio_end_frame": 4838
+    },
+    {
+      "id": "u-020",
+      "speaker": "narrator",
+      "content_hash": "54ddc8fe",
+      "wav_path": "audio/about-c/u-020-54ddc8fe.wav",
+      "duration_seconds": 10.421333333333333,
+      "start_frame": 4838,
+      "end_frame": 5151,
+      "audio_end_frame": 5151
+    },
+    {
+      "id": "u-021",
+      "speaker": "narrator",
+      "content_hash": "09491953",
+      "wav_path": "audio/about-c/u-021-09491953.wav",
+      "duration_seconds": 16.010666666666665,
+      "start_frame": 5151,
+      "end_frame": 5631,
+      "audio_end_frame": 5631
+    },
+    {
+      "id": "u-022",
+      "speaker": "narrator",
+      "content_hash": "62aa8533",
+      "wav_path": "audio/about-c/u-022-62aa8533.wav",
+      "duration_seconds": 17.504,
+      "start_frame": 5631,
+      "end_frame": 6156,
+      "audio_end_frame": 6156
+    },
+    {
+      "id": "u-023",
+      "speaker": "listener",
+      "content_hash": "44042933",
+      "wav_path": "audio/about-c/u-023-44042933.wav",
+      "duration_seconds": 5.770666666666667,
+      "start_frame": 6156,
+      "end_frame": 6344,
+      "audio_end_frame": 6329
+    },
+    {
+      "id": "u-024",
+      "speaker": "narrator",
+      "content_hash": "1327d65e",
+      "wav_path": "audio/about-c/u-024-1327d65e.wav",
+      "duration_seconds": 8.842666666666666,
+      "start_frame": 6344,
+      "end_frame": 6610,
+      "audio_end_frame": 6610
+    },
+    {
+      "id": "u-025",
+      "speaker": "narrator",
+      "content_hash": "fd091d92",
+      "wav_path": "audio/about-c/u-025-fd091d92.wav",
+      "duration_seconds": 12.085333333333333,
+      "start_frame": 6610,
+      "end_frame": 6972,
+      "audio_end_frame": 6972
+    },
+    {
+      "id": "u-026",
+      "speaker": "narrator",
+      "content_hash": "fd90ad1d",
+      "wav_path": "audio/about-c/u-026-fd90ad1d.wav",
+      "duration_seconds": 10.709333333333333,
+      "start_frame": 6972,
+      "end_frame": 7293,
+      "audio_end_frame": 7293
+    },
+    {
+      "id": "u-027",
+      "speaker": "listener",
+      "content_hash": "76b92971",
+      "wav_path": "audio/about-c/u-027-76b92971.wav",
+      "duration_seconds": 4.416,
+      "start_frame": 7293,
+      "end_frame": 7426,
+      "audio_end_frame": 7426
+    },
+    {
+      "id": "u-028",
+      "speaker": "narrator",
+      "content_hash": "df0062bd",
+      "wav_path": "audio/about-c/u-028-df0062bd.wav",
+      "duration_seconds": 13.237333333333334,
+      "start_frame": 7426,
+      "end_frame": 7823,
+      "audio_end_frame": 7823
+    },
+    {
+      "id": "u-029",
+      "speaker": "narrator",
+      "content_hash": "b15cc62c",
+      "wav_path": "audio/about-c/u-029-b15cc62c.wav",
+      "duration_seconds": 20.682666666666666,
+      "start_frame": 7823,
+      "end_frame": 8443,
+      "audio_end_frame": 8443
+    },
+    {
+      "id": "u-030",
+      "speaker": "narrator",
+      "content_hash": "24a8b99a",
+      "wav_path": "audio/about-c/u-030-24a8b99a.wav",
+      "duration_seconds": 8.544,
+      "start_frame": 8443,
+      "end_frame": 8700,
+      "audio_end_frame": 8700
+    },
+    {
+      "id": "u-031",
+      "speaker": "listener",
+      "content_hash": "0e77e183",
+      "wav_path": "audio/about-c/u-031-0e77e183.wav",
+      "duration_seconds": 4.16,
+      "start_frame": 8700,
+      "end_frame": 8825,
+      "audio_end_frame": 8825
+    },
+    {
+      "id": "u-032",
+      "speaker": "narrator",
+      "content_hash": "f56d7da8",
+      "wav_path": "audio/about-c/u-032-f56d7da8.wav",
+      "duration_seconds": 13.845333333333333,
+      "start_frame": 8825,
+      "end_frame": 9240,
+      "audio_end_frame": 9240
+    },
+    {
+      "id": "u-033",
+      "speaker": "listener",
+      "content_hash": "5caed8c3",
+      "wav_path": "audio/about-c/u-033-5caed8c3.wav",
+      "duration_seconds": 5.056,
+      "start_frame": 9240,
+      "end_frame": 9392,
+      "audio_end_frame": 9392
+    },
+    {
+      "id": "u-034",
+      "speaker": "narrator",
+      "content_hash": "19880346",
+      "wav_path": "audio/about-c/u-034-19880346.wav",
+      "duration_seconds": 10.133333333333333,
+      "start_frame": 9392,
+      "end_frame": 9696,
+      "audio_end_frame": 9696
+    },
+    {
+      "id": "u-035",
+      "speaker": "narrator",
+      "content_hash": "4a1c1f1b",
+      "wav_path": "audio/about-c/u-035-4a1c1f1b.wav",
+      "duration_seconds": 8.394666666666666,
+      "start_frame": 9696,
+      "end_frame": 9947,
+      "audio_end_frame": 9947
+    },
+    {
+      "id": "u-036",
+      "speaker": "listener",
+      "content_hash": "e93df957",
+      "wav_path": "audio/about-c/u-036-e93df957.wav",
+      "duration_seconds": 2.7733333333333334,
+      "start_frame": 9947,
+      "end_frame": 10031,
+      "audio_end_frame": 10031
+    },
+    {
+      "id": "u-037",
+      "speaker": "narrator",
+      "content_hash": "fc58053d",
+      "wav_path": "audio/about-c/u-037-fc58053d.wav",
+      "duration_seconds": 14.88,
+      "start_frame": 10031,
+      "end_frame": 10477,
+      "audio_end_frame": 10477
+    },
+    {
+      "id": "u-038",
+      "speaker": "narrator",
+      "content_hash": "974d1abb",
+      "wav_path": "audio/about-c/u-038-974d1abb.wav",
+      "duration_seconds": 10.944,
+      "start_frame": 10477,
+      "end_frame": 10820,
+      "audio_end_frame": 10805
+    },
+    {
+      "id": "u-039",
+      "speaker": "narrator",
+      "content_hash": "4c8b27ac",
+      "wav_path": "audio/about-c/u-039-4c8b27ac.wav",
+      "duration_seconds": 11.722666666666667,
+      "start_frame": 10820,
+      "end_frame": 11172,
+      "audio_end_frame": 11172
+    },
+    {
+      "id": "u-040",
+      "speaker": "narrator",
+      "content_hash": "dced6b9f",
+      "wav_path": "audio/about-c/u-040-dced6b9f.wav",
+      "duration_seconds": 12.736,
+      "start_frame": 11172,
+      "end_frame": 11554,
+      "audio_end_frame": 11554
+    },
+    {
+      "id": "u-041",
+      "speaker": "narrator",
+      "content_hash": "ad2397b4",
+      "wav_path": "audio/about-c/u-041-ad2397b4.wav",
+      "duration_seconds": 11.36,
+      "start_frame": 11554,
+      "end_frame": 11895,
+      "audio_end_frame": 11895
+    },
+    {
+      "id": "u-042",
+      "speaker": "narrator",
+      "content_hash": "e31450a1",
+      "wav_path": "audio/about-c/u-042-e31450a1.wav",
+      "duration_seconds": 10.549333333333333,
+      "start_frame": 11895,
+      "end_frame": 12211,
+      "audio_end_frame": 12211
+    },
+    {
+      "id": "u-043",
+      "speaker": "listener",
+      "content_hash": "83a2673d",
+      "wav_path": "audio/about-c/u-043-83a2673d.wav",
+      "duration_seconds": 3.5733333333333333,
+      "start_frame": 12211,
+      "end_frame": 12319,
+      "audio_end_frame": 12319
+    },
+    {
+      "id": "u-044",
+      "speaker": "narrator",
+      "content_hash": "b90774ad",
+      "wav_path": "audio/about-c/u-044-b90774ad.wav",
+      "duration_seconds": 13.909333333333333,
+      "start_frame": 12319,
+      "end_frame": 12745,
+      "audio_end_frame": 12736
+    },
+    {
+      "id": "u-045",
+      "speaker": "narrator",
+      "content_hash": "cb5ca198",
+      "wav_path": "audio/about-c/u-045-cb5ca198.wav",
+      "duration_seconds": 8.864,
+      "start_frame": 12745,
+      "end_frame": 13011,
+      "audio_end_frame": 13011
+    },
+    {
+      "id": "u-046",
+      "speaker": "listener",
+      "content_hash": "49151481",
+      "wav_path": "audio/about-c/u-046-49151481.wav",
+      "duration_seconds": 5.0986666666666665,
+      "start_frame": 13011,
+      "end_frame": 13164,
+      "audio_end_frame": 13164
+    },
+    {
+      "id": "u-047",
+      "speaker": "narrator",
+      "content_hash": "0ec1dff9",
+      "wav_path": "audio/about-c/u-047-0ec1dff9.wav",
+      "duration_seconds": 12,
+      "start_frame": 13164,
+      "end_frame": 13524,
+      "audio_end_frame": 13524
+    },
+    {
+      "id": "u-048",
+      "speaker": "narrator",
+      "content_hash": "7daea657",
+      "wav_path": "audio/about-c/u-048-7daea657.wav",
+      "duration_seconds": 13.717333333333332,
+      "start_frame": 13524,
+      "end_frame": 13935,
+      "audio_end_frame": 13935
+    },
+    {
+      "id": "u-049",
+      "speaker": "listener",
+      "content_hash": "165ae6ff",
+      "wav_path": "audio/about-c/u-049-165ae6ff.wav",
+      "duration_seconds": 5.770666666666667,
+      "start_frame": 13935,
+      "end_frame": 14123,
+      "audio_end_frame": 14108
+    },
+    {
+      "id": "u-050",
+      "speaker": "listener",
+      "content_hash": "9e981893",
+      "wav_path": "audio/about-c/u-050-9e981893.wav",
+      "duration_seconds": 9.066666666666666,
+      "start_frame": 14123,
+      "end_frame": 14395,
+      "audio_end_frame": 14395
+    },
+    {
+      "id": "u-051",
+      "speaker": "narrator",
+      "content_hash": "9dd672e3",
+      "wav_path": "audio/about-c/u-051-9dd672e3.wav",
+      "duration_seconds": 9.866666666666667,
+      "start_frame": 14395,
+      "end_frame": 14691,
+      "audio_end_frame": 14691
+    },
+    {
+      "id": "u-052",
+      "speaker": "narrator",
+      "content_hash": "ea618d1e",
+      "wav_path": "audio/about-c/u-052-ea618d1e.wav",
+      "duration_seconds": 15.552,
+      "start_frame": 14691,
+      "end_frame": 15158,
+      "audio_end_frame": 15158
+    },
+    {
+      "id": "u-053",
+      "speaker": "listener",
+      "content_hash": "1d340533",
+      "wav_path": "audio/about-c/u-053-1d340533.wav",
+      "duration_seconds": 3.957333333333333,
+      "start_frame": 15158,
+      "end_frame": 15277,
+      "audio_end_frame": 15277
+    },
+    {
+      "id": "u-054",
+      "speaker": "narrator",
+      "content_hash": "4d450274",
+      "wav_path": "audio/about-c/u-054-4d450274.wav",
+      "duration_seconds": 9.429333333333334,
+      "start_frame": 15277,
+      "end_frame": 15575,
+      "audio_end_frame": 15560
+    },
+    {
+      "id": "u-055",
+      "speaker": "narrator",
+      "content_hash": "7ab01c96",
+      "wav_path": "audio/about-c/u-055-7ab01c96.wav",
+      "duration_seconds": 17.856,
+      "start_frame": 15575,
+      "end_frame": 16110,
+      "audio_end_frame": 16110
+    },
+    {
+      "id": "u-056",
+      "speaker": "listener",
+      "content_hash": "82ac6679",
+      "wav_path": "audio/about-c/u-056-82ac6679.wav",
+      "duration_seconds": 5.888,
+      "start_frame": 16110,
+      "end_frame": 16287,
+      "audio_end_frame": 16287
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-title",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-levels",
+      "start_frame": 986
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-levels-c",
+      "start_frame": 2356
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-history-0",
+      "start_frame": 3114
+    },
+    {
+      "id": "ev-005",
+      "slide": "slide-history-1",
+      "start_frame": 3832
+    },
+    {
+      "id": "ev-006",
+      "slide": "slide-history-2",
+      "start_frame": 4493
+    },
+    {
+      "id": "ev-007",
+      "slide": "slide-history-3",
+      "start_frame": 4838
+    },
+    {
+      "id": "ev-008",
+      "slide": "slide-history-4",
+      "start_frame": 5631
+    },
+    {
+      "id": "ev-009",
+      "slide": "slide-history-5",
+      "start_frame": 6156
+    },
+    {
+      "id": "ev-010",
+      "slide": "slide-run",
+      "start_frame": 6344
+    },
+    {
+      "id": "ev-011",
+      "slide": "slide-strong",
+      "start_frame": 7823
+    },
+    {
+      "id": "ev-012",
+      "slide": "slide-weak",
+      "start_frame": 9392
+    },
+    {
+      "id": "ev-013",
+      "slide": "slide-course-e",
+      "start_frame": 10820
+    },
+    {
+      "id": "ev-014",
+      "slide": "slide-course-m",
+      "start_frame": 12745
+    },
+    {
+      "id": "ev-015",
+      "slide": "slide-course-all",
+      "start_frame": 13524
+    },
+    {
+      "id": "ev-016",
+      "slide": "slide-ai",
+      "start_frame": 14123
+    },
+    {
+      "id": "ev-017",
+      "slide": "slide-summary",
+      "start_frame": 15575
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-title",
+      "type": "title",
+      "title": "C言語について",
+      "subtitle": "どんな言語で、なぜ学ぶのか"
+    },
+    {
+      "id": "slide-levels",
+      "type": "custom",
+      "component": "LanguageLevels",
+      "props": {
+        "title": "言語の「高さ」",
+        "rows": [
+          {
+            "name": "Python など",
+            "sub": "人の言葉に近い（高水準）"
+          },
+          {
+            "name": "C",
+            "sub": "機械の中身にも手が届く"
+          },
+          {
+            "name": "アセンブリ言語",
+            "sub": "機械語の命令に名前を付けた"
+          },
+          {
+            "name": "機械語",
+            "sub": "0 と 1（CPU が直接読む）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-levels-c",
+      "type": "custom",
+      "component": "LanguageLevels",
+      "props": {
+        "title": "C は「間」にいる",
+        "highlight": "C",
+        "rows": [
+          {
+            "name": "Python など",
+            "sub": "人の言葉に近い（高水準）"
+          },
+          {
+            "name": "C",
+            "sub": "機械の中身にも手が届く"
+          },
+          {
+            "name": "アセンブリ言語",
+            "sub": "機械語の命令に名前を付けた"
+          },
+          {
+            "name": "機械語",
+            "sub": "0 と 1（CPU が直接読む）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-history-0",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-history-1",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ],
+        "highlight": 0
+      }
+    },
+    {
+      "id": "slide-history-2",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ],
+        "highlight": 1
+      }
+    },
+    {
+      "id": "slide-history-3",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ],
+        "highlight": 2
+      }
+    },
+    {
+      "id": "slide-history-4",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ],
+        "highlight": 3
+      }
+    },
+    {
+      "id": "slide-history-5",
+      "type": "custom",
+      "component": "CTimeline",
+      "props": {
+        "title": "C 言語の歩み",
+        "items": [
+          {
+            "year": "1969〜1973",
+            "label": "C が\n生まれる\n（中心は\n1972 年）"
+          },
+          {
+            "year": "1973",
+            "label": "UNIX を\nC で\n書き直す"
+          },
+          {
+            "year": "1978",
+            "label": "解説書\n（K&R）"
+          },
+          {
+            "year": "1989",
+            "label": "ANSI の\n規格\n（C89）"
+          },
+          {
+            "year": "1999",
+            "label": "C99"
+          },
+          {
+            "year": "2024",
+            "label": "最新の\n規格\nC23"
+          }
+        ],
+        "highlight": 5
+      }
+    },
+    {
+      "id": "slide-run",
+      "type": "bullets",
+      "items": [
+        "**コンパイラ型**（C）：動かす前に、全体を機械語に翻訳しておく",
+        "**インタプリタ型**（Python）：コンパイルせずに、書いたものをすぐ動かす",
+        "C は、速さが要る場面・小さな機械で力を発揮する"
+      ],
+      "title": "プログラムを動かす 2 つの型"
+    },
+    {
+      "id": "slide-strong",
+      "type": "bullets",
+      "items": [
+        "**機械を動かす**：マイコン（Raspberry Pi Pico の公式開発キットは C/C++）",
+        "**OS の中心**：Linux のカーネルは C で書かれている",
+        "**AI の裏側**：NumPy・PyTorch の重い計算は C/C++ が担う"
+      ],
+      "title": "C が得意な場面"
+    },
+    {
+      "id": "slide-weak",
+      "type": "bullets",
+      "items": [
+        "**Web ページの画面**：JavaScript の出番",
+        "**間違いを止めてくれない**：規格の考え方は「プログラマを信頼する」",
+        "人気の指標 TIOBE（2026 年 9 月）で C は 2 位"
+      ],
+      "title": "C が不得意なこと・気をつけること"
+    },
+    {
+      "id": "slide-course-e",
+      "type": "custom",
+      "component": "CourseMap",
+      "props": {
+        "title": "C はこの先の授業につながる",
+        "columns": [
+          "今年",
+          "来年",
+          "再来年"
+        ],
+        "rows": [
+          {
+            "label": "電気情報工学科\n（いま 1 年）",
+            "cells": [
+              [
+                "プログラミング\n言語入門（後期）\nC"
+              ],
+              [
+                "プログラミング\n言語Ⅰ（通年）\nC",
+                "電気情報\n工学実験Ⅰ\nArduino"
+              ],
+              [
+                "プログラミング\n言語Ⅱ（通年）\nCASLⅡ"
+              ]
+            ]
+          },
+          {
+            "label": "機械工学科\n（いま 3 年）",
+            "cells": [
+              [
+                "情報処理Ⅰ\n（後期）\nC"
+              ],
+              [
+                "計測工学\nセンサ"
+              ],
+              [
+                "工学実験Ⅲ\nDC モータの\nPID 制御"
+              ]
+            ]
+          }
+        ],
+        "highlight": 0
+      }
+    },
+    {
+      "id": "slide-course-m",
+      "type": "custom",
+      "component": "CourseMap",
+      "props": {
+        "title": "C はこの先の授業につながる",
+        "columns": [
+          "今年",
+          "来年",
+          "再来年"
+        ],
+        "rows": [
+          {
+            "label": "電気情報工学科\n（いま 1 年）",
+            "cells": [
+              [
+                "プログラミング\n言語入門（後期）\nC"
+              ],
+              [
+                "プログラミング\n言語Ⅰ（通年）\nC",
+                "電気情報\n工学実験Ⅰ\nArduino"
+              ],
+              [
+                "プログラミング\n言語Ⅱ（通年）\nCASLⅡ"
+              ]
+            ]
+          },
+          {
+            "label": "機械工学科\n（いま 3 年）",
+            "cells": [
+              [
+                "情報処理Ⅰ\n（後期）\nC"
+              ],
+              [
+                "計測工学\nセンサ"
+              ],
+              [
+                "工学実験Ⅲ\nDC モータの\nPID 制御"
+              ]
+            ]
+          }
+        ],
+        "highlight": 1
+      }
+    },
+    {
+      "id": "slide-course-all",
+      "type": "custom",
+      "component": "CourseMap",
+      "props": {
+        "title": "C はこの先の授業につながる",
+        "columns": [
+          "今年",
+          "来年",
+          "再来年"
+        ],
+        "rows": [
+          {
+            "label": "電気情報工学科\n（いま 1 年）",
+            "cells": [
+              [
+                "プログラミング\n言語入門（後期）\nC"
+              ],
+              [
+                "プログラミング\n言語Ⅰ（通年）\nC",
+                "電気情報\n工学実験Ⅰ\nArduino"
+              ],
+              [
+                "プログラミング\n言語Ⅱ（通年）\nCASLⅡ"
+              ]
+            ]
+          },
+          {
+            "label": "機械工学科\n（いま 3 年）",
+            "cells": [
+              [
+                "情報処理Ⅰ\n（後期）\nC"
+              ],
+              [
+                "計測工学\nセンサ"
+              ],
+              [
+                "工学実験Ⅲ\nDC モータの\nPID 制御"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-ai",
+      "type": "bullets",
+      "items": [
+        "**頼み方が具体的になる**：仕組みを知っていれば、何をどう頼むかが分かる",
+        "**ツッコミを入れられる**：AI が取り違えたとき、読めて書ければ気づける",
+        "最低限の読み書きと知識は、AI を使いこなすための道具"
+      ],
+      "title": "AI の時代に、手で書いて学ぶ理由"
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "C は、**機械の中身に手が届き、人にも読める**言語",
+        "UNIX のために生まれ、今も**マイコン・OS・AI の裏側**で働く",
+        "来年・再来年の授業と、**AI を使いこなす力**につながる"
+      ],
+      "title": "まとめ"
+    }
+  ],
+  "speakers": {
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    },
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    }
+  },
+  "credits": [
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "VOICEVOX:ずんだもん",
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
+  ],
+  "total_duration_frames": 16377
+}

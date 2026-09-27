@@ -17,18 +17,22 @@ import javaVsJs from "../../../public/manifests/java-vs-js.manifest.json";
 import javaVsJsPdf from "../../../public/manifests/java-vs-js.pdf-manifest.json";
 import sourceToExe from "../../../public/manifests/source-to-exe.manifest.json";
 import sourceToExePdf from "../../../public/manifests/source-to-exe.pdf-manifest.json";
+import aboutC from "../../../public/manifests/about-c.manifest.json";
+import aboutCPdf from "../../../public/manifests/about-c.pdf-manifest.json";
 import type { TimelineManifest } from "../schema/timeline-manifest";
 import type { PdfManifest } from "../pdf/script-pdf-manifest";
 
 export const manifestRegistry: Record<string, TimelineManifest> = {
   "java-vs-js": javaVsJs as TimelineManifest,
   "source-to-exe": sourceToExe as TimelineManifest,
+  "about-c": aboutC as TimelineManifest,
 };
 
 /** design §8.1: `public/manifests/<script-id>.pdf-manifest.json` の直接 import マップ。 */
 export const pdfManifestRegistry: Record<string, PdfManifest> = {
   "java-vs-js": javaVsJsPdf as PdfManifest,
   "source-to-exe": sourceToExePdf as PdfManifest,
+  "about-c": aboutCPdf as PdfManifest,
 };
 
 /**

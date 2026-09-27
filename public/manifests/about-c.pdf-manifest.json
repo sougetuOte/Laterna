@@ -1,0 +1,480 @@
+{
+  "schema_version": 1,
+  "script_id": "about-c",
+  "char_limit": 900,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-title",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "narrator",
+          "text": "今日は「C言語について」話します。電気情報工学科の1年生と、機械工学科の3年生が、この後期に学び始める言語です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-002",
+          "speaker": "listener",
+          "text": "先生、プログラミングの言語って、たくさんありますよね。どうしてC言語なんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "いい質問です。今日は、C言語がどんな言語か、どうやって生まれたか、何が得意か、そしてみなさんがこれからどの授業で使うのかを見ていきます。最後に、AIがある時代に、なぜ手で書いて学ぶのかも話します。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-levels",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-004",
+          "speaker": "narrator",
+          "text": "まず、言語の「高さ」の話からです。コンピュータの頭脳であるCPUが直接読めるのは、0と1で書かれた「機械語」だけです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-005",
+          "speaker": "listener",
+          "text": "0と1だけで書くのは、人には大変そうです。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-006",
+          "speaker": "narrator",
+          "text": "そうですね。そこで、機械語の命令に短い名前を付けて書けるようにしたのが「アセンブリ言語」です。機械語やアセンブリ言語のように、機械に近い言葉を「低水準言語」と呼びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "listener",
+          "text": "低い、というのは、機械に近い、という意味なんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "narrator",
+          "text": "はい。反対に、Pythonのように、人の言葉に近く、機械の細かいことを気にせずに書ける言葉を「高水準言語」と呼びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-009",
+          "speaker": "listener",
+          "text": "じゃあ、C言語はどっちなんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-levels-c",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-010",
+          "speaker": "narrator",
+          "text": "C言語は、そのあいだにいます。作った本人は、Cは機械に近いけれど、別の機械にも持っていけるくらいには抽象的だ、と書いています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-011",
+          "speaker": "narrator",
+          "text": "メモリのどこに何を置くか、といった機械の中身に手が届く。それでいて、人が読める文で書ける。この両方を持っているのが、C言語の特徴です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-012",
+          "speaker": "listener",
+          "text": "機械の中身に手が届く、人の言葉、という感じですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-history-0",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "次は、C言語が生まれたきっかけです。C言語は、アメリカのベル研究所で、デニス・リッチーという人が作りました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-014",
+          "speaker": "listener",
+          "text": "どうして、新しい言語を作ったんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-015",
+          "speaker": "narrator",
+          "text": "「ユニックス」というOSを書くためです。OSは、コンピュータの土台になるソフトウェアです。そのころ、OSのような機械に近いプログラムは、アセンブリ言語で書くのが普通でした。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "slide_id": "slide-history-1",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-016",
+          "speaker": "narrator",
+          "text": "リッチーさんは、同じ研究所のケン・トンプソンさんが作った「B」という言語を、1971年から広げ始めました。こうして1969年から1973年にかけて、C言語が生まれます。いちばん大きく育ったのは1972年だそうです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-017",
+          "speaker": "listener",
+          "text": "Bの次だから、Cなんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "slide_id": "slide-history-2",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-018",
+          "speaker": "narrator",
+          "text": "本人も、Bを親と呼んでいます。そして1973年の夏には、ユニックスの中心部分を、C言語で書き直しました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-019",
+          "speaker": "listener",
+          "text": "その後は、どうなったんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "slide_id": "slide-history-3",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-020",
+          "speaker": "narrator",
+          "text": "1978年に、リッチーさんたちがC言語の解説書を出しました。書いた2人の頭文字から「ケーアンドアール」と呼ばれる、有名な本です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-021",
+          "speaker": "narrator",
+          "text": "実は、別の機械に持っていけること、つまり「移植性」は、最初の目的ではありませんでした。本人は、その関心は後から生まれた、と書いています。ユニックスを別の機械に移す中で、それがCの強みになっていきました。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "slide_id": "slide-history-4",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-022",
+          "speaker": "narrator",
+          "text": "使う人が増えると、決まりをそろえる必要が出てきます。1989年にアメリカの規格、1990年に国際規格ができました。その後も1999年、2011年と改訂が続き、今の最新は2024年の規格です。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "slide_id": "slide-history-5",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-023",
+          "speaker": "listener",
+          "text": "50年以上前に生まれた言語なのに、今も新しくなっているんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "slide_id": "slide-run",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-024",
+          "speaker": "narrator",
+          "text": "次は、C言語の得意と不得意です。その前に、プログラムを動かす方法には、大きく2つの型があることを知っておきましょう。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-025",
+          "speaker": "narrator",
+          "text": "1つ目は「コンパイラ型」です。C言語はこちらで、動かす前に、プログラム全体を機械語に翻訳しておきます。翻訳するプログラムを「コンパイラ」と呼びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-026",
+          "speaker": "narrator",
+          "text": "2つ目は「インタプリタ型」です。Pythonの公式の説明は、自分をインタプリタ型と呼んでいます。コンパイルの手間なしに、書いたものをすぐ動かせます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-027",
+          "speaker": "listener",
+          "text": "すぐ動かせるなら、インタプリタ型のほうが便利そうです。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-028",
+          "speaker": "narrator",
+          "text": "試しながら書くには便利です。一方、コンパイラ型は、先に機械語にしておくので、動かすときに翻訳の手間がかかりません。速さが要る場面や、小さな機械で動かす場面で力を発揮します。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "slide_id": "slide-strong",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-029",
+          "speaker": "narrator",
+          "text": "では、C言語が得意な場面です。1つ目は、機械を動かすことです。LEDやモーター、センサをつなぐ小さなコンピュータ「マイコン」では、CやC++がよく使われます。たとえば1ボードのマイコン、ラズベリーパイ・ピコの公式の開発キットは、CとC++向けです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-030",
+          "speaker": "narrator",
+          "text": "2つ目は、OSの中心です。パソコンやサーバで動く、リナックスというOSの中心部分は、C言語で書かれています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-031",
+          "speaker": "listener",
+          "text": "AIはどうですか？今いちばん話題ですよね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-032",
+          "speaker": "narrator",
+          "text": "AIのプログラムは、Pythonで書かれることが多いです。ただ、その裏で重い計算をしているのは、CやC++で書かれた部品です。ナムパイやパイトーチという道具の公式の説明にも、そう書かれています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-033",
+          "speaker": "listener",
+          "text": "表はPythonで、裏はCなんですね。Webはどうですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "slide_id": "slide-weak",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-034",
+          "speaker": "narrator",
+          "text": "Webページの動きは、ジャバスクリプトという言語で書くのがふつうです。C言語でWebページの画面を作ることは、ふつうはしません。ここは不得意な分野です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-035",
+          "speaker": "narrator",
+          "text": "もう1つ、気をつけたいことがあります。C言語の規格を作った人たちは、「プログラマを信頼する」ことを大事にしてきました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-036",
+          "speaker": "listener",
+          "text": "信頼される、ならうれしいです。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-037",
+          "speaker": "narrator",
+          "text": "そのぶん、間違ったことを書いても、止めてくれないことがあるんです。メモリの扱いを間違えると、おかしな動きをします。だからこそ、C言語を学ぶと、コンピュータの中で何が起きているかを考えながら書く力が付きます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-038",
+          "speaker": "narrator",
+          "text": "ちなみに、言語の人気を表すランキングの1つ、ティオベの2026年9月の順位で、C言語は2位でした。古い言語ですが、今もよく使われています。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 13,
+      "slide_id": "slide-course-e",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-039",
+          "speaker": "narrator",
+          "text": "ここからは、みなさんがC言語を学ぶ意味です。まず、電気情報工学科の1年生。今年の後期、プログラミング言語入門で、C言語の基本を学びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-040",
+          "speaker": "narrator",
+          "text": "来年、2年生のプログラミング言語いちも、1年間を通してC言語です。この授業の担当の先生が、引き続き受け持ちます。シラバスでは、ポインタや構造体まで進みます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-041",
+          "speaker": "narrator",
+          "text": "同じ2年生の実験では、アルドゥイーノというマイコンで、LEDや光センサを動かします。アルドゥイーノのプログラムは、Cの仲間であるC++に変換されて動きます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-042",
+          "speaker": "narrator",
+          "text": "そして3年生になると、プログラミング言語にという授業の前期に、キャスルツーというアセンブリ言語を学びます。機械語に近い、低水準の言語です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-043",
+          "speaker": "listener",
+          "text": "最初に出てきた、機械に近い言葉ですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-044",
+          "speaker": "narrator",
+          "text": "そうです。3年生は別の先生の担当ですが、担当の先生の説明では、Cの考え方を押さえてから進まないと、ついていくのは難しいそうです。Cは、アセンブリ言語への橋渡しになります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 14,
+      "slide_id": "slide-course-m",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-045",
+          "speaker": "narrator",
+          "text": "次は、機械工学科の3年生です。今年の後期、情報処理いちで、C言語の基本からポインタの入り口までを学びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-046",
+          "speaker": "listener",
+          "text": "機械工学科でも、この先、プログラムを使うんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-047",
+          "speaker": "narrator",
+          "text": "来年の計測工学では、センサの種類と特徴を学びます。再来年の工学実験さんでは、直流モーターのPID制御、つまりモーターを狙いどおりに動かす実験があります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 15,
+      "slide_id": "slide-course-all",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-048",
+          "speaker": "narrator",
+          "text": "担当の先生の説明では、どちらの学科でも、計測機器や1ボードのマイコンを扱うときに、C言語は欠かせません。さっきのマイコンの開発キットが、CとC++向けだったことを思い出してください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-049",
+          "speaker": "listener",
+          "text": "今年だけで終わりじゃなくて、来年も再来年も、つながっているんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 16,
+      "slide_id": "slide-ai",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-050",
+          "speaker": "listener",
+          "text": "先生、でも今は、AIがプログラムを書いてくれますよね。手で書けるようになる必要って、あるんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-051",
+          "speaker": "narrator",
+          "text": "大事な質問です。AIは確かに便利です。でも、AIに頼むときも、仕組みを知っていれば、何をどう頼めばいいかが具体的になります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-052",
+          "speaker": "narrator",
+          "text": "それに、AIは間違えることがあります。頼んだ意味を取り違えたり、おかしな方向に進み始めたりもします。そのとき「ここ、おかしくない？」とツッコミを入れられるかどうかは、自分がどれだけ読めて、書けるかで決まります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-053",
+          "speaker": "listener",
+          "text": "AIの答えを、そのまま信じちゃだめなんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-054",
+          "speaker": "narrator",
+          "text": "はい。最低限の読み書きと知識は、AIを使いこなすための道具です。この授業で、手を動かして書くのは、そのためでもあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 17,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-055",
+          "speaker": "narrator",
+          "text": "まとめます。C言語は、機械の中身に手が届き、人にも読める言語です。ユニックスを書くために生まれ、今もマイコンやOS、AIの裏側で働いています。そして、みなさんの来年、再来年の授業と、AIを使いこなす力につながっています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-056",
+          "speaker": "listener",
+          "text": "まずは今年の授業で、基本をしっかり押さえます。ありがとうございました。",
+          "style": "aside"
+        }
+      ]
+    }
+  ],
+  "total_pages": 17
+}
