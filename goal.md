@@ -333,3 +333,9 @@ columba が採点する。各項は上の完了条件と同じ番号で対応す
 - Kyozai-Athanor・Seneschal・ComfyUI_img2 への書き込み、`reference/` の改変
 - `CLAUDE.md`・`goal.md`・`docs/brief.md` の無承認変更
 - 期限を越える範囲の拡大：10/1 に間に合わないと分かったら、章と尺を削って出す（下限 480 秒を割るなら主人に 1 通で問う）
+
+## 訂正節（本文は消さない。ここが優先する）
+
+**「起きてはならない」の `src/` の行の訂正（2026-09-27 09:53 JST ＝ 2026-09-27T00:53Z、主人「component-names.ts の追加も承認します」、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`）**：
+何を誤ったか ── custom 部品を台本で使うには、`render/component-registry.ts` のほかに `src/script-engine/shared/component-names.ts` の `REGISTERED_COMPONENT_NAMES` にも名前を足す必要がある（SKILL.md 手順 3）。本文はこのファイルを「足してよい」に挙げていなかった。
+訂正 ── 足してよい物に `src/script-engine/shared/component-names.ts` への名前の追加（about-c の custom 部品の分だけ。既存の名前は変えない）を加える。**この節が本文に優先する。**
