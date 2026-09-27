@@ -49,7 +49,7 @@
 | 5 | 2026-09-27 11:54〜11:58 | `npm run render:all:script -- source-to-exe`（`out/script-engine/source-to-exe.*` を消してから。バックグラウンドで `echo ste_exit=$?`） | 0 | manifest・音声は変わらない（compile は再合成 0） |
 | 6 | 2026-09-27 12:04 | `ffmpeg -v error -y -ss <秒> -i out/script-engine/source-to-exe.mp4 -frames:v 1 <scratchpad>/n-ste-<秒>.png`（85・105・187.8・215.8・259.5 を 1 本ずつ、各 `echo exit=$?`） | 0 | 全体図で hello.c が光らない（R1）、強調した矢印の矢じりが見える（R2）、箇条書き 3 枚の点と文字がそろう |
 | 6 | 2026-09-27 12:04 | `pdftotext -enc UTF-8 out/script-engine/source-to-exe.pdf - \| grep "本資料"`（pipefail） | 0 | 最終ページの注記が `LICENSE-CONTENT` と同じ（立ち絵は CC BY 4.0、音声は各権利者の規約）（R3） |
-| 6 | 2026-09-27 12:04 | `node -e "…PDFDocument.load(…source-to-exe.pdf)…getPageCount()"`（about-c と同じ呼び出し） | 0 | 10 ページ |
+| 6 | 2026-09-27 12:09 | `node -e "const {PDFDocument}=require('pdf-lib');PDFDocument.load(require('fs').readFileSync('out/script-engine/source-to-exe.pdf')).then(d=>console.log(d.getPageCount()))"`（`echo exit=$?`） | 0 | 10 ページ（12:04 に終了コードを取らずに叩いた回を、12:09 に取り直した） |
 | 7 | 2026-09-27 12:05 | `cp deliver/source-to-exe/* <scratchpad>/old-deliver-ste/`（`echo backup_exit=$?`） | 0 | 差し替える前の納品物を控えた（MP4 `43a78b42…9c4e`・PDF `c94e503f…db55`） |
 | 7 | 2026-09-27 12:05 | `cp out/script-engine/source-to-exe.mp4 out/script-engine/source-to-exe.pdf deliver/source-to-exe/`（`echo cp_ste_exit=$?`） | 0 | description.md は変えていない |
 | 7 | 2026-09-27 12:05 | `sha256sum out/script-engine/source-to-exe.mp4 out/script-engine/source-to-exe.pdf deliver/source-to-exe/source-to-exe.mp4 deliver/source-to-exe/source-to-exe.pdf deliver/source-to-exe/description.md`（`echo sha_exit=$?`） | 0 | 新しい MP4 `c00f8b35…1434`・PDF `66c3c06e…42b0` が out と deliver で一致。description.md `509da0c4…6bab16` |
