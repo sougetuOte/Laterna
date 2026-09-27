@@ -339,3 +339,9 @@ columba が採点する。各項は上の完了条件と同じ番号で対応す
 **「起きてはならない」の `src/` の行の訂正（2026-09-27 09:53 JST ＝ 2026-09-27T00:53Z、主人「component-names.ts の追加も承認します」、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`）**：
 何を誤ったか ── custom 部品を台本で使うには、`render/component-registry.ts` のほかに `src/script-engine/shared/component-names.ts` の `REGISTERED_COMPONENT_NAMES` にも名前を足す必要がある（SKILL.md 手順 3）。本文はこのファイルを「足してよい」に挙げていなかった。
 訂正 ── 足してよい物に `src/script-engine/shared/component-names.ts` への名前の追加（about-c の custom 部品の分だけ。既存の名前は変えない）を加える。**この節が本文に優先する。**
+
+**箇条書きと 1 本目の直し（2026-09-27 11:52 JST ＝ 2026-09-27T02:52Z、主人「1 承認 2 推奨」。直しの中身は同日の主人「1. 推奨 2. ついでに直す 3. 許可する」、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`）**：
+何が起きたか ── 検収 3 回目 PASS（`59f5a7d`）の後、主人が 2 本目の試写で、箇条書きのスライドの点と文字のずれを見つけた。原因は共通部品 `src/script-engine/render/ScriptSlideRenderer.tsx` で、1 本目（3 枚）・2 本目（5 枚）・java-vs-js（1 枚）に出ている。
+足してよい物 ── (1) `ScriptSlideRenderer.tsx` の bullets の直し（かたまりは中央、中身は左揃え）。(2) 1 本目の R1・R2（`src/script-engine/render/source-to-exe/PipelineFlow.tsx` の強調）と R3（`src/compositions/ScriptPdfComposition.tsx` の最終ページの注記を `LICENSE-CONTENT` に合わせ「本資料のテキスト・コード・自作図版・立ち絵は CC BY 4.0 の下で利用できます（キャラクター音声は各権利者の規約に従います）」とする）。(3) それぞれのテストの追加。(4) source-to-exe と about-c の書き出し直しと、`deliver/source-to-exe/`・`deliver/about-c/` の MP4・PDF の差し替え。「この Wave ではやらない」の「1 本目の直し（R1〜R3）」と、「起きてはならない」の既存 2 本の出力・`deliver/source-to-exe/`・エンジン部分の行は、この 4 つについて外す。
+検証 7 の置き換え ── (a) は今のまま（manifest・音声は `6cbaf95` と同一）。(b) source-to-exe は、書き出し直した MP4・PDF の SHA-256 が新しい `deliver/source-to-exe/` の物と一致すること。あわせて評価器が、箇条書きの 3 枚・全体図（85 秒）・強調した矢印（105 秒）のフレームを切り出して目視すること。(c) java-vs-js は、立ち絵を `805d312` の v1 に一時的に戻して書き出し、Kyozai の参照と比べる。映像はフレームごとのハッシュ（`ffmpeg -f framemd5`）の違いが箇条書きのスライドの区間の中だけにあること、PDF は本文テキスト（`pdftotext`）の差が最終ページの注記だけにあること。戻した後に `git status --porcelain` に `public/portraits` が無いこと。検証 6 は新しい納品物で測る。
+数え方 ── この訂正節の後の検収は、FAIL の回数を 1 回目から数え直す（主人の答え 2）。採点範囲は起点 `c4e6ffe` からのままとする。**この節が本文に優先する。**
