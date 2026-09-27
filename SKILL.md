@@ -59,6 +59,7 @@ Laterna/
 3. 立ち絵が `public/portraits/narrator-default.png`・`listener-default.png` にあることを確かめる（無いと render が止まる）。差し替えるときは「立ち絵を差し替える・増やす」。
 4. `ffprobe`（ffmpeg）と `magick`（ImageMagick 7）が使えることを確かめる（手順6 で使う）。
 5. `materials/<script-id>/build-log.md` を作り、以降のコマンドと終了コードを「手順番号・日時・コマンド・終了コード・備考」の表に残す。
+   `build-log.md` の終了コードは、コマンドを単独で叩いた直後に `echo exit=$?` で取る。パイプは `set -o pipefail` の下で取る。取っていない実行は表に書かず、表の外に残す（2 本目の検収で 2 回落ちた。書き方の見本は `materials/about-c/build-log.md` の「表の決まり」）。
 
 ## 手順1：調査
 

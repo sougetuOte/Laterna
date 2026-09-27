@@ -5,81 +5,72 @@
 ## これは何か
 
 授業用の解説動画（掛け合い）＋復習 PDF を「この題材で 1 本」で作るプロジェクト。Kyozai-Athanor のエンジンを移植し、統治の層は持ち込まない。
-1 本目「ソースから実行ファイルまで」（`source-to-exe`）は 2026-09-26 に納品し検収を通った（`deliver/source-to-exe/`）。10/2 の高専 1 年・初回授業で使う。
-**Wave 2.5「点検」（レビューとリファクタリング）は 2026-09-27 に検収 PASS で締め、main に合流した。次は Wave 3（2 本目）で、着手時に G0 を取る。**
+1 本目「ソースから実行ファイルまで」（`source-to-exe`）と 2 本目「C言語について」（`about-c`）を納品した（`deliver/<script-id>/`）。どちらも 2026-10-02 の授業で使う（1 本目は高専 1 年の初回、2 本目は電気情報工学科 1 年のプログラミング言語入門と機械工学科 3 年の情報処理Ⅰ）。
+**Wave 3「2 本目」は 2026-09-27 に検収 PASS で締めた。次は 10/2 の授業の結果を聞いてから、次の Wave の G0 を面接で取る。**
 
 ## 読む順序
 
 1. `README.md`（34 行）
 2. `docs/brief.md`（134 行。決定 D1〜D10 と §9 の訂正節 D8・D9）
-3. `goal.md`（254 行。Wave 1・2 は完了。**末尾の Wave 2.5「点検」節がいまの契約**）
-4. `docs/research/2026-09-27-review.md`（196 行。点検の記録 ── 所見 R1〜R52 の処置・優先度・full-review の結果）
-5. `SKILL.md`（158 行。「この題材で 1 本」の手順書）
-6. `materials/source-to-exe/`、`materials/portraits/README.md`
-7. `docs/inventory.md`（343 行）／`docs/design.md`（155 行）／`imagegen/README.md`
+3. `goal.md`（351 行。Wave 1・2・2.5・3 は完了。**末尾の Wave 3 節と、その訂正節 3 つ**が直近の契約）
+4. `SKILL.md`（159 行。「この題材で 1 本」の手順書。手順 0 の 5 に作業記録の書き方を足した）
+5. `materials/about-c/`（outline.md・build-log.md の「表の決まり」・description.md）、`materials/source-to-exe/`
+6. `docs/research/2026-09-27-review.md`（198 行。点検の記録。「Wave 3 以降へ」の行は下の未決に移した）
+7. `docs/inventory.md`／`docs/design.md`／`imagegen/README.md`
 8. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
 
 ## 現在地
 
-- **Wave 1「目星」**・**Wave 2「1 本目」**は完了（2026-09-26。columba の検収 PASS）。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
-- **Wave 2.5「点検」は完了**（2026-09-27 着手・締め。G0 承認 06:15 JST「1 承認 2 OK 3 OK」、セッション `15a2552d-a599-4152-954c-132b22769ae3`。止め時 10/1）：
-  - 済：依存の更新（`ae82551`。脆弱性 11 件 → low 2 件）／点検（built-in `/code-review` high、`engineering:tech-debt`）／出力を変えない直し（`0b3c2ab`・`c787f90`・`e0f711c`・`6c7606f`・`9939fa1`・`dece5bb`）／`/simplify`（読み手 `seneschal:lens` 4 人）とその直し（`38957fa`・`1d3f122`）。
-  - 済：full-review（主人が起動、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`、Workflow `wf_cb7b7981-ddc`）。**Green ではない**（上限 5 周、指摘 13・10・6・12・6、テストは毎周すべて通過）。直しは `d732c3f`・`51f84c5`・`2322351`・`6859922`。残りと主人へ回した物は、主人の判断「推奨どおり」で Wave 3 以降へ／直さない（記録の R45〜R52）。
-  - 済：`/security-review`（0 件）。columba の検収 1 回目 **FAIL**（点検の記録の書き漏れ 3 点。コードと出力は通過）→ 記録を直して 2 回目 **PASS**（HEAD `985a8ed`、検証 1〜8。7 は該当なし）。2 回目が判定の外で挙げた記録の誤記 1 件（R41）は `464029b` で直した。
-  - 締め：`wave2.5-review` を main に fast-forward で合流し、push した。
-- 動いている物（実測 2026-09-27、columba の検収 2 回目、HEAD `985a8ed`）：
-  - `npm test` 18 files / 350 tests PASS、`npm run lint` exit 0。
-  - 書き出しの一致（goal.md 検証 3）：compile 2 本の manifest・音声が `6cbaf95` と同じ。source-to-exe の MP4・PDF が納品物と、java-vs-js（立ち絵 v1）の MP4・PDF が Kyozai の参照と SHA-256 一致。
-  - `out/script-engine-pdf-temp/` は空のディレクトリとして残る（`build-script-pdf.mjs` が作り、中身だけを消す）。
-  - `npm audit`：low 2 件（eslint 系。`--force` は Wave 3）。
-  - VOICEVOX 0.25.2（50021）は起動中だった。imagegen は 2026-09-27 に起動していない。
-- 1 本目の納品物に出ている不具合（**直していない**。主人の判断「1 推奨で直さない」2026-09-27 07:04 JST ── 10/2 は今の版で使い、Wave 3 で直す）：R1 全体図（79〜100 秒）で hello.c だけが光る／R2 強調した矢印の矢じりが線に埋もれる（100 秒〜）／R3 PDF 最終ページの注記「立ち絵は各権利者の規約に従います」が `LICENSE-CONTENT`（立ち絵も CC BY 4.0）と食い違う。
-- まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・画像スライド（Wave 3）。
+- **Wave 1「目星」**・**Wave 2「1 本目」**（2026-09-26）・**Wave 2.5「点検」**（2026-09-27 午前）は完了。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
+- **Wave 3「2 本目：C言語について」は完了**（2026-09-27。G0 承認 09:49 JST、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`。起点 `c4e6ffe`）：
+  - 2 本目 `about-c`：9 分 6 秒（545.96 秒）・PDF 17 ページ。台本 56 発話、図解は `render/about-c/` の 3 部品（LanguageLevels・CTimeline・CourseMap）。個人名は出さない（主人の答え：案 B）。
+  - 主人の試写で箇条書きの点と文字のずれ（共通部品）が見つかり、訂正節で共通部品と 1 本目の R1〜R3 を直して、1 本目と 2 本目を書き出し直し、納品物を差し替えた（`d2f6af5`）。PDF の注記の JSX 改行による余計な空白も、足したテストで見つかって直した。
+  - 検収：1 回目 **FAIL**・2 回目 **FAIL**（どちらも検証 6。作業記録の終了コードが実測でなかった）→ 縦の停止で MAGI を 1 回（結論：表を実測だけにし、読むだけのコマンドを叩き直す。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（`59f5a7d`）→ 訂正節 → 数え直して 1 回目 **PASS**（`9954bdd`、検証 1〜8）。
+- 動いている物（実測 2026-09-27、columba の最後の検収、HEAD `9954bdd`）：
+  - `npm test` 20 files / 370 tests PASS、`npm run lint` exit 0。
+  - 納品物の SHA-256：source-to-exe は MP4 `c00f8b35…1434`・PDF `66c3c06e…42b0`（10 ページ・285.888 秒）、about-c は MP4 `be055db0…31b6`・PDF `bec94511…a90c`。どちらも書き出し直すと一致する（render は決定的）。
+  - compile 2 本（source-to-exe・java-vs-js）の manifest・音声は `6cbaf95` と同じ。
+  - java-vs-js（立ち絵 v1）は Kyozai の参照と、箇条書きの区間とその直前 23 フレーム（エンコーダの先読み。`-fuzz 2%` で差 0 画素）だけ映像が違う。音声は全部一致。
+  - `npm audit`：low 2 件（eslint 系）。VOICEVOX 0.25.2（50021）は起動中だった。imagegen は起動していない。
+- まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・画像スライド。
 
 ## これまで（git log が持たない解釈だけ）
 
 | commit | 出来事 |
 |---|---|
-| `ba991a4` | 初回 commit（brief・goal・研究資料・README） |
-| `6aafd4d` | 主人が承認した D8・D9 の訂正節を brief §9 に反映（分類器に一度止められ、主人の「書込許可」の後に Edit で通った） |
-| `7ee1d02`・`08b76a5` | フェーズ (A) 棚卸し。検収 1 回目 **FAIL**（表に無い参照 1 件）→ 2 回目 **PASS** |
-| `805d312` | フェーズ (B) 切り出し実証。**PASS** |
-| `230dbbc`・`8980aed` | フェーズ (C) 設計草案。**PASS**。Wave 2 の G0 承認 |
-| `843bdfd` | P1 imagegen。**PASS** |
-| `e81e6b4` | 台本の箇条書き（先頭 `**`）を引用符で囲む。js-yaml が alias と読んで compile が通らなかった |
-| `5c4990b`・`85390b7` | 立ち絵 v2、render・SKILL.md・納品。1 回目の試写で 2 件の不具合を見つけて直した |
-| `f410027` | **主人の差し戻し**：聞き役が画面外を向いていた（retro 1 回目。学びは SKILL.md 手順 6） |
-| `ac7b2e5` | goal.md に検証 9(ii) の訂正節（主人承認）。columba 2〜9 **全体 PASS** |
-| `36fe414`・`6cbaf95` | ライセンス節と VOICEVOX 規約の URL、GitHub 公開（主人指示）。Wave 2.5 の起点は `6cbaf95` |
-| `02478ed` | Wave 2.5「点検」の G0（main に入れた）。草案は着手前に `seneschal:gabriel` が点検し、指摘 25 件を反映 |
-| `ae82551` | `npm audit fix`（`--force` なし）。34 パッケージが入れ替わり、出力はバイト一致 |
-| `cf23a24` | 点検の記録。納品 MP4 のフレームを切り出して R1・R2 を目視で確かめた |
-| `9939fa1` → `38957fa` | script-id の文字種を絞る直し（R4）を、`/simplify` の直す深さの指摘で、シェルを通さない Remotion 呼び出しに作り直した |
-| `d732c3f`〜`6859922` | full-review（主人が起動）。5 周で Green にならず（13・10・6・12・6 件）。残りは主人の判断「推奨どおり」で Wave 3 以降へ／直さない（R45〜R52） |
-| `985a8ed` | Wave 2.5 の検収。1 回目 **FAIL**（記録の書き漏れ 3 点）→ 2 回目 **PASS**。本体が確かめずに書いた 1 文（R41）を 2 回目の評価器が見つけた（`464029b`） |
+| `ba991a4`〜`8980aed` | Wave 1。フェーズ (A) の検収 1 回目 **FAIL** → 2 回目 PASS、(B)(C) PASS |
+| `843bdfd`〜`6cbaf95` | Wave 2。imagegen、立ち絵 v2、1 本目の納品。**主人の差し戻し**（聞き役の向き、retro 1 回目。学びは SKILL.md 手順 6）。GitHub 公開 |
+| `02478ed`〜`c4e6ffe` | Wave 2.5「点検」。full-review は 5 周で Green にならず（残りは Wave 3 以降へ／直さない）。検収 1 回目 FAIL → 2 回目 PASS |
+| `d4152b6` | Wave 3 の G0（主人の答え：尺 8〜10 分・2 学科共通の 1 本・個人名は出さない・R1〜R3 は入れない） |
+| `9648cf9` | 訂正節 1：`component-names.ts` への名前の追加を認める（G0 の書き漏れ） |
+| `e1601fa`・`86025df` | 検収 1 回目・2 回目 **FAIL**（作業記録。説明の行に終了コード 0／grep の 0 件を 0 と書いた） |
+| `59f5a7d` | MAGI の後に作業記録を書き直し、検収 3 回目 PASS |
+| `9a17903`・`d2f6af5`・`9954bdd` | 訂正節 2・3：箇条書き（共通部品）と 1 本目の R1〜R3 の直し、納品物の差し替え、java-vs-js の物差しの置き換え（エンコーダの先読み 40 フレームを許す）。数え直して 1 回目 PASS |
 
-retro の起動条件（loop.md）：Wave 2.5 では FAIL 1 回（2 回で条件 1）、主人の差し戻し 0 回 ── 起動しない。R1〜R3 は出荷した 1 本目の不具合で、主人の判断で Wave 3 に回した。**Wave 3 で直せば条件 3（出荷物が次の回で直しの対象になった）に当たる**。
+**retro（2026-09-27、Wave 3 の締め）**：起動条件 1（同一フェーズで検収 2 回 FAIL）と 3（出荷した 1 本目が次の回で直しの対象になった）に当たった。学びは 3 つ。
+1. 終了コードは、叩いたその場で `echo exit=$?`（パイプは pipefail）で取る。パイプや `;` の途中は実測にならない。記録に「無い」「0」と書く前に確かめる → `SKILL.md` 手順 0 の 5 に 1 文足した（主人承認）。
+2. 前の回で検収を通った書き方でも、正しいとは限らない（1 本目の作業記録の古い行にも同じ型がある。古い行は書き換えずに残した）。
+3. 点検で「出力が変わるので後回し」にした見た目の所見（bullets のマーカー位置）は、次の回にもそのまま出た。後回しにする見た目の所見は、次の回の G0 に「試写で見る点」として入れる。
 
 ## 決定（蒸し返さない）
 
 brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 1. 使用場面は学校の授業で流す。情報系は高専機構の教材が勝つが、プログラム系は自作するしかない。
-2. 1 本目の期限は 10/1。10/2 の初回授業（高専 1 年）用。
-3. 題材は「ソースから実行ファイルまで」、尺 3〜5 分、納品先は `deliver/<script-id>/`。
+2. 1 本目・2 本目の期限は 10/1。10/2 の授業用。
+3. 1 本目は「ソースから実行ファイルまで」（3〜5 分）。2 本目は「C言語について」（8〜10 分、2 学科共通の 1 本、「学ぶ意義」の章だけ学科ごと）。納品先は `deliver/<script-id>/`。
 4. 立ち絵は Claude が主体で作る。採用は解説役バストアップ s2・聞き役ランタン版 s2。
 5. 可能な限り公開して実績にする。ライセンスは MIT（コード）＋CC BY 4.0（台本・図解・教材本文・立ち絵。合成音声・第三者素材は対象外）。
 6. `public/audio`・`public/manifests`・`materials/portraits/*.kra` は git で追跡する。
 7. 画像環境は Laterna の中に `imagegen/` として建てる。img2 は予備経路。
 8. 台本の本文は compile の前に表で主人に見せて承認をもらう。
-9. `manifest-registry.ts` は手動追記で出した。(c) の廃止の試みは Wave 3。
-10. custom スライドは部品側で白いパネルを描く。code スライドの `<pre>` は inline-block・左揃え・40px。
+9. `manifest-registry.ts` は手動追記で出す。(c) の廃止の試みは次の Wave 以降。
+10. custom スライドは部品側で白いパネルを描く。code スライドの `<pre>` と bullets の `<ul>` は、どちらも inline-block・左揃え（かたまりは中央、中身は左）。
 11. 立ち絵のファイルは 2 枚とも「向かって右」を向いた絵にする（右カラムはレンダラーが反転する）。
-12. **Wave 2.5「点検」**は feature として G0 を通した（Seneschal にリファクタリングの種別が無い）。止め時 10/1。ブランチで進め、検収 PASS まで main に合流しない（2026-09-27 主人承認）。
-13. 本 Wave は full-review を使う。起動は主人（`/seneschal:full-review`）。brief §8 の「重い手法は既定では使わない」は、主人の指示で本 Wave に限り外した。
-14. `npm audit fix` は `--force` なしだけ（主人 OK）。eslint を上げる `--force` は Wave 3。
-15. Remotion CLI はシェルを通さず、`process.execPath` ＋ `@remotion/cli/remotion-cli.js` で呼ぶ（`scripts/remotion-cli.mjs`）。script-id の文字種の検査は compile の入口（`cli.ts`）の 1 か所（規則の本体は `schema/script.ts` の `FILE_SAFE_ID_PATTERN` で、発話 id と共有。点検 R32）。
-16. **1 本目の R1〜R3（図解の強調 2 件・PDF のライセンス注記）は直さず、10/2 は今の版で使う。Wave 3 で直す**（主人「1 推奨で直さない」2026-09-27 07:04 JST）。
+12. Remotion CLI はシェルを通さず、`process.execPath` ＋ `@remotion/cli/remotion-cli.js` で呼ぶ。script-id と発話 id の文字種の規則は `schema/script.ts` の `FILE_SAFE_ID_PATTERN` の 1 か所。
+13. **動画・PDF・概要欄・リポジトリに主人の個人名を出さない**（案 B）。学校名・学科名・科目名は出す。担当教員は「この授業の担当の先生」と言う。
+14. 同じフェーズで検収が 2 回 FAIL したら MAGI を 1 回、なお FAIL なら主人へ（Seneschal loop.md）。訂正節で作業が加わった後の検収は、FAIL の回数を数え直す（2026-09-27 主人）。
+15. `npm audit fix` は `--force` なしだけ。eslint を上げる `--force` は後の Wave。
 
 ## 採らなかった案
 
@@ -87,40 +78,52 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 |---|---|
 | 立ち絵を主人が手元で生成して納品 | 主人が不得意。後工程を見越した設計は Claude 主体のほうがよい |
 | 聞き役の向きをレンダラー側（`scaleX(-1)` の撤去）で直す | java-vs-js の render 経路が変わり、Kyozai との再現性の物差しが使えなくなる |
-| bullets スライドの中央寄せを直す | 出力が変わる（java-vs-js も bullets を使う）。Wave 3 で検討 |
-| script-id の文字種をスクリプト側（`scripts/script-id.mjs`）でも検査する（`9939fa1`） | 原因（シェルで引数がつながれる）を残した手当てで、規則が 2 か所に分かれた。シェル無しで呼べば要らない |
-| `countSpeechCharacters` を `shared/` に移す | 本番の損は 0（テスト単独の読み込みで約 30ms）。1 関数のファイルを足すほどではない |
-| 使われない `resolveComponent`・`findActiveSlideEvent` を消す | テストが固定していて、消すとテストの削除になる（本 Wave のやらないこと） |
-| full-review の対象を 4 つに分ける | 1 周で監査役が 13 人になる。対象は 1 つにして、監査役 4 人＋試験役 1 人 |
-| `tasks.md`（specs 3 点セット）を作る | Kyozai の `docs/specs/` は持ち込まない。フェーズは本ファイルで追う |
+| 箇条書きのずれを 2 本目専用の部品で直す | 1 本目も同じずれを持ったまま 10/2 に使うことになる。主人が共通部品の直しを選んだ |
+| 2 本目を学科別に 2 本に分ける | 主人の答え（共通の 1 本、「学ぶ意義」の章だけ学科ごと） |
+| 検収 2 回目の FAIL で指摘された 1 行だけを直す | MAGI の全員が一致して却下。同じ型の行が表に多数残り、3 回目の FAIL がほぼ確実だった |
+| 箇条書きの直しと作業記録の直しを同じ検収に出す | MAGI（調停役・批判役）が却下。主人へ上がる前の最後の 1 回で、落ちた原因を 1 つに絞れなくなる |
+| 機械工学科の「来年・再来年」を「C を使う授業」と言う | シラバスで確かめられない（情報処理Ⅱは Python）。計測・制御の授業と、担当の先生の説明で言った |
+| full-review の対象を 4 つに分ける／`tasks.md` を作る | 監査役が 13 人になる／Kyozai の specs は持ち込まない |
 
 ## 未決（主人の判断待ち）
 
-- 10/2 の授業での受け入れ（使えなかった点は Wave 3 の G0 に書く）。
+- 10/2 の授業での受け入れ（1 本目・2 本目。使えなかった点は次の Wave の G0 に書く）。
 - brief §6 の答え（上の「決定」1〜5・7）を brief 本文に写すか。
-- Wave 3 以降に回した依存の変更：`@types/node` の宣言（R10）、使われていない `@remotion/media` の削除（R9）、eslint の `--force`。
+- 依存の変更：`@types/node` の宣言（R10）、使われていない `@remotion/media` の削除（R9）、eslint の `--force`。
+
+## 未決（点検の記録から移した「Wave 3 以降へ」の所見。次の Wave の G0 で扱う）
+
+`docs/research/2026-09-27-review.md` の表の行。R1〜R3 は Wave 3 で直した（`d2f6af5`）。
+- 部品：R5 Citation のフェードの基準・R51 PDF の Freeze とフェード（同じ根）／R6 Flowchart の矢じりと 14px／R26 Iceberg の文言の固定
+- エンジン：R7 `speaker_overrides` が使われない／R21・R50 検査が遅い（credit・asset_key・slide_events 0 件）／R46 尺の誤差率の分母の計算
+- テスト：R20 図解部品と `scripts/*.mjs` のテスト（PipelineFlow と about-c の部品は足した）／R48 台本を足しても整合の検査が追いかけない・manifest が今のコードの出力と一致するかのテスト
+- 文書：R19 行き先の無い文書参照 57 か所
+- imagegen：R23 `--port` の前方一致／R24 smoke.py の None／R37 `-ExtraArgs` の引用／R49 カスタムノードの検査の場所と README／R52 依存のハッシュと ComfyUI のタグ固定
+- 依存：R9・R10（上の未決）
 
 ## 未決（実測・作業待ち）
 
-- 点検の記録（`docs/research/2026-09-27-review.md`）の「Wave 3 以降へ」の行を、Wave 3 の `goal.md` か本ファイルの未決に移す（記録の消滅条件）。
-- `docs/design.md` (c)、字幕の要否、bullets のマーカー位置、`docs/research/2026-09-26-image-env.md` の消滅条件（Wave 3 の着手時）。
+- `docs/design.md` (c)、字幕の要否、`docs/research/2026-09-26-image-env.md` の消滅条件。
+- 点検の記録の消滅条件：上に移したので、次の Wave の G0 で扱いが決まったら畳む。
+- `materials/source-to-exe/build-log.md` の古い行（説明の行に終了コード 0）は書き換えていない。次に 1 本目を検収にかけるときは、新しい節の行だけを物差しにする。
 
 ## 次の一手
 
-10/2 の授業で 1 本目を使った結果を主人から聞き、Wave 3（2 本目）の G0 を面接で取る。G0 の草案には、点検の記録の「Wave 3 以降へ」の行（R1〜R3 の 1 本目の直しを含む）と、10/2 で使えなかった点を入れる。
+10/2 の授業で 1 本目・2 本目を使った結果を主人から聞く。次の題材があれば、その Wave の G0 を面接で取る（草案に上の「Wave 3 以降へ」の所見の扱いと、retro の学び 3「試写で見る点」を入れる）。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
 - Kyozai-Athanor は読み取り専用。状態は `git ls-files`・`git log`・`git show`、`git status` は `--no-optional-locks`。
-- 検収は `seneschal:columba` に出す。採点範囲は本フェーズの成果コミットに限る（Wave 2.5 は goal.md の「採点範囲」）。主人の別指示は別コミット。**columba や自分が compile／render している間は `src/`・`public/`・`out/` を触らない。imagegen の start／stop も columba と同時に使わない。**
-- **書き出しの一致（goal.md Wave 2.5 検証 3）**の取り方：VOICEVOX 0.25.2 を起動して、(a) compile 2 本と `git diff --exit-code 6cbaf95 -- public/manifests public/audio`、(b) source-to-exe を render して納品物の SHA-256 と比べる、(c) 立ち絵を `git show 805d312:public/portraits/<名前>.png > …` で v1 に戻して java-vs-js を render し Kyozai の参照と比べ、`git checkout HEAD -- public/portraits` で戻す。2 本で 10 分ほど。前のセッションの scratchpad（`…\15a2552d-…\scratchpad\verify-identity.sh`、写しが `…\dbf265b1-…\scratchpad\`。引数 `ste`／`jvj`／`all`）に手順を回すスクリプトがある。消えていたら goal.md の検証 3 から作り直す（常設スクリプトはリポジトリに入れない）。
-- full-review は `disable-model-invocation`。主人が `/seneschal:full-review` を打ったら、SKILL.md の手順どおり引数（点検の記録の「full-review の結果」節）を揃えて Workflow を起動する。`scriptPath` の絶対パスはこのセッションからは受け付けられなかったので、Seneschal の `full-review.js` を読んで中身を `script` にそのまま渡した。書き出しの一致は 1 本 5 分ずつの 2 コマンドに分ける（Bash の上限 10 分）。結果は主人に見せてから commit する。
-- VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、PDF のページ数は `pdf-lib`。node 24／npm 11。Remotion の headless Chrome は `node_modules/.remotion/`（270 MB。`npm audit fix` では消えなかった）。
+- 検収は `seneschal:columba` に出す。**columba や自分が compile／render している間は `src/`・`public/`・`out/` を触らない。**同じ作業ツリーで別ブランチに切り替えても、columba の render とぶつかる（MAGI の gabriel の指摘）。
+- **作業記録（build-log.md）**は `materials/about-c/build-log.md` の「表の決まり」に従う。終了コードは叩いた直後に `echo exit=$?`。氏名などを伏せて検索するときは、一覧を scratchpad のファイルに BOM なしで置いて `grep -f`（一致 0 件は終了コード 1）。
+- **書き出しの一致**：render は決定的。1 本目・2 本目は上の「現在地」の SHA-256 と比べる。java-vs-js は立ち絵を `git show 805d312:public/portraits/<名前>.png > …` で v1 に戻して書き出し、Kyozai の参照と `ffmpeg -f framemd5` で比べる（goal.md Wave 3 の最後の訂正節）。戻した後は `git checkout HEAD -- public/portraits`。scratchpad の `verify-identity.sh` は 1 本目の古い SHA-256 のままなので、使うなら値を直す。
+- 図解の試写は `node node_modules/@remotion/cli/remotion-cli.js still src/index.ts ScriptComposition <png> --frame=<N> --image-format=png --props=<props.json>`（`--image-format=png` が無いと remotion.config の既定 pdf とぶつかって落ちる）。render の後は `ffmpeg -ss <秒> -i <mp4> -frames:v 1 <png>` で切り出して Read で目視する。
+- 読みの確認は VOICEVOX の `/audio_query` が返す `kana` を見る（「その間」→そのかん、「その分」→そのわけ、と読んだ）。
+- 台本 YAML：js-yaml はアンカーの merge（`<<`）をしない。値が `**`・`*`・`&`・`[` で始まる箇条書きは `"…"` で囲む。
+- 2 年以上の科目のシラバスの URL は、`year=` が入学年度（例：電気情報 3 年は year=2024）。
+- VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、`pdftotext` は Git Bash の `/mingw64/bin`、PDF のページ数は `pdf-lib`。node 24／npm 11。
 - 分類器（auto mode）が止めた操作は別経路で追わない。統治文書（goal.md・brief.md）は、主人の「承認」「書込許可」の後に Edit ツールで書く。
-- Bash の作業ディレクトリは呼び出しをまたいで残る。git は `git -C /d/work8/Laterna` で呼ぶ。
-- リモートは `origin`（GitHub、https）。commit したら push（作業ブランチも push する）。`gh` は sougetuOte でログイン済み。
-- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。HTTP は `urllib` か node の `fetch`、複数行の Python は `python - <<'EOF'`。
-- **150 行超のヒアドキュメント（引用符・バッククォートを含む）は bash が失敗する。**長い文書は Write ツールで書く。
-- `.ps1` は BOM 付き UTF-8。PowerShell の出力は cp932。待つなら `run_in_background` で回して完了の通知を待つ。
-- 台本 YAML：値が `**`・`*`・`&`・`[` で始まる箇条書きは `"…"` で囲む。
-- render の後は `ffmpeg -ss <秒> -i <mp4> -frames:v 1 <png>` でフレームを切り出し、Read で目視する（図解の重なり・code の中央寄せ・立ち絵の向き・図解の強調）。
+- git は `git -C /d/work8/Laterna` で呼ぶ。リモートは `origin`（GitHub、https）。commit したら push。
+- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。HTTP は node の `fetch`。
+- **シェル経由で `|`・`\`・`$` を含む文字列を書き換えると壊れやすい。**表の行や長い文書は Write／Edit ツールで書く。作業ツリーの改行は CRLF のことがある（node で書くときは元の改行を保つ）。
+- full-review は `disable-model-invocation`。`scriptPath` の絶対パスは受け付けられないので、Seneschal の `full-review.js` を読んで `script` に渡す。MAGI は縦の停止のとき `adapters/claude-code/skills/magi/SKILL.md` を Read で読んで回す。
