@@ -41,10 +41,19 @@
 | 6 | 2026-09-27 11:13（取り直し） | `magick -density 50 "out/script-engine/about-c.pdf[4]" "out/script-engine/about-c.pdf[13]" +append <scratchpad>/pdf.png` | 0 | PDF の年表と科目の表のページ |
 | 7 | 2026-09-27 11:13（取り直し） | `sha256sum out/script-engine/about-c.mp4 out/script-engine/about-c.pdf deliver/about-c/about-c.mp4 deliver/about-c/about-c.pdf deliver/about-c/description.md` | 0 | MP4 `f63dc83e…59c4`・PDF `a747922d…abe8` が out と deliver で一致。description.md `ebff9d73…7664` |
 | 7 | 2026-09-27 11:13（取り直し） | `cmp materials/about-c/description.md deliver/about-c/description.md` | 0 | 同一 |
-| 7 | 2026-09-27 11:13（取り直し） | `grep -l -f <scratchpad>/names.txt $(git diff --name-only c4e6ffe..HEAD -- . ':!public/audio')` | 1 | 一致 0 件（合格）。names.txt は氏名の漢字・読み・ローマ字の 5 行（BOM なし。1 行目が当たることを別ファイルで試した） |
+| 7 | 2026-09-27 11:13（取り直し） | `grep -l -f <scratchpad>/names.txt $(git diff --name-only c4e6ffe..HEAD -- . ':!public/audio')` | 1 | 一致 0 件（合格）。names.txt は 5 行：姓の漢字・名の漢字・名の読み（カタカナとひらがな）・名のローマ字（BOM なし。当たることを別ファイルで試した）。姓の読みは入れていない（検収 3 回目の付記） |
 | 7 | 2026-09-27 11:13（取り直し） | `grep -c -f <scratchpad>/names.txt deliver/about-c/description.md` | 1 | 0 件（合格） |
 | 7 | 2026-09-27 11:13（取り直し） | `pdftotext -enc UTF-8 deliver/about-c/about-c.pdf - \| grep -c -f <scratchpad>/names.txt` | 1 | 0 件（合格）。pipefail の下で取った |
 | 7 | 2026-09-27 11:13（取り直し） | `pdftotext -enc UTF-8 deliver/about-c/about-c.pdf - \| grep -c 担当の先生` | 0 | 3 件（個人名の代わりの言い方） |
+| 5 | 2026-09-27 11:54〜12:04 | `npm run render:all:script -- source-to-exe`（`out/script-engine/source-to-exe.*` を消してから。続けて about-c。バックグラウンドで `echo ste_exit=$?`） | 0 | 箇条書き・R1〜R3 の直し（`d2f6af5`、Wave 3 の訂正節）の後の書き出し直し |
+| 5 | 2026-09-27 11:58〜12:04 | `npm run render:all:script -- about-c`（`out/script-engine/about-c.*` を消してから。`echo ac_exit=$?`） | 0 | 同上 |
+| 6 | 2026-09-27 12:04 | `ffmpeg -v error -y -ss <秒> -i out/script-engine/source-to-exe.mp4 -frames:v 1 <scratchpad>/n-ste-<秒>.png`（85・105・187.8・215.8・259.5 を 1 本ずつ、各 `echo exit=$?`） | 0 | 全体図で hello.c が光らない（R1）・強調の矢じりが見える（R2）・箇条書き 3 枚の点と文字がそろう |
+| 6 | 2026-09-27 12:04 | `ffmpeg -v error -y -ss <秒> -i out/script-engine/about-c.mp4 -frames:v 1 <scratchpad>/n-ac-<秒>.png`（205・250・300・480・525 を 1 本ずつ、各 `echo exit=$?`） | 0 | 箇条書き 4 枚の点と文字がそろう |
+| 6 | 2026-09-27 12:04 | `pdftotext -enc UTF-8 out/script-engine/about-c.pdf - \| grep "本資料"`（pipefail） | 0 | 注記が「…自作図版・立ち絵は CC BY 4.0 …（キャラクター音声は各権利者の規約に従います）」 |
+| 7 | 2026-09-27 12:05 | `cp out/script-engine/about-c.mp4 out/script-engine/about-c.pdf deliver/about-c/`（`echo cp_ac_exit=$?`） | 0 | 納品物の差し替え |
+| 7 | 2026-09-27 12:05 | `sha256sum out/script-engine/about-c.mp4 out/script-engine/about-c.pdf deliver/about-c/about-c.mp4 deliver/about-c/about-c.pdf deliver/about-c/description.md`（ほかに source-to-exe の 5 本も同じ呼び出しで。`echo sha_exit=$?`） | 0 | 新しい MP4 `be055db0…31b6`・PDF `bec94511…a90c` が out と deliver で一致。description.md は変えていない（`ebff9d73…7664`）。11:13 の行の `f63dc83e…`・`a747922d…` は直す前の版 |
+| 7 | 2026-09-27 12:05 | `ffprobe -v error -show_entries stream=codec_type,codec_name -show_entries format=duration -of default=nw=1 out/script-engine/about-c.mp4`（`echo ffprobe_exit=$?`） | 0 | h264＋aac、545.962667 秒 |
+| 7 | 2026-09-27 12:05 | `node -e "const {PDFDocument}=require('pdf-lib');PDFDocument.load(require('fs').readFileSync('out/script-engine/about-c.pdf')).then(d=>console.log(d.getPageCount()))"`（`echo pages_exit=$?`） | 0 | 17 ページ |
 
 ## 終了コードを取っていない実行
 
