@@ -1,0 +1,1076 @@
+{
+  "schema_version": 1,
+  "script_id": "python-runs",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "narrator",
+      "content_hash": "2856725e",
+      "wav_path": "audio/python-runs/u-001-2856725e.wav",
+      "duration_seconds": 8.234666666666667,
+      "start_frame": 0,
+      "end_frame": 256,
+      "audio_end_frame": 247
+    },
+    {
+      "id": "u-002",
+      "speaker": "listener",
+      "content_hash": "4f40c8e3",
+      "wav_path": "audio/python-runs/u-002-4f40c8e3.wav",
+      "duration_seconds": 8.405333333333333,
+      "start_frame": 256,
+      "end_frame": 508,
+      "audio_end_frame": 508
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "4417025a",
+      "wav_path": "audio/python-runs/u-003-4417025a.wav",
+      "duration_seconds": 7.253333333333333,
+      "start_frame": 508,
+      "end_frame": 741,
+      "audio_end_frame": 726
+    },
+    {
+      "id": "u-004",
+      "speaker": "narrator",
+      "content_hash": "cc4c8443",
+      "wav_path": "audio/python-runs/u-004-cc4c8443.wav",
+      "duration_seconds": 10.485333333333333,
+      "start_frame": 741,
+      "end_frame": 1055,
+      "audio_end_frame": 1055
+    },
+    {
+      "id": "u-005",
+      "speaker": "listener",
+      "content_hash": "11cb1d08",
+      "wav_path": "audio/python-runs/u-005-11cb1d08.wav",
+      "duration_seconds": 7.552,
+      "start_frame": 1055,
+      "end_frame": 1282,
+      "audio_end_frame": 1282
+    },
+    {
+      "id": "u-006",
+      "speaker": "narrator",
+      "content_hash": "d4095047",
+      "wav_path": "audio/python-runs/u-006-d4095047.wav",
+      "duration_seconds": 11.168,
+      "start_frame": 1282,
+      "end_frame": 1617,
+      "audio_end_frame": 1617
+    },
+    {
+      "id": "u-007",
+      "speaker": "listener",
+      "content_hash": "5baf4aeb",
+      "wav_path": "audio/python-runs/u-007-5baf4aeb.wav",
+      "duration_seconds": 5.066666666666666,
+      "start_frame": 1617,
+      "end_frame": 1769,
+      "audio_end_frame": 1769
+    },
+    {
+      "id": "u-008",
+      "speaker": "narrator",
+      "content_hash": "a4079881",
+      "wav_path": "audio/python-runs/u-008-a4079881.wav",
+      "duration_seconds": 5.450666666666667,
+      "start_frame": 1769,
+      "end_frame": 1947,
+      "audio_end_frame": 1932
+    },
+    {
+      "id": "u-009",
+      "speaker": "narrator",
+      "content_hash": "9c24192e",
+      "wav_path": "audio/python-runs/u-009-9c24192e.wav",
+      "duration_seconds": 8.533333333333333,
+      "start_frame": 1947,
+      "end_frame": 2203,
+      "audio_end_frame": 2203
+    },
+    {
+      "id": "u-010",
+      "speaker": "narrator",
+      "content_hash": "136b33b0",
+      "wav_path": "audio/python-runs/u-010-136b33b0.wav",
+      "duration_seconds": 11.445333333333334,
+      "start_frame": 2203,
+      "end_frame": 2547,
+      "audio_end_frame": 2547
+    },
+    {
+      "id": "u-011",
+      "speaker": "listener",
+      "content_hash": "37f04f95",
+      "wav_path": "audio/python-runs/u-011-37f04f95.wav",
+      "duration_seconds": 3.9146666666666667,
+      "start_frame": 2547,
+      "end_frame": 2664,
+      "audio_end_frame": 2664
+    },
+    {
+      "id": "u-012",
+      "speaker": "narrator",
+      "content_hash": "21fe9590",
+      "wav_path": "audio/python-runs/u-012-21fe9590.wav",
+      "duration_seconds": 8.704,
+      "start_frame": 2664,
+      "end_frame": 2925,
+      "audio_end_frame": 2925
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "67825826",
+      "wav_path": "audio/python-runs/u-013-67825826.wav",
+      "duration_seconds": 10.357333333333333,
+      "start_frame": 2925,
+      "end_frame": 3236,
+      "audio_end_frame": 3236
+    },
+    {
+      "id": "u-014",
+      "speaker": "listener",
+      "content_hash": "7ebe4fa7",
+      "wav_path": "audio/python-runs/u-014-7ebe4fa7.wav",
+      "duration_seconds": 4.224,
+      "start_frame": 3236,
+      "end_frame": 3363,
+      "audio_end_frame": 3363
+    },
+    {
+      "id": "u-015",
+      "speaker": "narrator",
+      "content_hash": "81746038",
+      "wav_path": "audio/python-runs/u-015-81746038.wav",
+      "duration_seconds": 8.010666666666667,
+      "start_frame": 3363,
+      "end_frame": 3603,
+      "audio_end_frame": 3603
+    },
+    {
+      "id": "u-016",
+      "speaker": "narrator",
+      "content_hash": "f73ef223",
+      "wav_path": "audio/python-runs/u-016-f73ef223.wav",
+      "duration_seconds": 10.325333333333333,
+      "start_frame": 3603,
+      "end_frame": 3913,
+      "audio_end_frame": 3913
+    },
+    {
+      "id": "u-017",
+      "speaker": "narrator",
+      "content_hash": "030ededc",
+      "wav_path": "audio/python-runs/u-017-030ededc.wav",
+      "duration_seconds": 10.442666666666666,
+      "start_frame": 3913,
+      "end_frame": 4241,
+      "audio_end_frame": 4226
+    },
+    {
+      "id": "u-018",
+      "speaker": "listener",
+      "content_hash": "0fcb891d",
+      "wav_path": "audio/python-runs/u-018-0fcb891d.wav",
+      "duration_seconds": 6.922666666666666,
+      "start_frame": 4241,
+      "end_frame": 4449,
+      "audio_end_frame": 4449
+    },
+    {
+      "id": "u-019",
+      "speaker": "narrator",
+      "content_hash": "96b914a1",
+      "wav_path": "audio/python-runs/u-019-96b914a1.wav",
+      "duration_seconds": 12.106666666666667,
+      "start_frame": 4449,
+      "end_frame": 4812,
+      "audio_end_frame": 4812
+    },
+    {
+      "id": "u-020",
+      "speaker": "narrator",
+      "content_hash": "084161a0",
+      "wav_path": "audio/python-runs/u-020-084161a0.wav",
+      "duration_seconds": 14.197333333333333,
+      "start_frame": 4812,
+      "end_frame": 5238,
+      "audio_end_frame": 5238
+    },
+    {
+      "id": "u-021",
+      "speaker": "listener",
+      "content_hash": "a0ac740e",
+      "wav_path": "audio/python-runs/u-021-a0ac740e.wav",
+      "duration_seconds": 5.056,
+      "start_frame": 5238,
+      "end_frame": 5390,
+      "audio_end_frame": 5390
+    },
+    {
+      "id": "u-022",
+      "speaker": "narrator",
+      "content_hash": "4bb9fde0",
+      "wav_path": "audio/python-runs/u-022-4bb9fde0.wav",
+      "duration_seconds": 10.421333333333333,
+      "start_frame": 5390,
+      "end_frame": 5702,
+      "audio_end_frame": 5702
+    },
+    {
+      "id": "u-023",
+      "speaker": "narrator",
+      "content_hash": "baf6415f",
+      "wav_path": "audio/python-runs/u-023-baf6415f.wav",
+      "duration_seconds": 10.378666666666666,
+      "start_frame": 5702,
+      "end_frame": 6014,
+      "audio_end_frame": 6014
+    },
+    {
+      "id": "u-024",
+      "speaker": "narrator",
+      "content_hash": "4d2949b0",
+      "wav_path": "audio/python-runs/u-024-4d2949b0.wav",
+      "duration_seconds": 11.050666666666666,
+      "start_frame": 6014,
+      "end_frame": 6345,
+      "audio_end_frame": 6345
+    },
+    {
+      "id": "u-025",
+      "speaker": "listener",
+      "content_hash": "3df15757",
+      "wav_path": "audio/python-runs/u-025-3df15757.wav",
+      "duration_seconds": 4.1706666666666665,
+      "start_frame": 6345,
+      "end_frame": 6470,
+      "audio_end_frame": 6470
+    },
+    {
+      "id": "u-026",
+      "speaker": "narrator",
+      "content_hash": "5617c8d5",
+      "wav_path": "audio/python-runs/u-026-5617c8d5.wav",
+      "duration_seconds": 9.098666666666666,
+      "start_frame": 6470,
+      "end_frame": 6743,
+      "audio_end_frame": 6743
+    },
+    {
+      "id": "u-027",
+      "speaker": "narrator",
+      "content_hash": "87283f0a",
+      "wav_path": "audio/python-runs/u-027-87283f0a.wav",
+      "duration_seconds": 10.517333333333333,
+      "start_frame": 6743,
+      "end_frame": 7059,
+      "audio_end_frame": 7059
+    },
+    {
+      "id": "u-028",
+      "speaker": "narrator",
+      "content_hash": "2e14a861",
+      "wav_path": "audio/python-runs/u-028-2e14a861.wav",
+      "duration_seconds": 5.92,
+      "start_frame": 7059,
+      "end_frame": 7236,
+      "audio_end_frame": 7236
+    },
+    {
+      "id": "u-029",
+      "speaker": "listener",
+      "content_hash": "3abafc22",
+      "wav_path": "audio/python-runs/u-029-3abafc22.wav",
+      "duration_seconds": 5.8133333333333335,
+      "start_frame": 7236,
+      "end_frame": 7411,
+      "audio_end_frame": 7411
+    },
+    {
+      "id": "u-030",
+      "speaker": "narrator",
+      "content_hash": "c55b03bd",
+      "wav_path": "audio/python-runs/u-030-c55b03bd.wav",
+      "duration_seconds": 10.624,
+      "start_frame": 7411,
+      "end_frame": 7730,
+      "audio_end_frame": 7730
+    },
+    {
+      "id": "u-031",
+      "speaker": "listener",
+      "content_hash": "7ded9df4",
+      "wav_path": "audio/python-runs/u-031-7ded9df4.wav",
+      "duration_seconds": 4.352,
+      "start_frame": 7730,
+      "end_frame": 7875,
+      "audio_end_frame": 7860
+    },
+    {
+      "id": "u-032",
+      "speaker": "narrator",
+      "content_hash": "8fb51188",
+      "wav_path": "audio/python-runs/u-032-8fb51188.wav",
+      "duration_seconds": 7.8933333333333335,
+      "start_frame": 7875,
+      "end_frame": 8112,
+      "audio_end_frame": 8112
+    },
+    {
+      "id": "u-033",
+      "speaker": "narrator",
+      "content_hash": "1abe5491",
+      "wav_path": "audio/python-runs/u-033-1abe5491.wav",
+      "duration_seconds": 11.850666666666667,
+      "start_frame": 8112,
+      "end_frame": 8467,
+      "audio_end_frame": 8467
+    },
+    {
+      "id": "u-034",
+      "speaker": "narrator",
+      "content_hash": "cca1d4ad",
+      "wav_path": "audio/python-runs/u-034-cca1d4ad.wav",
+      "duration_seconds": 7.776,
+      "start_frame": 8467,
+      "end_frame": 8701,
+      "audio_end_frame": 8701
+    },
+    {
+      "id": "u-035",
+      "speaker": "listener",
+      "content_hash": "a51eb593",
+      "wav_path": "audio/python-runs/u-035-a51eb593.wav",
+      "duration_seconds": 4.8,
+      "start_frame": 8701,
+      "end_frame": 8845,
+      "audio_end_frame": 8845
+    },
+    {
+      "id": "u-036",
+      "speaker": "narrator",
+      "content_hash": "6e0d9046",
+      "wav_path": "audio/python-runs/u-036-6e0d9046.wav",
+      "duration_seconds": 11.306666666666667,
+      "start_frame": 8845,
+      "end_frame": 9184,
+      "audio_end_frame": 9184
+    },
+    {
+      "id": "u-037",
+      "speaker": "narrator",
+      "content_hash": "5c74ca43",
+      "wav_path": "audio/python-runs/u-037-5c74ca43.wav",
+      "duration_seconds": 8.149333333333333,
+      "start_frame": 9184,
+      "end_frame": 9428,
+      "audio_end_frame": 9428
+    },
+    {
+      "id": "u-038",
+      "speaker": "listener",
+      "content_hash": "b2690e20",
+      "wav_path": "audio/python-runs/u-038-b2690e20.wav",
+      "duration_seconds": 6.432,
+      "start_frame": 9428,
+      "end_frame": 9621,
+      "audio_end_frame": 9621
+    },
+    {
+      "id": "u-039",
+      "speaker": "narrator",
+      "content_hash": "b807dc39",
+      "wav_path": "audio/python-runs/u-039-b807dc39.wav",
+      "duration_seconds": 8.64,
+      "start_frame": 9621,
+      "end_frame": 9896,
+      "audio_end_frame": 9881
+    },
+    {
+      "id": "u-040",
+      "speaker": "listener",
+      "content_hash": "fe52f7d2",
+      "wav_path": "audio/python-runs/u-040-fe52f7d2.wav",
+      "duration_seconds": 7.285333333333333,
+      "start_frame": 9896,
+      "end_frame": 10114,
+      "audio_end_frame": 10114
+    },
+    {
+      "id": "u-041",
+      "speaker": "narrator",
+      "content_hash": "662f5f27",
+      "wav_path": "audio/python-runs/u-041-662f5f27.wav",
+      "duration_seconds": 9.386666666666667,
+      "start_frame": 10114,
+      "end_frame": 10396,
+      "audio_end_frame": 10396
+    },
+    {
+      "id": "u-042",
+      "speaker": "narrator",
+      "content_hash": "8ebf438c",
+      "wav_path": "audio/python-runs/u-042-8ebf438c.wav",
+      "duration_seconds": 14.090666666666667,
+      "start_frame": 10396,
+      "end_frame": 10818,
+      "audio_end_frame": 10818
+    },
+    {
+      "id": "u-043",
+      "speaker": "narrator",
+      "content_hash": "d0318d08",
+      "wav_path": "audio/python-runs/u-043-d0318d08.wav",
+      "duration_seconds": 7.722666666666667,
+      "start_frame": 10818,
+      "end_frame": 11050,
+      "audio_end_frame": 11050
+    },
+    {
+      "id": "u-044",
+      "speaker": "listener",
+      "content_hash": "f9cd01d7",
+      "wav_path": "audio/python-runs/u-044-f9cd01d7.wav",
+      "duration_seconds": 4.1386666666666665,
+      "start_frame": 11050,
+      "end_frame": 11174,
+      "audio_end_frame": 11174
+    },
+    {
+      "id": "u-045",
+      "speaker": "narrator",
+      "content_hash": "a7a6eb6d",
+      "wav_path": "audio/python-runs/u-045-a7a6eb6d.wav",
+      "duration_seconds": 12.106666666666667,
+      "start_frame": 11174,
+      "end_frame": 11537,
+      "audio_end_frame": 11537
+    },
+    {
+      "id": "u-046",
+      "speaker": "narrator",
+      "content_hash": "2ee9d401",
+      "wav_path": "audio/python-runs/u-046-2ee9d401.wav",
+      "duration_seconds": 10.613333333333333,
+      "start_frame": 11537,
+      "end_frame": 11871,
+      "audio_end_frame": 11856
+    },
+    {
+      "id": "u-047",
+      "speaker": "listener",
+      "content_hash": "6c798a38",
+      "wav_path": "audio/python-runs/u-047-6c798a38.wav",
+      "duration_seconds": 4.736,
+      "start_frame": 11871,
+      "end_frame": 12013,
+      "audio_end_frame": 12013
+    },
+    {
+      "id": "u-048",
+      "speaker": "narrator",
+      "content_hash": "1b689c95",
+      "wav_path": "audio/python-runs/u-048-1b689c95.wav",
+      "duration_seconds": 9.408,
+      "start_frame": 12013,
+      "end_frame": 12295,
+      "audio_end_frame": 12295
+    },
+    {
+      "id": "u-049",
+      "speaker": "narrator",
+      "content_hash": "625bf8c4",
+      "wav_path": "audio/python-runs/u-049-625bf8c4.wav",
+      "duration_seconds": 7.605333333333333,
+      "start_frame": 12295,
+      "end_frame": 12523,
+      "audio_end_frame": 12523
+    },
+    {
+      "id": "u-050",
+      "speaker": "narrator",
+      "content_hash": "d80b3869",
+      "wav_path": "audio/python-runs/u-050-d80b3869.wav",
+      "duration_seconds": 12.661333333333333,
+      "start_frame": 12523,
+      "end_frame": 12903,
+      "audio_end_frame": 12903
+    },
+    {
+      "id": "u-051",
+      "speaker": "narrator",
+      "content_hash": "8ddb90ad",
+      "wav_path": "audio/python-runs/u-051-8ddb90ad.wav",
+      "duration_seconds": 8.149333333333333,
+      "start_frame": 12903,
+      "end_frame": 13148,
+      "audio_end_frame": 13148
+    },
+    {
+      "id": "u-052",
+      "speaker": "narrator",
+      "content_hash": "dcdc4da7",
+      "wav_path": "audio/python-runs/u-052-dcdc4da7.wav",
+      "duration_seconds": 12.405333333333333,
+      "start_frame": 13148,
+      "end_frame": 13520,
+      "audio_end_frame": 13520
+    },
+    {
+      "id": "u-053",
+      "speaker": "listener",
+      "content_hash": "f1a79c05",
+      "wav_path": "audio/python-runs/u-053-f1a79c05.wav",
+      "duration_seconds": 6.517333333333333,
+      "start_frame": 13520,
+      "end_frame": 13715,
+      "audio_end_frame": 13715
+    },
+    {
+      "id": "u-054",
+      "speaker": "narrator",
+      "content_hash": "b92b4f9e",
+      "wav_path": "audio/python-runs/u-054-b92b4f9e.wav",
+      "duration_seconds": 6.474666666666667,
+      "start_frame": 13715,
+      "end_frame": 13925,
+      "audio_end_frame": 13910
+    },
+    {
+      "id": "u-055",
+      "speaker": "narrator",
+      "content_hash": "8939d12f",
+      "wav_path": "audio/python-runs/u-055-8939d12f.wav",
+      "duration_seconds": 11.018666666666666,
+      "start_frame": 13925,
+      "end_frame": 14255,
+      "audio_end_frame": 14255
+    },
+    {
+      "id": "u-056",
+      "speaker": "narrator",
+      "content_hash": "47849aa0",
+      "wav_path": "audio/python-runs/u-056-47849aa0.wav",
+      "duration_seconds": 5.76,
+      "start_frame": 14255,
+      "end_frame": 14428,
+      "audio_end_frame": 14428
+    },
+    {
+      "id": "u-057",
+      "speaker": "narrator",
+      "content_hash": "7d8f84c6",
+      "wav_path": "audio/python-runs/u-057-7d8f84c6.wav",
+      "duration_seconds": 17.674666666666667,
+      "start_frame": 14428,
+      "end_frame": 14958,
+      "audio_end_frame": 14958
+    },
+    {
+      "id": "u-058",
+      "speaker": "listener",
+      "content_hash": "530bef07",
+      "wav_path": "audio/python-runs/u-058-530bef07.wav",
+      "duration_seconds": 6.976,
+      "start_frame": 14958,
+      "end_frame": 15167,
+      "audio_end_frame": 15167
+    },
+    {
+      "id": "u-059",
+      "speaker": "narrator",
+      "content_hash": "7a8305ad",
+      "wav_path": "audio/python-runs/u-059-7a8305ad.wav",
+      "duration_seconds": 3.712,
+      "start_frame": 15167,
+      "end_frame": 15279,
+      "audio_end_frame": 15279
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-title",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-cpu",
+      "start_frame": 741
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-compiler",
+      "start_frame": 1947
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-interpreter",
+      "start_frame": 2925
+    },
+    {
+      "id": "ev-005",
+      "slide": "slide-impl",
+      "start_frame": 3603
+    },
+    {
+      "id": "ev-006",
+      "slide": "slide-python-flow",
+      "start_frame": 4812
+    },
+    {
+      "id": "ev-007",
+      "slide": "slide-dis",
+      "start_frame": 5702
+    },
+    {
+      "id": "ev-008",
+      "slide": "slide-pycache",
+      "start_frame": 6743
+    },
+    {
+      "id": "ev-009",
+      "slide": "slide-repl",
+      "start_frame": 7411
+    },
+    {
+      "id": "ev-010",
+      "slide": "slide-err-name",
+      "start_frame": 8112
+    },
+    {
+      "id": "ev-011",
+      "slide": "slide-err-syntax",
+      "start_frame": 8467
+    },
+    {
+      "id": "ev-012",
+      "slide": "slide-err-point",
+      "start_frame": 8845
+    },
+    {
+      "id": "ev-013",
+      "slide": "slide-os-exe",
+      "start_frame": 10114
+    },
+    {
+      "id": "ev-014",
+      "slide": "slide-os-python",
+      "start_frame": 10396
+    },
+    {
+      "id": "ev-015",
+      "slide": "slide-os-others",
+      "start_frame": 11174
+    },
+    {
+      "id": "ev-016",
+      "slide": "slide-speed",
+      "start_frame": 12013
+    },
+    {
+      "id": "ev-017",
+      "slide": "slide-compare",
+      "start_frame": 13925
+    },
+    {
+      "id": "ev-018",
+      "slide": "slide-summary",
+      "start_frame": 14428
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-title",
+      "type": "title",
+      "title": "Pythonが動くまで",
+      "subtitle": "書いたプログラムの裏側で起きていること"
+    },
+    {
+      "id": "slide-cpu",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "CPU が読めるのは機械語（0 と 1）だけ",
+        "lanes": [
+          {
+            "steps": [
+              {
+                "name": "プログラム",
+                "sub": "print(1 + 2)"
+              },
+              {
+                "name": "翻訳係",
+                "sub": "人の言葉 → 機械語"
+              },
+              {
+                "name": "機械語",
+                "sub": "0101 1100 …"
+              },
+              {
+                "name": "CPU",
+                "sub": "実行する"
+              }
+            ]
+          }
+        ],
+        "highlight": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "slide-compiler",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "1. コンパイラ ── 全部訳してから渡す",
+        "lanes": [
+          {
+            "label": "コンパイラ",
+            "steps": [
+              {
+                "name": "ソースコード",
+                "sub": "人が書いた文字"
+              },
+              {
+                "name": "コンパイラ",
+                "sub": "全体を先に翻訳"
+              },
+              {
+                "name": "実行ファイル",
+                "sub": "機械語の束"
+              },
+              {
+                "name": "CPU",
+                "sub": "直接読んで実行"
+              }
+            ]
+          },
+          {
+            "label": "インタプリタ",
+            "steps": [
+              {
+                "name": "ソースコード",
+                "sub": "人が書いた文字"
+              },
+              {
+                "name": "インタプリタ",
+                "sub": "読みながら 1 つずつ実行"
+              },
+              {
+                "name": "CPU",
+                "sub": "実行する"
+              }
+            ]
+          }
+        ],
+        "highlightLane": 0
+      }
+    },
+    {
+      "id": "slide-interpreter",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "2. インタプリタ ── 読みながらその場で動かす",
+        "lanes": [
+          {
+            "label": "コンパイラ",
+            "steps": [
+              {
+                "name": "ソースコード",
+                "sub": "人が書いた文字"
+              },
+              {
+                "name": "コンパイラ",
+                "sub": "全体を先に翻訳"
+              },
+              {
+                "name": "実行ファイル",
+                "sub": "機械語の束"
+              },
+              {
+                "name": "CPU",
+                "sub": "直接読んで実行"
+              }
+            ]
+          },
+          {
+            "label": "インタプリタ",
+            "steps": [
+              {
+                "name": "ソースコード",
+                "sub": "人が書いた文字"
+              },
+              {
+                "name": "インタプリタ",
+                "sub": "読みながら 1 つずつ実行"
+              },
+              {
+                "name": "CPU",
+                "sub": "実行する"
+              }
+            ]
+          }
+        ],
+        "highlightLane": 1
+      }
+    },
+    {
+      "id": "slide-impl",
+      "type": "bullets",
+      "items": [
+        "処理系 ＝ その言語を動かす道具",
+        "Python の処理系：CPython（標準。C で書かれている）、PyPy など",
+        "同じ言語にも、作り方の違う処理系がある"
+      ],
+      "title": "決めるのは、言語ではなく「処理系」"
+    },
+    {
+      "id": "slide-python-flow",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "CPython の 2 段階",
+        "lanes": [
+          {
+            "steps": [
+              {
+                "name": "add.py",
+                "sub": "ソースコード"
+              },
+              {
+                "name": "翻訳",
+                "sub": "1 段目：バイトコードへ"
+              },
+              {
+                "name": "仮想マシン",
+                "sub": "2 段目：1 つずつ実行"
+              },
+              {
+                "name": "CPU",
+                "sub": "実行する"
+              }
+            ]
+          }
+        ],
+        "highlight": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "slide-dis",
+      "type": "code",
+      "code": "# add.py\na = 1\nprint(a + 2)\n\n# python -m dis add.py\n1  LOAD_CONST   0 (1)\n   STORE_NAME   0 (a)\n2  PUSH_NULL\n   LOAD_NAME    1 (print)\n   LOAD_NAME    0 (a)\n   LOAD_CONST   1 (2)\n   BINARY_OP    0 (+)\n   PRECALL      1\n   CALL         1\n",
+      "title": "バイトコードをのぞく（Python 3.11.9。一部、桁を詰めた）"
+    },
+    {
+      "id": "slide-pycache",
+      "type": "code",
+      "code": "main.py   … 1 行目に import greet\ngreet.py  … 読み込まれる部品\n\n> python main.py\n__pycache__/greet.cpython-311.pyc   ← できる\n（main.py の .pyc はできない）\n",
+      "title": "取っておかれるのは、読み込まれた部品（Python 3.11.9）"
+    },
+    {
+      "id": "slide-repl",
+      "type": "code",
+      "code": ">>> 1 + 2\n3\n>>> print(\"こんにちは\")\nこんにちは\n",
+      "title": "対話モード ── 1 行ずつ、その場で動く"
+    },
+    {
+      "id": "slide-err-name",
+      "type": "code",
+      "code": "print(\"1行目\")\nprint(\"2行目\")\nprint(nedan)\n\n> python name_err.py\n1行目\n2行目\nTraceback (most recent call last):\n  File \"name_err.py\", line 3, in <module>\nNameError: name 'nedan' is not defined\n",
+      "title": "3 行目で名前を間違えた（途中で止まる）"
+    },
+    {
+      "id": "slide-err-syntax",
+      "type": "code",
+      "code": "print(\"1行目\")\nprint(\"2行目\")\nprint(\"3行目\"\n\n> python syn_err.py\n  File \"syn_err.py\", line 3\n    print(\"3行目\"\n         ^\nSyntaxError: '(' was never closed\n",
+      "title": "3 行目でかっこを閉じ忘れた（1 行も動かない）"
+    },
+    {
+      "id": "slide-err-point",
+      "type": "bullets",
+      "items": [
+        "**書き方の誤り**（SyntaxError）：1 段目の翻訳で見つかる → 1 行も動かない",
+        "**名前の誤りなど**（NameError）：2 段目で、その行に来て見つかる",
+        "エラーが出たら「**動く前か、途中か**」を見る"
+      ],
+      "title": "動く前か、動いている途中か"
+    },
+    {
+      "id": "slide-os-exe",
+      "type": "bullets",
+      "items": [
+        "Windows：PE 形式（.exe）",
+        "Linux など：ELF 形式",
+        "そのままでは、ほかの OS では動かない"
+      ],
+      "title": "実行ファイルは OS ごとに形式が違う"
+    },
+    {
+      "id": "slide-os-python",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "同じプログラムを、OS ごとの Python 本体が動かす",
+        "lanes": [
+          {
+            "label": "Windows",
+            "steps": [
+              {
+                "name": "add.py",
+                "sub": "同じファイル"
+              },
+              {
+                "name": "Python 本体",
+                "sub": "Windows 用"
+              },
+              {
+                "name": "Windows"
+              }
+            ]
+          },
+          {
+            "label": "macOS",
+            "steps": [
+              {
+                "name": "add.py",
+                "sub": "同じファイル"
+              },
+              {
+                "name": "Python 本体",
+                "sub": "macOS 用"
+              },
+              {
+                "name": "macOS"
+              }
+            ]
+          },
+          {
+            "label": "Linux",
+            "steps": [
+              {
+                "name": "add.py",
+                "sub": "同じファイル"
+              },
+              {
+                "name": "Python 本体",
+                "sub": "Linux 用"
+              },
+              {
+                "name": "Linux"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-os-others",
+      "type": "bullets",
+      "items": [
+        "Java：バイトコード（class ファイル）を、OS ごとの仮想マシン（JVM）が動かす",
+        "PHP：Web のサーバー側でよく使われる。これも処理系が間に入る",
+        "完全に同じではない（例：フォルダの区切りは Windows が「\\」、ほかは「/」）"
+      ],
+      "title": "同じ考え方の仲間と、注意点"
+    },
+    {
+      "id": "slide-speed",
+      "type": "bullets",
+      "items": [
+        "取っておく：訳したバイトコードを .pyc に保存",
+        "JIT：何度も通る所を、動かしながら機械語に（PyPy。CPython は 3.13 から試験中）",
+        "重い計算は C に任せる（NumPy の裏側は C のコード）"
+      ],
+      "title": "速くする 3 つの工夫"
+    },
+    {
+      "id": "slide-compare",
+      "type": "custom",
+      "component": "CompareTable",
+      "props": {
+        "title": "比べてみる",
+        "columns": [
+          "コンパイラ型",
+          "インタプリタ型",
+          "Python（CPython）"
+        ],
+        "rows": [
+          {
+            "label": "動かす速さ",
+            "cells": [
+              "速い",
+              "遅くなりがち",
+              "遅くなりがち（工夫で補う）"
+            ]
+          },
+          {
+            "label": "書いてすぐ試す",
+            "cells": [
+              "訳し直しが要る",
+              "その場で試せる",
+              "その場で試せる（>>>）"
+            ]
+          },
+          {
+            "label": "いろいろな OS",
+            "cells": [
+              "OS ごとに作り直す",
+              "本体があれば動く",
+              "本体があれば動く"
+            ]
+          },
+          {
+            "label": "間違いが見つかる時期",
+            "cells": [
+              "動かす前が多い",
+              "動かしている途中",
+              "書き方は前、名前などは途中"
+            ]
+          }
+        ],
+        "highlightColumn": 2
+      }
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "CPU が読めるのは**機械語だけ**。翻訳係が要る",
+        "Python は**バイトコード**に訳して、**仮想マシン**で動かす 2 段階",
+        "エラーが出たら「**動く前か、途中か**」を見る"
+      ],
+      "title": "まとめ"
+    }
+  ],
+  "speakers": {
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    },
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    }
+  },
+  "credits": [
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "VOICEVOX:ずんだもん",
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
+  ],
+  "total_duration_frames": 15369
+}

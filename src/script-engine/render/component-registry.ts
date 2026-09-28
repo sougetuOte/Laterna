@@ -30,6 +30,8 @@ import { PipelineFlow } from "./source-to-exe/PipelineFlow";
 import { LanguageLevels } from "./about-c/LanguageLevels";
 import { CTimeline } from "./about-c/CTimeline";
 import { CourseMap } from "./about-c/CourseMap";
+import { RunFlow } from "./python-runs/RunFlow";
+import { CompareTable } from "./python-runs/CompareTable";
 import {
   REGISTERED_COMPONENT_NAMES,
   type RegisteredComponentName,
@@ -58,6 +60,8 @@ export const componentRegistry: ComponentRegistry = {
   LanguageLevels,
   CTimeline,
   CourseMap,
+  RunFlow,
+  CompareTable,
 };
 
 /**

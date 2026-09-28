@@ -29,6 +29,8 @@ export const REGISTERED_COMPONENT_NAMES = [
   "LanguageLevels",
   "CTimeline",
   "CourseMap",
+  "RunFlow",
+  "CompareTable",
 ] as const;
 
 /** 登録済みコンポーネント名の型（正規リストからの導出、design §2.6） */

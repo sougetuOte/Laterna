@@ -1,0 +1,559 @@
+# python-runs.script.yaml — 「Pythonが動くまで」
+#
+# 出自: materials/python-runs/outline.md（対象・尺・章立て・出典・事実と出典の対応）
+# 対象: 汎用。普通科高校 1 年・プログラム経験なし。授業中に流す。尺 8〜10 分。学校名は出さない（goal.md Wave 4）。
+# 図解: src/script-engine/render/python-runs/（RunFlow・CompareTable）。コードと実行結果は Python 3.11.9 で実際に動かした物。
+# 注意:
+# - 発話 text は折り畳みスカラー（>-）を使わない（改行が半角スペースになり、VOICEVOX 入力と内容ハッシュを汚す）
+# - 「簡単」「必ず」を初学者向けに使わない（narration-style.md）
+# - 英字の名前は、発話ではカタカナで書く（CPython→シーパイソン、PyPy→パイパイ、NumPy→ナムパイ、JIT→ジット）。版の番号もかなで書く
+
+target_duration_range:
+  min: 480
+  max: 600
+
+speaker_profile_ref: default
+
+extra_credits:
+  - 立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）
+
+utterances:
+  # --- 1. 導入 ---
+  - id: u-001
+    speaker: narrator
+    text: 今日は「パイソンが動くまで」の話をします。書いたプログラムが、コンピュータの中でどうやって動いているのかを見ていきます。
+    pause_after: 0.3
+  - id: u-002
+    speaker: listener
+    text: パイソンって、書いて実行すると、すぐに動きますよね。裏で何か特別なことをしているんですか？
+  - id: u-003
+    speaker: narrator
+    text: 実は、画面には見えないところで、いくつもの仕事が起きています。今日は、その裏側をのぞいてみましょう。
+    pause_after: 0.5
+  # --- 2. CPU は機械語しか読めない ---
+  - id: u-004
+    speaker: narrator
+    text: まず、コンピュータの頭脳にあたる「CPU」から始めます。CPUが直接読めるのは、0と1の並びで書かれた「機械語」だけです。
+  - id: u-005
+    speaker: listener
+    text: えっ、じゃあ、プリントみたいな英語の命令は、CPUには読めないんですか？
+  - id: u-006
+    speaker: narrator
+    text: 読めません。プリントも、足し算の記号も、CPUから見ればただの文字です。人が書いたプログラムを動かすには、機械語に「翻訳」する係が要ります。
+  - id: u-007
+    speaker: listener
+    text: 英語の手紙を、日本語しか読めない人に渡すようなものですね。
+  - id: u-008
+    speaker: narrator
+    text: そのとおりです。そして、この翻訳のやり方には、大きく分けて2つあります。
+    pause_after: 0.5
+  # --- 3. 翻訳の 2 つのやり方 ---
+  - id: u-009
+    speaker: narrator
+    text: 1つめは「コンパイラ」です。本の翻訳にたとえると、まず1冊まるごと訳して、訳し終えた本を渡すやり方です。
+  - id: u-010
+    speaker: narrator
+    text: プログラムなら、全体を先に機械語へ訳して、「実行ファイル」を作ります。動かすときは、その実行ファイルをCPUが直接読みます。C言語がこの形です。
+  - id: u-011
+    speaker: listener
+    text: 訳すのは、最初の1回だけということですか？
+  - id: u-012
+    speaker: narrator
+    text: はい。訳し終えれば、あとは何度でも速く動かせます。そのかわり、プログラムを書き直すたびに、訳し直しが要ります。
+  - id: u-013
+    speaker: narrator
+    text: 2つめは「インタプリタ」です。こちらは同時通訳のように、プログラムを読みながら、その場で1つずつ動かしていきます。実行ファイルは作りません。
+  - id: u-014
+    speaker: listener
+    text: 通訳さんが、ずっと隣にいてくれる感じですね。
+  - id: u-015
+    speaker: narrator
+    text: そうです。書いてすぐに試せるのが強みです。そのかわり、動かすたびに読みながら進むので、そのぶん時間がかかります。
+  - id: u-016
+    speaker: narrator
+    text: ここで1つ、大事な点があります。コンパイラかインタプリタかは、言語そのものではなく、その言語を動かす道具、「処理系」の作り方で決まります。
+  - id: u-017
+    speaker: narrator
+    text: 実際、パイソンにも、C言語で書かれた標準の「シーパイソン」のほかに、「パイパイ」など、作り方の違う処理系がいくつもあります。
+    pause_after: 0.5
+  # --- 4. Python は実は「両方」 ---
+  - id: u-018
+    speaker: listener
+    text: じゃあ、ふだん使っているパイソンは、コンパイラとインタプリタの、どっちなんですか？
+  - id: u-019
+    speaker: narrator
+    text: パイソンの公式の説明では、インタプリタ型の言語です。ただ、同じ説明の中で、その境目はあいまいだとも書かれています。実は、両方の考え方を使っているからです。
+  - id: u-020
+    speaker: narrator
+    text: シーパイソンは、2つの段階で動きます。1段目で、プログラム全体を「バイトコード」という中間の命令に訳します。2段目で、「仮想マシン」がそのバイトコードを1つずつ読んで実行します。
+  - id: u-021
+    speaker: listener
+    text: 仮想マシン？ 中に、別の機械が入っているんですか？
+  - id: u-022
+    speaker: narrator
+    text: 本物の機械ではありません。ソフトウェアで作った、架空のCPUのようなものです。バイトコードは、この架空のCPUのための機械語だと思ってください。
+  - id: u-023
+    speaker: narrator
+    text: のぞいてみましょう。aに1を入れて、aに2を足したものを表示する、2行のプログラムです。「ディス」という道具を使うと、バイトコードが見られます。
+  - id: u-024
+    speaker: narrator
+    text: ロード、ストア、バイナリオプ、コール。短い命令が並んでいますね。これはパイソン、さんてんいちいちでの例で、中身は版によって変わることがあります。
+  - id: u-025
+    speaker: listener
+    text: 2行の文が、細かい命令に分かれているんですね。
+  - id: u-026
+    speaker: narrator
+    text: はい。私たちが書いた1行は、仮想マシンの中では、いくつもの小さな命令になって、上から順番に実行されているわけです。
+  - id: u-027
+    speaker: narrator
+    text: 訳したバイトコードは、取っておかれることもあります。ほかのファイルから読み込んだ部品は、「パイキャッシュ」というフォルダに保存され、次からは訳し直しを省けます。
+  - id: u-028
+    speaker: narrator
+    text: ただし、パイソンのコマンドで直接動かしたファイルは保存されず、毎回訳し直します。
+  - id: u-029
+    speaker: listener
+    text: フォルダの中に、いつのまにかできていることがあるのは、そのせいなんですね。
+  - id: u-030
+    speaker: narrator
+    text: もう1つ、インタプリタらしい使い方が「対話モード」です。大なり記号が3つ並んだ印が出て、1行書くたびに、その場で結果が返ってきます。
+  - id: u-031
+    speaker: listener
+    text: 通訳さんと、1文ずつやりとりする感じですね。
+    pause_after: 0.5
+  # --- 5. エラーの出る時期 ---
+  - id: u-032
+    speaker: narrator
+    text: この2つの段階は、エラーの出方にも表れます。どちらも3行目に間違いがある、2つのプログラムを比べてみましょう。
+  - id: u-033
+    speaker: narrator
+    text: 1つめは、3行目で「ねだん」という、どこにも作っていない名前を使っています。動かすと、1行目と2行目は表示されて、3行目に来たところで止まります。
+  - id: u-034
+    speaker: narrator
+    text: 2つめは、3行目のかっこを閉じ忘れています。こちらは、1行目すら表示されずに、いきなりエラーになります。
+  - id: u-035
+    speaker: listener
+    text: どちらも3行目の間違いなのに、止まり方が違うんですね。
+  - id: u-036
+    speaker: narrator
+    text: 書き方の間違いは、1段目のバイトコードへの翻訳で見つかるので、動き出す前に止まります。名前の間違いは、2段目で実際にそのぎょうを動かしたときに初めて見つかります。
+  - id: u-037
+    speaker: narrator
+    text: エラーが出たら、「動く前か、動いている途中か」を見てください。どこを直せばよいか、見当がつけやすくなります。
+  - id: u-038
+    speaker: listener
+    text: 動く前に止まったら書き方を、途中で止まったら中身を疑う、ということですね。
+  - id: u-039
+    speaker: narrator
+    text: そうです。エラーの最後のぎょうに出る名前も手がかりになります。シンタックスエラーなら書き方の間違い、ネームエラーなら名前の間違いです。
+    pause_after: 0.5
+  # --- 6. なぜ OS を選ばないのか ---
+  - id: u-040
+    speaker: listener
+    text: パイソンのプログラムは、ウィンドウズでもマックでも同じように動くと聞きました。どうしてですか？
+  - id: u-041
+    speaker: narrator
+    text: まず、コンパイラが作る実行ファイルは、OSごとに形式が違います。ウィンドウズ用の実行ファイルは、そのままではリナックスでは動きません。
+  - id: u-042
+    speaker: narrator
+    text: パイソンでは、翻訳と実行をするパイソン本体が、ウィンドウズ用、マック用、リナックス用と、それぞれ用意されています。シーパイソンはC言語で書かれていて、OSごとにコンパイルされたものを使います。
+  - id: u-043
+    speaker: narrator
+    text: だから、私たちが書いたプログラムは同じものを渡せばよく、OSごとの違いは、パイソン本体が引き受けてくれます。
+  - id: u-044
+    speaker: listener
+    text: 通訳さんが、くにごとにいてくれるようなものですね。
+  - id: u-045
+    speaker: narrator
+    text: ジャバも同じ考え方です。バイトコードまで先に訳して配り、それぞれのOSの仮想マシンが動かします。ウェブのサーバー側でよく使われるピーエイチピーも、処理系が間に入る仲間です。
+  - id: u-046
+    speaker: narrator
+    text: ただし、完全に同じではありません。たとえば、フォルダの区切りの記号は、ウィンドウズとほかのOSで違います。そういう所は、書く側が気をつけます。
+    pause_after: 0.5
+  # --- 7. 速さの代償と高速化 ---
+  - id: u-047
+    speaker: listener
+    text: 通訳さんが間に入るぶん、遅くなったりしませんか？
+  - id: u-048
+    speaker: narrator
+    text: 鋭いですね。1命令ずつ読んで実行するぶん、機械語を直接動かすより遅くなりがちです。そこで、速くする工夫がいくつもあります。
+  - id: u-049
+    speaker: narrator
+    text: 1つめは、さっきの「取っておく」です。訳したバイトコードを保存して、次からは訳す手間を省きます。
+  - id: u-050
+    speaker: narrator
+    text: 2つめは「ジット」です。動かしている途中で、何度も通る部分を見つけて、そこだけ機械語に訳してしまう方法です。パイパイは、この方法で速く動くことが多い処理系です。
+  - id: u-051
+    speaker: narrator
+    text: シーパイソンにも、さんてんいちさんから試験的に入りました。ただ、今のところ、ふだんは使われない設定になっています。
+  - id: u-052
+    speaker: narrator
+    text: 3つめは、重い計算をC言語に任せることです。たくさんの数をまとめて計算する「ナムパイ」という部品は、裏側で、あらかじめコンパイルしたC言語のコードを動かしています。
+  - id: u-053
+    speaker: listener
+    text: 書くのはパイソンで手軽にして、重い所だけ、速い言語にお願いするんですね。
+  - id: u-054
+    speaker: narrator
+    text: そうです。コンパイラとインタプリタは、どちらかを選ぶものではなく、組み合わせて使われているのです。
+    pause_after: 0.5
+  # --- 8. 比べる表とまとめ ---
+  - id: u-055
+    speaker: narrator
+    text: ここまでを表にまとめます。コンパイラ型は、動かす速さが強みです。インタプリタ型は、書いてすぐ試せることと、いろいろなOSで動かしやすいことが強みです。
+  - id: u-056
+    speaker: narrator
+    text: パイソンは、インタプリタ型の手軽さを持ちながら、中ではバイトコードへの翻訳もしています。
+  - id: u-057
+    speaker: narrator
+    text: 最後に3つだけ覚えてください。1つめ、CPUが読めるのは機械語だけで、翻訳係が要ること。2つめ、パイソンは、バイトコードに訳してから仮想マシンで動かす、2段階だということ。3つめ、エラーが出たら、動く前か途中かを見ること。
+  - id: u-058
+    speaker: listener
+    text: 次にパイソンを動かすときは、裏で働いている通訳さんのことを、思い出してみます。
+  - id: u-059
+    speaker: narrator
+    text: ぜひ、そうしてください。それでは、また次回。
+
+slides:
+  - id: slide-title
+    type: title
+    title: Pythonが動くまで
+    subtitle: 書いたプログラムの裏側で起きていること
+  - id: slide-cpu
+    type: custom
+    component: RunFlow
+    props:
+      title: CPU が読めるのは機械語（0 と 1）だけ
+      lanes:
+        - steps:
+            - name: プログラム
+              sub: "print(1 + 2)"
+            - name: 翻訳係
+              sub: 人の言葉 → 機械語
+            - name: 機械語
+              sub: "0101 1100 …"
+            - name: CPU
+              sub: 実行する
+      highlight: [0, 1]
+  - id: slide-compiler
+    type: custom
+    component: RunFlow
+    props:
+      title: 1. コンパイラ ── 全部訳してから渡す
+      lanes:
+        - label: コンパイラ
+          steps:
+            - name: ソースコード
+              sub: 人が書いた文字
+            - name: コンパイラ
+              sub: 全体を先に翻訳
+            - name: 実行ファイル
+              sub: 機械語の束
+            - name: CPU
+              sub: 直接読んで実行
+        - label: インタプリタ
+          steps:
+            - name: ソースコード
+              sub: 人が書いた文字
+            - name: インタプリタ
+              sub: 読みながら 1 つずつ実行
+            - name: CPU
+              sub: 実行する
+      highlightLane: 0
+  - id: slide-interpreter
+    type: custom
+    component: RunFlow
+    props:
+      title: 2. インタプリタ ── 読みながらその場で動かす
+      lanes:
+        - label: コンパイラ
+          steps:
+            - name: ソースコード
+              sub: 人が書いた文字
+            - name: コンパイラ
+              sub: 全体を先に翻訳
+            - name: 実行ファイル
+              sub: 機械語の束
+            - name: CPU
+              sub: 直接読んで実行
+        - label: インタプリタ
+          steps:
+            - name: ソースコード
+              sub: 人が書いた文字
+            - name: インタプリタ
+              sub: 読みながら 1 つずつ実行
+            - name: CPU
+              sub: 実行する
+      highlightLane: 1
+  - id: slide-impl
+    type: bullets
+    title: 決めるのは、言語ではなく「処理系」
+    items:
+      - 処理系 ＝ その言語を動かす道具
+      - Python の処理系：CPython（標準。C で書かれている）、PyPy など
+      - 同じ言語にも、作り方の違う処理系がある
+  - id: slide-python-flow
+    type: custom
+    component: RunFlow
+    props:
+      title: CPython の 2 段階
+      lanes:
+        - steps:
+            - name: add.py
+              sub: ソースコード
+            - name: 翻訳
+              sub: 1 段目：バイトコードへ
+            - name: 仮想マシン
+              sub: 2 段目：1 つずつ実行
+            - name: CPU
+              sub: 実行する
+      highlight: [1, 2]
+  - id: slide-dis
+    type: code
+    title: バイトコードをのぞく（Python 3.11.9。一部、桁を詰めた）
+    code: |
+      # add.py
+      a = 1
+      print(a + 2)
+
+      # python -m dis add.py
+      1  LOAD_CONST   0 (1)
+         STORE_NAME   0 (a)
+      2  PUSH_NULL
+         LOAD_NAME    1 (print)
+         LOAD_NAME    0 (a)
+         LOAD_CONST   1 (2)
+         BINARY_OP    0 (+)
+         PRECALL      1
+         CALL         1
+  - id: slide-pycache
+    type: code
+    title: 取っておかれるのは、読み込まれた部品（Python 3.11.9）
+    code: |
+      main.py   … 1 行目に import greet
+      greet.py  … 読み込まれる部品
+
+      > python main.py
+      __pycache__/greet.cpython-311.pyc   ← できる
+      （main.py の .pyc はできない）
+  - id: slide-repl
+    type: code
+    title: 対話モード ── 1 行ずつ、その場で動く
+    code: |
+      >>> 1 + 2
+      3
+      >>> print("こんにちは")
+      こんにちは
+  - id: slide-err-name
+    type: code
+    title: 3 行目で名前を間違えた（途中で止まる）
+    code: |
+      print("1行目")
+      print("2行目")
+      print(nedan)
+
+      > python name_err.py
+      1行目
+      2行目
+      Traceback (most recent call last):
+        File "name_err.py", line 3, in <module>
+      NameError: name 'nedan' is not defined
+  - id: slide-err-syntax
+    type: code
+    title: 3 行目でかっこを閉じ忘れた（1 行も動かない）
+    code: |
+      print("1行目")
+      print("2行目")
+      print("3行目"
+
+      > python syn_err.py
+        File "syn_err.py", line 3
+          print("3行目"
+               ^
+      SyntaxError: '(' was never closed
+  - id: slide-err-point
+    type: bullets
+    title: 動く前か、動いている途中か
+    items:
+      - "**書き方の誤り**（SyntaxError）：1 段目の翻訳で見つかる → 1 行も動かない"
+      - "**名前の誤りなど**（NameError）：2 段目で、その行に来て見つかる"
+      - エラーが出たら「**動く前か、途中か**」を見る
+  - id: slide-os-exe
+    type: bullets
+    title: 実行ファイルは OS ごとに形式が違う
+    items:
+      - Windows：PE 形式（.exe）
+      - Linux など：ELF 形式
+      - そのままでは、ほかの OS では動かない
+  - id: slide-os-python
+    type: custom
+    component: RunFlow
+    props:
+      title: 同じプログラムを、OS ごとの Python 本体が動かす
+      lanes:
+        - label: Windows
+          steps:
+            - name: add.py
+              sub: 同じファイル
+            - name: Python 本体
+              sub: Windows 用
+            - name: Windows
+        - label: macOS
+          steps:
+            - name: add.py
+              sub: 同じファイル
+            - name: Python 本体
+              sub: macOS 用
+            - name: macOS
+        - label: Linux
+          steps:
+            - name: add.py
+              sub: 同じファイル
+            - name: Python 本体
+              sub: Linux 用
+            - name: Linux
+  - id: slide-os-others
+    type: bullets
+    title: 同じ考え方の仲間と、注意点
+    items:
+      - Java：バイトコード（class ファイル）を、OS ごとの仮想マシン（JVM）が動かす
+      - PHP：Web のサーバー側でよく使われる。これも処理系が間に入る
+      - 完全に同じではない（例：フォルダの区切りは Windows が「\」、ほかは「/」）
+  - id: slide-speed
+    type: bullets
+    title: 速くする 3 つの工夫
+    items:
+      - 取っておく：訳したバイトコードを .pyc に保存
+      - JIT：何度も通る所を、動かしながら機械語に（PyPy。CPython は 3.13 から試験中）
+      - 重い計算は C に任せる（NumPy の裏側は C のコード）
+  - id: slide-compare
+    type: custom
+    component: CompareTable
+    props:
+      title: 比べてみる
+      columns: [コンパイラ型, インタプリタ型, Python（CPython）]
+      rows:
+        - label: 動かす速さ
+          cells: [速い, 遅くなりがち, 遅くなりがち（工夫で補う）]
+        - label: 書いてすぐ試す
+          cells: [訳し直しが要る, その場で試せる, その場で試せる（>>>）]
+        - label: いろいろな OS
+          cells: [OS ごとに作り直す, 本体があれば動く, 本体があれば動く]
+        - label: 間違いが見つかる時期
+          cells: [動かす前が多い, 動かしている途中, 書き方は前、名前などは途中]
+      highlightColumn: 2
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - CPU が読めるのは**機械語だけ**。翻訳係が要る
+      - Python は**バイトコード**に訳して、**仮想マシン**で動かす 2 段階
+      - エラーが出たら「**動く前か、途中か**」を見る
+
+slide_events:
+  - id: ev-001
+    slide: slide-title
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+  - id: ev-002
+    slide: slide-cpu
+    anchor:
+      utterance: u-004
+      position: start
+      offset: 0
+  - id: ev-003
+    slide: slide-compiler
+    anchor:
+      utterance: u-009
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-interpreter
+    anchor:
+      utterance: u-013
+      position: start
+      offset: 0
+  - id: ev-005
+    slide: slide-impl
+    anchor:
+      utterance: u-016
+      position: start
+      offset: 0
+  - id: ev-006
+    slide: slide-python-flow
+    anchor:
+      utterance: u-020
+      position: start
+      offset: 0
+  - id: ev-007
+    slide: slide-dis
+    anchor:
+      utterance: u-023
+      position: start
+      offset: 0
+  - id: ev-008
+    slide: slide-pycache
+    anchor:
+      utterance: u-027
+      position: start
+      offset: 0
+  - id: ev-009
+    slide: slide-repl
+    anchor:
+      utterance: u-030
+      position: start
+      offset: 0
+  - id: ev-010
+    slide: slide-err-name
+    anchor:
+      utterance: u-033
+      position: start
+      offset: 0
+  - id: ev-011
+    slide: slide-err-syntax
+    anchor:
+      utterance: u-034
+      position: start
+      offset: 0
+  - id: ev-012
+    slide: slide-err-point
+    anchor:
+      utterance: u-036
+      position: start
+      offset: 0
+  - id: ev-013
+    slide: slide-os-exe
+    anchor:
+      utterance: u-041
+      position: start
+      offset: 0
+  - id: ev-014
+    slide: slide-os-python
+    anchor:
+      utterance: u-042
+      position: start
+      offset: 0
+  - id: ev-015
+    slide: slide-os-others
+    anchor:
+      utterance: u-045
+      position: start
+      offset: 0
+  - id: ev-016
+    slide: slide-speed
+    anchor:
+      utterance: u-048
+      position: start
+      offset: 0
+  - id: ev-017
+    slide: slide-compare
+    anchor:
+      utterance: u-055
+      position: start
+      offset: 0
+  - id: ev-018
+    slide: slide-summary
+    anchor:
+      utterance: u-057
+      position: start
+      offset: 0

@@ -19,6 +19,8 @@ import sourceToExe from "../../../public/manifests/source-to-exe.manifest.json";
 import sourceToExePdf from "../../../public/manifests/source-to-exe.pdf-manifest.json";
 import aboutC from "../../../public/manifests/about-c.manifest.json";
 import aboutCPdf from "../../../public/manifests/about-c.pdf-manifest.json";
+import pythonRuns from "../../../public/manifests/python-runs.manifest.json";
+import pythonRunsPdf from "../../../public/manifests/python-runs.pdf-manifest.json";
 import type { TimelineManifest } from "../schema/timeline-manifest";
 import type { PdfManifest } from "../pdf/script-pdf-manifest";
 
@@ -26,6 +28,7 @@ export const manifestRegistry: Record<string, TimelineManifest> = {
   "java-vs-js": javaVsJs as TimelineManifest,
   "source-to-exe": sourceToExe as TimelineManifest,
   "about-c": aboutC as TimelineManifest,
+  "python-runs": pythonRuns as TimelineManifest,
 };
 
 /** design §8.1: `public/manifests/<script-id>.pdf-manifest.json` の直接 import マップ。 */
@@ -33,6 +36,7 @@ export const pdfManifestRegistry: Record<string, PdfManifest> = {
   "java-vs-js": javaVsJsPdf as PdfManifest,
   "source-to-exe": sourceToExePdf as PdfManifest,
   "about-c": aboutCPdf as PdfManifest,
+  "python-runs": pythonRunsPdf as PdfManifest,
 };
 
 /**

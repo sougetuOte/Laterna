@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "script_id": "python-runs",
+  "char_limit": 900,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-title",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "narrator",
+          "text": "今日は「パイソンが動くまで」の話をします。書いたプログラムが、コンピュータの中でどうやって動いているのかを見ていきます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-002",
+          "speaker": "listener",
+          "text": "パイソンって、書いて実行すると、すぐに動きますよね。裏で何か特別なことをしているんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "実は、画面には見えないところで、いくつもの仕事が起きています。今日は、その裏側をのぞいてみましょう。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-cpu",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-004",
+          "speaker": "narrator",
+          "text": "まず、コンピュータの頭脳にあたる「CPU」から始めます。CPUが直接読めるのは、0と1の並びで書かれた「機械語」だけです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-005",
+          "speaker": "listener",
+          "text": "えっ、じゃあ、プリントみたいな英語の命令は、CPUには読めないんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-006",
+          "speaker": "narrator",
+          "text": "読めません。プリントも、足し算の記号も、CPUから見ればただの文字です。人が書いたプログラムを動かすには、機械語に「翻訳」する係が要ります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "listener",
+          "text": "英語の手紙を、日本語しか読めない人に渡すようなものですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "narrator",
+          "text": "そのとおりです。そして、この翻訳のやり方には、大きく分けて2つあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-compiler",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-009",
+          "speaker": "narrator",
+          "text": "1つめは「コンパイラ」です。本の翻訳にたとえると、まず1冊まるごと訳して、訳し終えた本を渡すやり方です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-010",
+          "speaker": "narrator",
+          "text": "プログラムなら、全体を先に機械語へ訳して、「実行ファイル」を作ります。動かすときは、その実行ファイルをCPUが直接読みます。C言語がこの形です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-011",
+          "speaker": "listener",
+          "text": "訳すのは、最初の1回だけということですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-012",
+          "speaker": "narrator",
+          "text": "はい。訳し終えれば、あとは何度でも速く動かせます。そのかわり、プログラムを書き直すたびに、訳し直しが要ります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-interpreter",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "2つめは「インタプリタ」です。こちらは同時通訳のように、プログラムを読みながら、その場で1つずつ動かしていきます。実行ファイルは作りません。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-014",
+          "speaker": "listener",
+          "text": "通訳さんが、ずっと隣にいてくれる感じですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-015",
+          "speaker": "narrator",
+          "text": "そうです。書いてすぐに試せるのが強みです。そのかわり、動かすたびに読みながら進むので、そのぶん時間がかかります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "slide_id": "slide-impl",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-016",
+          "speaker": "narrator",
+          "text": "ここで1つ、大事な点があります。コンパイラかインタプリタかは、言語そのものではなく、その言語を動かす道具、「処理系」の作り方で決まります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-017",
+          "speaker": "narrator",
+          "text": "実際、パイソンにも、C言語で書かれた標準の「シーパイソン」のほかに、「パイパイ」など、作り方の違う処理系がいくつもあります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-018",
+          "speaker": "listener",
+          "text": "じゃあ、ふだん使っているパイソンは、コンパイラとインタプリタの、どっちなんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-019",
+          "speaker": "narrator",
+          "text": "パイソンの公式の説明では、インタプリタ型の言語です。ただ、同じ説明の中で、その境目はあいまいだとも書かれています。実は、両方の考え方を使っているからです。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "slide_id": "slide-python-flow",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-020",
+          "speaker": "narrator",
+          "text": "シーパイソンは、2つの段階で動きます。1段目で、プログラム全体を「バイトコード」という中間の命令に訳します。2段目で、「仮想マシン」がそのバイトコードを1つずつ読んで実行します。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-021",
+          "speaker": "listener",
+          "text": "仮想マシン？ 中に、別の機械が入っているんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-022",
+          "speaker": "narrator",
+          "text": "本物の機械ではありません。ソフトウェアで作った、架空のCPUのようなものです。バイトコードは、この架空のCPUのための機械語だと思ってください。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "slide_id": "slide-dis",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-023",
+          "speaker": "narrator",
+          "text": "のぞいてみましょう。aに1を入れて、aに2を足したものを表示する、2行のプログラムです。「ディス」という道具を使うと、バイトコードが見られます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-024",
+          "speaker": "narrator",
+          "text": "ロード、ストア、バイナリオプ、コール。短い命令が並んでいますね。これはパイソン、さんてんいちいちでの例で、中身は版によって変わることがあります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-025",
+          "speaker": "listener",
+          "text": "2行の文が、細かい命令に分かれているんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-026",
+          "speaker": "narrator",
+          "text": "はい。私たちが書いた1行は、仮想マシンの中では、いくつもの小さな命令になって、上から順番に実行されているわけです。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "slide_id": "slide-pycache",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-027",
+          "speaker": "narrator",
+          "text": "訳したバイトコードは、取っておかれることもあります。ほかのファイルから読み込んだ部品は、「パイキャッシュ」というフォルダに保存され、次からは訳し直しを省けます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-028",
+          "speaker": "narrator",
+          "text": "ただし、パイソンのコマンドで直接動かしたファイルは保存されず、毎回訳し直します。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-029",
+          "speaker": "listener",
+          "text": "フォルダの中に、いつのまにかできていることがあるのは、そのせいなんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "slide_id": "slide-repl",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-030",
+          "speaker": "narrator",
+          "text": "もう1つ、インタプリタらしい使い方が「対話モード」です。大なり記号が3つ並んだ印が出て、1行書くたびに、その場で結果が返ってきます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-031",
+          "speaker": "listener",
+          "text": "通訳さんと、1文ずつやりとりする感じですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-032",
+          "speaker": "narrator",
+          "text": "この2つの段階は、エラーの出方にも表れます。どちらも3行目に間違いがある、2つのプログラムを比べてみましょう。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "slide_id": "slide-err-name",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-033",
+          "speaker": "narrator",
+          "text": "1つめは、3行目で「ねだん」という、どこにも作っていない名前を使っています。動かすと、1行目と2行目は表示されて、3行目に来たところで止まります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "slide_id": "slide-err-syntax",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-034",
+          "speaker": "narrator",
+          "text": "2つめは、3行目のかっこを閉じ忘れています。こちらは、1行目すら表示されずに、いきなりエラーになります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-035",
+          "speaker": "listener",
+          "text": "どちらも3行目の間違いなのに、止まり方が違うんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "slide_id": "slide-err-point",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-036",
+          "speaker": "narrator",
+          "text": "書き方の間違いは、1段目のバイトコードへの翻訳で見つかるので、動き出す前に止まります。名前の間違いは、2段目で実際にそのぎょうを動かしたときに初めて見つかります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-037",
+          "speaker": "narrator",
+          "text": "エラーが出たら、「動く前か、動いている途中か」を見てください。どこを直せばよいか、見当がつけやすくなります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-038",
+          "speaker": "listener",
+          "text": "動く前に止まったら書き方を、途中で止まったら中身を疑う、ということですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-039",
+          "speaker": "narrator",
+          "text": "そうです。エラーの最後のぎょうに出る名前も手がかりになります。シンタックスエラーなら書き方の間違い、ネームエラーなら名前の間違いです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-040",
+          "speaker": "listener",
+          "text": "パイソンのプログラムは、ウィンドウズでもマックでも同じように動くと聞きました。どうしてですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 13,
+      "slide_id": "slide-os-exe",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-041",
+          "speaker": "narrator",
+          "text": "まず、コンパイラが作る実行ファイルは、OSごとに形式が違います。ウィンドウズ用の実行ファイルは、そのままではリナックスでは動きません。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 14,
+      "slide_id": "slide-os-python",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-042",
+          "speaker": "narrator",
+          "text": "パイソンでは、翻訳と実行をするパイソン本体が、ウィンドウズ用、マック用、リナックス用と、それぞれ用意されています。シーパイソンはC言語で書かれていて、OSごとにコンパイルされたものを使います。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-043",
+          "speaker": "narrator",
+          "text": "だから、私たちが書いたプログラムは同じものを渡せばよく、OSごとの違いは、パイソン本体が引き受けてくれます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-044",
+          "speaker": "listener",
+          "text": "通訳さんが、くにごとにいてくれるようなものですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 15,
+      "slide_id": "slide-os-others",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-045",
+          "speaker": "narrator",
+          "text": "ジャバも同じ考え方です。バイトコードまで先に訳して配り、それぞれのOSの仮想マシンが動かします。ウェブのサーバー側でよく使われるピーエイチピーも、処理系が間に入る仲間です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-046",
+          "speaker": "narrator",
+          "text": "ただし、完全に同じではありません。たとえば、フォルダの区切りの記号は、ウィンドウズとほかのOSで違います。そういう所は、書く側が気をつけます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-047",
+          "speaker": "listener",
+          "text": "通訳さんが間に入るぶん、遅くなったりしませんか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 16,
+      "slide_id": "slide-speed",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-048",
+          "speaker": "narrator",
+          "text": "鋭いですね。1命令ずつ読んで実行するぶん、機械語を直接動かすより遅くなりがちです。そこで、速くする工夫がいくつもあります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-049",
+          "speaker": "narrator",
+          "text": "1つめは、さっきの「取っておく」です。訳したバイトコードを保存して、次からは訳す手間を省きます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-050",
+          "speaker": "narrator",
+          "text": "2つめは「ジット」です。動かしている途中で、何度も通る部分を見つけて、そこだけ機械語に訳してしまう方法です。パイパイは、この方法で速く動くことが多い処理系です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-051",
+          "speaker": "narrator",
+          "text": "シーパイソンにも、さんてんいちさんから試験的に入りました。ただ、今のところ、ふだんは使われない設定になっています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-052",
+          "speaker": "narrator",
+          "text": "3つめは、重い計算をC言語に任せることです。たくさんの数をまとめて計算する「ナムパイ」という部品は、裏側で、あらかじめコンパイルしたC言語のコードを動かしています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-053",
+          "speaker": "listener",
+          "text": "書くのはパイソンで手軽にして、重い所だけ、速い言語にお願いするんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-054",
+          "speaker": "narrator",
+          "text": "そうです。コンパイラとインタプリタは、どちらかを選ぶものではなく、組み合わせて使われているのです。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 17,
+      "slide_id": "slide-compare",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-055",
+          "speaker": "narrator",
+          "text": "ここまでを表にまとめます。コンパイラ型は、動かす速さが強みです。インタプリタ型は、書いてすぐ試せることと、いろいろなOSで動かしやすいことが強みです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-056",
+          "speaker": "narrator",
+          "text": "パイソンは、インタプリタ型の手軽さを持ちながら、中ではバイトコードへの翻訳もしています。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 18,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-057",
+          "speaker": "narrator",
+          "text": "最後に3つだけ覚えてください。1つめ、CPUが読めるのは機械語だけで、翻訳係が要ること。2つめ、パイソンは、バイトコードに訳してから仮想マシンで動かす、2段階だということ。3つめ、エラーが出たら、動く前か途中かを見ること。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-058",
+          "speaker": "listener",
+          "text": "次にパイソンを動かすときは、裏で働いている通訳さんのことを、思い出してみます。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-059",
+          "speaker": "narrator",
+          "text": "ぜひ、そうしてください。それでは、また次回。",
+          "style": "body"
+        }
+      ]
+    }
+  ],
+  "total_pages": 18
+}
