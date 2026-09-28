@@ -6,15 +6,16 @@
 
 授業用の解説動画（掛け合い）＋復習 PDF を「この題材で 1 本」で作るプロジェクト。Kyozai-Athanor のエンジンを移植し、統治の層は持ち込まない。
 1 本目「ソースから実行ファイルまで」（`source-to-exe`）と 2 本目「C言語について」（`about-c`）を納品した（`deliver/<script-id>/`）。どちらも 2026-10-02 の授業で使う（1 本目は高専 1 年の初回、2 本目は電気情報工学科 1 年のプログラミング言語入門と機械工学科 3 年の情報処理Ⅰ）。
-**Wave 3「2 本目」は 2026-09-27 に検収 PASS で締めた。次は 10/2 の授業の結果を聞いてから、次の Wave の G0 を面接で取る。**
+**Wave 3「2 本目」は 2026-09-27 に検収 PASS で締めた。**
+**Wave 4「3 本目：Pythonが動くまで」（`python-runs`、汎用・期限 2027-01-10）は 2026-09-28 に納品物と主人の試写（問題なし）まで済んだ。検収 1 回目の結果が次の分かれ目（下の「現在地」）。**
 
 ## 読む順序
 
 1. `README.md`（34 行）
 2. `docs/brief.md`（134 行。決定 D1〜D10 と §9 の訂正節 D8・D9）
-3. `goal.md`（351 行。Wave 1・2・2.5・3 は完了。**末尾の Wave 3 節と、その訂正節 3 つ**が直近の契約）
+3. `goal.md`（457 行。Wave 1・2・2.5・3 は完了。**末尾の Wave 4 節**が直近の契約。訂正節はまだ無い）
 4. `SKILL.md`（159 行。「この題材で 1 本」の手順書。手順 0 の 5 に作業記録の書き方を足した）
-5. `materials/about-c/`（outline.md・build-log.md の「表の決まり」・description.md）、`materials/source-to-exe/`
+5. `materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md、description.md）、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
 6. `docs/research/2026-09-27-review.md`（198 行。点検の記録。「Wave 3 以降へ」の行は下の未決に移した）
 7. `docs/inventory.md`／`docs/design.md`／`imagegen/README.md`
 8. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
@@ -26,6 +27,12 @@
   - 2 本目 `about-c`：9 分 6 秒（545.96 秒）・PDF 17 ページ。台本 56 発話、図解は `render/about-c/` の 3 部品（LanguageLevels・CTimeline・CourseMap）。個人名は出さない（主人の答え：案 B）。
   - 主人の試写で箇条書きの点と文字のずれ（共通部品）が見つかり、訂正節で共通部品と 1 本目の R1〜R3 を直して、1 本目と 2 本目を書き出し直し、納品物を差し替えた（`d2f6af5`）。PDF の注記の JSX 改行による余計な空白も、足したテストで見つかって直した。
   - 検収：1 回目 **FAIL**・2 回目 **FAIL**（どちらも検証 6。作業記録の終了コードが実測でなかった）→ 縦の停止で MAGI を 1 回（結論：表を実測だけにし、読むだけのコマンドを叩き直す。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（`59f5a7d`）→ 訂正節 → 数え直して 1 回目 **PASS**（`9954bdd`、検証 1〜8）。
+- **Wave 4「3 本目：Pythonが動くまで」は検収待ち**（2026-09-28。G0 承認 10:09 JST、セッション `c54d1211-5809-442d-aae2-ccf5fd2dfe43`。起点 `79ad909`。成果コミット `3d8ee56`・`e6d0820`）：
+  - 3 本目 `python-runs`：8 分 32 秒（512.36 秒）・PDF 18 ページ。台本 59 発話・3,253 字、8 章。図解は `render/python-runs/` の 2 部品（RunFlow・CompareTable）。コードと実行結果は Python 3.11.9。
+  - 納品物 `deliver/python-runs/`：MP4 `5f02ecdc…5e83`・PDF `de5b6aea…823c`・description.md。主人の試写：問題なし（2026-09-28）。
+  - 本セッションの実測（10:26）：`npm test` 21 files / 381 tests PASS、`npm run lint` exit 0。出典 21 本 HTTP 200。主人の氏名・学校名 0 件。`src/` の差は追加 10 行だけ（削除 0）。
+  - 検収 1 回目は **FAIL**（検証 6 だけ）。`db4b3b1` で直した。検収 2 回目は次のセッションで出す。
+  - 検収 1 回目で columba が確かめた（2026-09-28、HEAD `e6d0820`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の manifest・音声は起点と同じ、`npm test` 381 件・lint exit 0、出典 21 本 HTTP 200。
 - 動いている物（実測 2026-09-27、columba の最後の検収、HEAD `9954bdd`）：
   - `npm test` 20 files / 370 tests PASS、`npm run lint` exit 0。
   - 納品物の SHA-256：source-to-exe は MP4 `c00f8b35…1434`・PDF `66c3c06e…42b0`（10 ページ・285.888 秒）、about-c は MP4 `be055db0…31b6`・PDF `bec94511…a90c`。どちらも書き出し直すと一致する（render は決定的）。
@@ -46,6 +53,9 @@
 | `e1601fa`・`86025df` | 検収 1 回目・2 回目 **FAIL**（作業記録。説明の行に終了コード 0／grep の 0 件を 0 と書いた） |
 | `59f5a7d` | MAGI の後に作業記録を書き直し、検収 3 回目 PASS |
 | `9a17903`・`d2f6af5`・`9954bdd` | 訂正節 2・3：箇条書き（共通部品）と 1 本目の R1〜R3 の直し、納品物の差し替え、java-vs-js の物差しの置き換え（エンコーダの先読み 40 フレームを許す）。数え直して 1 回目 PASS |
+| `7caf298` | Wave 4 の G0（主人の答え：汎用・普通科高校 1 年・経験なし、8〜10 分の 1 本、PHP は一言、コンパイラ化は JIT と「重い所は C」、付け足し 1・2・3・5、Scratch は入れない、試写を完了条件に、Python 3.11.9） |
+| `3d8ee56`・`e6d0820` | 3 本目の台本（承認後に読みのかな 3 か所）・図解 2 部品・音声・納品、主人の試写（問題なし）。検収 1 回目 **FAIL**（HEAD `e6d0820`。9 項中 8 項 PASS、検証 6 だけ：作業記録の still の 2 行に叩いたコマンドが無く説明だった） |
+| `db4b3b1` | 作業記録の still の行（4 行に分けた）と VOICEVOX の「同上」の行を、叩いたコマンドそのものに直した。**検収 2 回目はまだ出していない**（2 回目も FAIL なら縦の停止で MAGI） |
 
 **retro（2026-09-27、Wave 3 の締め）**：起動条件 1（同一フェーズで検収 2 回 FAIL）と 3（出荷した 1 本目が次の回で直しの対象になった）に当たった。学びは 3 つ。
 1. 終了コードは、叩いたその場で `echo exit=$?`（パイプは pipefail）で取る。パイプや `;` の途中は実測にならない。記録に「無い」「0」と書く前に確かめる → `SKILL.md` 手順 0 の 5 に 1 文足した（主人承認）。
@@ -71,6 +81,8 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 13. **動画・PDF・概要欄・リポジトリに主人の個人名を出さない**（案 B）。学校名・学科名・科目名は出す。担当教員は「この授業の担当の先生」と言う。
 14. 同じフェーズで検収が 2 回 FAIL したら MAGI を 1 回、なお FAIL なら主人へ（Seneschal loop.md）。訂正節で作業が加わった後の検収は、FAIL の回数を数え直す（2026-09-27 主人）。
 15. `npm audit fix` は `--force` なしだけ。eslint を上げる `--force` は後の Wave。
+16. 3 本目「Pythonが動くまで」は汎用（普通科高校 1 年・経験なし）。最初に使うのは専門学校 1 年の後期、高専で流すこともある。**動画・PDF・概要欄に学校名を出さない**（決定 13 の「学校名は出す」は 1 本目・2 本目の話）。期限 2027-01-10。
+17. 例示の Python は、この機械の 3.11.9 のまま（別の版は入れない）。主人の試写は完了条件に入れる（2026-09-28）。
 
 ## 採らなかった案
 
@@ -109,7 +121,8 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 次の一手
 
-10/2 の授業で 1 本目・2 本目を使った結果を主人から聞く。次の題材があれば、その Wave の G0 を面接で取る（草案に上の「Wave 3 以降へ」の所見の扱いと、retro の学び 3「試写で見る点」を入れる）。
+Wave 4 の検収 2 回目を columba に出す（HEAD は `db4b3b1` 以降。Wave 4 は G0 承認済みなので面接は要らない。1 回目の依頼文の所在の書き方は、本セッションの記録にある）。PASS なら Wave 4 を締める（retro の要否：1 回目の FAIL は Wave 3 の学び 1 と同じ型「作業記録の行がコマンドでない」）。
+その後、10/2 の授業で 1 本目・2 本目を使った結果を主人から聞く。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
@@ -121,6 +134,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 - 読みの確認は VOICEVOX の `/audio_query` が返す `kana` を見る（「その間」→そのかん、「その分」→そのわけ、と読んだ）。
 - 台本 YAML：js-yaml はアンカーの merge（`<<`）をしない。値が `**`・`*`・`&`・`[` で始まる箇条書きは `"…"` で囲む。
 - 2 年以上の科目のシラバスの URL は、`year=` が入学年度（例：電気情報 3 年は year=2024）。
+- VOICEVOX が止まっていたら、`C:/Users/metral/AppData/Local/Programs/VOICEVOX/vv-engine/run.exe --host 127.0.0.1 --port 50021` を裏で起動できる（2026-09-28）。node で `fetch` の後に `process.exit()` を呼ぶと Windows で終了時に落ちて 127 になることがある。`process.exitCode` を使う。
 - VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、`pdftotext` は Git Bash の `/mingw64/bin`、PDF のページ数は `pdf-lib`。node 24／npm 11。
 - 分類器（auto mode）が止めた操作は別経路で追わない。統治文書（goal.md・brief.md）は、主人の「承認」「書込許可」の後に Edit ツールで書く。
 - git は `git -C /d/work8/Laterna` で呼ぶ。リモートは `origin`（GitHub、https）。commit したら push。
