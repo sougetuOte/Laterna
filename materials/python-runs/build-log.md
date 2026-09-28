@@ -13,7 +13,7 @@
 | 手順 | 日時 | コマンド | 終了コード | 備考 |
 |---|---|---|---|---|
 | 0 | 10:20 | `node -e "fetch('http://127.0.0.1:50021/version').then(async r=>{console.log(await r.text());process.exit(r.ok?0:1)}).catch(e=>{console.log(e.message);process.exit(1)})"` | 1 | fetch failed。VOICEVOX が止まっていた。この後、主人の機械の `VOICEVOX/vv-engine/run.exe --host 127.0.0.1 --port 50021` を裏で起動した（終了コードは表の外） |
-| 0 | 10:20 | 同上 | 0 | `"0.25.2"` |
+| 0 | 10:20 | `node -e "fetch('http://127.0.0.1:50021/version').then(async r=>{console.log(await r.text());process.exit(r.ok?0:1)}).catch(e=>{console.log(e.message);process.exit(1)})"` | 0 | `"0.25.2"`（run.exe を起動して応答を待った後） |
 | 1 | 10:25 | `bash <scratchpad>/urls.sh` | 0 | 出典 21 本を 1 本ずつ取得。各 URL の行の直後に `exit=$?` を取り、21 本とも 200・exit=0（出力は `<scratchpad>/urls.log`。1 回目は node の終了時の落ち（`UV_HANDLE_CLOSING`）で 127 が出たので、`process.exit` を `process.exitCode` に直して取り直した） |
 | 1 | 10:27 | `python --version`（`<py>`） | 0 | Python 3.11.9 |
 | 1 | 10:27 | `python add.py`（`<py>`） | 0 | 3 |
@@ -30,9 +30,11 @@
 | 4 | 10:23 | `npm run compile:script -- python-runs` | 0 | 2 回目。3 件を再合成、15369 フレーム・約 512.3 秒（`<scratchpad>/compile2.log`） |
 | 4 | 10:23 | `npm run lint` | 0 | manifest を登録した後（`<scratchpad>/lint1.log`） |
 | 4 | 10:23 | `npm test` | 0 | 21 files / 381 tests PASS（`<scratchpad>/test1.log`） |
-| 4 | — | still 18 枚（`<scratchpad>/frames.txt` の各スライドの開始＋75 フレーム） | 0 | ループの中で `\|\| echo fail`。fail は 0 回。図の 1 本だけの流れが小さかった |
+| 4 | — | `while read id f; do node node_modules/@remotion/cli/remotion-cli.js still src/index.ts ScriptComposition <scratchpad>/stills/$id.png --frame=$f --image-format=png --props=<scratchpad>/props.json > <scratchpad>/stills/$id.log 2>&1 \|\| echo "fail $id"; done < <scratchpad>/frames.txt` | 0 | 18 枚。`frames.txt` は各スライドの `start_frame`＋75（1 行「スライド id フレーム」）、`props.json` は `{"scriptId":"python-runs"}`。ループの中で `\|\| echo fail`、fail は 0 回。図の 1 本だけの流れが小さかった |
 | 4 | 10:26 | `npm run compile:script -- python-runs` | 0 | 3 回目。RunFlow の寸法と slide-python-flow の箱の文字を直した後（`<scratchpad>/compile3.log`）。15369 フレーム |
-| 4 | 10:26 | still 3 枚（slide-cpu・slide-python-flow・slide-compiler） | 0 | 3 枚とも直後に `exit=$?` で 0 |
+| 4 | 10:26 | `node node_modules/@remotion/cli/remotion-cli.js still src/index.ts ScriptComposition <scratchpad>/stills/slide-cpu.png --frame=816 --image-format=png --props=<scratchpad>/props.json` | 0 | 出力は `<scratchpad>/stills/slide-cpu.log` |
+| 4 | 10:26 | `node node_modules/@remotion/cli/remotion-cli.js still src/index.ts ScriptComposition <scratchpad>/stills/slide-python-flow.png --frame=4887 --image-format=png --props=<scratchpad>/props.json` | 0 | 出力は `<scratchpad>/stills/slide-python-flow.log` |
+| 4 | 10:26 | `node node_modules/@remotion/cli/remotion-cli.js still src/index.ts ScriptComposition <scratchpad>/stills/slide-compiler.png --frame=2022 --image-format=png --props=<scratchpad>/props.json` | 0 | 出力は `<scratchpad>/stills/slide-compiler.log` |
 | 4 | 10:26 | `npm run lint` | 0 | `<scratchpad>/lint2.log` |
 | 4 | 10:26 | `npm test` | 0 | 21 files / 381 tests PASS（`<scratchpad>/test2.log`） |
 | 5 | 10:27 | `npm run render:all:script -- python-runs` | 0 | 10:34 に終わった（`<scratchpad>/render1.log`・`render.time`） |
