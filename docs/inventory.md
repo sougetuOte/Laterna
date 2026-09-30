@@ -26,7 +26,7 @@
 | `.gitignore` | 置いていく | Laterna は自前の `.gitignore` を持つ（`out/`・`node_modules/` は既にある）。持ち込む `.kra` 向けに `*.kra~` だけ自前側へ足す |
 | `.gitleaks.toml` | 置いていく | 秘密スキャンの設定。統治ツール寄りで、いまの製品には要らない（`docs/design.md` (e) に戻す条件） |
 | `CLAUDE.md` | 置いていく | Kyozai の統治文書。`goal.md` の「起きてはならない」に当たる |
-| `LICENSE` | 保留 | 同一著作者（sougetuOte）の MIT。Laterna のライセンスは主人の未決（brief §6）。案は Kyozai と同じ MIT。決まるまでコピーしない |
+| `LICENSE` | 保留 | 同一著作者（sougetuOte）の MIT。Laterna のライセンスは主人の未決（brief §6）。案は Kyozai と同じ MIT。決まるまでコピーしない。**→ 2026-09-26 に決まり、`LICENSE`・`LICENSE-CONTENT` とも置いた（brief §9、`cd2e315`）** |
 | `LICENSE-CONTENT` | 保留 | 同上（CC BY 4.0、合成音声・第三者立ち絵は対象外の書き方も引き継ぐ案）。決まるまでコピーしない |
 | `README.md` | 置いていく | Laterna は自前の README を持つ |
 | `eslint.config.mjs` | 持っていく | lint 設定。凍結資産向けの例外ルール（`no-irregular-whitespace` の JSX 除外）は害がないので残す |
