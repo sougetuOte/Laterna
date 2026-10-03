@@ -23,9 +23,13 @@ import type { PdfManifest, PdfPageBlock, PdfPageEntry } from "../script-engine/p
 import type { Slide } from "../script-engine/schema/script";
 import type { TimelineManifest } from "../script-engine/schema/timeline-manifest";
 
-/** design §11.1: 現行 `src/pdf/manifest.ts` と同一の A4 landscape @ ~150dpi サイズを踏襲。 */
-export const PDF_PAGE_WIDTH = 1754;
-export const PDF_PAGE_HEIGHT = 1240;
+/**
+ * A4 縦 @ ~150dpi。Wave 5（2026-10-03 主人）：横（1754x1240）ではスライドが高さ 500px に縮んで
+ * 中央に小さく載り、本文はページの幅いっぱいに流れていたため、画面で拡大すると図と文が
+ * 一緒に収まらなかった。縦にして、スライドと本文を同じ幅にそろえる。
+ */
+export const PDF_PAGE_WIDTH = 1240;
+export const PDF_PAGE_HEIGHT = 1754;
 
 /**
  * still 抽出時、`ScriptSlideRenderer` 配下のアニメーション依存コンポーネント（`useCurrentFrame`
@@ -48,10 +52,9 @@ const FREEZE_AT_FRAME = 99999;
 
 /** ページ左右 padding（`padding: "48px 56px"` の 56 と同値、フィット計算に使用）。 */
 const PAGE_HORIZONTAL_PADDING = 56;
-/** スライド面の割当高さ（ページ上部約 40-45%、design §8.1）。 */
-const SLIDE_AREA_HEIGHT = 500;
-/** スライド面の実効幅（ページ幅 − 左右 padding）。 */
-const SLIDE_AREA_WIDTH = PDF_PAGE_WIDTH - PAGE_HORIZONTAL_PADDING * 2;
+/** スライド面と本文の幅（ページ幅 − 左右 padding）。Wave 5 から、この 2 つは同じ幅にする。 */
+export const PDF_CONTENT_WIDTH = PDF_PAGE_WIDTH - PAGE_HORIZONTAL_PADDING * 2;
+const SLIDE_AREA_WIDTH = PDF_CONTENT_WIDTH;
 
 /** `ScriptSlideRenderer` が実際に描画するスライドの実寸（1920x1080 × SLIDE_SCALE）。 */
 const RENDERED_SLIDE_WIDTH = SLIDE_INTERNAL_WIDTH * SLIDE_SCALE;
@@ -65,14 +68,18 @@ const STAGE_HORIZONTAL_SLACK = 48;
 const STAGE_WIDTH = RENDERED_SLIDE_WIDTH + STAGE_HORIZONTAL_SLACK;
 const STAGE_HEIGHT = RENDERED_SLIDE_HEIGHT;
 
-/** contain フィット倍率: どのスライドでも上下左右が欠けないことを構造的に保証する。 */
-const STAGE_SCALE = Math.min(
-  SLIDE_AREA_WIDTH / STAGE_WIDTH,
-  SLIDE_AREA_HEIGHT / STAGE_HEIGHT,
-);
-/** ステージの領域内配置（中央寄せ、数値で確定）。 */
-const STAGE_LEFT = (SLIDE_AREA_WIDTH - STAGE_WIDTH * STAGE_SCALE) / 2;
-const STAGE_TOP = (SLIDE_AREA_HEIGHT - STAGE_HEIGHT * STAGE_SCALE) / 2;
+/**
+ * Wave 5（2026-10-03）：スライドの絵（RENDERED_SLIDE_WIDTH 幅）を、本文と同じ幅にちょうど合わせる。
+ * レンダラは絵を 24px 左へ寄せるので、ステージの中で絵は x=0〜RENDERED_SLIDE_WIDTH にあり、
+ * 右の 48px は空き。ステージを左端 0 に置き、絵の幅で倍率を決めると、絵が枠いっぱいになり、
+ * 右の空きは枠の外（overflow: hidden）に出る。横のページのときの中央寄せでは、枠の右に白い帯が残った。
+ */
+const STAGE_SCALE = SLIDE_AREA_WIDTH / RENDERED_SLIDE_WIDTH;
+/** スライド面の高さ。絵を上の倍率で縮めた高さ（固定の 500px をやめた）。 */
+const SLIDE_AREA_HEIGHT = Math.ceil(STAGE_HEIGHT * STAGE_SCALE);
+/** ステージの領域内配置（数値で確定）。 */
+const STAGE_LEFT = 0;
+const STAGE_TOP = 0;
 
 export interface ScriptPdfCompositionProps {
   scriptId: string;
@@ -225,15 +232,19 @@ const ScriptPdfCompositionInner: React.FC<{
         </div>
       </div>
 
-      {/* スライド面: ページ上部約 40-45%（design §8.1）。ScriptSlideRenderer をアニメーション
+      {/* スライド面: ページ上部（Wave 5 から本文と同じ幅、高さはそれに合わせる）。ScriptSlideRenderer をアニメーション
           完了状態で静止させて流用する。レンダラ出力実寸の仮想ステージを contain フィットで
           絶対配置 + 中央寄せし、どのスライドでも上下左右が欠けないことを構造的に保証する
           （L1 検収差し戻し対応。transform-origin 明示 + 数値配置、flex に transform を混ぜない）。 */}
+      {/* Wave 5：スライド面は本文と同じ幅（PDF_CONTENT_WIDTH）。枠は outline で描き、寸法を変えない。 */}
       <div
+        data-pdf-region="slide"
         style={{
           flex: `0 0 ${SLIDE_AREA_HEIGHT}px`,
+          width: PDF_CONTENT_WIDTH,
           position: "relative",
           overflow: "hidden",
+          outline: "2px solid #c8c8c8",
         }}
       >
         <div
@@ -253,13 +264,14 @@ const ScriptPdfCompositionInner: React.FC<{
         </div>
       </div>
 
-      {/* 本文面: 残り約 55-60%（design §8.1）を 2 段組で描画（design §8.3）。 */}
+      {/* 本文面: スライド面の下の残り。Wave 5 から 1 段組で、スライド面と同じ幅に収める
+          （横のページの 2 段組をやめた）。 */}
       <div
+        data-pdf-region="body"
         style={{
           flex: "1 1 auto",
-          marginTop: 16,
-          columnCount: 2,
-          columnGap: 40,
+          width: PDF_CONTENT_WIDTH,
+          marginTop: 24,
           overflow: "hidden",
         }}
       >

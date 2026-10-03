@@ -22,7 +22,12 @@ vi.mock("remotion", async (importOriginal) => {
   return { ...actual, useCurrentFrame: () => remotionState.frame };
 });
 
-import { ScriptPdfComposition } from "./ScriptPdfComposition";
+import {
+  PDF_CONTENT_WIDTH,
+  PDF_PAGE_HEIGHT,
+  PDF_PAGE_WIDTH,
+  ScriptPdfComposition,
+} from "./ScriptPdfComposition";
 import { manifestRegistry, pdfManifestRegistry } from "../script-engine/render/manifest-registry";
 
 type AnyElement = React.ReactElement<Record<string, unknown>>;
@@ -145,4 +150,34 @@ describe("ScriptPdfCompositionInner — fail-fast", () => {
       /"no-such-slide" に対応するスライドが/,
     );
   });
+});
+
+describe("ScriptPdfCompositionInner — ページの組み（Wave 5：A4 縦、スライドと本文は同じ幅）", () => {
+  /** data-pdf-region の値で、スライド面か本文面の div を返す。 */
+  function region(tree: AnyElement, name: "slide" | "body"): AnyElement {
+    const found = collectElements(tree).find((e) => e.props["data-pdf-region"] === name);
+    if (!found) throw new Error(`data-pdf-region="${name}" の要素が無い`);
+    return found;
+  }
+
+  it("ページは縦長で、内容の幅はページ幅から左右の余白 56px ずつを引いた幅", () => {
+    expect(PDF_PAGE_HEIGHT).toBeGreaterThan(PDF_PAGE_WIDTH);
+    expect(PDF_CONTENT_WIDTH).toBe(PDF_PAGE_WIDTH - 56 * 2);
+  });
+
+  it.each(["java-vs-js", "source-to-exe", "about-c", "python-runs"])(
+    "%s: どのページでもスライド面と本文面の幅が同じで、本文は 1 段組",
+    (scriptId) => {
+      const outer = outerElement(scriptId);
+      const pdf = pdfManifestRegistry[scriptId];
+      for (let frame = 0; frame < pdf.total_pages; frame += 1) {
+        const tree = renderInner(outer, frame);
+        const slideStyle = region(tree, "slide").props.style as React.CSSProperties;
+        const bodyStyle = region(tree, "body").props.style as React.CSSProperties;
+        expect(slideStyle.width).toBe(PDF_CONTENT_WIDTH);
+        expect(bodyStyle.width).toBe(PDF_CONTENT_WIDTH);
+        expect(bodyStyle.columnCount).toBeUndefined();
+      }
+    },
+  );
 });

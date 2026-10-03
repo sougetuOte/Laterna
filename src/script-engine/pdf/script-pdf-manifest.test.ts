@@ -357,8 +357,8 @@ describe("buildPdfManifest — fail-fast エラー", () => {
 // ============================================================================
 
 describe("PDF_PAGE_CHAR_LIMIT / resolveDefaultPdfManifestOutputPath", () => {
-  it("PDF_PAGE_CHAR_LIMIT は 900（design §8.3、W4-script-engine-T18 Spike 実測確定値）", () => {
-    expect(PDF_PAGE_CHAR_LIMIT).toBe(900);
+  it("PDF_PAGE_CHAR_LIMIT は 450（Wave 5 の A4 縦・1 段組で測り直した値。前は横・2 段組の 900）", () => {
+    expect(PDF_PAGE_CHAR_LIMIT).toBe(450);
   });
 
   it("charLimit 省略時は PDF_PAGE_CHAR_LIMIT を使う", () => {

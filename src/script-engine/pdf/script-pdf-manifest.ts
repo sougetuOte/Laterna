@@ -74,8 +74,15 @@ export interface PdfManifest {
  * によって丸ごと非表示になる（D-19 同型の overflow）ことを確認した。900 字は非最終ページ・
  * 最終ページ（フッタ分の余白減少込み）の両方で実描画確認済み（安全マージン適用後の値として
  * 追加検証が不要なレベルの余白を実測）。
+ *
+ * Wave 5（2026-10-03）で A4 縦・本文 1 段組（幅 1128px）に組み直し、同じ方法で測り直して 450 にした。
+ * python-runs の実際の発話を並べて差し替えると、866 字（17 発話）は最後の発話が下で切れ、
+ * 最終ページの 587 字（12 発話）は注記 3 行でページの下端に届いた。3 本目の最終ページの注記は
+ * 画像の出典を足して 7 行ほどになるので、その分（本文 3 行、約 150 字）を引いた。
+ * 4 本の台本で本文がいちばん多いページは 413 字（python-runs）なので、900 から 450 にしても
+ * ページの分け方は変わらない。
  */
-export const PDF_PAGE_CHAR_LIMIT = 900;
+export const PDF_PAGE_CHAR_LIMIT = 450;
 
 /** `public/manifests/<script-id>.pdf-manifest.json` の既定書出し先。 */
 export function resolveDefaultPdfManifestOutputPath(scriptId: string): string {
