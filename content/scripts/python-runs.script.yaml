@@ -217,6 +217,26 @@ slides:
     type: title
     title: Pythonが動くまで
     subtitle: 書いたプログラムの裏側で起きていること
+  # Wave 5：画像のスライド 2 枚（出典の記録は materials/python-runs/images.md）
+  - id: slide-cpu-photo
+    type: image
+    src: images/python-runs/cpu.jpg
+    caption: CPU（コンピュータの頭脳）の現物
+    source:
+      source_url: https://commons.wikimedia.org/wiki/File:Cpu_1.jpg
+      license: CC0
+      author: blickpixel（Pixabay）
+      modifications: 縮小（Wikimedia Commons の幅 1920px の縮小版）
+  - id: slide-python-org
+    type: image
+    src: images/python-runs/python-org-downloads.png
+    caption: Python の公式サイトのダウンロードのページ
+    source:
+      source_url: https://www.python.org/downloads/
+      license: quotation
+      author: Python Software Foundation
+      modifications: 切り抜き（下端の 42px）
+      retrieved: "2026-10-03"
   - id: slide-cpu
     type: custom
     component: RunFlow
@@ -455,10 +475,17 @@ slide_events:
       utterance: u-001
       position: start
       offset: 0
+  # Wave 5：u-004〜u-005 は CPU の写真、u-006 から今までの図（発話は変えない）
   - id: ev-002
-    slide: slide-cpu
+    slide: slide-cpu-photo
     anchor:
       utterance: u-004
+      position: start
+      offset: 0
+  - id: ev-002b
+    slide: slide-cpu
+    anchor:
+      utterance: u-006
       position: start
       offset: 0
   - id: ev-003
@@ -527,10 +554,17 @@ slide_events:
       utterance: u-041
       position: start
       offset: 0
+  # Wave 5：u-042 は python.org のダウンロードのページの画面写し、u-043 から今までの図
   - id: ev-014
-    slide: slide-os-python
+    slide: slide-python-org
     anchor:
       utterance: u-042
+      position: start
+      offset: 0
+  - id: ev-014b
+    slide: slide-os-python
+    anchor:
+      utterance: u-043
       position: start
       offset: 0
   - id: ev-015

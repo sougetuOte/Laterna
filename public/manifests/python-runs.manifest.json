@@ -603,8 +603,13 @@
     },
     {
       "id": "ev-002",
-      "slide": "slide-cpu",
+      "slide": "slide-cpu-photo",
       "start_frame": 741
+    },
+    {
+      "id": "ev-002b",
+      "slide": "slide-cpu",
+      "start_frame": 1282
     },
     {
       "id": "ev-003",
@@ -663,8 +668,13 @@
     },
     {
       "id": "ev-014",
-      "slide": "slide-os-python",
+      "slide": "slide-python-org",
       "start_frame": 10396
+    },
+    {
+      "id": "ev-014b",
+      "slide": "slide-os-python",
+      "start_frame": 10818
     },
     {
       "id": "ev-015",
@@ -693,6 +703,31 @@
       "type": "title",
       "title": "Pythonが動くまで",
       "subtitle": "書いたプログラムの裏側で起きていること"
+    },
+    {
+      "id": "slide-cpu-photo",
+      "type": "image",
+      "src": "images/python-runs/cpu.jpg",
+      "source": {
+        "source_url": "https://commons.wikimedia.org/wiki/File:Cpu_1.jpg",
+        "license": "CC0",
+        "author": "blickpixel（Pixabay）",
+        "modifications": "縮小（Wikimedia Commons の幅 1920px の縮小版）"
+      },
+      "caption": "CPU（コンピュータの頭脳）の現物"
+    },
+    {
+      "id": "slide-python-org",
+      "type": "image",
+      "src": "images/python-runs/python-org-downloads.png",
+      "source": {
+        "source_url": "https://www.python.org/downloads/",
+        "license": "quotation",
+        "author": "Python Software Foundation",
+        "modifications": "切り抜き（下端の 42px）",
+        "retrieved": "2026-10-03"
+      },
+      "caption": "Python の公式サイトのダウンロードのページ"
     },
     {
       "id": "slide-cpu",
@@ -1070,7 +1105,9 @@
   "credits": [
     "VOICEVOX:玄野武宏(CV:ガロ)",
     "VOICEVOX:ずんだもん",
-    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）",
+    "画像「CPU（コンピュータの頭脳）の現物」 出典：blickpixel（Pixabay）／CC0／https://commons.wikimedia.org/wiki/File:Cpu_1.jpg",
+    "画像「Python の公式サイトのダウンロードのページ」 出典：Python Software Foundation／引用／https://www.python.org/downloads/（2026-10-03 取得）"
   ],
   "total_duration_frames": 15369
 }
