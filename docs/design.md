@@ -69,6 +69,8 @@ slides:
 
 **実装は Wave 3 以降**（1 本目は画像を使わない）。schema（`script.ts`）・manifest（`timeline-manifest.ts`）・`ScriptSlideRenderer` の 3 箇所に閉じる。
 
+**Wave 5 で実装した（2026-10-03）。上の案との違い：**`license` の値は `CC0`・`PD`・`CC-BY-4.0`・`CC-BY-3.0`・`CC-BY-2.0`・`self`・`quotation`。`quotation` は Web ページの画面写しの引用（brief §9 の D7 訂正）で、取得日 `retrieved`（YYYY-MM-DD）を必須にする。`generated` と `generated_with` は D10（compile 時の画像生成）と一緒に次の Wave で足す。`fit` は持たない（常に contain）。画像ファイルの有無は compile の入口（`compiler/parse.ts`）で確かめる。出典の 1 行は `shared/image-source.ts` で作り、動画の画像の下・PDF の最終ページ・`credits[]` で同じ文にする。概要欄の自動書き出しはまだ無い（`description.md` は手で書く）。
+
 ## (c) `manifest-registry.ts` への手動追記をなくす方針
 
 **現状**：`manifest-registry.ts` が manifest JSON を静的 import し、script-id ごとに import 文と entries を手で足す（`video-creation-rules.md` §8 にも手順が書かれている）。切り出し時にも outline-video-1 の 4 行を手で削った。

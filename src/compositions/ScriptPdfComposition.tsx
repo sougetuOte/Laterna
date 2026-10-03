@@ -119,6 +119,8 @@ function resolveSlideHeading(slide: Slide): string | undefined {
     case "svg-ref":
     case "custom":
       return undefined;
+    case "image":
+      return slide.caption;
     default: {
       const exhaustiveCheck: never = slide;
       return exhaustiveCheck;
@@ -156,7 +158,10 @@ function renderBlock(block: PdfPageBlock): React.ReactNode {
 /**
  * NFR-3 準拠のライセンス注記（CC BY 4.0 の適用範囲限定 + VOICEVOX クレジット）。最終ページのみ表示。
  */
-const LicenseFooter: React.FC<{ credits: string[] }> = ({ credits }) => (
+const LicenseFooter: React.FC<{ credits: string[]; hasQuotation: boolean }> = ({
+  credits,
+  hasQuotation,
+}) => (
   <div
     style={{
       flex: "0 0 auto",
@@ -172,6 +177,10 @@ const LicenseFooter: React.FC<{ credits: string[] }> = ({ credits }) => (
       {/* 1 本の文字列で書く（JSX で改行して書くと、行のつなぎ目に半角空白が入る。2026-09-27 に見つけた） */}
       {"本資料のテキスト・コード・自作図版・立ち絵は CC BY 4.0 の下で利用できます（キャラクター音声は各権利者の規約に従います）。"}
     </div>
+    {/* Wave 5：brief §9 の D7 訂正。引用の画面写しがある台本だけに出す。 */}
+    {hasQuotation && (
+      <div>{"引用した Web ページの画面写しは CC BY 4.0 の対象外です（権利は各ページの権利者にあります）。"}</div>
+    )}
     {credits.map((credit) => (
       <div key={credit}>{credit}</div>
     ))}
@@ -282,7 +291,14 @@ const ScriptPdfCompositionInner: React.FC<{
         )}
       </div>
 
-      {isLastPage && <LicenseFooter credits={timelineManifest.credits} />}
+      {isLastPage && (
+        <LicenseFooter
+          credits={timelineManifest.credits}
+          hasQuotation={timelineManifest.slides.some(
+            (s) => s.type === "image" && s.source.license === "quotation",
+          )}
+        />
+      )}
     </AbsoluteFill>
   );
 };

@@ -29,9 +29,11 @@
  */
 
 import React from "react";
+import { Img, staticFile } from "remotion";
 import { Slide as SlideComponent } from "../../components/Slide";
 import { Section } from "../../components/Section";
 import type { Slide } from "../schema/script";
+import { formatImageSourceLine } from "../shared/image-source";
 import type { ComponentRegistry } from "./component-registry";
 
 /** design §6.3: 標準スライド（既存 `Slide`/`Section`）が前提とする内部座標系（1920x1080）。 */
@@ -152,6 +154,43 @@ function renderStandardSlide(
  * 決まる別問題であり、`React.createElement` 化とは無関係（v3.7 時点の記述はこの点で誤認していた）。
  * frame 相対化は `ScriptComposition` 側の slide_event 単位 `<Sequence layout="none">` ラッパーが担う。
  */
+/**
+ * Wave 5：画像 1 枚＋キャプション＋出典の 1 行（docs/design.md (b)、brief §9 の D7 訂正）。
+ * 画像は contain で縮め、切り抜かない。Remotion の <Img> は staticFile の先が無いと render を止める
+ * （SpeakerPortrait と同じ方針）。
+ */
+function renderImageSlide(slide: Extract<Slide, { type: "image" }>): React.ReactNode {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        padding: "40px 48px 32px",
+        boxSizing: "border-box",
+        backgroundColor: slide.background ?? "#ffffff",
+      }}
+    >
+      <div style={{ flex: "1 1 auto", minHeight: 0, width: "100%", display: "flex", justifyContent: "center" }}>
+        <Img
+          src={staticFile(slide.src)}
+          style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+        />
+      </div>
+      {slide.caption !== undefined && (
+        <div style={{ flex: "0 0 auto", marginTop: 24, fontSize: 44, fontWeight: "bold", color: "#111111" }}>
+          {slide.caption}
+        </div>
+      )}
+      <div style={{ flex: "0 0 auto", marginTop: 12, fontSize: 24, color: "#555555" }}>
+        {formatImageSourceLine(slide.source)}
+      </div>
+    </div>
+  );
+}
+
 function renderEscapeHatchSlide(
   slide: Extract<Slide, { type: "svg-ref" | "custom" }>,
   registry: ComponentRegistry,
@@ -210,6 +249,9 @@ export function ScriptSlideRenderer(
     case "svg-ref":
     case "custom":
       content = renderEscapeHatchSlide(slide, registry);
+      break;
+    case "image":
+      content = renderImageSlide(slide);
       break;
     default: {
       const exhaustiveCheck: never = slide;

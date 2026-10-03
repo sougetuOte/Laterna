@@ -11,10 +11,14 @@
  * 可能にするため）。
  */
 
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
+import path from "node:path";
 import { load } from "js-yaml";
 import { parseScriptDocument } from "../schema/script";
 import type { ScriptDocument } from "../schema/script";
+
+/** 既定の `public/`（リポジトリ直下）。`type: image` の `src` はここからの相対パス。 */
+const DEFAULT_PUBLIC_DIR = path.resolve(__dirname, "../../../public");
 
 /**
  * 台本 YAML ファイルを読込・パース・スキーマ検証し、構造化データを返す。
@@ -35,7 +39,10 @@ import type { ScriptDocument } from "../schema/script";
  * @throws ファイル読込失敗・YAML 構文エラー・スキーマ検証エラー（design §4.4、全て fail-fast。
  *   無音の続行やプレースホルダでの代替は行わない）
  */
-export async function parseScript(filePath: string): Promise<ScriptDocument> {
+export async function parseScript(
+  filePath: string,
+  publicDir: string = DEFAULT_PUBLIC_DIR,
+): Promise<ScriptDocument> {
   let raw: string;
   try {
     raw = await readFile(filePath, "utf-8");
@@ -54,5 +61,28 @@ export async function parseScript(filePath: string): Promise<ScriptDocument> {
     );
   }
 
-  return parseScriptDocument(parsedYaml);
+  const script = parseScriptDocument(parsedYaml);
+  await assertImageFilesExist(script, publicDir);
+  return script;
+}
+
+/**
+ * Wave 5：`type: image` の画像ファイルが `public/<src>` に在ることを compile の入口で確かめる
+ * （render まで行ってから <Img> で落ちるより早く、どのスライドかを名指しで止める）。
+ */
+export async function assertImageFilesExist(
+  script: ScriptDocument,
+  publicDir: string = DEFAULT_PUBLIC_DIR,
+): Promise<void> {
+  for (const slide of script.slides) {
+    if (slide.type !== "image") continue;
+    const filePath = path.join(publicDir, slide.src);
+    try {
+      await access(filePath);
+    } catch {
+      throw new Error(
+        `✗ スライド "${slide.id}" の画像が見つかりません: ${filePath}（src は public/ からの相対パス）`,
+      );
+    }
+  }
 }

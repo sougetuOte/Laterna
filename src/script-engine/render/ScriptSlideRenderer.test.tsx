@@ -11,6 +11,7 @@
 
 import React from "react";
 import { describe, expect, it } from "vitest";
+import { Img, staticFile } from "remotion";
 import { ScriptSlideRenderer, parseBoldSegments, renderBoldText } from "./ScriptSlideRenderer";
 import { Slide as SlideComponent } from "../../components/Slide";
 import { Section } from "../../components/Section";
@@ -175,5 +176,41 @@ describe("renderBoldText", () => {
     expect(nodes).toHaveLength(2);
     expect(nodes[0].type).toBe("strong");
     expect((nodes[0].props as { children: string }).children).toBe("強調");
+  });
+});
+
+describe("ScriptSlideRenderer (image、Wave 5)", () => {
+  /** 要素ツリーを props.children で歩き、要素を全部集める。 */
+  function collect(node: React.ReactNode, out: React.ReactElement[] = []): React.ReactElement[] {
+    if (Array.isArray(node)) {
+      for (const child of node) collect(child, out);
+      return out;
+    }
+    if (!React.isValidElement(node)) return out;
+    out.push(node);
+    collect((node.props as { children?: React.ReactNode }).children, out);
+    return out;
+  }
+
+  it('"image" は <Img> に public の画像を渡し、キャプションと出典の 1 行を出す', () => {
+    const slide: Slide = {
+      id: "s-img",
+      type: "image",
+      src: "images/python-runs/cpu.jpg",
+      caption: "CPU の現物",
+      source: {
+        source_url: "https://commons.wikimedia.org/wiki/File:Cpu_1.jpg",
+        license: "CC0",
+        author: "blickpixel",
+        modifications: "縮小",
+      },
+    };
+    const elements = collect(unwrapContent(ScriptSlideRenderer(slide, componentRegistry, 30)));
+    const img = elements.find((e) => e.type === Img);
+    expect(img).toBeDefined();
+    expect((img!.props as { src: string }).src).toBe(staticFile("images/python-runs/cpu.jpg"));
+    const texts = elements.map((e) => (e.props as { children?: unknown }).children);
+    expect(texts).toContain("CPU の現物");
+    expect(texts).toContain("出典：blickpixel／CC0／https://commons.wikimedia.org/wiki/File:Cpu_1.jpg");
   });
 });

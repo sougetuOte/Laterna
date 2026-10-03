@@ -107,7 +107,7 @@ export interface SlideEvent {
 }
 
 /** design §2.5: v1 標準スライドタイプ 4 種 + エスケープハッチ 1 種（§2.6） */
-export type SlideType = "title" | "bullets" | "code" | "svg-ref" | "custom";
+export type SlideType = "title" | "bullets" | "code" | "svg-ref" | "custom" | "image";
 
 /**
  * 全 Slide 種別共通のベースフィールド。
@@ -175,13 +175,52 @@ export interface CustomSlide extends SlideBase {
   props?: Record<string, JsonValue>;
 }
 
+/**
+ * 画像の出典台帳のライセンス（Wave 5、docs/design.md (b)・brief D7 と §9 の D7 訂正）。
+ * ND・SA・不明は入れない。`quotation` は Web ページの画面写しを著作権法 32 条の引用として
+ * 載せるときだけに使い、取得日 `retrieved` を必須にする。`generated`（imagegen）は D10 と一緒に次の Wave で足す。
+ */
+export const IMAGE_LICENSES = [
+  "CC0",
+  "PD",
+  "CC-BY-4.0",
+  "CC-BY-3.0",
+  "CC-BY-2.0",
+  "self",
+  "quotation",
+] as const;
+export type ImageLicense = (typeof IMAGE_LICENSES)[number];
+
+/** 画像の出典台帳（docs/design.md (b)）。4 項目は必須で、空なら compile を止める。 */
+export interface ImageSource {
+  /** 入手元の URL。自作は `self` と書く */
+  source_url: string;
+  license: ImageLicense;
+  /** クレジットに出す作者・権利者の名前 */
+  author: string;
+  /** 加工内容。無ければ `none` */
+  modifications: string;
+  /** 取得日（YYYY-MM-DD）。`license: quotation` のとき必須 */
+  retrieved?: string;
+}
+
+/** 画像 1 枚＋キャプションのスライド（Wave 5、docs/design.md (b)）。 */
+export interface ImageSlide extends SlideBase {
+  type: "image";
+  /** `public/` からの相対パス（例：`images/python-runs/cpu.jpg`） */
+  src: string;
+  caption?: string;
+  source: ImageSource;
+}
+
 /** design §2.5 / §2.6: スライド定義の判別共用体 */
 export type Slide =
   | TitleSlide
   | BulletsSlide
   | CodeSlide
   | SvgRefSlide
-  | CustomSlide;
+  | CustomSlide
+  | ImageSlide;
 
 /**
  * design §3.2: 台本ファイルのメタデータ（tasks.md でいう ScriptConfig ≒ FrontMatter）。
@@ -393,6 +432,37 @@ function parseUtterance(raw: unknown, index: number): Utterance {
   return utterance;
 }
 
+/** 画像の出典台帳を検証する（docs/design.md (b)。欠け・空・許可リスト外は止める）。 */
+function parseImageSource(raw: unknown, fieldPath: string): ImageSource {
+  if (!isPlainObject(raw)) {
+    throw new Error(`✗ ${fieldPath} がありません（type: image では出典台帳が必須です）`);
+  }
+  const sourceUrl = requireString(raw.source_url, `${fieldPath}.source_url`);
+  const license = requireString(raw.license, `${fieldPath}.license`);
+  if (!(IMAGE_LICENSES as readonly string[]).includes(license)) {
+    throw new Error(
+      `✗ ${fieldPath}.license の "${license}" は使えません（許可リスト: ${IMAGE_LICENSES.join(", ")}）`,
+    );
+  }
+  const author = requireString(raw.author, `${fieldPath}.author`);
+  const modifications = requireString(raw.modifications, `${fieldPath}.modifications`);
+  const retrieved = optionalString(raw.retrieved, `${fieldPath}.retrieved`);
+  if (retrieved !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(retrieved)) {
+    throw new Error(`✗ ${fieldPath}.retrieved は YYYY-MM-DD で書いてください: "${retrieved}"`);
+  }
+  if (license === "quotation" && retrieved === undefined) {
+    throw new Error(`✗ ${fieldPath}.retrieved がありません（license: quotation では取得日が必須です）`);
+  }
+  const source: ImageSource = {
+    source_url: sourceUrl,
+    license: license as ImageLicense,
+    author,
+    modifications,
+  };
+  if (retrieved !== undefined) source.retrieved = retrieved;
+  return source;
+}
+
 function parseSlide(raw: unknown, index: number): Slide {
   if (!isPlainObject(raw)) {
     throw new Error(`✗ slides[${index}] がオブジェクトではありません`);
@@ -452,10 +522,24 @@ function parseSlide(raw: unknown, index: number): Slide {
       if (props !== undefined) slide.props = props;
       return slide;
     }
+    case "image": {
+      const src = requireString(raw.src, `slides[${index}].src`);
+      if (src.startsWith("/") || src.split(/[\\/]/).includes("..")) {
+        throw new Error(
+          `✗ slides[${index}].src は public/ からの相対パスで書いてください（先頭の / と .. は使えません）: "${src}"`,
+        );
+      }
+      const caption = optionalString(raw.caption, `slides[${index}].caption`);
+      const source = parseImageSource(raw.source, `slides[${index}].source`);
+      const slide: ImageSlide = { id, type: "image", src, source };
+      if (background !== undefined) slide.background = background;
+      if (caption !== undefined) slide.caption = caption;
+      return slide;
+    }
     default:
       throw new Error(
         `✗ slides[${index}].type が未知のスライド種別です` +
-          `（title/bullets/code/svg-ref/custom のいずれか）: ${String(type)}`,
+          `（title/bullets/code/svg-ref/custom/image のいずれか）: ${String(type)}`,
       );
   }
 }

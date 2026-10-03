@@ -28,6 +28,7 @@ import type {
   TimelineManifest,
 } from "../schema/timeline-manifest";
 import { CREDIT_REGION_SECONDS } from "../shared/credit-region";
+import { formatImageSourceLine } from "../shared/image-source";
 import type { SynthesizedUtterance } from "./synthesize";
 import { resolveDefaultOutputDir } from "./synthesize";
 
@@ -268,6 +269,12 @@ function resolveCredits(script: ScriptDocument, speakerProfiles: SpeakersRegistr
   // Laterna 追加（2026-09-26）: 台本の extra_credits（立ち絵の出所など）を末尾に足す（初出順・重複なし）。
   for (const extra of script.extra_credits ?? []) {
     if (!credits.includes(extra)) credits.push(extra);
+  }
+  // Wave 5（docs/design.md (b)）：type: image の出典台帳を、スライドの並び順で末尾に足す（重複なし）。
+  for (const slide of script.slides) {
+    if (slide.type !== "image") continue;
+    const line = `画像「${slide.caption ?? slide.id}」 ${formatImageSourceLine(slide.source)}`;
+    if (!credits.includes(line)) credits.push(line);
   }
   return credits;
 }
