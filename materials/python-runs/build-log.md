@@ -116,6 +116,17 @@
 | D | 11:20 | `node -e "…PDFDocument.load…"`（3 本の PDF のページ数・pdf-manifest の total_pages・全ページ縦長か） | 0 | source-to-exe 10・about-c 17・python-runs 20、どれも一致して縦長 |
 | D | — | `grep -F -i -c -f D:/work8/Laterna-private/names.txt <起点 2c9cfb5 からの変更ファイルと未追跡ファイル 26 本（画像を除く）> <scratchpad>/*-w5.txt deliver/*/description.md` | 0 | 0 でない行は `package-lock.json:4` だけ（一覧は 10 行・空行 0・行末の空白 0・BOM なし）。4 件は `integrity` の base64 の中の 3 字の英字で、`7adcf12` の時点から同じ 4 件、起点からの差分の行では 0 件（`git diff 2c9cfb5 -- package-lock.json \| grep "^[-+]" \| grep -F -i -c -f …` が 0・exit 1） |
 | D | — | `grep -n -E "都城\|コア学園\|高専" content/scripts/python-runs.script.yaml materials/python-runs/description.md materials/python-runs/images.md <scratchpad>/python-runs-w5.txt` | 1 | 学校名 0 件 |
+| D | 11:25 | `cp out/script-engine/python-runs.mp4 out/script-engine/python-runs.pdf deliver/python-runs/` | 0 | 主人の試写（「問題なし」）の後 |
+| D | 11:25 | `cp materials/python-runs/description.md deliver/python-runs/` | 0 | |
+| D | 11:25 | `cp out/script-engine/source-to-exe.pdf deliver/source-to-exe/` | 0 | 1 本目は PDF だけ差し替え |
+| D | 11:25 | `cp out/script-engine/about-c.pdf deliver/about-c/` | 0 | 2 本目は PDF だけ差し替え |
+| D | 11:25 | `sha256sum out/script-engine/python-runs.mp4 deliver/python-runs/python-runs.mp4` | 0 | `c7c07ae5…4c05` で一致 |
+| D | 11:25 | `sha256sum out/script-engine/python-runs.pdf deliver/python-runs/python-runs.pdf` | 0 | `ec998d03…069c` で一致 |
+| D | 11:25 | `sha256sum out/script-engine/source-to-exe.mp4 deliver/source-to-exe/source-to-exe.mp4` | 0 | `c00f8b35…1434` で一致（前と同じ） |
+| D | 11:25 | `sha256sum out/script-engine/source-to-exe.pdf deliver/source-to-exe/source-to-exe.pdf` | 0 | `6af6b3a1…7836` で一致 |
+| D | 11:25 | `sha256sum out/script-engine/about-c.mp4 deliver/about-c/about-c.mp4` | 0 | `be055db0…31b6` で一致（前と同じ） |
+| D | 11:25 | `sha256sum out/script-engine/about-c.pdf deliver/about-c/about-c.pdf` | 0 | `9b6c481c…8c47` で一致 |
+| D | 11:25 | `cmp materials/python-runs/description.md deliver/python-runs/description.md` | 0 | |
 
 ### 終了コードを取っていない実行（Wave 5）
 
