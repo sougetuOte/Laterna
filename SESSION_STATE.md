@@ -35,7 +35,7 @@
   - 検収：1 回目 **FAIL**（検証 6。`db4b3b1` で直した）→ 2 回目 **FAIL**（2026-09-29、HEAD `7adcf12`。検証 5 の氏名だけ「測れない」。依頼文が氏名の一覧の所在を渡さなかった）→ 縦の停止で MAGI を 1 回（主人の指示。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（検証 5 のみ採点、同じ HEAD `7adcf12`。他の 8 項は 2 回目の PASS を引き継ぐ。セッション `ffb1521f-64e9-4a6b-a207-79a82bb6b966`）。
   - 検収 2 回目で columba が確かめた（HEAD `7adcf12`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の後も `git status` の差 0、`npm test` 21 files / 381 tests・lint exit 0、出典 21 本 HTTP 200、作業記録の読むだけのコマンド 6 行を叩き直して同じ終了コード。
   - 検収 1 回目で columba が確かめた（2026-09-28、HEAD `e6d0820`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の manifest・音声は起点と同じ、`npm test` 381 件・lint exit 0、出典 21 本 HTTP 200。
-- **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は完了**（2026-10-03。G0 承認 10:31 JST（記録上の発話は 10:32）、セッション `b8f8e477-c56d-4d0c-ba1d-cff90b538386`。起点 `2c9cfb5`。成果コミット `5affff2`（A 依存）・`f3336cb`（B PDF）・`3278e94`（C type: image）・`ec4516f`（D 3 本目の画像）・`8a38d54`（試写と納品の記録））：
+- **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は完了**（2026-10-03。G0 承認 10:31 JST（記録上の発話は 10:32。goal.md は直さない、主人 2026-10-03）、セッション `b8f8e477-c56d-4d0c-ba1d-cff90b538386`。起点 `2c9cfb5`。成果コミット `5affff2`（A 依存）・`f3336cb`（B PDF）・`3278e94`（C type: image）・`ec4516f`（D 3 本目の画像）・`8a38d54`（試写と納品の記録））：
   - 10/2 の授業（主人）：1 本目・2 本目とも使えた。時間が無く全部は流せなかったが直しは要らない。PDF は図が小さく、拡大すると図の左右が画面から出た → PDF を組み直した。
   - PDF：A4 縦（1240×1754）、スライドの絵を本文と同じ幅（1128px）で枠に入れ、本文は 1 段組。1 ページの文字数の上限は 900 → 450（実測。今の台本で最多のページは 413 字なのでページ割りは変わらない）。
   - エンジン：`type: image`（src・caption・source）と出典台帳。license の許可リストは CC0・PD・CC-BY-4.0/3.0/2.0・self・quotation（引用、取得日必須）。画像の行は `credits[]` に入る。
@@ -163,7 +163,7 @@ Wave 5 は締めた。次は主人に、後期の授業で 3 本目（改訂版�
 - git は `git -C /d/work8/Laterna` で呼ぶ。リモートは `origin`（GitHub、https）。commit したら push。
 - 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。HTTP は node の `fetch`。
 - 内蔵ブラウザのサイトの許可は「設定」→「Claude in Chrome」の「サイトの権限」（既定は「すべてのサイトをブロック」）と「Claude Code」→「ブラウザ」→「許可されたサイト」にある。2026-10-03 に python.org を両方に足しても内蔵ブラウザでは開けなかったので、主人が画面を撮った。Wikimedia Commons は node の `fetch` で API（`imageinfo`・`extmetadata`）から取れる。
-- 氏名の一覧の形を確かめるとき、先頭のバイト列を出さない（BOM かどうかの真偽だけを出す）。2026-10-03 に先頭 3 バイトを 16 進で出してしまった（セッションの記録にだけ残る）。
+- 氏名の一覧の形を確かめるとき、先頭のバイト列を出さない（BOM かどうかの真偽だけを出す）。2026-10-03 に先頭 3 バイトを 16 進で出してしまった（セッションの記録にだけ残る。主人に報告し「了解」をもらった）。
 - PDF の文字数の上限を測り直すときは、`public/manifests/<id>.pdf-manifest.json` の 1 ページを実際の発話で詰めて（`<scratchpad>/fill-page.mjs` の型）`remotion-cli.js still … ScriptPdfComposition` で描き、`git checkout`（未 commit なら写し）で戻す。
 - **シェル経由で `|`・`\`・`$` を含む文字列を書き換えると壊れやすい。**表の行や長い文書は Write／Edit ツールで書く。作業ツリーの改行は CRLF のことがある（node で書くときは元の改行を保つ）。
 - full-review は `disable-model-invocation`。`scriptPath` の絶対パスは受け付けられないので、Seneschal の `full-review.js` を読んで `script` に渡す。MAGI は縦の停止のとき `adapters/claude-code/skills/magi/SKILL.md` を Read で読んで回す。
