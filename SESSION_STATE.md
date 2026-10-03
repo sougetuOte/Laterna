@@ -8,14 +8,15 @@
 1 本目「ソースから実行ファイルまで」（`source-to-exe`）と 2 本目「C言語について」（`about-c`）を納品した（`deliver/<script-id>/`）。どちらも 2026-10-02 の授業で使う（1 本目は高専 1 年の初回、2 本目は電気情報工学科 1 年のプログラミング言語入門と機械工学科 3 年の情報処理Ⅰ）。
 **Wave 3「2 本目」は 2026-09-27 に検収 PASS で締めた。**
 **Wave 4「3 本目：Pythonが動くまで」（`python-runs`、汎用・期限 2027-01-10）は 2026-09-29 に検収 PASS で締めた。**
+**Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は 2026-10-03 に検収 1 回目で PASS し、締めた。**3 本目の改訂版は 10/5 か 10/6 の後期の初回（専門学校 1 年）で使う。
 
 ## 読む順序
 
 1. `README.md`（34 行）
 2. `docs/brief.md`（147 行。決定 D1〜D10 と §9 の訂正節 D8・D9・§6 の答え）
-3. `goal.md`（457 行。Wave 1・2・2.5・3 は完了。**末尾の Wave 4 節**が直近の契約。訂正節はまだ無い）
+3. `goal.md`（Wave 1〜5 は完了。**末尾の Wave 5 節**が直近の契約。末尾に検証 8 の訂正節が 1 つ）
 4. `SKILL.md`（159 行。「この題材で 1 本」の手順書。手順 0 の 5 に作業記録の書き方を足した）
-5. `materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md、description.md）、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
+5. `materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md（Wave 5 の節あり）、description.md、images.md（画像の出典の記録））、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
 6. `docs/research/2026-09-27-review.md`（198 行。点検の記録。「Wave 3 以降へ」の行は下の未決に移した）
 7. `docs/inventory.md`／`docs/design.md`／`imagegen/README.md`
 8. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
@@ -34,13 +35,20 @@
   - 検収：1 回目 **FAIL**（検証 6。`db4b3b1` で直した）→ 2 回目 **FAIL**（2026-09-29、HEAD `7adcf12`。検証 5 の氏名だけ「測れない」。依頼文が氏名の一覧の所在を渡さなかった）→ 縦の停止で MAGI を 1 回（主人の指示。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（検証 5 のみ採点、同じ HEAD `7adcf12`。他の 8 項は 2 回目の PASS を引き継ぐ。セッション `ffb1521f-64e9-4a6b-a207-79a82bb6b966`）。
   - 検収 2 回目で columba が確かめた（HEAD `7adcf12`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の後も `git status` の差 0、`npm test` 21 files / 381 tests・lint exit 0、出典 21 本 HTTP 200、作業記録の読むだけのコマンド 6 行を叩き直して同じ終了コード。
   - 検収 1 回目で columba が確かめた（2026-09-28、HEAD `e6d0820`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の manifest・音声は起点と同じ、`npm test` 381 件・lint exit 0、出典 21 本 HTTP 200。
-- 動いている物（実測 2026-09-27、columba の最後の検収、HEAD `9954bdd`）：
+- **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は完了**（2026-10-03。G0 承認 10:31 JST（記録上の発話は 10:32）、セッション `b8f8e477-c56d-4d0c-ba1d-cff90b538386`。起点 `2c9cfb5`。成果コミット `5affff2`（A 依存）・`f3336cb`（B PDF）・`3278e94`（C type: image）・`ec4516f`（D 3 本目の画像）・`8a38d54`（試写と納品の記録））：
+  - 10/2 の授業（主人）：1 本目・2 本目とも使えた。時間が無く全部は流せなかったが直しは要らない。PDF は図が小さく、拡大すると図の左右が画面から出た → PDF を組み直した。
+  - PDF：A4 縦（1240×1754）、スライドの絵を本文と同じ幅（1128px）で枠に入れ、本文は 1 段組。1 ページの文字数の上限は 900 → 450（実測。今の台本で最多のページは 413 字なのでページ割りは変わらない）。
+  - エンジン：`type: image`（src・caption・source）と出典台帳。license の許可リストは CC0・PD・CC-BY-4.0/3.0/2.0・self・quotation（引用、取得日必須）。画像の行は `credits[]` に入る。
+  - 3 本目：CPU の写真（Commons、CC0）と python.org のダウンロードのページの画面写し（主人が撮影、引用）を足した。発話は変えていない（512.3 秒のまま）。PDF は 20 ページ。主人の試写：問題なし。
+  - 納品物（`deliver/`、git の外）：python-runs MP4 `c7c07ae5…4c05`・PDF `ec998d03…069c`・description.md。source-to-exe と about-c は PDF だけ差し替え（`6af6b3a1…7836`・`9b6c481c…8c47`）、MP4 は前と同じ（`c00f8b35…1434`・`be055db0…31b6`）。
+  - 検収：1 回目 **PASS**（HEAD `8a38d54`、検証 1〜10）。columba が確かめた：3 本の書き出しの SHA-256 が納品物と一致、`npm test` 22 files / 405 tests・lint exit 0、3 本の PDF に見せる発話が全部ある、出典 URL 2 本 HTTP 200、氏名 0 件（訂正節どおり package-lock.json は差分の行で）、学校名 0 件、作業記録の読むだけのコマンド 6 行が同じ終了コード。
+- 動いている物（実測 2026-09-27、columba の最後の検収、HEAD `9954bdd`。**納品物の SHA-256 は上の Wave 5 の値が新しい**）：
   - `npm test` 20 files / 370 tests PASS、`npm run lint` exit 0。
   - 納品物の SHA-256：source-to-exe は MP4 `c00f8b35…1434`・PDF `66c3c06e…42b0`（10 ページ・285.888 秒）、about-c は MP4 `be055db0…31b6`・PDF `bec94511…a90c`。どちらも書き出し直すと一致する（render は決定的）。
   - compile 2 本（source-to-exe・java-vs-js）の manifest・音声は `6cbaf95` と同じ。
   - java-vs-js（立ち絵 v1）は Kyozai の参照と、箇条書きの区間とその直前 23 フレーム（エンコーダの先読み。`-fuzz 2%` で差 0 画素）だけ映像が違う。音声は全部一致。
   - `npm audit`：low 2 件（eslint 系）。VOICEVOX 0.25.2（50021）は起動中だった。imagegen は起動していない。
-- まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・画像スライド。
+- まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・compile 時の画像生成（D10、`license: generated`）・概要欄の自動書き出し。
 
 ## これまで（git log が持たない解釈だけ）
 
@@ -59,6 +67,8 @@
 | `db4b3b1` | 作業記録の still の行（4 行に分けた）と VOICEVOX の「同上」の行を、叩いたコマンドそのものに直した |
 | `7adcf12` の後（締め） | 検収 2 回目 **FAIL**（検証 5 の氏名が測れない。依頼文に一覧の所在が無かった）→ MAGI（結論：一覧の絶対パス 1 本・形の確かめ・件数だけの grep を依頼文に書き、検証 5 だけを採点し直す。一覧の網羅は主人が確かめた）→ 3 回目 **PASS**。Wave 4 を締めた |
 | 2026-10-01 | 未決 4 件の処置（主人の判断）：brief §9 に §6 の答えを写した（主人承認）、依存は次の Wave で直す（決定 19）、氏名の一覧を repo の外の固定の置き場所へ移した（決定 20）、Seneschal への文面を repo の外に置いた |
+| `2c9cfb5`・`ff41a77` | brief §9 に D7 訂正（Web の画面写しを引用として載せてよい）。Wave 5 の G0（10/2 の授業の結果と画像の経路を 1 つに。期限 10/4） |
+| `5affff2`〜`8a38d54` | Wave 5 の A〜D と納品。`8480145` は検証 8 の訂正節（package-lock.json の integrity の base64 に一覧の 3 字が当たる）。検収 1 回目 PASS |
 
 **retro（2026-09-29、Wave 4 の締め）**：起動条件 1（同一フェーズで検収 2 回 FAIL）に当たった。学びは 1 つ。
 1. repo の外にある物差し（氏名の一覧など）は、依頼文に絶対パス・形の確かめ方・出力の絞り方を書かない限り、評価器に届かない → 下の「作業の作法」の作業記録の行に 1 文足した。
@@ -94,6 +104,9 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 18. 画像生成は Laterna の `imagegen/`（FLUX.2 klein 4B）を使う。ComfyUI_img2 は使わない（brief D8 のまま。2026-09-29 主人）。
 19. 依存：R9（使われていない `@remotion/media` を外す）と R10（`@types/node` を宣言する）は、次の Wave で画像の作業とは別の commit にして直し、3 本の書き出しの SHA-256 が変わらないことで確かめる。eslint の `--force` は据え置く（決定 15。2026-10-01 主人）。
 20. 主人の氏名の一覧は、repo の外の固定の置き場所 `D:\work8\Laterna-private\names.txt` に置く（10 行。中身はどこにも書かない）。次の G0 から、検証方法にこのパスを書く。scratchpad にあった写しは消した（2026-10-01 主人）。
+21. 画像の調達（brief D7 と §9 の D7 訂正、2026-10-03 主人）：現物の写真は主人が撮った物か CC0・PD・CC BY の物。Web の画面写しは引用として載せ（出典・取得日を画面と概要欄に、切り抜き以外の改変なし、CC BY 4.0 の対象外）、Claude が撮るか主人が撮る。imagegen も使ってよい（compile 時の生成 D10 は次の Wave）。
+22. PDF は A4 縦で、スライドと掛け合いの文を同じ幅にそろえる（2026-10-03 主人）。
+23. 3 本目は 10/5 か 10/6 の後期の初回に使う（2026-10-03 主人。Wave 4 の期限 2027-01-10 は主人の思い違いの可能性があると主人が言った。動画は既に出来ていたので実害なし）。10/2 の授業で全部を流せなかった件は、今のままでよい。
 
 ## 採らなかった案
 
@@ -110,8 +123,9 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 未決（主人の判断待ち）
 
-- 10/2 の授業での受け入れ（1 本目・2 本目。使えなかった点は次の Wave の G0 に書く）。
-- （2026-10-01 に 4 件を処置した ── brief §6 の答えは brief §9 へ写した／依存は決定 19／氏名の一覧の置き場所は決定 20／Seneschal への学びは Wave 4 の retro の段落）
+- 後期の授業での 3 本目（改訂版）の受け入れ（10/5 か 10/6）。
+- 次の Wave の題材（4 本目か、D10 の compile 時の画像生成か）。
+- （10/2 の授業の受け入れは Wave 5 の G0 で処置した。2026-10-01 の 4 件も処置済み）
 
 ## 未決（点検の記録から移した「Wave 3 以降へ」の所見。次の Wave の G0 で扱う）
 
@@ -121,7 +135,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 - テスト：R20 図解部品と `scripts/*.mjs` のテスト（PipelineFlow と about-c の部品は足した）／R48 台本を足しても整合の検査が追いかけない・manifest が今のコードの出力と一致するかのテスト
 - 文書：R19 行き先の無い文書参照 57 か所
 - imagegen：R23 `--port` の前方一致／R24 smoke.py の None／R37 `-ExtraArgs` の引用／R49 カスタムノードの検査の場所と README／R52 依存のハッシュと ComfyUI のタグ固定
-- 依存：R9・R10 → 決定 19（次の Wave で直す）
+- 依存：R9・R10 は Wave 5 で直した（`5affff2`）。R9 の残り（テストだけが呼ぶ関数・`_fps`）は「直さない」のまま
 
 ## 未決（実測・作業待ち）
 
@@ -131,8 +145,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 次の一手
 
-主人と「画像を載せる経路」を相談する（`docs/design.md` (b) の `type: image` と出典台帳、brief D10 の compile 時の生成と PNG のキャッシュ。生成器は決定 18 の `imagegen/`）。前回の最後の問い「どこに、どんな画像を入れたいか」から始める。エンジンに手を入れるので、新しい Wave として G0 から始める。
-**10/2 の授業の結果と画像の件を 1 つの G0 にまとめる**（2026-10-01 主人賛成）。相談は授業の前から始めてよいが、G0 の承認は授業の結果を聞いてから。G0 には決定 19（依存 R9・R10）と決定 20（一覧のパスを検証方法に書く）も入れる。
+Wave 5 は締めた。次は主人に、後期の授業で 3 本目（改訂版）を使った結果を聞く。次の Wave の題材は主人が決める（候補：4 本目の動画、D10 の compile 時の画像生成と `license: generated`、点検の記録の残りの所見、字幕）。どれもエンジンか製品に手を入れるので G0 から始める。G0 の検証方法には氏名の一覧のパス（決定 20）を書き、`package-lock.json` を変えるなら差分の行で数えると書く（Wave 5 の訂正節）。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
@@ -149,5 +162,8 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 - 分類器（auto mode）が止めた操作は別経路で追わない。統治文書（goal.md・brief.md）は、主人の「承認」「書込許可」の後に Edit ツールで書く。
 - git は `git -C /d/work8/Laterna` で呼ぶ。リモートは `origin`（GitHub、https）。commit したら push。
 - 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。HTTP は node の `fetch`。
+- 内蔵ブラウザのサイトの許可は「設定」→「Claude in Chrome」の「サイトの権限」（既定は「すべてのサイトをブロック」）と「Claude Code」→「ブラウザ」→「許可されたサイト」にある。2026-10-03 に python.org を両方に足しても内蔵ブラウザでは開けなかったので、主人が画面を撮った。Wikimedia Commons は node の `fetch` で API（`imageinfo`・`extmetadata`）から取れる。
+- 氏名の一覧の形を確かめるとき、先頭のバイト列を出さない（BOM かどうかの真偽だけを出す）。2026-10-03 に先頭 3 バイトを 16 進で出してしまった（セッションの記録にだけ残る）。
+- PDF の文字数の上限を測り直すときは、`public/manifests/<id>.pdf-manifest.json` の 1 ページを実際の発話で詰めて（`<scratchpad>/fill-page.mjs` の型）`remotion-cli.js still … ScriptPdfComposition` で描き、`git checkout`（未 commit なら写し）で戻す。
 - **シェル経由で `|`・`\`・`$` を含む文字列を書き換えると壊れやすい。**表の行や長い文書は Write／Edit ツールで書く。作業ツリーの改行は CRLF のことがある（node で書くときは元の改行を保つ）。
 - full-review は `disable-model-invocation`。`scriptPath` の絶対パスは受け付けられないので、Seneschal の `full-review.js` を読んで `script` に渡す。MAGI は縦の停止のとき `adapters/claude-code/skills/magi/SKILL.md` を Read で読んで回す。
