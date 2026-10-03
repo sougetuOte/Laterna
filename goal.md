@@ -455,3 +455,123 @@ columba が採点する。各項は上の完了条件と同じ番号で対応す
 - Kyozai-Athanor・Seneschal・ComfyUI_img2 への書き込み、`reference/` の改変
 - `CLAUDE.md`・`goal.md`・`docs/brief.md` の無承認変更
 - 期限を越える範囲の拡大：1/10 に間に合わないと分かったら、章と尺を削って出す（下限 480 秒を割るなら主人に 1 通で問う）
+
+---
+
+# Wave 5「写真とスクショを載せる経路と、PDF の組み直し」（Laterna）
+
+**状態：承認済み（2026-10-03 10:31 JST ＝ 2026-10-03T01:31Z、主人「1 承認 2 OK 3 OK」、セッション `b8f8e477-c56d-4d0c-ba1d-cff90b538386`）。`docs/research/wave5-g0-draft.md` 第 1 版をここに移した。草案は畳んだ。**
+承認後に誤りが見つかったら、本文を消さずに訂正節を足す（Seneschal `core/handoff.md`）。
+**種別：feature（エンジンへの機能の追加と、3 本目の改訂版）。期限：2026-10-04（日）。間に合わなければ 2026-10-05（月）の未明。**
+3 本目は 10/5 か 10/6 の後期の初回の授業で使う。期限に間に合わなくても、納品済みの今の版（Wave 4）を授業で流せる。
+**起点：**`2c9cfb5`（brief §9 に D7 訂正を書いた commit、main）。作業は main の上で、下の A〜D を別々の commit にして進める。
+**採点範囲：**本 Wave の成果コミット（起点から HEAD まで。`goal.md` への節の追記、主人の別指示による直し、`SESSION_STATE.md` の締めを除く）。
+
+## 主人の答え（2026-10-03、チャット）
+
+| 問い | 答え |
+|---|---|
+| 10/2 の授業 | 1 本目・2 本目とも使えた。質も問題ない。時間が無くて全部は再生できなかったが、直しは要らない（今のままでよい） |
+| 10/2 の PDF | 使えた。ただ図がページの中で小さく、画面で拡大すると図の左右が画面の外に出て見えなくなった（PDF の中身は切れていない。主人の答え A） |
+| PDF の直し | 下の掛け合いの文が、上の画面写真（スライド）の幅からはみ出ないようにする |
+| 画像を使う場面 | 説明に現物が要るとき。Claude が描く SVG の図解ではピンと来にくいとき。写真と Web のスクショ |
+| 画像を用意する人 | Web のスクショは Claude が内蔵のブラウザで撮る。写真は主人が撮った物か、CC0・パブリックドメイン・CC BY の物。imagegen も使ってよい |
+| brief D7 | Web の画面写しを引用として載せる訂正節を承認（brief §9 に書いた） |
+| 最初に使う動画 | 3 本目 `python-runs` に足して納品し直す。10/5 か 10/6 の後期の初回に使う |
+| 期限 | 2026-10-04。間に合わなければ 10/5 の未明 |
+| D10（compile のときに imagegen で生成し、PNG をキャッシュする） | 次の Wave に回す |
+
+## 作業の順
+
+| # | 作業 | 出力が変わる物 |
+|---|---|---|
+| A | 依存 R9（使っていない `@remotion/media` を外す）と R10（`@types/node` を宣言する）。決定 19 | 無し（3 本の SHA-256 が変わらないことで確かめる） |
+| B | PDF の組み直し（共通部品）。下の「PDF の組み方」 | 全台本の PDF と pdf-manifest。MP4 は変わらない |
+| C | `type: image` のスライドと出典台帳（`docs/design.md` (b)）。schema・compile の検証・`ScriptSlideRenderer`・クレジット | 画像を使わない台本の出力は変わらない |
+| D | 3 本目に画像を 2 枚足す。下の「3 本目に足す画像」 | 3 本目の MP4・PDF |
+
+A は B より先に済ませる（B の後では PDF の SHA-256 で比べられない）。
+
+### PDF の組み方
+
+- ページを A4 縦（1240×1754）にする。今は A4 横（1754×1240）で、スライドを高さ 500px に縮めて中央に置き、本文を 2 段組でページの幅いっぱいに流している。
+- スライドを本文と同じ幅（左右の余白 56px を除いたページの幅）で載せ、細い枠で囲む。本文は 1 段組で、スライドの枠と同じ幅に収める。
+- 1 ページの本文の文字数の上限（`PDF_PAGE_CHAR_LIMIT`、今は 900）は、新しい組みで実際に描いて決め直す。発話がページの下で切れて消えないことを、テストと本文テキストの照合で確かめる。
+
+### 3 本目に足す画像
+
+| 画像 | 種類 | 出す区間（発話は変えない） | その後 |
+|---|---|---|---|
+| CPU の現物の写真 | 写真（CC0・パブリックドメイン・CC BY。人が写っていない物） | u-004「まず、コンピュータの頭脳にあたる CPU から」〜 u-005 | u-006 から今の `slide-cpu` の図 |
+| python.org のダウンロードのページ（OS ごとの Python 本体が並ぶ所） | Web の画面写し（引用。D7 訂正） | u-042「パイソン本体が、ウィンドウズ用、マック用、リナックス用と」 | u-043 から今の `slide-os-python` の図 |
+
+発話を変えないので、音声と尺は変わらない。変わるのはスライドの切り替え（`slide_events`）と `slides` だけ。
+
+### 出典台帳（`type: image` の `source`）
+
+`docs/design.md` (b) のとおり、`source_url`・`license`・`author`・`modifications` を必須にし、どれかが空なら compile を止める。
+`license` の許可リストは `CC0`・`PD`・`CC-BY-4.0`・`CC-BY-3.0`・`CC-BY-2.0`・`self`・`quotation`。`quotation`（引用）は Web の画面写しだけに使い、取得日 `retrieved` を必須にする。`generated` は D10 と一緒に次の Wave で足す。
+compile は画像の行を `credits[]` に足す。動画では画像の下にキャプションと出典を出す。PDF の最終ページの注記と `LICENSE-CONTENT` に、引用の画面写しは CC BY 4.0 の対象外と書く（D7 訂正）。
+
+## 完了条件
+
+1. **依存**：`package.json` の `dependencies` に `@remotion/media` が無く、`devDependencies` に `@types/node` がある。A の commit の時点で、source-to-exe・about-c・python-runs の MP4・PDF の SHA-256 が、Wave 4 までの納品物と一致した記録がある。
+2. **PDF の組み**：全台本の PDF が A4 縦で、スライドの枠と本文が同じ幅に収まる。どのページでも、見せる発話（`pdf_visibility` が hidden でない物）の文が全部 PDF に載っている。
+3. **画像の経路**：台本に `type: image` を書ける。`source` の必須の項目が欠けたとき、許可リストに無い `license` のとき、`quotation` に `retrieved` が無いとき、compile が止まる。画像の行が `credits[]` に入る。
+4. **3 本目の画像**：上の 2 枚が `public/images/python-runs/` にあり、台本の `source` に出典・ライセンス・作者・加工内容がある。写真の記録（入手元・ライセンス・作者）と、画面写しの記録（URL・取得日・撮り方）が `materials/python-runs/images.md` にある。`description.md` の「出典」に 2 枚がある。
+5. **3 本目の台本**：発話を変えていない。compile が通り、実測の総尺が 480〜600 秒に入る。
+6. **書き出しと納品**：`npm run render:all:script -- python-runs` を 1 回実行するだけで MP4 と PDF が出る。`deliver/python-runs/` の MP4・PDF・`description.md` を差し替え、`deliver/source-to-exe/`・`deliver/about-c/` は PDF だけを差し替える。作業の記録 `materials/python-runs/build-log.md` の Wave 5 の節に「手順番号・実行したコマンド・終了コード」があり、終了コードは叩いた直後に取った実測だけ。
+7. **既存を壊さない**：source-to-exe・about-c の MP4 が変わらない。画像を使わない 3 本（source-to-exe・about-c・java-vs-js）の timeline manifest と音声が変わらない。テストと lint が通る。
+8. **氏名と学校名**：本 Wave で追加・変更した追跡ファイルと納品物に、主人の氏名が現れない。3 本目の動画・PDF・`description.md` と画像に、特定の学校名が現れない。
+9. **主人の試写**：納品の前に主人が、3 本目の動画と PDF、1 本目か 2 本目の PDF を 1 冊見て、下の「試写で見る点」を見た記録がある。
+10. **Wave 4 からの持ち越し**（Seneschal `loop.md`）：最後の検収 PASS（HEAD `7adcf12`）の後のコミット `2be5028`・`ef75dbb` と、`2c9cfb5`（brief §9 の D7 訂正）の主張が確かめられている。
+
+**主人の受け入れ**（columba の採点対象外）：後期の授業で 3 本目を使えると主人が判断すること。
+
+**試写で見る点：**写真と画面写しの見え方（小さすぎないか、出典の表示）／PDF の図と文の幅がそろっているか／PDF を画面で拡大したとき図と文が一緒に収まるか／PDF のページ数が増えすぎていないか。
+
+## 検証方法
+
+columba が採点する。各項は上の完了条件と同じ番号で対応する（10 対 10）。
+**氏名の一覧は `D:\work8\Laterna-private\names.txt`（repo の外、決定 20）。**評価器は最初に一覧の形（行数 10・空行 0・行末の空白 0・BOM 0。中身は出さない）を確かめ、検索は `grep -F -i -f <一覧>` を `-c`・`-l`・`-q` に限って使う。
+
+1. `package.json` を読んで、2 つの依存の有無を確かめる。A の commit の差分が `package.json`・`package-lock.json` だけ。`build-log.md` に A の commit で書き出した 6 ファイルの SHA-256 の行があり、Wave 4 までの値（source-to-exe `c00f8b35…1434`・`66c3c06e…42b0`、about-c `be055db0…31b6`・`bec94511…a90c`、python-runs `5f02ecdc…5e83`・`de5b6aea…823c`）と一致する。
+2. 3 本の PDF の全ページの大きさを `pdf-lib` で読み、縦長であること。各 PDF から評価器が 3 ページ以上を画像にして、スライドの枠の左右と本文の左右がそろっていることを目視する。台本の見せる発話の文が、PDF の本文テキスト（`pdftotext`）に全部ある（空白と改行を除いて照合）。
+3. `npm test` に、`type: image` の正しい例が通るテストと、欠けた項目・許可リストに無い `license`・`retrieved` の無い `quotation` で compile が止まるテストがある。評価器が、`source` の項目を 1 つ消した台本の写しで compile を叩き、exit が 0 でないことを確かめる。
+4. 2 枚のファイルがある。台本の `source` の 4 項目が空でない。`source_url` を評価器が取得して応答する（HTTP 200）。写真の `license` が CC0・PD・CC BY のどれかで、入手元のページに同じライセンスが書いてある。`images.md` と `description.md` に 2 枚の行がある。
+5. `git diff <起点> -- content/scripts/python-runs.script.yaml` で `utterances` の行の差が 0。`npm run compile:script -- python-runs` が exit 0。manifest の `total_duration_frames / fps` が 480〜600。音声（`public/audio`）の差が 0。
+6. 評価器が `out/script-engine/python-runs.*` を消してから `npm run render:all:script -- python-runs` を 1 回実行し、exit 0 で MP4 と PDF が両方できる。`deliver/` の 3 本の MP4・PDF の SHA-256 が、評価器の書き出しと一致する。評価器が MP4 から画像の 2 区間のフレームを切り出して目視する。`build-log.md` の Wave 5 の節の読むだけのコマンドを 3 行以上叩き直して、同じ終了コードが返る。
+7. source-to-exe・about-c の MP4 の SHA-256 が上の 1 の値のまま。compile 3 本（source-to-exe・about-c・java-vs-js）の後 `git diff --exit-code <起点> -- public/manifests/*.manifest.json public/audio` が python-runs 以外で差 0（pdf-manifest は B で変わるので除く）。`npm test` が exit 0 で 381 件以上 PASS、`npm run lint` が exit 0。`git diff <起点>..HEAD -- 'src/**/*.test.*'` でテストの削除・skip が 0。期待値を書き換えたテストは、B の PDF の組みの値に限り、その理由が commit メッセージにある。
+8. `git diff --name-only <起点>..HEAD` の各ファイル、`deliver/` の 3 本の `description.md`、3 本の PDF の本文テキストに、一覧の氏名が 0 件（`grep -F -i -c -f`）。3 本目の台本・`description.md`・PDF の本文テキスト・`images.md` に「都城」「コア学園」「高専」が 0 件。評価器が 2 枚の画像を目視して、学校名と人の顔が写っていない。
+9. `materials/python-runs/outline.md` に「試写（Wave 5）：YYYY-MM-DD 主人」の 1 行と、上の「試写で見る点」の各項への所見があり、その試写の発話が本 Wave のセッションの記録に主人の発話として在る。試写が納品物と同じ書き出しに対してであること。
+10. `2be5028` の主張（Wave 4 の検収 3 回目 PASS、決定 18）と `ef75dbb` の主張（brief §9 の §6 の答えは主人承認、決定 19・20）、`2c9cfb5`（brief §9 の 1 節だけの追加）を、指す場所で確かめる。承認の発話がセッションの記録に主人の発話として在る。
+   **主人の言葉を引く行**（上の「主人の答え」の表）は、主人が本 G0 を承認したこと自体を記録とする。
+
+## やらないこと
+
+### この Wave ではやらない（次以降で扱う）
+
+- D10：compile のときに imagegen を呼んで画像を作り、PNG をキャッシュする仕組みと、`license: generated`
+- 3 本目の発話の変更、4 本目の動画
+- 1 本目・2 本目の動画の直し（授業の答え：今のままでよい）
+- 点検の記録の残りの所見（R5〜R7・R19〜R21・R23・R24・R26・R37・R46・R48〜R52）。B で触る PDF の部品の所見（R51 の Freeze とフェード）が試写で問題になったら、訂正節を主人に出す
+- 字幕・SRT、口パク・まばたき、`manifest-registry.ts` の廃止（(c)）
+- eslint を上げる `npm audit fix --force`（決定 15）
+
+### 起きてはならない
+
+- 主人の氏名を台本・音声・動画・PDF・概要欄・リポジトリに出すこと。3 本目に特定の学校名を出すこと
+- 人の顔が写った写真、許可リストに無いライセンスの画像、出典の記録が無い画像を使うこと
+- 引用の画面写しを、切り抜き以外の方法で変えること、CC BY 4.0 の対象として扱うこと
+- source-to-exe・about-c の MP4 を変えること。3 本目の音声と尺を変えること
+- Kyozai-Athanor・Seneschal・ComfyUI_img2 への書き込み、`reference/` の改変
+- `CLAUDE.md`・`goal.md`・`docs/brief.md` の無承認変更
+- 期限を守るための範囲の拡大。10/4 中に終わらないと分かったら、D の画像を 1 枚に減らす。それでも 10/5 の未明に間に合わないなら、主人に 1 通で問う（今の版でも授業はできる）
+
+## G0 の問いと主人の答え（2026-10-03、チャット）
+
+| 問い | 答え |
+|---|---|
+| 1. この草案を承認するか | 承認 |
+| 2. PDF を A4 縦にしてよいか（推奨は縦） | OK |
+| 3. 3 本目に足す 2 枚（CPU の写真、python.org のダウンロードのページ）と出す区間 | OK |
