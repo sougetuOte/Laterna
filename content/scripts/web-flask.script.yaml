@@ -1,0 +1,373 @@
+# web-flask.script.yaml — 「Webサーバーと Flask のしくみ」
+#
+# 出自: materials/web-flask/outline.md（対象・尺・章立て・出典・事実と出典の対応）
+# 対象: 汎用。Python の文法を少し習った人。授業中に流す。尺 5〜7 分。学校名は出さない（goal.md Wave 6）。
+# 図解: 3 本目の RunFlow をそのまま使う（新しい部品は作らない）。コードと実行結果は Flask 2.3.2 で実際に動かした物。
+# 注意:
+# - 発話 text は折り畳みスカラー（>-）を使わない
+# - 「簡単」「必ず」を初学者向けに使わない（narration-style.md）
+# - 英字の名前は、発話ではカタカナで書く（Flask→フラスク、HTTP→エイチティーティーピー、URL→ユーアールエル、conda→コンダ、pip→ピップ）
+
+target_duration_range:
+  min: 300
+  max: 420
+
+speaker_profile_ref: default
+
+extra_credits:
+  - 立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）
+
+utterances:
+  # --- 1. 導入 ---
+  - id: u-001
+    speaker: narrator
+    text: 今日から、パイソンでウェブのアプリを作る「フラスク」を使っていきます。その前に、ウェブのページが表示されるまでに、裏で何が起きているのかを見ておきましょう。
+  - id: u-002
+    speaker: listener
+    text: ブラウザにアドレスを打つと、すぐにページが出ますよね。あれは、どこから来ているんですか？
+  - id: u-003
+    speaker: narrator
+    text: 別のコンピュータから届いています。今日は、そのしくみと、フラスクの役割、最後に「仮想環境」の話をします。
+    pause_after: 0.5
+  # --- 2. Web サーバーとは ---
+  - id: u-004
+    speaker: narrator
+    text: ページを届けるコンピュータを「ウェブサーバー」と呼びます。ページを受け取るブラウザの側は「クライアント」と呼びます。
+  - id: u-005
+    speaker: narrator
+    text: ブラウザは、サーバーに「このページをください」と頼みます。これを「リクエスト」と言います。サーバーは、頼まれたページを送り返します。これを「レスポンス」と言います。
+  - id: u-006
+    speaker: listener
+    text: お店で注文して、品物が出てくるのと同じですね。
+  - id: u-007
+    speaker: narrator
+    text: そのとおりです。注文の書き方と返し方の決まり事を「エイチティーティーピー」と言います。ブラウザとサーバーは、この決まり事でやり取りしています。
+  - id: u-008
+    speaker: listener
+    text: サーバーは、ページを棚から出して渡すだけなんですか？
+  - id: u-009
+    speaker: narrator
+    text: 2通りあります。置いてあるファイルをそのまま返すやり方と、プログラムがその場でページを作って返すやり方です。
+  - id: u-010
+    speaker: narrator
+    text: フラスクは、この「その場でページを作るプログラム」を、パイソンで書くための道具です。
+    pause_after: 0.5
+  # --- 3. URL の読み方 ---
+  - id: u-011
+    speaker: listener
+    text: ブラウザに打つアドレスにも、意味があるんですか？
+  - id: u-012
+    speaker: narrator
+    text: あります。アドレスは「ユーアールエル」と言い、いくつかの部分に分かれています。この後の授業で使う形を見てみましょう。
+  - id: u-013
+    speaker: narrator
+    text: 最初の「エイチティーティーピー」は、さっきの決まり事の名前です。次の数字の並びは、どのコンピュータに頼むかを表します。
+  - id: u-014
+    speaker: narrator
+    text: いち、に、なな、ドット、ゼロ、ドット、ゼロ、ドット、いち、は特別な番号で、「自分自身のコンピュータ」を指します。名前で「ローカルホスト」とも書きます。
+  - id: u-015
+    speaker: listener
+    text: 自分のパソコンが、自分にページを頼むんですか？
+  - id: u-016
+    speaker: narrator
+    text: そうです。作ったプログラムを試すときは、1台のパソコンが、ブラウザとサーバーの両方の役をします。
+  - id: u-017
+    speaker: narrator
+    text: その後ろの「ごせん」は「ポート番号」で、コンピュータの中の窓口の番号です。最後のスラッシュから後ろは「パス」で、どのページかを表します。
+    pause_after: 0.5
+  # --- 4. Flask とは ---
+  - id: u-018
+    speaker: narrator
+    text: では、フラスクのプログラムを見てみましょう。フラスクの公式の説明に載っている、いちばん小さいアプリです。
+  - id: u-019
+    speaker: narrator
+    text: 1行目で、フラスクを読み込みます。次のぎょうで、アプリの本体を作ります。
+  - id: u-020
+    speaker: narrator
+    text: アットマークで始まるぎょうが大事です。「スラッシュのページにリクエストが来たら、すぐ下の関数を呼んでください」という意味です。
+  - id: u-021
+    speaker: narrator
+    text: 関数は、ハロー、ワールド、という文字列を返します。この返した文字列が、そのままレスポンスとしてブラウザに届きます。
+  - id: u-022
+    speaker: listener
+    text: どのユーアールエルで、どの関数を呼ぶかを書いておくだけなんですね。
+  - id: u-023
+    speaker: narrator
+    text: そのとおりです。リクエストを受け取る、決まり事の形で送り返す、といった面倒な部分は、フラスクが引き受けてくれます。
+    pause_after: 0.5
+  # --- 5. 動かす ---
+  - id: u-024
+    speaker: narrator
+    text: 動かしてみます。ファイルを「ハロー、ドット、パイ」という名前で保存して、画面のコマンドを打ちます。
+  - id: u-025
+    speaker: narrator
+    text: すると、ユーアールエルが表示されます。これをブラウザで開くと、ハロー、ワールド、と表示されます。
+  - id: u-026
+    speaker: listener
+    text: 下のほうの、ゲット、とか、にひゃく、とかいうぎょうは何ですか？
+  - id: u-027
+    speaker: narrator
+    text: サーバーが受け取ったリクエストの記録です。ゲットは「ください」という頼み方で、にひゃくは「うまく返せた」という番号です。
+  - id: u-028
+    speaker: narrator
+    text: 用意していないページを頼むと、よんひゃくよん、と出ます。「そのページはありません」という意味です。
+  - id: u-029
+    speaker: narrator
+    text: 止めるときは、コントロールキーを押しながらシーを押します。それから、ワーニングという注意のぎょうにも目を向けてください。
+  - id: u-030
+    speaker: narrator
+    text: このサーバーは、作りながら試すための開発用です。本番で公開するときは使わないように、と書かれています。
+    pause_after: 0.5
+  # --- 6. 仮想環境 ---
+  - id: u-031
+    speaker: listener
+    text: フラスクは、パイソンに最初から入っているんですか？
+  - id: u-032
+    speaker: narrator
+    text: 入っていません。後から追加する部品です。そこで使うのが「仮想環境」です。
+  - id: u-033
+    speaker: narrator
+    text: 仮想環境は、プロジェクトごとに分けた、部品の置き場です。パイソン本体と部品の組み合わせを、置き場ごとに別々に持てます。
+  - id: u-034
+    speaker: narrator
+    text: たとえば、授業用の置き場には古い版のフラスク、別の作品の置き場には新しい版のフラスク、というように使い分けられます。
+  - id: u-035
+    speaker: listener
+    text: ロッカーを、使う人ごとに分けるようなものですか？
+  - id: u-036
+    speaker: narrator
+    text: 近いです。よいところは3つあります。部品の版がぶつからないこと。パイソン本体を汚さないこと。同じ組み合わせを、別のパソコンでも作り直せることです。
+  - id: u-037
+    speaker: listener
+    text: 困るところはないんですか？
+  - id: u-038
+    speaker: narrator
+    text: あります。使う前に毎回、置き場を切り替える必要があります。忘れると、別の置き場で動いて「部品が無い」と言われます。
+  - id: u-039
+    speaker: narrator
+    text: 置き場ごとに部品を入れ直す手間もかかります。また、コンダとピップという2つの道具を混ぜて部品を入れると、組み合わせが崩れることがあります。
+  - id: u-040
+    speaker: narrator
+    text: その一方で、コンダには助かる働きもあります。部品同士の版の組み合わせを調べて、合う物をそろえて入れようとしてくれます。
+  - id: u-041
+    speaker: listener
+    text: 版の組み合わせを、自分で探さなくていいんですね。
+  - id: u-042
+    speaker: narrator
+    text: 最近は「ユーブイ」という、もっと速い新しい道具も出てきています。ただ、ユーブイが出たのは2024年で、この授業の教科書が作られた2022年より後です。
+  - id: u-043
+    speaker: narrator
+    text: そこでこの授業では、教科書に合わせて、前から使われているコンダで、自分の仮想環境を作ります。
+    pause_after: 0.5
+  # --- 7. まとめ ---
+  - id: u-044
+    speaker: narrator
+    text: まとめです。1つめ、ブラウザが頼み、サーバーが返します。その決まり事がエイチティーティーピーです。
+  - id: u-045
+    speaker: narrator
+    text: 2つめ、フラスクでは「このユーアールエルなら、この関数」と書くだけで、関数が返したものがレスポンスになります。
+  - id: u-046
+    speaker: narrator
+    text: 3つめ、仮想環境は、プロジェクトごとの部品の置き場です。使う前の切り替えを忘れないようにしましょう。
+  - id: u-047
+    speaker: listener
+    text: まずは自分のパソコンで、ハロー、ワールドを出してみます！
+
+slides:
+  - id: slide-title
+    type: title
+    title: Webサーバーと Flask のしくみ
+    subtitle: ページが表示されるまでと、Flask の役割
+  - id: slide-reqres
+    type: custom
+    component: RunFlow
+    props:
+      title: リクエストとレスポンス（決まり事は HTTP）
+      lanes:
+        - label: 頼む
+          steps:
+            - name: ブラウザ
+              sub: クライアント
+            - name: リクエスト
+              sub: このページをください
+            - name: Webサーバー
+        - label: 返す
+          steps:
+            - name: Webサーバー
+            - name: レスポンス
+              sub: ページの中身（HTML）
+            - name: ブラウザ
+              sub: 画面に表示
+  - id: slide-static-dynamic
+    type: bullets
+    title: サーバーの返し方は 2 通り
+    items:
+      - 置いてあるファイルを、そのまま返す
+      - プログラムが、その場でページを作って返す
+      - Flask は、後のほうを Python で書くための道具
+  - id: slide-url
+    type: code
+    title: URL の読み方
+    code: |
+      http://127.0.0.1:5000/
+
+      http://     … 決まり事（HTTP）
+      127.0.0.1   … どのコンピュータか（自分自身。localhost）
+      :5000       … ポート番号（コンピュータの中の窓口）
+      /           … パス（どのページか）
+  - id: slide-flask-code
+    type: code
+    title: いちばん小さい Flask のアプリ（hello.py）
+    code: |
+      from flask import Flask
+
+      app = Flask(__name__)
+
+      @app.route("/")
+      def hello_world():
+          return "<p>Hello, World!</p>"
+  - id: slide-flask-flow
+    type: custom
+    component: RunFlow
+    props:
+      title: Flask がしてくれること
+      lanes:
+        - steps:
+            - name: リクエスト
+              sub: 「/」をください
+            - name: "@app.route(\"/\")"
+              sub: 呼ぶ関数を探す
+            - name: hello_world()
+              sub: 関数を呼ぶ
+            - name: レスポンス
+              sub: 返り値を送る
+  - id: slide-run
+    type: code
+    title: 動かす（Flask 2.3.2）
+    code: |
+      > flask --app hello run
+       * Serving Flask app 'hello'
+       * Debug mode: off
+      WARNING: This is a development server. Do not use it
+        in a production deployment. Use a production WSGI
+        server instead.
+       * Running on http://127.0.0.1:5000
+      Press CTRL+C to quit
+      127.0.0.1 - - [...] "GET / HTTP/1.1" 200 -
+      127.0.0.1 - - [...] "GET /nothing HTTP/1.1" 404 -
+  - id: slide-venv
+    type: custom
+    component: RunFlow
+    props:
+      title: 仮想環境 ＝ プロジェクトごとの部品の置き場
+      lanes:
+        - label: 授業用
+          steps:
+            - name: Python 3.10
+            - name: Flask 2.3.2
+        - label: 別の作品
+          steps:
+            - name: Python 3.12
+            - name: Flask 3.1.3
+  - id: slide-venv-good
+    type: bullets
+    title: よいところ
+    items:
+      - 部品の版がぶつからない
+      - Python 本体を汚さない
+      - 同じ組み合わせを、別のパソコンでも作り直せる
+  - id: slide-venv-bad
+    type: bullets
+    title: 困るところ
+    items:
+      - 使う前に毎回、切り替えが要る（忘れると「部品が無い」）
+      - 置き場ごとに部品を入れ直す手間
+      - conda と pip を混ぜると、組み合わせが崩れることがある
+  - id: slide-tools
+    type: bullets
+    title: 部品と環境をまとめて扱う道具
+    items:
+      - conda：部品同士の版の組み合わせを調べて、そろえて入れる
+      - uv：2024 年に出た新しい道具。もっと速い
+      - この授業は、教科書（2022 年）に合わせて conda を使う
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - ブラウザが頼み（リクエスト）、サーバーが返す（レスポンス）。決まり事は HTTP
+      - Flask は「この URL なら、この関数」。返り値がレスポンスになる
+      - 仮想環境はプロジェクトごとの部品の置き場。使う前に切り替える
+
+slide_events:
+  - id: ev-001
+    slide: slide-title
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+  - id: ev-002
+    slide: slide-reqres
+    anchor:
+      utterance: u-004
+      position: start
+      offset: 0
+  - id: ev-003
+    slide: slide-static-dynamic
+    anchor:
+      utterance: u-009
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-url
+    anchor:
+      utterance: u-012
+      position: start
+      offset: 0
+  - id: ev-005
+    slide: slide-flask-code
+    anchor:
+      utterance: u-018
+      position: start
+      offset: 0
+  - id: ev-006
+    slide: slide-flask-flow
+    anchor:
+      utterance: u-022
+      position: start
+      offset: 0
+  - id: ev-007
+    slide: slide-run
+    anchor:
+      utterance: u-024
+      position: start
+      offset: 0
+  - id: ev-008
+    slide: slide-venv
+    anchor:
+      utterance: u-033
+      position: start
+      offset: 0
+  - id: ev-009
+    slide: slide-venv-good
+    anchor:
+      utterance: u-035
+      position: start
+      offset: 0
+  - id: ev-010
+    slide: slide-venv-bad
+    anchor:
+      utterance: u-037
+      position: start
+      offset: 0
+  - id: ev-011
+    slide: slide-tools
+    anchor:
+      utterance: u-040
+      position: start
+      offset: 0
+  - id: ev-012
+    slide: slide-summary
+    anchor:
+      utterance: u-044
+      position: start
+      offset: 0

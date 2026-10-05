@@ -21,6 +21,8 @@ import aboutC from "../../../public/manifests/about-c.manifest.json";
 import aboutCPdf from "../../../public/manifests/about-c.pdf-manifest.json";
 import pythonRuns from "../../../public/manifests/python-runs.manifest.json";
 import pythonRunsPdf from "../../../public/manifests/python-runs.pdf-manifest.json";
+import webFlask from "../../../public/manifests/web-flask.manifest.json";
+import webFlaskPdf from "../../../public/manifests/web-flask.pdf-manifest.json";
 import type { TimelineManifest } from "../schema/timeline-manifest";
 import type { PdfManifest } from "../pdf/script-pdf-manifest";
 
@@ -29,6 +31,7 @@ export const manifestRegistry: Record<string, TimelineManifest> = {
   "source-to-exe": sourceToExe as TimelineManifest,
   "about-c": aboutC as TimelineManifest,
   "python-runs": pythonRuns as TimelineManifest,
+  "web-flask": webFlask as TimelineManifest,
 };
 
 /** design §8.1: `public/manifests/<script-id>.pdf-manifest.json` の直接 import マップ。 */
@@ -37,6 +40,7 @@ export const pdfManifestRegistry: Record<string, PdfManifest> = {
   "source-to-exe": sourceToExePdf as PdfManifest,
   "about-c": aboutCPdf as PdfManifest,
   "python-runs": pythonRunsPdf as PdfManifest,
+  "web-flask": webFlaskPdf as PdfManifest,
 };
 
 /**

@@ -1,0 +1,736 @@
+{
+  "schema_version": 1,
+  "script_id": "web-flask",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "narrator",
+      "content_hash": "49663ca0",
+      "wav_path": "audio/web-flask/u-001-49663ca0.wav",
+      "duration_seconds": 10.72,
+      "start_frame": 0,
+      "end_frame": 322,
+      "audio_end_frame": 322
+    },
+    {
+      "id": "u-002",
+      "speaker": "listener",
+      "content_hash": "e7579fae",
+      "wav_path": "audio/web-flask/u-002-e7579fae.wav",
+      "duration_seconds": 7.125333333333334,
+      "start_frame": 322,
+      "end_frame": 535,
+      "audio_end_frame": 535
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "6c10c77f",
+      "wav_path": "audio/web-flask/u-003-6c10c77f.wav",
+      "duration_seconds": 8.778666666666666,
+      "start_frame": 535,
+      "end_frame": 814,
+      "audio_end_frame": 799
+    },
+    {
+      "id": "u-004",
+      "speaker": "narrator",
+      "content_hash": "6a763ea2",
+      "wav_path": "audio/web-flask/u-004-6a763ea2.wav",
+      "duration_seconds": 8.266666666666667,
+      "start_frame": 814,
+      "end_frame": 1062,
+      "audio_end_frame": 1062
+    },
+    {
+      "id": "u-005",
+      "speaker": "narrator",
+      "content_hash": "03b4ef17",
+      "wav_path": "audio/web-flask/u-005-03b4ef17.wav",
+      "duration_seconds": 13.312,
+      "start_frame": 1062,
+      "end_frame": 1461,
+      "audio_end_frame": 1461
+    },
+    {
+      "id": "u-006",
+      "speaker": "listener",
+      "content_hash": "5ff14c90",
+      "wav_path": "audio/web-flask/u-006-5ff14c90.wav",
+      "duration_seconds": 4.266666666666667,
+      "start_frame": 1461,
+      "end_frame": 1589,
+      "audio_end_frame": 1589
+    },
+    {
+      "id": "u-007",
+      "speaker": "narrator",
+      "content_hash": "001b7837",
+      "wav_path": "audio/web-flask/u-007-001b7837.wav",
+      "duration_seconds": 9.877333333333333,
+      "start_frame": 1589,
+      "end_frame": 1885,
+      "audio_end_frame": 1885
+    },
+    {
+      "id": "u-008",
+      "speaker": "listener",
+      "content_hash": "2247e482",
+      "wav_path": "audio/web-flask/u-008-2247e482.wav",
+      "duration_seconds": 4.458666666666667,
+      "start_frame": 1885,
+      "end_frame": 2019,
+      "audio_end_frame": 2019
+    },
+    {
+      "id": "u-009",
+      "speaker": "narrator",
+      "content_hash": "e9541234",
+      "wav_path": "audio/web-flask/u-009-e9541234.wav",
+      "duration_seconds": 7.36,
+      "start_frame": 2019,
+      "end_frame": 2240,
+      "audio_end_frame": 2240
+    },
+    {
+      "id": "u-010",
+      "speaker": "narrator",
+      "content_hash": "cbd1941a",
+      "wav_path": "audio/web-flask/u-010-cbd1941a.wav",
+      "duration_seconds": 6.165333333333334,
+      "start_frame": 2240,
+      "end_frame": 2440,
+      "audio_end_frame": 2425
+    },
+    {
+      "id": "u-011",
+      "speaker": "listener",
+      "content_hash": "6fb50c13",
+      "wav_path": "audio/web-flask/u-011-6fb50c13.wav",
+      "duration_seconds": 3.8293333333333335,
+      "start_frame": 2440,
+      "end_frame": 2555,
+      "audio_end_frame": 2555
+    },
+    {
+      "id": "u-012",
+      "speaker": "narrator",
+      "content_hash": "913d93ba",
+      "wav_path": "audio/web-flask/u-012-913d93ba.wav",
+      "duration_seconds": 8.490666666666666,
+      "start_frame": 2555,
+      "end_frame": 2810,
+      "audio_end_frame": 2810
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "f6b45ab4",
+      "wav_path": "audio/web-flask/u-013-f6b45ab4.wav",
+      "duration_seconds": 8.789333333333333,
+      "start_frame": 2810,
+      "end_frame": 3073,
+      "audio_end_frame": 3073
+    },
+    {
+      "id": "u-014",
+      "speaker": "narrator",
+      "content_hash": "7b57e63b",
+      "wav_path": "audio/web-flask/u-014-7b57e63b.wav",
+      "duration_seconds": 14.624,
+      "start_frame": 3073,
+      "end_frame": 3512,
+      "audio_end_frame": 3512
+    },
+    {
+      "id": "u-015",
+      "speaker": "listener",
+      "content_hash": "ff4f561e",
+      "wav_path": "audio/web-flask/u-015-ff4f561e.wav",
+      "duration_seconds": 4.224,
+      "start_frame": 3512,
+      "end_frame": 3639,
+      "audio_end_frame": 3639
+    },
+    {
+      "id": "u-016",
+      "speaker": "narrator",
+      "content_hash": "b4887c37",
+      "wav_path": "audio/web-flask/u-016-b4887c37.wav",
+      "duration_seconds": 7.029333333333334,
+      "start_frame": 3639,
+      "end_frame": 3850,
+      "audio_end_frame": 3850
+    },
+    {
+      "id": "u-017",
+      "speaker": "narrator",
+      "content_hash": "de06b57f",
+      "wav_path": "audio/web-flask/u-017-de06b57f.wav",
+      "duration_seconds": 11.968,
+      "start_frame": 3850,
+      "end_frame": 4224,
+      "audio_end_frame": 4209
+    },
+    {
+      "id": "u-018",
+      "speaker": "narrator",
+      "content_hash": "f897ccec",
+      "wav_path": "audio/web-flask/u-018-f897ccec.wav",
+      "duration_seconds": 7.157333333333334,
+      "start_frame": 4224,
+      "end_frame": 4438,
+      "audio_end_frame": 4438
+    },
+    {
+      "id": "u-019",
+      "speaker": "narrator",
+      "content_hash": "fcdd783b",
+      "wav_path": "audio/web-flask/u-019-fcdd783b.wav",
+      "duration_seconds": 5.514666666666667,
+      "start_frame": 4438,
+      "end_frame": 4604,
+      "audio_end_frame": 4604
+    },
+    {
+      "id": "u-020",
+      "speaker": "narrator",
+      "content_hash": "6d61d403",
+      "wav_path": "audio/web-flask/u-020-6d61d403.wav",
+      "duration_seconds": 7.8293333333333335,
+      "start_frame": 4604,
+      "end_frame": 4839,
+      "audio_end_frame": 4839
+    },
+    {
+      "id": "u-021",
+      "speaker": "narrator",
+      "content_hash": "d93e057d",
+      "wav_path": "audio/web-flask/u-021-d93e057d.wav",
+      "duration_seconds": 8.693333333333333,
+      "start_frame": 4839,
+      "end_frame": 5099,
+      "audio_end_frame": 5099
+    },
+    {
+      "id": "u-022",
+      "speaker": "listener",
+      "content_hash": "af5e0c00",
+      "wav_path": "audio/web-flask/u-022-af5e0c00.wav",
+      "duration_seconds": 5.1626666666666665,
+      "start_frame": 5099,
+      "end_frame": 5254,
+      "audio_end_frame": 5254
+    },
+    {
+      "id": "u-023",
+      "speaker": "narrator",
+      "content_hash": "ebafefce",
+      "wav_path": "audio/web-flask/u-023-ebafefce.wav",
+      "duration_seconds": 8.32,
+      "start_frame": 5254,
+      "end_frame": 5519,
+      "audio_end_frame": 5504
+    },
+    {
+      "id": "u-024",
+      "speaker": "narrator",
+      "content_hash": "e49a3794",
+      "wav_path": "audio/web-flask/u-024-e49a3794.wav",
+      "duration_seconds": 8.085333333333333,
+      "start_frame": 5519,
+      "end_frame": 5761,
+      "audio_end_frame": 5761
+    },
+    {
+      "id": "u-025",
+      "speaker": "narrator",
+      "content_hash": "8980d411",
+      "wav_path": "audio/web-flask/u-025-8980d411.wav",
+      "duration_seconds": 7.498666666666667,
+      "start_frame": 5761,
+      "end_frame": 5986,
+      "audio_end_frame": 5986
+    },
+    {
+      "id": "u-026",
+      "speaker": "listener",
+      "content_hash": "6b010e07",
+      "wav_path": "audio/web-flask/u-026-6b010e07.wav",
+      "duration_seconds": 5.888,
+      "start_frame": 5986,
+      "end_frame": 6163,
+      "audio_end_frame": 6163
+    },
+    {
+      "id": "u-027",
+      "speaker": "narrator",
+      "content_hash": "33843c3e",
+      "wav_path": "audio/web-flask/u-027-33843c3e.wav",
+      "duration_seconds": 9.098666666666666,
+      "start_frame": 6163,
+      "end_frame": 6436,
+      "audio_end_frame": 6436
+    },
+    {
+      "id": "u-028",
+      "speaker": "narrator",
+      "content_hash": "6f09b75d",
+      "wav_path": "audio/web-flask/u-028-6f09b75d.wav",
+      "duration_seconds": 6.730666666666667,
+      "start_frame": 6436,
+      "end_frame": 6638,
+      "audio_end_frame": 6638
+    },
+    {
+      "id": "u-029",
+      "speaker": "narrator",
+      "content_hash": "9879cf4a",
+      "wav_path": "audio/web-flask/u-029-9879cf4a.wav",
+      "duration_seconds": 7.445333333333333,
+      "start_frame": 6638,
+      "end_frame": 6861,
+      "audio_end_frame": 6861
+    },
+    {
+      "id": "u-030",
+      "speaker": "narrator",
+      "content_hash": "a21311e1",
+      "wav_path": "audio/web-flask/u-030-a21311e1.wav",
+      "duration_seconds": 7.392,
+      "start_frame": 6861,
+      "end_frame": 7098,
+      "audio_end_frame": 7083
+    },
+    {
+      "id": "u-031",
+      "speaker": "listener",
+      "content_hash": "3ae74cfc",
+      "wav_path": "audio/web-flask/u-031-3ae74cfc.wav",
+      "duration_seconds": 4.213333333333333,
+      "start_frame": 7098,
+      "end_frame": 7224,
+      "audio_end_frame": 7224
+    },
+    {
+      "id": "u-032",
+      "speaker": "narrator",
+      "content_hash": "e2b81163",
+      "wav_path": "audio/web-flask/u-032-e2b81163.wav",
+      "duration_seconds": 6.261333333333333,
+      "start_frame": 7224,
+      "end_frame": 7412,
+      "audio_end_frame": 7412
+    },
+    {
+      "id": "u-033",
+      "speaker": "narrator",
+      "content_hash": "3fccd3bc",
+      "wav_path": "audio/web-flask/u-033-3fccd3bc.wav",
+      "duration_seconds": 8.821333333333333,
+      "start_frame": 7412,
+      "end_frame": 7677,
+      "audio_end_frame": 7677
+    },
+    {
+      "id": "u-034",
+      "speaker": "narrator",
+      "content_hash": "369866b7",
+      "wav_path": "audio/web-flask/u-034-369866b7.wav",
+      "duration_seconds": 8.490666666666666,
+      "start_frame": 7677,
+      "end_frame": 7932,
+      "audio_end_frame": 7932
+    },
+    {
+      "id": "u-035",
+      "speaker": "listener",
+      "content_hash": "d6b8d186",
+      "wav_path": "audio/web-flask/u-035-d6b8d186.wav",
+      "duration_seconds": 4.1066666666666665,
+      "start_frame": 7932,
+      "end_frame": 8055,
+      "audio_end_frame": 8055
+    },
+    {
+      "id": "u-036",
+      "speaker": "narrator",
+      "content_hash": "bcc79203",
+      "wav_path": "audio/web-flask/u-036-bcc79203.wav",
+      "duration_seconds": 10.890666666666666,
+      "start_frame": 8055,
+      "end_frame": 8382,
+      "audio_end_frame": 8382
+    },
+    {
+      "id": "u-037",
+      "speaker": "listener",
+      "content_hash": "59cc1bac",
+      "wav_path": "audio/web-flask/u-037-59cc1bac.wav",
+      "duration_seconds": 2.1866666666666665,
+      "start_frame": 8382,
+      "end_frame": 8447,
+      "audio_end_frame": 8447
+    },
+    {
+      "id": "u-038",
+      "speaker": "narrator",
+      "content_hash": "53a045e6",
+      "wav_path": "audio/web-flask/u-038-53a045e6.wav",
+      "duration_seconds": 9.418666666666667,
+      "start_frame": 8447,
+      "end_frame": 8730,
+      "audio_end_frame": 8730
+    },
+    {
+      "id": "u-039",
+      "speaker": "narrator",
+      "content_hash": "294fda73",
+      "wav_path": "audio/web-flask/u-039-294fda73.wav",
+      "duration_seconds": 9.141333333333334,
+      "start_frame": 8730,
+      "end_frame": 9004,
+      "audio_end_frame": 9004
+    },
+    {
+      "id": "u-040",
+      "speaker": "narrator",
+      "content_hash": "e0e67293",
+      "wav_path": "audio/web-flask/u-040-e0e67293.wav",
+      "duration_seconds": 8.138666666666667,
+      "start_frame": 9004,
+      "end_frame": 9248,
+      "audio_end_frame": 9248
+    },
+    {
+      "id": "u-041",
+      "speaker": "listener",
+      "content_hash": "c1ccb365",
+      "wav_path": "audio/web-flask/u-041-c1ccb365.wav",
+      "duration_seconds": 4.117333333333334,
+      "start_frame": 9248,
+      "end_frame": 9372,
+      "audio_end_frame": 9372
+    },
+    {
+      "id": "u-042",
+      "speaker": "narrator",
+      "content_hash": "d7b13cd3",
+      "wav_path": "audio/web-flask/u-042-d7b13cd3.wav",
+      "duration_seconds": 12.16,
+      "start_frame": 9372,
+      "end_frame": 9736,
+      "audio_end_frame": 9736
+    },
+    {
+      "id": "u-043",
+      "speaker": "narrator",
+      "content_hash": "fdabe38b",
+      "wav_path": "audio/web-flask/u-043-fdabe38b.wav",
+      "duration_seconds": 6.858666666666666,
+      "start_frame": 9736,
+      "end_frame": 9957,
+      "audio_end_frame": 9942
+    },
+    {
+      "id": "u-044",
+      "speaker": "narrator",
+      "content_hash": "bf65b149",
+      "wav_path": "audio/web-flask/u-044-bf65b149.wav",
+      "duration_seconds": 6.922666666666666,
+      "start_frame": 9957,
+      "end_frame": 10165,
+      "audio_end_frame": 10165
+    },
+    {
+      "id": "u-045",
+      "speaker": "narrator",
+      "content_hash": "c2c28b91",
+      "wav_path": "audio/web-flask/u-045-c2c28b91.wav",
+      "duration_seconds": 8.128,
+      "start_frame": 10165,
+      "end_frame": 10409,
+      "audio_end_frame": 10409
+    },
+    {
+      "id": "u-046",
+      "speaker": "narrator",
+      "content_hash": "06cb0688",
+      "wav_path": "audio/web-flask/u-046-06cb0688.wav",
+      "duration_seconds": 7.210666666666667,
+      "start_frame": 10409,
+      "end_frame": 10625,
+      "audio_end_frame": 10625
+    },
+    {
+      "id": "u-047",
+      "speaker": "listener",
+      "content_hash": "87fe2bdb",
+      "wav_path": "audio/web-flask/u-047-87fe2bdb.wav",
+      "duration_seconds": 4.714666666666667,
+      "start_frame": 10625,
+      "end_frame": 10766,
+      "audio_end_frame": 10766
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-title",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-reqres",
+      "start_frame": 814
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-static-dynamic",
+      "start_frame": 2019
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-url",
+      "start_frame": 2555
+    },
+    {
+      "id": "ev-005",
+      "slide": "slide-flask-code",
+      "start_frame": 4224
+    },
+    {
+      "id": "ev-006",
+      "slide": "slide-flask-flow",
+      "start_frame": 5099
+    },
+    {
+      "id": "ev-007",
+      "slide": "slide-run",
+      "start_frame": 5519
+    },
+    {
+      "id": "ev-008",
+      "slide": "slide-venv",
+      "start_frame": 7412
+    },
+    {
+      "id": "ev-009",
+      "slide": "slide-venv-good",
+      "start_frame": 7932
+    },
+    {
+      "id": "ev-010",
+      "slide": "slide-venv-bad",
+      "start_frame": 8382
+    },
+    {
+      "id": "ev-011",
+      "slide": "slide-tools",
+      "start_frame": 9004
+    },
+    {
+      "id": "ev-012",
+      "slide": "slide-summary",
+      "start_frame": 9957
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-title",
+      "type": "title",
+      "title": "Webサーバーと Flask のしくみ",
+      "subtitle": "ページが表示されるまでと、Flask の役割"
+    },
+    {
+      "id": "slide-reqres",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "リクエストとレスポンス（決まり事は HTTP）",
+        "lanes": [
+          {
+            "label": "頼む",
+            "steps": [
+              {
+                "name": "ブラウザ",
+                "sub": "クライアント"
+              },
+              {
+                "name": "リクエスト",
+                "sub": "このページをください"
+              },
+              {
+                "name": "Webサーバー"
+              }
+            ]
+          },
+          {
+            "label": "返す",
+            "steps": [
+              {
+                "name": "Webサーバー"
+              },
+              {
+                "name": "レスポンス",
+                "sub": "ページの中身（HTML）"
+              },
+              {
+                "name": "ブラウザ",
+                "sub": "画面に表示"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-static-dynamic",
+      "type": "bullets",
+      "items": [
+        "置いてあるファイルを、そのまま返す",
+        "プログラムが、その場でページを作って返す",
+        "Flask は、後のほうを Python で書くための道具"
+      ],
+      "title": "サーバーの返し方は 2 通り"
+    },
+    {
+      "id": "slide-url",
+      "type": "code",
+      "code": "http://127.0.0.1:5000/\n\nhttp://     … 決まり事（HTTP）\n127.0.0.1   … どのコンピュータか（自分自身。localhost）\n:5000       … ポート番号（コンピュータの中の窓口）\n/           … パス（どのページか）\n",
+      "title": "URL の読み方"
+    },
+    {
+      "id": "slide-flask-code",
+      "type": "code",
+      "code": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"\n",
+      "title": "いちばん小さい Flask のアプリ（hello.py）"
+    },
+    {
+      "id": "slide-flask-flow",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "Flask がしてくれること",
+        "lanes": [
+          {
+            "steps": [
+              {
+                "name": "リクエスト",
+                "sub": "「/」をください"
+              },
+              {
+                "name": "@app.route(\"/\")",
+                "sub": "呼ぶ関数を探す"
+              },
+              {
+                "name": "hello_world()",
+                "sub": "関数を呼ぶ"
+              },
+              {
+                "name": "レスポンス",
+                "sub": "返り値を送る"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-run",
+      "type": "code",
+      "code": "> flask --app hello run\n * Serving Flask app 'hello'\n * Debug mode: off\nWARNING: This is a development server. Do not use it\n  in a production deployment. Use a production WSGI\n  server instead.\n * Running on http://127.0.0.1:5000\nPress CTRL+C to quit\n127.0.0.1 - - [...] \"GET / HTTP/1.1\" 200 -\n127.0.0.1 - - [...] \"GET /nothing HTTP/1.1\" 404 -\n",
+      "title": "動かす（Flask 2.3.2）"
+    },
+    {
+      "id": "slide-venv",
+      "type": "custom",
+      "component": "RunFlow",
+      "props": {
+        "title": "仮想環境 ＝ プロジェクトごとの部品の置き場",
+        "lanes": [
+          {
+            "label": "授業用",
+            "steps": [
+              {
+                "name": "Python 3.10"
+              },
+              {
+                "name": "Flask 2.3.2"
+              }
+            ]
+          },
+          {
+            "label": "別の作品",
+            "steps": [
+              {
+                "name": "Python 3.12"
+              },
+              {
+                "name": "Flask 3.1.3"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-venv-good",
+      "type": "bullets",
+      "items": [
+        "部品の版がぶつからない",
+        "Python 本体を汚さない",
+        "同じ組み合わせを、別のパソコンでも作り直せる"
+      ],
+      "title": "よいところ"
+    },
+    {
+      "id": "slide-venv-bad",
+      "type": "bullets",
+      "items": [
+        "使う前に毎回、切り替えが要る（忘れると「部品が無い」）",
+        "置き場ごとに部品を入れ直す手間",
+        "conda と pip を混ぜると、組み合わせが崩れることがある"
+      ],
+      "title": "困るところ"
+    },
+    {
+      "id": "slide-tools",
+      "type": "bullets",
+      "items": [
+        "conda：部品同士の版の組み合わせを調べて、そろえて入れる",
+        "uv：2024 年に出た新しい道具。もっと速い",
+        "この授業は、教科書（2022 年）に合わせて conda を使う"
+      ],
+      "title": "部品と環境をまとめて扱う道具"
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "ブラウザが頼み（リクエスト）、サーバーが返す（レスポンス）。決まり事は HTTP",
+        "Flask は「この URL なら、この関数」。返り値がレスポンスになる",
+        "仮想環境はプロジェクトごとの部品の置き場。使う前に切り替える"
+      ],
+      "title": "まとめ"
+    }
+  ],
+  "speakers": {
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    },
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    }
+  },
+  "credits": [
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "VOICEVOX:ずんだもん",
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
+  ],
+  "total_duration_frames": 10856
+}

@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "script_id": "web-flask",
+  "char_limit": 450,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-title",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "narrator",
+          "text": "今日から、パイソンでウェブのアプリを作る「フラスク」を使っていきます。その前に、ウェブのページが表示されるまでに、裏で何が起きているのかを見ておきましょう。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-002",
+          "speaker": "listener",
+          "text": "ブラウザにアドレスを打つと、すぐにページが出ますよね。あれは、どこから来ているんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "別のコンピュータから届いています。今日は、そのしくみと、フラスクの役割、最後に「仮想環境」の話をします。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-reqres",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-004",
+          "speaker": "narrator",
+          "text": "ページを届けるコンピュータを「ウェブサーバー」と呼びます。ページを受け取るブラウザの側は「クライアント」と呼びます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-005",
+          "speaker": "narrator",
+          "text": "ブラウザは、サーバーに「このページをください」と頼みます。これを「リクエスト」と言います。サーバーは、頼まれたページを送り返します。これを「レスポンス」と言います。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-006",
+          "speaker": "listener",
+          "text": "お店で注文して、品物が出てくるのと同じですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "narrator",
+          "text": "そのとおりです。注文の書き方と返し方の決まり事を「エイチティーティーピー」と言います。ブラウザとサーバーは、この決まり事でやり取りしています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "listener",
+          "text": "サーバーは、ページを棚から出して渡すだけなんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-static-dynamic",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-009",
+          "speaker": "narrator",
+          "text": "2通りあります。置いてあるファイルをそのまま返すやり方と、プログラムがその場でページを作って返すやり方です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-010",
+          "speaker": "narrator",
+          "text": "フラスクは、この「その場でページを作るプログラム」を、パイソンで書くための道具です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-011",
+          "speaker": "listener",
+          "text": "ブラウザに打つアドレスにも、意味があるんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-url",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-012",
+          "speaker": "narrator",
+          "text": "あります。アドレスは「ユーアールエル」と言い、いくつかの部分に分かれています。この後の授業で使う形を見てみましょう。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "最初の「エイチティーティーピー」は、さっきの決まり事の名前です。次の数字の並びは、どのコンピュータに頼むかを表します。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-014",
+          "speaker": "narrator",
+          "text": "いち、に、なな、ドット、ゼロ、ドット、ゼロ、ドット、いち、は特別な番号で、「自分自身のコンピュータ」を指します。名前で「ローカルホスト」とも書きます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-015",
+          "speaker": "listener",
+          "text": "自分のパソコンが、自分にページを頼むんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-016",
+          "speaker": "narrator",
+          "text": "そうです。作ったプログラムを試すときは、1台のパソコンが、ブラウザとサーバーの両方の役をします。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-017",
+          "speaker": "narrator",
+          "text": "その後ろの「ごせん」は「ポート番号」で、コンピュータの中の窓口の番号です。最後のスラッシュから後ろは「パス」で、どのページかを表します。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "slide_id": "slide-flask-code",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-018",
+          "speaker": "narrator",
+          "text": "では、フラスクのプログラムを見てみましょう。フラスクの公式の説明に載っている、いちばん小さいアプリです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-019",
+          "speaker": "narrator",
+          "text": "1行目で、フラスクを読み込みます。次のぎょうで、アプリの本体を作ります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-020",
+          "speaker": "narrator",
+          "text": "アットマークで始まるぎょうが大事です。「スラッシュのページにリクエストが来たら、すぐ下の関数を呼んでください」という意味です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-021",
+          "speaker": "narrator",
+          "text": "関数は、ハロー、ワールド、という文字列を返します。この返した文字列が、そのままレスポンスとしてブラウザに届きます。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "slide_id": "slide-flask-flow",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-022",
+          "speaker": "listener",
+          "text": "どのユーアールエルで、どの関数を呼ぶかを書いておくだけなんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-023",
+          "speaker": "narrator",
+          "text": "そのとおりです。リクエストを受け取る、決まり事の形で送り返す、といった面倒な部分は、フラスクが引き受けてくれます。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "slide_id": "slide-run",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-024",
+          "speaker": "narrator",
+          "text": "動かしてみます。ファイルを「ハロー、ドット、パイ」という名前で保存して、画面のコマンドを打ちます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-025",
+          "speaker": "narrator",
+          "text": "すると、ユーアールエルが表示されます。これをブラウザで開くと、ハロー、ワールド、と表示されます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-026",
+          "speaker": "listener",
+          "text": "下のほうの、ゲット、とか、にひゃく、とかいうぎょうは何ですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-027",
+          "speaker": "narrator",
+          "text": "サーバーが受け取ったリクエストの記録です。ゲットは「ください」という頼み方で、にひゃくは「うまく返せた」という番号です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-028",
+          "speaker": "narrator",
+          "text": "用意していないページを頼むと、よんひゃくよん、と出ます。「そのページはありません」という意味です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-029",
+          "speaker": "narrator",
+          "text": "止めるときは、コントロールキーを押しながらシーを押します。それから、ワーニングという注意のぎょうにも目を向けてください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-030",
+          "speaker": "narrator",
+          "text": "このサーバーは、作りながら試すための開発用です。本番で公開するときは使わないように、と書かれています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-031",
+          "speaker": "listener",
+          "text": "フラスクは、パイソンに最初から入っているんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-032",
+          "speaker": "narrator",
+          "text": "入っていません。後から追加する部品です。そこで使うのが「仮想環境」です。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "slide_id": "slide-venv",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-033",
+          "speaker": "narrator",
+          "text": "仮想環境は、プロジェクトごとに分けた、部品の置き場です。パイソン本体と部品の組み合わせを、置き場ごとに別々に持てます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-034",
+          "speaker": "narrator",
+          "text": "たとえば、授業用の置き場には古い版のフラスク、別の作品の置き場には新しい版のフラスク、というように使い分けられます。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "slide_id": "slide-venv-good",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-035",
+          "speaker": "listener",
+          "text": "ロッカーを、使う人ごとに分けるようなものですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-036",
+          "speaker": "narrator",
+          "text": "近いです。よいところは3つあります。部品の版がぶつからないこと。パイソン本体を汚さないこと。同じ組み合わせを、別のパソコンでも作り直せることです。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "slide_id": "slide-venv-bad",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-037",
+          "speaker": "listener",
+          "text": "困るところはないんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-038",
+          "speaker": "narrator",
+          "text": "あります。使う前に毎回、置き場を切り替える必要があります。忘れると、別の置き場で動いて「部品が無い」と言われます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-039",
+          "speaker": "narrator",
+          "text": "置き場ごとに部品を入れ直す手間もかかります。また、コンダとピップという2つの道具を混ぜて部品を入れると、組み合わせが崩れることがあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "slide_id": "slide-tools",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-040",
+          "speaker": "narrator",
+          "text": "その一方で、コンダには助かる働きもあります。部品同士の版の組み合わせを調べて、合う物をそろえて入れようとしてくれます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-041",
+          "speaker": "listener",
+          "text": "版の組み合わせを、自分で探さなくていいんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-042",
+          "speaker": "narrator",
+          "text": "最近は「ユーブイ」という、もっと速い新しい道具も出てきています。ただ、ユーブイが出たのは2024年で、この授業の教科書が作られた2022年より後です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-043",
+          "speaker": "narrator",
+          "text": "そこでこの授業では、教科書に合わせて、前から使われているコンダで、自分の仮想環境を作ります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-044",
+          "speaker": "narrator",
+          "text": "まとめです。1つめ、ブラウザが頼み、サーバーが返します。その決まり事がエイチティーティーピーです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-045",
+          "speaker": "narrator",
+          "text": "2つめ、フラスクでは「このユーアールエルなら、この関数」と書くだけで、関数が返したものがレスポンスになります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-046",
+          "speaker": "narrator",
+          "text": "3つめ、仮想環境は、プロジェクトごとの部品の置き場です。使う前の切り替えを忘れないようにしましょう。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-047",
+          "speaker": "listener",
+          "text": "まずは自分のパソコンで、ハロー、ワールドを出してみます！",
+          "style": "aside"
+        }
+      ]
+    }
+  ],
+  "total_pages": 12
+}
