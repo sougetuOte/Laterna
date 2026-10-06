@@ -417,12 +417,12 @@
     {
       "id": "u-042",
       "speaker": "narrator",
-      "content_hash": "d7b13cd3",
-      "wav_path": "audio/web-flask/u-042-d7b13cd3.wav",
-      "duration_seconds": 12.16,
+      "content_hash": "8ff54aab",
+      "wav_path": "audio/web-flask/u-042-8ff54aab.wav",
+      "duration_seconds": 10.986666666666666,
       "start_frame": 9372,
-      "end_frame": 9736,
-      "audio_end_frame": 9736
+      "end_frame": 9701,
+      "audio_end_frame": 9701
     },
     {
       "id": "u-043",
@@ -430,9 +430,9 @@
       "content_hash": "fdabe38b",
       "wav_path": "audio/web-flask/u-043-fdabe38b.wav",
       "duration_seconds": 6.858666666666666,
-      "start_frame": 9736,
-      "end_frame": 9957,
-      "audio_end_frame": 9942
+      "start_frame": 9701,
+      "end_frame": 9922,
+      "audio_end_frame": 9907
     },
     {
       "id": "u-044",
@@ -440,9 +440,9 @@
       "content_hash": "bf65b149",
       "wav_path": "audio/web-flask/u-044-bf65b149.wav",
       "duration_seconds": 6.922666666666666,
-      "start_frame": 9957,
-      "end_frame": 10165,
-      "audio_end_frame": 10165
+      "start_frame": 9922,
+      "end_frame": 10130,
+      "audio_end_frame": 10130
     },
     {
       "id": "u-045",
@@ -450,9 +450,9 @@
       "content_hash": "c2c28b91",
       "wav_path": "audio/web-flask/u-045-c2c28b91.wav",
       "duration_seconds": 8.128,
-      "start_frame": 10165,
-      "end_frame": 10409,
-      "audio_end_frame": 10409
+      "start_frame": 10130,
+      "end_frame": 10374,
+      "audio_end_frame": 10374
     },
     {
       "id": "u-046",
@@ -460,9 +460,9 @@
       "content_hash": "06cb0688",
       "wav_path": "audio/web-flask/u-046-06cb0688.wav",
       "duration_seconds": 7.210666666666667,
-      "start_frame": 10409,
-      "end_frame": 10625,
-      "audio_end_frame": 10625
+      "start_frame": 10374,
+      "end_frame": 10590,
+      "audio_end_frame": 10590
     },
     {
       "id": "u-047",
@@ -470,9 +470,9 @@
       "content_hash": "87fe2bdb",
       "wav_path": "audio/web-flask/u-047-87fe2bdb.wav",
       "duration_seconds": 4.714666666666667,
-      "start_frame": 10625,
-      "end_frame": 10766,
-      "audio_end_frame": 10766
+      "start_frame": 10590,
+      "end_frame": 10731,
+      "audio_end_frame": 10731
     }
   ],
   "slide_events": [
@@ -534,7 +534,7 @@
     {
       "id": "ev-012",
       "slide": "slide-summary",
-      "start_frame": 9957
+      "start_frame": 9922
     }
   ],
   "slides": [
@@ -701,8 +701,8 @@
       "type": "bullets",
       "items": [
         "conda：部品同士の版の組み合わせを調べて、そろえて入れる",
-        "uv：2024 年に出た新しい道具。もっと速い",
-        "この授業は、教科書（2022 年）に合わせて conda を使う"
+        "uv：2024 年に出た新しい道具（教科書より後）。もっと速い",
+        "この授業は、教科書に合わせて conda を使う"
       ],
       "title": "部品と環境をまとめて扱う道具"
     },
@@ -732,5 +732,5 @@
     "VOICEVOX:ずんだもん",
     "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）"
   ],
-  "total_duration_frames": 10856
+  "total_duration_frames": 10821
 }

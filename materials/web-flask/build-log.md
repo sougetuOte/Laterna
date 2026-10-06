@@ -30,3 +30,13 @@
 | 6 | 08:25 | `node -e "…pdf-lib…getPageCount()"` | 0 | 12 ページ（pdf-manifest の total_pages 12） |
 | 7 | 08:25 | `sha256sum out/script-engine/web-flask.mp4 deliver/web-flask/web-flask.mp4 out/script-engine/web-flask.pdf deliver/web-flask/web-flask.pdf` | 0 | MP4 `b24301dd…cc79`・PDF `3981101b…48bb`。out と deliver で一致 |
 
+
+## 訂正節の作業（2026-10-06 18 時台。教科書の年を外す。goal.md Wave 6 の訂正節）
+
+| 手順 | 日時 | コマンド | 終了コード | 備考 |
+|---|---|---|---|---|
+| 4 | 18:13 | `npm run compile:script -- web-flask` | 0 | u-042 だけ再合成。10821 フレーム・約 360.7 秒、PDF 12 ページ。ログは `out/compile-web-flask-3.log` |
+| 5 | 18:13 | `npm run render:all:script -- web-flask` | 0 | 18:18 に終わった。ログは `out/render-web-flask-3.log`。`slide-tools` の静止画（`<scratchpad>/frames/slide-tools-3.png`）を目視した |
+| 6 | 18:1x | `ffprobe -v error -show_entries stream=codec_type,codec_name -show_entries format=duration -of default=nw=1 out/script-engine/web-flask.mp4` | 0 | h264・aac、360.75 秒（manifest 10821/30 = 360.70 秒） |
+| 6 | 18:1x | `node -e "…pdf-lib…getPageCount()"` | 0 | 12 ページ |
+| 7 | 18:2x | `sha256sum out/script-engine/web-flask.mp4 deliver/web-flask/web-flask.mp4 out/script-engine/web-flask.pdf deliver/web-flask/web-flask.pdf` | 0 | MP4 `5795abd2…8553`・PDF `53f325fe…892e`。out と deliver で一致（差し替え後） |

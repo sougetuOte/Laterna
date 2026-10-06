@@ -1,13 +1,14 @@
 # web-flask 構成 ── 「Webサーバーと Flask のしくみ」
 
 台本承認：2026-10-06 主人（「台本、基本承認します」。同じ発話で、conda が依存関係を管理してくれること・新しい uv があること・教科書が 2022 年なので conda を選んだことを足す指示。足した u-040〜u-043 と `slide-tools` は試写で見てもらう）
+台本の直し：2026-10-06 主人（「OK で構わない」。教科書の年は主人の思い違いで、発売は 2023 年 6 月以降。u-042 と `slide-tools` から年を外した。goal.md Wave 6 の訂正節）
 試写：2026-10-06 主人（「試写行いました。特に問題なし。」。納品物 MP4 `b24301dd…cc79`・PDF `3981101b…48bb` に対して）。試写で見る点の所見：図の矢印と文字の位置＝問題なし／コードのスライドの文字の大きさ＝問題なし／読み（英字のかな書き、足した u-040〜u-043 を含む）＝問題なし／画面写しの出典の表示＝画面写しを載せなかったので該当なし
 
 ## 対象
 
 - 汎用。Python の文法を少し習った人。最初に使うのは 2026-10-06 の Flask の授業の初回（9:00）。動画・PDF・概要欄に学校名を出さない（goal.md Wave 6）。
 - 使用場面：授業中に流す。動画の後に、先生が conda で仮想環境を作る作業をする。
-- 授業の環境：Python 3.10、Flask 2.3.2（教科書が 2022 年のもの）、conda。
+- 授業の環境：Python 3.10、Flask 2.3.2（教科書のもの。教科書の発売は 2023 年 6 月以降。正確な日は未確認）、conda。
 - 例のコードは、この機械の Python 3.11.9 で scratchpad に作った venv（Flask 2.3.2）で動かした。画面には Python の版で変わる物を出していない。
 
 ## 尺
@@ -54,7 +55,7 @@
 | 同じ組み合わせを別のパソコンで作り直せる | 同上 | "Sharing an environment"（environment.yml） |
 | conda と pip を混ぜると壊れることがある | https://www.anaconda.com/blog/using-pip-in-a-conda-environment | "Running conda after pip has the potential to overwrite and potentially break packages installed via pip." |
 | conda は部品同士の依存を管理する | https://docs.conda.io/projects/conda/en/stable/index.html ・ https://docs.conda.io/projects/conda/en/stable/user-guide/concepts/packages.html | "Conda provides package, dependency, and environment management"、"Conda keeps track of the dependencies between packages and platforms." |
-| この授業の教科書は 2022 年のもの（u-042・`slide-tools`） | 主人の答え（2026-10-06、チャット。goal.md Wave 6 の「G0 の問いと主人の答え」） | 「Flaskは教科書が出た2022年のものをつかいます。2.3.2となります。」。なお PyPI では Flask 2.3.2 の公開は 2023-05-01（https://pypi.org/pypi/Flask/2.3.2/json の upload_time）で、主人に確かめている |
+| uv は教科書より後に出た（u-042・`slide-tools`） | 主人の答え（2026-10-06、チャット。教科書の発売は 2023 年 6 月以降。goal.md Wave 6 の訂正節）と、下の uv の行 | 教科書の年は台本に出さない（正確な日が未確認のため）。PyPI では Flask 2.3.2 の公開は 2023-05-01（https://pypi.org/pypi/Flask/2.3.2/json の upload_time） |
 | uv は 2024 年に出た、速い新しい道具 | https://pypi.org/project/uv/ ・ https://docs.astral.sh/uv/ | PyPI の最初の版 0.0.5 は 2024-02-15。"An extremely fast Python package and project manager"、"10-100x faster than pip" |
 
 **検収 1 回目の後の直し（2026-10-06）：**検収 1 回目は検証 1 で FAIL だった（スライドの「Python 3.12」が対応表に無かった）。Python 3.12 の行を足し、画面の出力の行に `HTTP/1.1` を書き、評価器が「文字どおりには一致しない」とした引用 2 か所（changes の 2.2.0、conda の manage-environments）を本文の文に直した。台本と動画は変えていない。
