@@ -34,11 +34,12 @@
 |---|---|---|
 | 最小のアプリのコード（`hello.py`）と `@app.route("/")` | https://flask.palletsprojects.com/en/stable/quickstart/ | "A Minimal Application"、"We then use the route() decorator to tell Flask what URL should trigger our function." |
 | `flask --app hello run` で起動し、http://127.0.0.1:5000 で開く | 同上 | "To run the application, use the flask command"、"Running on http://127.0.0.1:5000 (Press CTRL+C to quit)" |
-| `--app` は Flask 2.2.0 から使える（2.3.2 で使える根拠） | https://flask.palletsprojects.com/en/stable/changes/ | Version 2.2.0 の "Added the --app option" |
+| `--app` は Flask 2.2.0 から使える（2.3.2 で使える根拠） | https://flask.palletsprojects.com/en/stable/changes/ | Version 2.2.0 の "Add --app and --debug options to the flask CLI" |
 | 開発用サーバーは本番に使わない | https://flask.palletsprojects.com/en/stable/server/ | Development Server の頁の Warning（"Do not use the development server when deploying to production."） |
-| 画面の出力（`Running on`・`WARNING`・`GET / … 200`・`GET /nothing … 404`） | この機械で実行（Flask 2.3.2、Werkzeug 3.1.9、Python 3.11.9、2026-10-06） | `materials/web-flask/build-log.md` の手順 1 |
+| 画面の出力（`Running on`・`WARNING`・`"GET / HTTP/1.1" 200`・`"GET /nothing HTTP/1.1" 404`） | この機械で実行（Flask 2.3.2、Werkzeug 3.1.9、Python 3.11.9、2026-10-06） | `materials/web-flask/build-log.md` の手順 1 |
 | Flask 2.3.2 は Python 3.8 以上で入る（授業の 3.10 で使える） | https://pypi.org/project/Flask/2.3.2/ | Requires: Python >=3.8 |
 | Flask の最新の安定版は 3.1.3（スライドの「別の作品」の例） | https://pypi.org/project/Flask/ | 3.1.3（2026-02-19）、Requires: Python >=3.9 |
+| Python 3.12 は公開済みの版で、Flask 3.1.3（Python 3.9 以上）を入れられる（スライドの「別の作品」の例） | https://www.python.org/downloads/release/python-3120/ ・ https://peps.python.org/pep-0693/ | "Python 3.12.0"、PEP 693 "3.12.0 final: Monday, 2023-10-02" |
 | クライアントとサーバー、リクエストとレスポンス | https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview | "HTTP is a protocol for fetching resources such as HTML documents."、client-server protocol |
 | 置いてあるファイルを返す（静的）／その場で作って返す（動的） | https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server | "the server sends its hosted files as-is"、"the application server updates the hosted files before sending content" |
 | URL はスキーム・ドメイン・ポート・パスに分かれる | https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL | Scheme・Authority（domain, port）・Path to resource |
@@ -49,11 +50,14 @@
 | 200 はうまくいった、404 はページが無い | https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200 ・ https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404 | 200 OK "request has succeeded"、404 Not Found "server cannot find the requested resource" |
 | Flask は Python に後から入れる部品で、仮想環境を勧めている | https://flask.palletsprojects.com/en/stable/installation/ | "Virtual environments" の節 |
 | 仮想環境はプロジェクトごとに別のパッケージの版を持てる | https://docs.python.org/3/tutorial/venv.html | "a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages" |
-| conda の環境は互いに干渉しない、切り替えて使う | https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html | "Conda allows you to create separate environments"、`conda activate` |
+| conda の環境は互いに干渉しない、切り替えて使う | https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html | "With conda, you can create, export, list, remove, and update environments that have different versions of Python and/or packages installed in them. Switching or moving between environments is called activating the environment." |
 | 同じ組み合わせを別のパソコンで作り直せる | 同上 | "Sharing an environment"（environment.yml） |
 | conda と pip を混ぜると壊れることがある | https://www.anaconda.com/blog/using-pip-in-a-conda-environment | "Running conda after pip has the potential to overwrite and potentially break packages installed via pip." |
 | conda は部品同士の依存を管理する | https://docs.conda.io/projects/conda/en/stable/index.html ・ https://docs.conda.io/projects/conda/en/stable/user-guide/concepts/packages.html | "Conda provides package, dependency, and environment management"、"Conda keeps track of the dependencies between packages and platforms." |
+| この授業の教科書は 2022 年のもの（u-042・`slide-tools`） | 主人の答え（2026-10-06、チャット。goal.md Wave 6 の「G0 の問いと主人の答え」） | 「Flaskは教科書が出た2022年のものをつかいます。2.3.2となります。」。なお PyPI では Flask 2.3.2 の公開は 2023-05-01（https://pypi.org/pypi/Flask/2.3.2/json の upload_time）で、主人に確かめている |
 | uv は 2024 年に出た、速い新しい道具 | https://pypi.org/project/uv/ ・ https://docs.astral.sh/uv/ | PyPI の最初の版 0.0.5 は 2024-02-15。"An extremely fast Python package and project manager"、"10-100x faster than pip" |
+
+**検収 1 回目の後の直し（2026-10-06）：**検収 1 回目は検証 1 で FAIL だった（スライドの「Python 3.12」が対応表に無かった）。Python 3.12 の行を足し、画面の出力の行に `HTTP/1.1` を書き、評価器が「文字どおりには一致しない」とした引用 2 か所（changes の 2.2.0、conda の manage-environments）を本文の文に直した。台本と動画は変えていない。
 
 **言わなかったこと：**「conda の環境は容量を食う」は言わない（conda 公式は "Environments take up little space thanks to hard links." と書いている）。
 
