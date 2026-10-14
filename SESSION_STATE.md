@@ -19,7 +19,7 @@
 5. `materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md（Wave 5 の節あり）、description.md、images.md（画像の出典の記録））、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
 6. `docs/research/2026-09-27-review.md`（198 行。点検の記録。「Wave 3 以降へ」の行は下の未決に移した）
 7. `docs/inventory.md`／`docs/design.md`／`imagegen/README.md`
-8. 統治は `D:\work8\Seneschal\core\`（README → loop → handoff）を読みに行く
+8. 統治は Seneschal の `core/`（README → loop → handoff。場所はこの機械の規則）を読みに行く
 
 ## 現在地
 

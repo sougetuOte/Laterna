@@ -41,7 +41,7 @@
 | 同・題材調査の資産 | `docs/artifacts/mojibake-video-2-research-notes.md` | 「なぜ文字化けは起きるのか」の調査（一次資料18件、俗説8件をラベル化）。**Wave 2 の題材候補** |
 | ゆっくり解説スキル | 本リポジトリ `reference/yukkuri-reimu-marisa-videos/`（主人が入手した zip を展開）。**出所・ライセンスが不明なので、フォルダごと git 管理外**（`.gitignore`。ディスク上では読める） | **手順書の型**（調査→台本→`--check` 確認モード→書き出し→検証）と、パーツを重ねて表情差分を作る `build_sprites.py` の考え方。約600行で、統治文書を持たずに回っている実例 |
 | 立ち絵・口パクの調査 | `docs/research/2026-09-26-character-animation.md` | See-Through と派生ツール、組み合わせ、口パクのタイミング、表情差分、動かし方、商用不可の一覧。**Wave 3 と画像環境の設計で読む。Wave 1 では読まなくてよい** |
-| Seneschal | `D:\work8\Seneschal` | 統治の条文（`core/README.md`・`core/loop.md`・`core/handoff.md`）と評価器 columba。**読みに行く。コピーしない** |
+| Seneschal | 作者の手元（場所はこの機械の規則） | 統治の条文（`core/README.md`・`core/loop.md`・`core/handoff.md`）と評価器 columba。**読みに行く。コピーしない** |
 | ComfyUI_img2 | `D:\ComfyUI_img2` | **サービスとしては使わない（D8）。**専用画像環境を作るときの**型の見本**としてだけ読む ── 依存固定の作り方（`scripts/setup.ps1`）、起動・停止の冪等化（`start.ps1`／`stop.ps1`）、標準ライブラリだけの HTTP クライアント（`smoke.py` の build()/run()）。**Wave 1 では読まなくてよい** |
 
 **ゆっくりスキルの注意：**同梱の「たぬき式ゆっくり」素材（`assets/tanuki-yukkuri/`）は、たぬき霊夢・たぬき魔理沙が東方Projectの二次創作であり、
