@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "seneschal": {
+      "source": {
+        "source": "github",
+        "repo": "sougetuOte/seneschal"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "seneschal@seneschal": true
+  }
+}

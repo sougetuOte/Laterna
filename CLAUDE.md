@@ -10,11 +10,11 @@
 
 - **`goal.md`（Wave 1）は 2026-09-26 に主人が承認済み。**面接（Seneschal の G0）では承認済みであることを主人に確かめてから着手し、3項を作り直さない。
   次の Wave からは、面接で G0 を取る。
-- **統治は Seneschal を読みに行く**（`core/README.md`・`loop.md`・`handoff.md`。場所はこの機械の規則 `~/.claude/rules/seneschal-on-this-machine.md` が持つ）。条文をこのリポジトリにコピーしない。
+- **統治は Seneschal を読みに行く**（`core/README.md`・`loop.md`・`handoff.md`。場所は、入口を `/seneschal:seneschal 条文` で起動すると出る表にある）。条文をこのリポジトリにコピーしない。
   検収は `seneschal:columba` に出す。自分で採点しない。
 - **`docs/brief.md` の「決定」を蒸し返さない。**覆す根拠があれば、書き換えずに主人へ1通で差し出す。
 - **`CLAUDE.md`・`goal.md`・`docs/brief.md` は、主人の承認なしに変えない。**
-- **読み取り専用**：`D:\work7\Kyozai-Athanor`（`.git/` を含む）、Seneschal（場所はこの機械の規則）、`D:\ComfyUI_img2`、`reference/`。
+- **読み取り専用**：`D:\work7\Kyozai-Athanor`（`.git/` を含む）、Seneschal（場所は、入口を `/seneschal:seneschal 条文` で起動すると出る表）、`D:\ComfyUI_img2`、`reference/`。
 - 器（統治・計測・文書）を製品（動画）より先に育てない。前身の Kyozai-Athanor はそれで止まった（brief §2）。
 
 ## 作業姿勢
