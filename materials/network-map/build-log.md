@@ -64,6 +64,8 @@
 | 6 | 15:2x | `grep -F -i -c -f /d/work8/Laterna-private/names.txt <scratchpad>/network-map-pdf-3.txt materials/network-map/description.md materials/network-map/outline.md` | 1 | 氏名 0 件 |
 | 6 | 15:2x | `grep -c "都城\|コア学園" <scratchpad>/network-map-pdf-3.txt materials/network-map/description.md` | 1 | 学校名 0 件 |
 | 6 | 15:2x | `sha256sum out/script-engine/network-map.mp4 out/script-engine/network-map.pdf` | 0 | MP4 `0a4740b5…2cdb`・PDF `5e464157…7c09`。主人の 2 回目の試写に出す版 |
+| 7 | 15:37 | `sha256sum out/script-engine/network-map.mp4 deliver/network-map/network-map.mp4 out/script-engine/network-map.pdf deliver/network-map/network-map.pdf` | 0 | 主人の「問題なし。納品物を差し替えて。」の後に `deliver/network-map/` へ写した（`cp` の 3 ファイル）。`out/` と `deliver/` が一致 |
+| 7 | 15:37 | `cmp materials/network-map/description.md deliver/network-map/description.md` | 0 | 概要欄も同じ |
 
 ## 終了コードを取っていない実行
 

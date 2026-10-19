@@ -9,14 +9,16 @@
 **Wave 3「2 本目」は 2026-09-27 に検収 PASS で締めた。**
 **Wave 4「3 本目：Pythonが動くまで」（`python-runs`、汎用・期限 2027-01-10）は 2026-09-29 に検収 PASS で締めた。**
 **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は 2026-10-03 に検収 1 回目で PASS し、締めた。**3 本目の改訂版は 10/5 か 10/6 の後期の初回（専門学校 1 年）で使う。
+**Wave 6「4 本目：Webサーバーと Flask のしくみ」（`web-flask`）は 2026-10-06 に納品した。検収は 1 回目 FAIL の後、2 回目が未了（締めていない）。**
+**Wave 7「5 本目：ネットワークの地図」（`network-map`、高専 2 年の遠隔回 2026-10-20 用）は 2026-10-19 に納品した。検収は授業の後に出す。**
 
 ## 読む順序
 
 1. `README.md`（34 行）
 2. `docs/brief.md`（147 行。決定 D1〜D10 と §9 の訂正節 D8・D9・§6 の答え）
-3. `goal.md`（Wave 1〜5 は完了。**末尾の Wave 5 節**が直近の契約。末尾に検証 8 の訂正節が 1 つ）
+3. `goal.md`（Wave 1〜5 は完了。Wave 6・7 は納品済みで検収待ち。**末尾の Wave 7 節と、その訂正節（検証 6）**が直近の契約。Wave 6 節にも訂正節（教科書の年）が 1 つ）
 4. `SKILL.md`（159 行。「この題材で 1 本」の手順書。手順 0 の 5 に作業記録の書き方を足した）
-5. `materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md（Wave 5 の節あり）、description.md、images.md（画像の出典の記録））、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
+5. `materials/network-map/`（outline.md の「行き先の対応」と試写の記録、images.md、build-log.md）、`materials/web-flask/`、`materials/python-runs/`（outline.md の出典 19・事実と出典の対応 18 行・台本承認と試写の記録、build-log.md（Wave 5 の節あり）、description.md、images.md（画像の出典の記録））、`materials/about-c/`（build-log.md の「表の決まり」）、`materials/source-to-exe/`
 6. `docs/research/2026-09-27-review.md`（198 行。点検の記録。「Wave 3 以降へ」の行は下の未決に移した）
 7. `docs/inventory.md`／`docs/design.md`／`imagegen/README.md`
 8. 統治は Seneschal の `core/`（README → loop → handoff。場所は、入口を `/seneschal:seneschal 条文` で起動すると出る表）を読みに行く
@@ -24,30 +26,17 @@
 ## 現在地
 
 - **Wave 1「目星」**・**Wave 2「1 本目」**（2026-09-26）・**Wave 2.5「点検」**（2026-09-27 午前）は完了。GitHub に Public で公開済み（https://github.com/sougetuOte/Laterna ）。
-- **Wave 3「2 本目：C言語について」は完了**（2026-09-27。G0 承認 09:49 JST、セッション `dbf265b1-7f84-42eb-91c5-39487434671c`。起点 `c4e6ffe`）：
-  - 2 本目 `about-c`：9 分 6 秒（545.96 秒）・PDF 17 ページ。台本 56 発話、図解は `render/about-c/` の 3 部品（LanguageLevels・CTimeline・CourseMap）。個人名は出さない（主人の答え：案 B）。
-  - 主人の試写で箇条書きの点と文字のずれ（共通部品）が見つかり、訂正節で共通部品と 1 本目の R1〜R3 を直して、1 本目と 2 本目を書き出し直し、納品物を差し替えた（`d2f6af5`）。PDF の注記の JSX 改行による余計な空白も、足したテストで見つかって直した。
-  - 検収：1 回目 **FAIL**・2 回目 **FAIL**（どちらも検証 6。作業記録の終了コードが実測でなかった）→ 縦の停止で MAGI を 1 回（結論：表を実測だけにし、読むだけのコマンドを叩き直す。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（`59f5a7d`）→ 訂正節 → 数え直して 1 回目 **PASS**（`9954bdd`、検証 1〜8）。
-- **Wave 4「3 本目：Pythonが動くまで」は完了**（2026-09-28。G0 承認 10:09 JST、セッション `c54d1211-5809-442d-aae2-ccf5fd2dfe43`。起点 `79ad909`。成果コミット `3d8ee56`・`e6d0820`）：
-  - 3 本目 `python-runs`：8 分 32 秒（512.36 秒）・PDF 18 ページ。台本 59 発話・3,253 字、8 章。図解は `render/python-runs/` の 2 部品（RunFlow・CompareTable）。コードと実行結果は Python 3.11.9。
-  - 納品物 `deliver/python-runs/`：MP4 `5f02ecdc…5e83`・PDF `de5b6aea…823c`・description.md。主人の試写：問題なし（2026-09-28）。
-  - 本セッションの実測（10:26）：`npm test` 21 files / 381 tests PASS、`npm run lint` exit 0。出典 21 本 HTTP 200。主人の氏名・学校名 0 件。`src/` の差は追加 10 行だけ（削除 0）。
-  - 検収：1 回目 **FAIL**（検証 6。`db4b3b1` で直した）→ 2 回目 **FAIL**（2026-09-29、HEAD `7adcf12`。検証 5 の氏名だけ「測れない」。依頼文が氏名の一覧の所在を渡さなかった）→ 縦の停止で MAGI を 1 回（主人の指示。gabriel の結論が変わる指摘 0）→ 3 回目 **PASS**（検証 5 のみ採点、同じ HEAD `7adcf12`。他の 8 項は 2 回目の PASS を引き継ぐ。セッション `ffb1521f-64e9-4a6b-a207-79a82bb6b966`）。
-  - 検収 2 回目で columba が確かめた（HEAD `7adcf12`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の後も `git status` の差 0、`npm test` 21 files / 381 tests・lint exit 0、出典 21 本 HTTP 200、作業記録の読むだけのコマンド 6 行を叩き直して同じ終了コード。
-  - 検収 1 回目で columba が確かめた（2026-09-28、HEAD `e6d0820`）：書き出し直した python-runs・source-to-exe・about-c の SHA-256 が納品物と一致、compile 3 本の manifest・音声は起点と同じ、`npm test` 381 件・lint exit 0、出典 21 本 HTTP 200。
-- **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は完了**（2026-10-03。G0 承認 10:31 JST（記録上の発話は 10:32。goal.md は直さない、主人 2026-10-03）、セッション `b8f8e477-c56d-4d0c-ba1d-cff90b538386`。起点 `2c9cfb5`。成果コミット `5affff2`（A 依存）・`f3336cb`（B PDF）・`3278e94`（C type: image）・`ec4516f`（D 3 本目の画像）・`8a38d54`（試写と納品の記録））：
-  - 10/2 の授業（主人）：1 本目・2 本目とも使えた。時間が無く全部は流せなかったが直しは要らない。PDF は図が小さく、拡大すると図の左右が画面から出た → PDF を組み直した。
-  - PDF：A4 縦（1240×1754）、スライドの絵を本文と同じ幅（1128px）で枠に入れ、本文は 1 段組。1 ページの文字数の上限は 900 → 450（実測。今の台本で最多のページは 413 字なのでページ割りは変わらない）。
-  - エンジン：`type: image`（src・caption・source）と出典台帳。license の許可リストは CC0・PD・CC-BY-4.0/3.0/2.0・self・quotation（引用、取得日必須）。画像の行は `credits[]` に入る。
-  - 3 本目：CPU の写真（Commons、CC0）と python.org のダウンロードのページの画面写し（主人が撮影、引用）を足した。発話は変えていない（512.3 秒のまま）。PDF は 20 ページ。主人の試写：問題なし。
-  - 納品物（`deliver/`、git の外）：python-runs MP4 `c7c07ae5…4c05`・PDF `ec998d03…069c`・description.md。source-to-exe と about-c は PDF だけ差し替え（`6af6b3a1…7836`・`9b6c481c…8c47`）、MP4 は前と同じ（`c00f8b35…1434`・`be055db0…31b6`）。
-  - 検収：1 回目 **PASS**（HEAD `8a38d54`、検証 1〜10）。columba が確かめた：3 本の書き出しの SHA-256 が納品物と一致、`npm test` 22 files / 405 tests・lint exit 0、3 本の PDF に見せる発話が全部ある、出典 URL 2 本 HTTP 200、氏名 0 件（訂正節どおり package-lock.json は差分の行で）、学校名 0 件、作業記録の読むだけのコマンド 6 行が同じ終了コード。
-- 動いている物（実測 2026-09-27、columba の最後の検収、HEAD `9954bdd`。**納品物の SHA-256 は上の Wave 5 の値が新しい**）：
-  - `npm test` 20 files / 370 tests PASS、`npm run lint` exit 0。
-  - 納品物の SHA-256：source-to-exe は MP4 `c00f8b35…1434`・PDF `66c3c06e…42b0`（10 ページ・285.888 秒）、about-c は MP4 `be055db0…31b6`・PDF `bec94511…a90c`。どちらも書き出し直すと一致する（render は決定的）。
-  - compile 2 本（source-to-exe・java-vs-js）の manifest・音声は `6cbaf95` と同じ。
-  - java-vs-js（立ち絵 v1）は Kyozai の参照と、箇条書きの区間とその直前 23 フレーム（エンコーダの先読み。`-fuzz 2%` で差 0 画素）だけ映像が違う。音声は全部一致。
-  - `npm audit`：low 2 件（eslint 系）。VOICEVOX 0.25.2（50021）は起動中だった。imagegen は起動していない。
+- **Wave 3「2 本目：C言語について」は完了**（2026-09-27。起点 `c4e6ffe`）：about-c、9 分 6 秒・PDF 17 ページ。検収は FAIL 2 回 → MAGI → PASS → 訂正節の後に数え直して PASS（`9954bdd`）。詳細は `materials/about-c/build-log.md` と goal.md の Wave 3 節。
+- **Wave 4「3 本目：Pythonが動くまで」は完了**（2026-09-28〜29。起点 `79ad909`）：python-runs、8 分 32 秒。検収は FAIL 2 回（検証 6、検証 5 の氏名の一覧の所在）→ MAGI → 3 回目 PASS（HEAD `7adcf12`）。詳細は `materials/python-runs/build-log.md`。
+- **Wave 5「写真とスクショを載せる経路と、PDF の組み直し」は完了**（2026-10-03。起点 `2c9cfb5`）：PDF を A4 縦に組み直し、`type: image` と出典台帳（許可リスト CC0・PD・CC-BY-4.0/3.0/2.0・self・quotation）を足し、3 本目に写真と画面写しを載せた。検収 1 回目 PASS（HEAD `8a38d54`）。
+- **Wave 6「4 本目：Webサーバーと Flask のしくみ」は納品済み・検収未了**（2026-10-06。G0 承認 07:52 JST ごろ。起点 `1e75394`。成果コミット `adc9cc8`・`8ce1548`（試写「特に問題なし」）・`dfb4853`（検収 1 回目の後の直し）・`67e7269`（訂正節：教科書の年を外した））：
+  - 6 分 1 秒・PDF 12 ページ。Flask 2.3.2 を scratchpad の venv で動かした。
+  - 検収：1 回目 **FAIL**（検証 1。スライドの「Python 3.12」が対応表に無かった）→ `dfb4853` で直した → 訂正節で動画を直し、納品物を差し替えた（今の MP4 `5795abd2…8553`・PDF `53f325fe…892e`。`materials/web-flask/build-log.md` に記録）→ **2 回目は未了**。
+- **Wave 7「5 本目：ネットワークの地図」は納品済み・検収待ち**（2026-10-19。G0 承認 08:16 JST ごろ、セッション `926e6c2e-da6d-4224-ad77-32500183afeb`。起点 `9a8ee97`。成果コミット `cc83163` から。依頼書・補助資料・教科書の写真は repo の外）：
+  - 8 分 50 秒（529.7 秒）・PDF 18 ページ。59 発話・18 スライド。図は補助資料の自作の図 5 枚（`license: self`）、ARPANET の地図（PD）、光ファイバの写真（CC BY 4.0、Sunmosk）。表は 3 本目の `CompareTable`。`src/` の変更は `manifest-registry.ts` への追加だけ。
+  - 主人の試写：1 回目で「DNS と電話帳のたとえが学生の年代に分からない」→ スマホの連絡先に替えた → 2 回目「問題なし」。納品物 MP4 `0a4740b5…2cdb`・PDF `5e464157…7c09`。
+  - 本セッションの実測：`npm test` 22 files / 405 tests PASS、`npm run lint` exit 0。outline.md の出典 URL 27 本は、取得したときすべて HTTP 200。台本・PDF に復習問題の数値・氏名・学校名 0 件。
+- 動いている物：既存 4 本（source-to-exe・about-c・python-runs・web-flask）の納品物は `deliver/<script-id>/` にあり、render は決定的なので書き出し直すと SHA-256 が一致する（Wave 7 の検証 9 で確かめる）。java-vs-js は Kyozai の参照との比べ方が goal.md の Wave 3 の訂正節にある。`npm audit` は low 2 件（eslint 系、決定 15）。
 - まだ無い物：字幕・口パク・`manifest-registry.ts` の廃止（(c)）・compile 時の画像生成（D10、`license: generated`）・概要欄の自動書き出し。
 
 ## これまで（git log が持たない解釈だけ）
@@ -69,16 +58,13 @@
 | 2026-10-01 | 未決 4 件の処置（主人の判断）：brief §9 に §6 の答えを写した（主人承認）、依存は次の Wave で直す（決定 19）、氏名の一覧を repo の外の固定の置き場所へ移した（決定 20）、Seneschal への文面を repo の外に置いた |
 | `2c9cfb5`・`ff41a77` | brief §9 に D7 訂正（Web の画面写しを引用として載せてよい）。Wave 5 の G0（10/2 の授業の結果と画像の経路を 1 つに。期限 10/4） |
 | `5affff2`〜`8a38d54` | Wave 5 の A〜D と納品。`8480145` は検証 8 の訂正節（package-lock.json の integrity の base64 に一覧の 3 字が当たる）。検収 1 回目 PASS |
+| `66c1b8b`〜`67e7269` | Wave 6（4 本目 web-flask）。授業当日の朝に G0 から納品まで。検収 1 回目 FAIL（検証 1）の後に直し、訂正節（教科書の年）で動画を差し替えた。SESSION_STATE は更新されず、2 回目の検収も出していなかった |
+| `cb31fe8`・`9a8ee97` | 2026-10-14、Seneschal を公開のプラグインに替えた（主人承認。主人は 2026-10-19 の Wave 7 の G0 で「承認している」と答えた）。検収は通っていないので、Wave 7 の検証 11 で確かめる |
+| `3e7387b`〜 | Wave 7（5 本目 network-map）。G0（CC BY-SA の写真は使わず代わりを探す）→ 訂正節（検証 6 の写真のファイル名）→ 台本承認 → 試写 1 回目で DNS のたとえを直す → 試写 2 回目「問題なし」→ 納品 |
 
-**retro（2026-09-29、Wave 4 の締め）**：起動条件 1（同一フェーズで検収 2 回 FAIL）に当たった。学びは 1 つ。
-1. repo の外にある物差し（氏名の一覧など）は、依頼文に絶対パス・形の確かめ方・出力の絞り方を書かない限り、評価器に届かない → 下の「作業の作法」の作業記録の行に 1 文足した。
-- 観察：Wave 4 の検収は 1 回目・2 回目とも、製品ではなく本体の記録と引き継ぎで落ちた。1 回目は Wave 3 の学び 1 と同じ型（作業記録の行がコマンドでない）で、作業の作法と SKILL.md に書き足しただけでは防げなかった記録になる。次の手はここでは決めない。
-- 2026-10-01：主人の指示で、Seneschal へ渡す文面を `D:\work8\laterna-to-seneschal-2026-10-01.md`（repo の外）に置いた。渡すのは主人、取り込むかは Seneschal 側で決める。
+**retro（2026-09-29、Wave 4 の締め。起動条件 1）**：repo の外にある物差し（氏名の一覧など）は、依頼文に絶対パス・形の確かめ方・出力の絞り方を書かない限り評価器に届かない → 「作業の作法」の作業記録の行に足した。Seneschal へ渡す文面は `D:\work8\laterna-to-seneschal-2026-10-01.md`（repo の外。主人が渡す）。
 
-**retro（2026-09-27、Wave 3 の締め）**：起動条件 1（同一フェーズで検収 2 回 FAIL）と 3（出荷した 1 本目が次の回で直しの対象になった）に当たった。学びは 3 つ。
-1. 終了コードは、叩いたその場で `echo exit=$?`（パイプは pipefail）で取る。パイプや `;` の途中は実測にならない。記録に「無い」「0」と書く前に確かめる → `SKILL.md` 手順 0 の 5 に 1 文足した（主人承認）。
-2. 前の回で検収を通った書き方でも、正しいとは限らない（1 本目の作業記録の古い行にも同じ型がある。古い行は書き換えずに残した）。
-3. 点検で「出力が変わるので後回し」にした見た目の所見（bullets のマーカー位置）は、次の回にもそのまま出た。後回しにする見た目の所見は、次の回の G0 に「試写で見る点」として入れる。
+**retro（2026-09-27、Wave 3 の締め。起動条件 1 と 3）**：(1) 終了コードは叩いたその場で `echo exit=$?` で取る（SKILL.md 手順 0 の 5）。(2) 前の回で検収を通った書き方でも正しいとは限らない。(3) 後回しにした見た目の所見は、次の回の G0 の「試写で見る点」に入れる。
 
 ## 決定（蒸し返さない）
 
@@ -107,6 +93,9 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 21. 画像の調達（brief D7 と §9 の D7 訂正、2026-10-03 主人）：現物の写真は主人が撮った物か CC0・PD・CC BY の物。Web の画面写しは引用として載せ（出典・取得日を画面と概要欄に、切り抜き以外の改変なし、CC BY 4.0 の対象外）、Claude が撮るか主人が撮る。imagegen も使ってよい（compile 時の生成 D10 は次の Wave）。
 22. PDF は A4 縦で、スライドと掛け合いの文を同じ幅にそろえる（2026-10-03 主人）。
 23. 3 本目は 10/5 か 10/6 の後期の初回に使う（2026-10-03 主人。Wave 4 の期限 2027-01-10 は主人の思い違いの可能性があると主人が言った。動画は既に出来ていたので実害なし）。10/2 の授業で全部を流せなかった件は、今のままでよい。
+24. 情報系の題材でも、授業中に流すのでなく遠隔回の自習に使うなら Laterna で作る（2026-10-15 主人、依頼書。決定 1 の「機構の教材が勝つ」は授業中に流す場合の話）。動画は「地図」で、行き先（教科書のページと補助資料の節）を言い、問題の答えの数値は言わない。
+25. CC BY-SA の画像は使わない（brief D7 のまま）。代わりは CC0・PD・CC BY を軽く探し、無ければ無しで進める（2026-10-19 主人）。
+26. Wave 7 の検収と Wave 6 の検収 2 回目は、2026-10-20 の授業の後に、Wave 7 → Wave 6 の順に出す（2026-10-19 主人）。
 
 ## 採らなかった案
 
@@ -123,9 +112,10 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 未決（主人の判断待ち）
 
-- 後期の授業での 3 本目（改訂版）の受け入れ（10/5 か 10/6）。
-- 次の Wave の題材（4 本目か、D10 の compile 時の画像生成か）。
-- （10/2 の授業の受け入れは Wave 5 の G0 で処置した。2026-10-01 の 4 件も処置済み）
+- 5 本目 network-map を 2026-10-20 の遠隔回（3 クラス）で使った結果（主人の受け入れ。検収の採点対象外）。
+- 依頼のフォルダの `00_目録.md` の教科書の写真の割り当てが 4 か所ずれている件（主人へ報告済み。目録は claude.ai 側の物なので、こちらでは書き換えない。詳細は `materials/network-map/outline.md` の末尾）。
+- 次の Wave の題材（候補：6 本目、D10 の compile 時の画像生成、点検の残り、字幕）。
+- （3 本目の授業での評判は Wave 6 の G0 で「悪くなかった」と聞いた。10/2 の授業の受け入れは Wave 5 の G0 で処置した）
 
 ## 未決（点検の記録から移した「Wave 3 以降へ」の所見。次の Wave の G0 で扱う）
 
@@ -145,7 +135,7 @@ brief D1〜D10 に加えて、主人がチャットで決めた物：
 
 ## 次の一手
 
-Wave 5 は締めた。次は主人に、後期の授業で 3 本目（改訂版）を使った結果を聞く。次の Wave の題材は主人が決める（候補：4 本目の動画、D10 の compile 時の画像生成と `license: generated`、点検の記録の残りの所見、字幕）。どれもエンジンか製品に手を入れるので G0 から始める。G0 の検証方法には氏名の一覧のパス（決定 20）を書き、`package-lock.json` を変えるなら差分の行で数えると書く（Wave 5 の訂正節）。
+2026-10-20 の授業の後に、Wave 7 の検収を `seneschal:columba` に出す（物差しは goal.md 末尾の Wave 7 節と、その訂正節。依頼文には依頼のフォルダの絶対パス、氏名の一覧のパスと形の確かめ方、本 Wave のセッション id を書く）。その後で Wave 6 の検収 2 回目を出し（決定 26）、2 つとも締めたら主人に遠隔回の結果を聞く。次の Wave の題材は主人が決め、G0 から始める。
 
 ## 作業の作法（リポジトリ外から見えない物だけ）
 
@@ -157,13 +147,8 @@ Wave 5 は締めた。次は主人に、後期の授業で 3 本目（改訂版�
 - 読みの確認は VOICEVOX の `/audio_query` が返す `kana` を見る（「その間」→そのかん、「その分」→そのわけ、と読んだ）。
 - 台本 YAML：js-yaml はアンカーの merge（`<<`）をしない。値が `**`・`*`・`&`・`[` で始まる箇条書きは `"…"` で囲む。
 - 2 年以上の科目のシラバスの URL は、`year=` が入学年度（例：電気情報 3 年は year=2024）。
-- VOICEVOX が止まっていたら、`C:/Users/metral/AppData/Local/Programs/VOICEVOX/vv-engine/run.exe --host 127.0.0.1 --port 50021` を裏で起動できる（2026-09-28）。node で `fetch` の後に `process.exit()` を呼ぶと Windows で終了時に落ちて 127 になることがある。`process.exitCode` を使う。
 - VOICEVOX は 50021、ffprobe／ffmpeg は `C:\ffmpeg-essentials\bin`、ImageMagick は `magick`、`pdftotext` は Git Bash の `/mingw64/bin`、PDF のページ数は `pdf-lib`。node 24／npm 11。
 - 分類器（auto mode）が止めた操作は別経路で追わない。統治文書（goal.md・brief.md）は、主人の「承認」「書込許可」の後に Edit ツールで書く。
-- git は `git -C /d/work8/Laterna` で呼ぶ。リモートは `origin`（GitHub、https）。commit したら push。
-- 主人のフックは「HTTP 取得の出力をインタープリタへパイプする形」を止める。HTTP は node の `fetch`。
 - 内蔵ブラウザのサイトの許可は「設定」→「Claude in Chrome」の「サイトの権限」（既定は「すべてのサイトをブロック」）と「Claude Code」→「ブラウザ」→「許可されたサイト」にある。2026-10-03 に python.org を両方に足しても内蔵ブラウザでは開けなかったので、主人が画面を撮った。Wikimedia Commons は node の `fetch` で API（`imageinfo`・`extmetadata`）から取れる。
-- 氏名の一覧の形を確かめるとき、先頭のバイト列を出さない（BOM かどうかの真偽だけを出す）。2026-10-03 に先頭 3 バイトを 16 進で出してしまった（セッションの記録にだけ残る。主人に報告し「了解」をもらった）。
 - PDF の文字数の上限を測り直すときは、`public/manifests/<id>.pdf-manifest.json` の 1 ページを実際の発話で詰めて（`<scratchpad>/fill-page.mjs` の型）`remotion-cli.js still … ScriptPdfComposition` で描き、`git checkout`（未 commit なら写し）で戻す。
-- **シェル経由で `|`・`\`・`$` を含む文字列を書き換えると壊れやすい。**表の行や長い文書は Write／Edit ツールで書く。作業ツリーの改行は CRLF のことがある（node で書くときは元の改行を保つ）。
 - full-review は `disable-model-invocation`。`scriptPath` の絶対パスは受け付けられないので、Seneschal の `full-review.js` を読んで `script` に渡す。MAGI は縦の停止のとき `adapters/claude-code/skills/magi/SKILL.md` を Read で読んで回す。
