@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "script_id": "network-map",
+  "char_limit": 450,
+  "pages": [
+    {
+      "page_number": 1,
+      "slide_id": "slide-title",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-001",
+          "speaker": "listener",
+          "text": "スマホで動画を見ているとき、そのデータは、どうやって届いているんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "slide_id": "slide-views",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-002",
+          "speaker": "narrator",
+          "text": "今日は、その道のりを地図にしてみます。見方は4つです。データの運び方、住所と名前、通信の約束事、そして家の中の機器です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-003",
+          "speaker": "narrator",
+          "text": "この動画では、全部は説明しません。話が1つ終わるたびに、教科書と補助資料のどこを読めばよいかを言うので、あとで開いて確かめてください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-004",
+          "speaker": "listener",
+          "text": "先に地図を見て、あとで本で道を確かめるんですね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "slide_id": "slide-switching",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-005",
+          "speaker": "narrator",
+          "text": "まず、運び方です。昔の電話は、話している間、相手までの回線を1本まるごと使い続けました。これを回線交換といいます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-006",
+          "speaker": "narrator",
+          "text": "インターネットは違います。データを、パケットという小さな包みに分けて送ります。包みには宛先が書いてあるので、いろいろな人の包みを、1本の回線に混ぜて流せます。これがパケット交換です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-007",
+          "speaker": "listener",
+          "text": "宅配便の荷物が、同じトラックに相乗りするような感じですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-008",
+          "speaker": "narrator",
+          "text": "そうです。道の分かれ目には、ルータという機器がいて、包みごとに次の行き先を決めます。道を選ぶこの仕事を、経路制御、またはルーティングといいます。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "slide_id": "slide-arpanet",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-009",
+          "speaker": "narrator",
+          "text": "これは、インターネットの元になったアーパネットの、1977年の地図です。1969年の終わりに、4台のコンピュータをつないで始まり、ここまで広がりました。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-010",
+          "speaker": "narrator",
+          "text": "詳しくは、教科書148ページの側注「パケットと経路制御」と、補助資料の1番を読んでください。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "slide_id": "slide-fiber",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-011",
+          "speaker": "listener",
+          "text": "そのパケットは、何の上を走っているんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-012",
+          "speaker": "narrator",
+          "text": "線と電波です。家や会社の回線、それに海の底のケーブルでは、光で信号を送る光ファイバが使われます。国と国の間のデータ通信の約99％は、海底ケーブルを通っているという調査もあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "slide_id": "slide-means",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-013",
+          "speaker": "narrator",
+          "text": "電波では、スマホの携帯電話の回線、家や学校の無線LAN、イヤホンやマウスをつなぐBluetoothがあります。センサのように、少しのデータを遠くへ、少ない電力で送るLPWAというものもあります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-014",
+          "speaker": "listener",
+          "text": "速さと、届く距離と、電気の使い方で、選び分けているんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-015",
+          "speaker": "narrator",
+          "text": "その通りです。比べた表が、補助資料の2番にあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "slide_id": "slide-lanwan",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-016",
+          "speaker": "narrator",
+          "text": "次は、つながりの大きさです。学校や家のように、限られた範囲のネットワークをLANといいます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-017",
+          "speaker": "narrator",
+          "text": "離れた場所のLANどうしをつないだ、広い範囲のネットワークがWANです。そして、LANやWANが世界中でつながり合ったものが、インターネットです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-018",
+          "speaker": "listener",
+          "text": "家のLANも、インターネットの一部なんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-019",
+          "speaker": "narrator",
+          "text": "はい。教科書148ページの本文と、149ページの2番の図で、この関係を確かめてください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-020",
+          "speaker": "listener",
+          "text": "さっき、包みに宛先が書いてあると言っていました。宛先は、何で表すんですか？",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "slide_id": "slide-ipv4",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-021",
+          "speaker": "narrator",
+          "text": "IPアドレスという番号です。インターネットにつながる機器の、住所にあたります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-022",
+          "speaker": "narrator",
+          "text": "今広く使われているIPブイフォーでは、住所は32ビット、つまり0と1が32個並んだものです。人が読みやすいように、8ビットずつ4つに区切って、10進数で書きます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-023",
+          "speaker": "narrator",
+          "text": "画面の最初の8ビットは、128と64を足して192になります。前期に習った2進数が、ここで使えます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-024",
+          "speaker": "listener",
+          "text": "32ビットだと、番号はいくつ作れるんですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-025",
+          "speaker": "narrator",
+          "text": "2の32乗で、約43億通りです。これでは足りなくなるので、128ビットに広げたIPブイシックスも使われています。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "slide_id": "slide-local-global",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-026",
+          "speaker": "narrator",
+          "text": "もう1つ大事なのが、ローカルとグローバルの区別です。家の中だけで使う番号がローカルIPアドレス、インターネットの上で世界に1つだけの番号がグローバルIPアドレスです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-027",
+          "speaker": "narrator",
+          "text": "家の機器が外とやりとりするときは、ルータが、ローカルの番号をグローバルの番号に付け替えます。最初が192と168の番号は、ローカル用に決められた範囲の1つです。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-028",
+          "speaker": "listener",
+          "text": "マンションの部屋番号と、建物の住所みたいですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-029",
+          "speaker": "narrator",
+          "text": "うまいたとえです。あとで、自分のスマホの設定画面で、IPアドレスを見てみてください。見方は補助資料の3番にあります。教科書では150ページの側注です。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 10,
+      "slide_id": "slide-dns",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-030",
+          "speaker": "listener",
+          "text": "でも、ウェブを見るとき、数字の住所なんて打っていませんよね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-031",
+          "speaker": "narrator",
+          "text": "数字は覚えにくいので、人はドメイン名という名前を使います。名前をIPアドレスに直してくれるのが、DNSという仕組みです。電話帳で、名前から電話番号を引くのに似ています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-032",
+          "speaker": "narrator",
+          "text": "ブラウザは、まずDNSのサーバに名前を送って番号を教えてもらい、それからその番号の相手と通信します。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 11,
+      "slide_id": "slide-url",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-033",
+          "speaker": "narrator",
+          "text": "URLも読んでみましょう。最初のHTTPSの部分はスキーム名で、どの約束事で通信するかを表します。その後ろがドメイン名、最後がパス名です。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-034",
+          "speaker": "narrator",
+          "text": "ドメイン名は、右から読みます。jpは日本、その左のgoは政府機関です。ほかに、acは大学や研究機関、coは会社を表します。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-035",
+          "speaker": "listener",
+          "text": "名前の終わりを見ると、どんな相手か分かるんですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-036",
+          "speaker": "narrator",
+          "text": "教科書151ページの1番の図と3番の図、それに補助資料の3番で確かめてください。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "slide_id": "slide-layers",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-037",
+          "speaker": "narrator",
+          "text": "3つ目の見方は、通信の約束事です。約束事のことを、プロトコルといいます。インターネットのプロトコルをまとめてTCP/IPと呼び、4つの層に分かれています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-038",
+          "speaker": "narrator",
+          "text": "上から、アプリケーション層、トランスポート層、インターネット層、ネットワークインタフェース層です。上の層ほど何をするかを、下の層ほどどう運ぶかを受け持ちます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-039",
+          "speaker": "listener",
+          "text": "手紙なら、上が手紙の中身で、下が郵便のトラック、という感じですか？",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-040",
+          "speaker": "narrator",
+          "text": "その通りです。図の右側に、それぞれの層を手紙にたとえた役割を書いてあります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 13,
+      "slide_id": "slide-tcp-udp",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-041",
+          "speaker": "narrator",
+          "text": "トランスポート層には、やり方が2つあります。TCPは、届いたかを確かめ、届かなければ送り直すので、確実に届きます。ウェブやメールで使われます。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-042",
+          "speaker": "narrator",
+          "text": "UDPは、確認も送り直しもしない分、遅れが少なくなります。音声通話やビデオ通話のように、遅れないことが大事な通信に向いています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-043",
+          "speaker": "listener",
+          "text": "通話で1秒前の声を送り直されても、困りますもんね。",
+          "style": "aside"
+        }
+      ]
+    },
+    {
+      "page_number": 14,
+      "slide_id": "slide-app",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-044",
+          "speaker": "narrator",
+          "text": "はい。いちばんうえのアプリケーション層には、ウェブのHTTPや、メールのプロトコルがあります。メールはSMTPで送り、POPかアイマップで受け取ります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-045",
+          "speaker": "narrator",
+          "text": "HTTPSは、HTTPの通信を暗号化したものです。ただ、鍵マークが出ていても偽のサイトのことがあると、総務省は注意しています。ドメイン名も見てください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-046",
+          "speaker": "narrator",
+          "text": "層の図は教科書149ページの3番の図、メールは151ページの4番の図、TCPとUDPは補助資料の4番です。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 15,
+      "slide_id": "slide-home",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-047",
+          "speaker": "listener",
+          "text": "最後は、家の中の機器ですね。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-048",
+          "speaker": "narrator",
+          "text": "はい。光回線は、まずONUという機器に入ります。ONUは、光の信号と、LANの電気の信号を変換します。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-049",
+          "speaker": "narrator",
+          "text": "その次がルータです。家の中と外の境目にいて、さっきの番号の付け替えをします。ルータの先に、ケーブルで機器をつなぐハブと、電波でつなぐ無線LANアクセスポイントがあります。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-050",
+          "speaker": "narrator",
+          "text": "家では、ルータやアクセスポイントが1台にまとまった機器を使うことが多いです。建物の配線図と同じで、どこに何がつながっているかを見ると分かります。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 16,
+      "slide_id": "slide-wifi",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-051",
+          "speaker": "listener",
+          "text": "スマホを家の無線LANにつないだとき、IPアドレスを自分で打った覚えがないです。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-052",
+          "speaker": "narrator",
+          "text": "DHCPという仕組みが、つないだ機器にIPアドレスを自動で配っています。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-053",
+          "speaker": "narrator",
+          "text": "無線LANには、SSIDという名前と、パスワードがあります。暗号化の方式はWPAツーかWPAスリーを選びます。古いWEPは、解読の方法が知られているので使いません。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-054",
+          "speaker": "narrator",
+          "text": "外の無料のWi-Fiには、偽のアクセスポイントもあると報告されています。偽の入力画面で、IDやパスワードをだまし取る例もあるので、大事な情報は入力しないでください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-055",
+          "speaker": "narrator",
+          "text": "機器の並びは教科書149ページの1番の図、DHCPは151ページの2番の図、無線LANの安全は補助資料の5番です。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 17,
+      "slide_id": "slide-summary",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-056",
+          "speaker": "listener",
+          "text": "地図が描けてきました。まとめてください。",
+          "style": "aside"
+        },
+        {
+          "utterance_id": "u-057",
+          "speaker": "narrator",
+          "text": "3つです。1つ目、データはパケットに分けて運ばれ、ルータが道を選びます。2つ目、住所のIPアドレスと、名前のドメイン名を、DNSがつなぎます。3つ目、約束事は層に分かれていて、家の機器もその上で動いています。",
+          "style": "body"
+        }
+      ]
+    },
+    {
+      "page_number": 18,
+      "slide_id": "slide-next",
+      "slide_page_index": 1,
+      "slide_page_count": 1,
+      "blocks": [
+        {
+          "utterance_id": "u-058",
+          "speaker": "narrator",
+          "text": "このあと、教科書の148ページから151ページと、補助資料を読んでから、復習問題を解いてください。通信速度の計算は補助資料の6番、パリティの問題は、教科書162ページから163ページの実習14を読みながら解いてください。",
+          "style": "body"
+        },
+        {
+          "utterance_id": "u-059",
+          "speaker": "listener",
+          "text": "地図を片手に、本で道を確かめてきます。",
+          "style": "aside"
+        }
+      ]
+    }
+  ],
+  "total_pages": 18
+}

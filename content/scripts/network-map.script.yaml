@@ -1,0 +1,499 @@
+# network-map.script.yaml — 「ネットワークの地図」
+#
+# 出自: materials/network-map/outline.md（対象・尺・章立て・出典・事実と出典の対応・行き先の対応）
+# 対象: 高専 2 年・3 学科共通の情報の基礎の授業。遠隔回の自習用。尺 8〜10 分。学校名は出さない（goal.md Wave 7）。
+# 図: 補助資料の自作の図（01・04・05・06・07）、ARPANET の地図（PD）、光ファイバの写真（CC BY 4.0）。表は 3 本目の CompareTable をそのまま使う。
+# 注意:
+# - 発話 text は折り畳みスカラー（>-）を使わない
+# - 「簡単」「必ず」を初学者向けに使わない（narration-style.md）
+# - 英字の略語は、VOICEVOX が正しく読む物は英字のまま書く（PDF で読みやすくするため）。読みが崩れる物だけカタカナにする（IPv4→IPブイフォー、IPv6→IPブイシックス、IMAP→アイマップ、ARPANET→アーパネット）。「図3」は「ずさん」と読むので「3 番の図」と言う
+# - 復習問題に出る数値を使わない（goal.md Wave 7 の完了条件 7）
+
+target_duration_range:
+  min: 480
+  max: 600
+
+speaker_profile_ref: default
+
+extra_credits:
+  - 立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）
+
+utterances:
+  # --- 0. 導入 ---
+  - id: u-001
+    speaker: listener
+    text: スマホで動画を見ているとき、そのデータは、どうやって届いているんですか？
+  - id: u-002
+    speaker: narrator
+    text: 今日は、その道のりを地図にしてみます。見方は4つです。データの運び方、住所と名前、通信の約束事、そして家の中の機器です。
+  - id: u-003
+    speaker: narrator
+    text: この動画では、全部は説明しません。話が1つ終わるたびに、教科書と補助資料のどこを読めばよいかを言うので、あとで開いて確かめてください。
+    pause_after: 0.3
+  - id: u-004
+    speaker: listener
+    text: 先に地図を見て、あとで本で道を確かめるんですね。
+    pause_after: 0.5
+
+  # --- 1. パケットで運ぶ ---
+  - id: u-005
+    speaker: narrator
+    text: まず、運び方です。昔の電話は、話している間、相手までの回線を1本まるごと使い続けました。これを回線交換といいます。
+  - id: u-006
+    speaker: narrator
+    text: インターネットは違います。データを、パケットという小さな包みに分けて送ります。包みには宛先が書いてあるので、いろいろな人の包みを、1本の回線に混ぜて流せます。これがパケット交換です。
+  - id: u-007
+    speaker: listener
+    text: 宅配便の荷物が、同じトラックに相乗りするような感じですね。
+  - id: u-008
+    speaker: narrator
+    text: そうです。道の分かれ目には、ルータという機器がいて、包みごとに次の行き先を決めます。道を選ぶこの仕事を、経路制御、またはルーティングといいます。
+  - id: u-009
+    speaker: narrator
+    text: これは、インターネットの元になったアーパネットの、1977年の地図です。1969年の終わりに、4台のコンピュータをつないで始まり、ここまで広がりました。
+  - id: u-010
+    speaker: narrator
+    text: 詳しくは、教科書148ページの側注「パケットと経路制御」と、補助資料の1番を読んでください。
+    pause_after: 0.5
+
+  # --- 2. 通信手段の使い分け ---
+  - id: u-011
+    speaker: listener
+    text: そのパケットは、何の上を走っているんですか？
+  - id: u-012
+    speaker: narrator
+    text: 線と電波です。家や会社の回線、それに海の底のケーブルでは、光で信号を送る光ファイバが使われます。国と国の間のデータ通信の約99％は、海底ケーブルを通っているという調査もあります。
+  - id: u-013
+    speaker: narrator
+    text: 電波では、スマホの携帯電話の回線、家や学校の無線LAN、イヤホンやマウスをつなぐBluetoothがあります。センサのように、少しのデータを遠くへ、少ない電力で送るLPWAというものもあります。
+  - id: u-014
+    speaker: listener
+    text: 速さと、届く距離と、電気の使い方で、選び分けているんですね。
+  - id: u-015
+    speaker: narrator
+    text: その通りです。比べた表が、補助資料の2番にあります。
+    pause_after: 0.5
+
+  # --- 3. LAN・WAN・インターネット ---
+  - id: u-016
+    speaker: narrator
+    text: 次は、つながりの大きさです。学校や家のように、限られた範囲のネットワークをLANといいます。
+  - id: u-017
+    speaker: narrator
+    text: 離れた場所のLANどうしをつないだ、広い範囲のネットワークがWANです。そして、LANやWANが世界中でつながり合ったものが、インターネットです。
+  - id: u-018
+    speaker: listener
+    text: 家のLANも、インターネットの一部なんですね。
+  - id: u-019
+    speaker: narrator
+    text: はい。教科書148ページの本文と、149ページの2番の図で、この関係を確かめてください。
+    pause_after: 0.5
+
+  # --- 4. 住所＝IP アドレス ---
+  - id: u-020
+    speaker: listener
+    text: さっき、包みに宛先が書いてあると言っていました。宛先は、何で表すんですか？
+  - id: u-021
+    speaker: narrator
+    text: IPアドレスという番号です。インターネットにつながる機器の、住所にあたります。
+  - id: u-022
+    speaker: narrator
+    text: 今広く使われているIPブイフォーでは、住所は32ビット、つまり0と1が32個並んだものです。人が読みやすいように、8ビットずつ4つに区切って、10進数で書きます。
+  - id: u-023
+    speaker: narrator
+    text: 画面の最初の8ビットは、128と64を足して192になります。前期に習った2進数が、ここで使えます。
+  - id: u-024
+    speaker: listener
+    text: 32ビットだと、番号はいくつ作れるんですか？
+  - id: u-025
+    speaker: narrator
+    text: 2の32乗で、約43億通りです。これでは足りなくなるので、128ビットに広げたIPブイシックスも使われています。
+  - id: u-026
+    speaker: narrator
+    text: もう1つ大事なのが、ローカルとグローバルの区別です。家の中だけで使う番号がローカルIPアドレス、インターネットの上で世界に1つだけの番号がグローバルIPアドレスです。
+  - id: u-027
+    speaker: narrator
+    text: 家の機器が外とやりとりするときは、ルータが、ローカルの番号をグローバルの番号に付け替えます。最初が192と168の番号は、ローカル用に決められた範囲の1つです。
+  - id: u-028
+    speaker: listener
+    text: マンションの部屋番号と、建物の住所みたいですね。
+  - id: u-029
+    speaker: narrator
+    text: うまいたとえです。あとで、自分のスマホの設定画面で、IPアドレスを見てみてください。見方は補助資料の3番にあります。教科書では150ページの側注です。
+    pause_after: 0.5
+
+  # --- 5. 名前＝ドメイン名と DNS ---
+  - id: u-030
+    speaker: listener
+    text: でも、ウェブを見るとき、数字の住所なんて打っていませんよね。
+  - id: u-031
+    speaker: narrator
+    text: 数字は覚えにくいので、人はドメイン名という名前を使います。名前をIPアドレスに直してくれるのが、DNSという仕組みです。電話帳で、名前から電話番号を引くのに似ています。
+  - id: u-032
+    speaker: narrator
+    text: ブラウザは、まずDNSのサーバに名前を送って番号を教えてもらい、それからその番号の相手と通信します。
+  - id: u-033
+    speaker: narrator
+    text: URLも読んでみましょう。最初のHTTPSの部分はスキーム名で、どの約束事で通信するかを表します。その後ろがドメイン名、最後がパス名です。
+  - id: u-034
+    speaker: narrator
+    text: ドメイン名は、右から読みます。jpは日本、その左のgoは政府機関です。ほかに、acは大学や研究機関、coは会社を表します。
+  - id: u-035
+    speaker: listener
+    text: 名前の終わりを見ると、どんな相手か分かるんですね。
+  - id: u-036
+    speaker: narrator
+    text: 教科書151ページの1番の図と3番の図、それに補助資料の3番で確かめてください。
+    pause_after: 0.5
+
+  # --- 6. 約束事は層になっている ---
+  - id: u-037
+    speaker: narrator
+    text: 3つ目の見方は、通信の約束事です。約束事のことを、プロトコルといいます。インターネットのプロトコルをまとめてTCP/IPと呼び、4つの層に分かれています。
+  - id: u-038
+    speaker: narrator
+    text: 上から、アプリケーション層、トランスポート層、インターネット層、ネットワークインタフェース層です。上の層ほど何をするかを、下の層ほどどう運ぶかを受け持ちます。
+  - id: u-039
+    speaker: listener
+    text: 手紙なら、上が手紙の中身で、下が郵便のトラック、という感じですか？
+  - id: u-040
+    speaker: narrator
+    text: その通りです。図の右側に、それぞれの層を手紙にたとえた役割を書いてあります。
+  - id: u-041
+    speaker: narrator
+    text: トランスポート層には、やり方が2つあります。TCPは、届いたかを確かめ、届かなければ送り直すので、確実に届きます。ウェブやメールで使われます。
+  - id: u-042
+    speaker: narrator
+    text: UDPは、確認も送り直しもしない分、遅れが少なくなります。音声通話やビデオ通話のように、遅れないことが大事な通信に向いています。
+  - id: u-043
+    speaker: listener
+    text: 通話で1秒前の声を送り直されても、困りますもんね。
+  - id: u-044
+    speaker: narrator
+    text: はい。いちばんうえのアプリケーション層には、ウェブのHTTPや、メールのプロトコルがあります。メールはSMTPで送り、POPかアイマップで受け取ります。
+  - id: u-045
+    speaker: narrator
+    text: HTTPSは、HTTPの通信を暗号化したものです。ただ、鍵マークが出ていても偽のサイトのことがあると、総務省は注意しています。ドメイン名も見てください。
+  - id: u-046
+    speaker: narrator
+    text: 層の図は教科書149ページの3番の図、メールは151ページの4番の図、TCPとUDPは補助資料の4番です。
+    pause_after: 0.5
+
+  # --- 7. 家のネットワーク機器と設定 ---
+  - id: u-047
+    speaker: listener
+    text: 最後は、家の中の機器ですね。
+  - id: u-048
+    speaker: narrator
+    text: はい。光回線は、まずONUという機器に入ります。ONUは、光の信号と、LANの電気の信号を変換します。
+  - id: u-049
+    speaker: narrator
+    text: その次がルータです。家の中と外の境目にいて、さっきの番号の付け替えをします。ルータの先に、ケーブルで機器をつなぐハブと、電波でつなぐ無線LANアクセスポイントがあります。
+  - id: u-050
+    speaker: narrator
+    text: 家では、ルータやアクセスポイントが1台にまとまった機器を使うことが多いです。建物の配線図と同じで、どこに何がつながっているかを見ると分かります。
+  - id: u-051
+    speaker: listener
+    text: スマホを家の無線LANにつないだとき、IPアドレスを自分で打った覚えがないです。
+  - id: u-052
+    speaker: narrator
+    text: DHCPという仕組みが、つないだ機器にIPアドレスを自動で配っています。
+  - id: u-053
+    speaker: narrator
+    text: 無線LANには、SSIDという名前と、パスワードがあります。暗号化の方式はWPAツーかWPAスリーを選びます。古いWEPは、解読の方法が知られているので使いません。
+  - id: u-054
+    speaker: narrator
+    text: 外の無料のWi-Fiには、偽のアクセスポイントもあると報告されています。偽の入力画面で、IDやパスワードをだまし取る例もあるので、大事な情報は入力しないでください。
+  - id: u-055
+    speaker: narrator
+    text: 機器の並びは教科書149ページの1番の図、DHCPは151ページの2番の図、無線LANの安全は補助資料の5番です。
+    pause_after: 0.5
+
+  # --- 8. まとめと課題の案内 ---
+  - id: u-056
+    speaker: listener
+    text: 地図が描けてきました。まとめてください。
+  - id: u-057
+    speaker: narrator
+    text: 3つです。1つ目、データはパケットに分けて運ばれ、ルータが道を選びます。2つ目、住所のIPアドレスと、名前のドメイン名を、DNSがつなぎます。3つ目、約束事は層に分かれていて、家の機器もその上で動いています。
+    pause_after: 0.3
+  - id: u-058
+    speaker: narrator
+    text: このあと、教科書の148ページから151ページと、補助資料を読んでから、復習問題を解いてください。通信速度の計算は補助資料の6番、パリティの問題は、教科書162ページから163ページの実習14を読みながら解いてください。
+  - id: u-059
+    speaker: listener
+    text: 地図を片手に、本で道を確かめてきます。
+
+slides:
+  - id: slide-title
+    type: title
+    title: ネットワークの地図
+    subtitle: データの運び方・住所と名前・約束事・家の機器
+  - id: slide-views
+    type: custom
+    component: CompareTable
+    props:
+      title: 今日の地図：4 つの見方
+      columns: [何を見るか, 読むところ]
+      rows:
+        - label: 1 運び方
+          cells: [パケット・ルータ・LAN と WAN, 教科書 p.148〜149・補助資料 1〜2]
+        - label: 2 住所と名前
+          cells: [IP アドレス・ドメイン名・DNS, 教科書 p.150〜151・補助資料 3]
+        - label: 3 約束事
+          cells: [プロトコル・TCP/IP の 4 層, 教科書 p.149・151・補助資料 4]
+        - label: 4 家の機器
+          cells: [ONU・ルータ・ハブ・無線 LAN, 教科書 p.149・151・補助資料 5]
+  # 補助資料の図 01（自作。出典の記録は materials/network-map/images.md）
+  - id: slide-switching
+    type: image
+    src: images/network-map/01-switching.png
+    caption: 回線交換とパケット交換
+    source:
+      source_url: self
+      license: self
+      author: この授業の補助資料の図
+      modifications: none
+  - id: slide-arpanet
+    type: image
+    src: images/network-map/arpanet-1977.png
+    caption: ARPANET の地図（1977 年）
+    source:
+      source_url: https://commons.wikimedia.org/wiki/File:Arpanet_logical_map,_march_1977.png
+      license: PD
+      author: ARPANET（Computer History Museum 所蔵の資料）
+      modifications: none
+  - id: slide-fiber
+    type: image
+    src: images/network-map/fiber.jpg
+    caption: 光ファイバの中を進むレーザーの光（写真は切り抜き・縮小）
+    source:
+      source_url: https://commons.wikimedia.org/wiki/File:Optical_patchcord.jpg
+      license: CC-BY-4.0
+      author: Sunmosk
+      modifications: 切り抜き・縮小
+  - id: slide-means
+    type: custom
+    component: CompareTable
+    props:
+      title: 通信手段の使い分け
+      columns: [主な使い道, 特徴]
+      rows:
+        - label: 光ファイバ
+          cells: [家や会社の回線・海底ケーブル, 光で信号を送る線]
+        - label: 携帯電話
+          cells: [スマホ（4G・5G）, 電話会社の電波]
+        - label: 無線 LAN
+          cells: [家・学校・駅やお店, Wi-Fi のこと]
+        - label: Bluetooth
+          cells: [イヤホン・マウス, 近くの機器と]
+        - label: LPWA
+          cells: [IoT のセンサ, 遅いが遠く・省電力]
+  - id: slide-lanwan
+    type: bullets
+    title: LAN・WAN・インターネット
+    items:
+      - "**LAN**：学校や家など、限られた範囲のネットワーク"
+      - "**WAN**：離れた LAN どうしをつなぐ、広い範囲のネットワーク"
+      - "**インターネット**：LAN や WAN が世界中でつながったもの"
+  - id: slide-ipv4
+    type: image
+    src: images/network-map/04-ipv4.png
+    caption: IPv4 は 32 ビット（IPv6 は 128 ビット）
+    source:
+      source_url: self
+      license: self
+      author: この授業の補助資料の図
+      modifications: none
+  - id: slide-local-global
+    type: image
+    src: images/network-map/05-local-global.png
+    caption: ローカル IP アドレスとグローバル IP アドレス
+    source:
+      source_url: self
+      license: self
+      author: この授業の補助資料の図
+      modifications: none
+  - id: slide-dns
+    type: bullets
+    title: 名前から番号へ：DNS
+    items:
+      - "**ドメイン名**：人が覚えやすい名前"
+      - "**DNS**：名前を IP アドレスに直す（電話帳のしくみ）"
+      - ブラウザは DNS に番号を聞いてから、相手と通信する
+  - id: slide-url
+    type: bullets
+    title: URL を読む（https://www.○○○.go.jp/about/）
+    items:
+      - "**https**：スキーム名（どの約束事で通信するか）"
+      - "**www.○○○.go.jp**：ドメイン名（右から読む。jp＝日本、go＝政府機関）"
+      - "**/about/**：パス名（どのページか）"
+  - id: slide-layers
+    type: image
+    src: images/network-map/06-tcpip-layers.png
+    caption: TCP/IP の 4 つの層
+    source:
+      source_url: self
+      license: self
+      author: この授業の補助資料の図
+      modifications: none
+  - id: slide-tcp-udp
+    type: custom
+    component: CompareTable
+    props:
+      title: トランスポート層の 2 つのやり方
+      columns: [TCP, UDP]
+      rows:
+        - label: しくみ
+          cells: [届いたか確かめ、送り直す, 確かめない・送り直さない]
+        - label: よい点
+          cells: [確実に届く, 遅れが少ない]
+        - label: 使う所
+          cells: [Web・メール, 音声通話・ビデオ通話]
+  - id: slide-app
+    type: bullets
+    title: アプリケーション層の例
+    items:
+      - "**HTTP**：Web を見る（**HTTPS** は暗号化したもの）"
+      - "**SMTP** でメールを送り、**POP** か **IMAP** で受け取る"
+      - 鍵マークがあっても偽サイトのことがある → ドメイン名も見る
+  - id: slide-home
+    type: image
+    src: images/network-map/07-home-network.png
+    caption: 家のネットワーク機器の並び
+    source:
+      source_url: self
+      license: self
+      author: この授業の補助資料の図
+      modifications: none
+  - id: slide-wifi
+    type: bullets
+    title: つなぐ設定と、無線 LAN の安全
+    items:
+      - "**DHCP**：つないだ機器に IP アドレスを自動で配る"
+      - "**SSID**（名前）とパスワードでつなぐ。暗号化は **WPA2 か WPA3**（**WEP は使わない**）"
+      - 無料の Wi-Fi には偽物もある。大事な情報は入力しない
+  - id: slide-summary
+    type: bullets
+    title: まとめ
+    items:
+      - データは**パケット**に分けて運ばれ、**ルータ**が道を選ぶ
+      - 住所（**IP アドレス**）と名前（**ドメイン名**）を **DNS** がつなぐ
+      - 約束事（**プロトコル**）は層に分かれ、家の機器もその上で動く
+  - id: slide-next
+    type: bullets
+    title: このあとやること
+    items:
+      - 教科書 p.148〜151 と補助資料（4 ページ）を読む
+      - 復習問題を解く（通信速度の計算は補助資料 6、パリティは教科書 p.162〜163 の実習 14）
+      - 問 21 は、自分の端末の設定画面で IP アドレスを見る
+
+slide_events:
+  - id: ev-001
+    slide: slide-title
+    anchor:
+      utterance: u-001
+      position: start
+      offset: 0
+  - id: ev-002
+    slide: slide-views
+    anchor:
+      utterance: u-002
+      position: start
+      offset: 0
+  - id: ev-003
+    slide: slide-switching
+    anchor:
+      utterance: u-005
+      position: start
+      offset: 0
+  - id: ev-004
+    slide: slide-arpanet
+    anchor:
+      utterance: u-009
+      position: start
+      offset: 0
+  - id: ev-005
+    slide: slide-fiber
+    anchor:
+      utterance: u-011
+      position: start
+      offset: 0
+  - id: ev-006
+    slide: slide-means
+    anchor:
+      utterance: u-013
+      position: start
+      offset: 0
+  - id: ev-007
+    slide: slide-lanwan
+    anchor:
+      utterance: u-016
+      position: start
+      offset: 0
+  - id: ev-008
+    slide: slide-ipv4
+    anchor:
+      utterance: u-021
+      position: start
+      offset: 0
+  - id: ev-009
+    slide: slide-local-global
+    anchor:
+      utterance: u-026
+      position: start
+      offset: 0
+  - id: ev-010
+    slide: slide-dns
+    anchor:
+      utterance: u-030
+      position: start
+      offset: 0
+  - id: ev-011
+    slide: slide-url
+    anchor:
+      utterance: u-033
+      position: start
+      offset: 0
+  - id: ev-012
+    slide: slide-layers
+    anchor:
+      utterance: u-037
+      position: start
+      offset: 0
+  - id: ev-013
+    slide: slide-tcp-udp
+    anchor:
+      utterance: u-041
+      position: start
+      offset: 0
+  - id: ev-014
+    slide: slide-app
+    anchor:
+      utterance: u-044
+      position: start
+      offset: 0
+  - id: ev-015
+    slide: slide-home
+    anchor:
+      utterance: u-047
+      position: start
+      offset: 0
+  - id: ev-016
+    slide: slide-wifi
+    anchor:
+      utterance: u-051
+      position: start
+      offset: 0
+  - id: ev-017
+    slide: slide-summary
+    anchor:
+      utterance: u-056
+      position: start
+      offset: 0
+  - id: ev-018
+    slide: slide-next
+    anchor:
+      utterance: u-058
+      position: start
+      offset: 0

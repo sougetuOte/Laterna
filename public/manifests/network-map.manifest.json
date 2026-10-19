@@ -1,0 +1,1001 @@
+{
+  "schema_version": 1,
+  "script_id": "network-map",
+  "fps": 30,
+  "voicevox_engine_version": "0.25.2",
+  "utterances": [
+    {
+      "id": "u-001",
+      "speaker": "listener",
+      "content_hash": "a552556a",
+      "wav_path": "audio/network-map/u-001-a552556a.wav",
+      "duration_seconds": 5.952,
+      "start_frame": 0,
+      "end_frame": 179,
+      "audio_end_frame": 179
+    },
+    {
+      "id": "u-002",
+      "speaker": "narrator",
+      "content_hash": "ec2123f9",
+      "wav_path": "audio/network-map/u-002-ec2123f9.wav",
+      "duration_seconds": 9.930666666666667,
+      "start_frame": 179,
+      "end_frame": 476,
+      "audio_end_frame": 476
+    },
+    {
+      "id": "u-003",
+      "speaker": "narrator",
+      "content_hash": "9650e26e",
+      "wav_path": "audio/network-map/u-003-9650e26e.wav",
+      "duration_seconds": 9.717333333333332,
+      "start_frame": 476,
+      "end_frame": 777,
+      "audio_end_frame": 768
+    },
+    {
+      "id": "u-004",
+      "speaker": "listener",
+      "content_hash": "dba9e360",
+      "wav_path": "audio/network-map/u-004-dba9e360.wav",
+      "duration_seconds": 4.213333333333333,
+      "start_frame": 777,
+      "end_frame": 918,
+      "audio_end_frame": 903
+    },
+    {
+      "id": "u-005",
+      "speaker": "narrator",
+      "content_hash": "4e0bcf86",
+      "wav_path": "audio/network-map/u-005-4e0bcf86.wav",
+      "duration_seconds": 9.674666666666667,
+      "start_frame": 918,
+      "end_frame": 1209,
+      "audio_end_frame": 1209
+    },
+    {
+      "id": "u-006",
+      "speaker": "narrator",
+      "content_hash": "e4bccece",
+      "wav_path": "audio/network-map/u-006-e4bccece.wav",
+      "duration_seconds": 13.290666666666667,
+      "start_frame": 1209,
+      "end_frame": 1607,
+      "audio_end_frame": 1607
+    },
+    {
+      "id": "u-007",
+      "speaker": "listener",
+      "content_hash": "756d4594",
+      "wav_path": "audio/network-map/u-007-756d4594.wav",
+      "duration_seconds": 5.290666666666667,
+      "start_frame": 1607,
+      "end_frame": 1766,
+      "audio_end_frame": 1766
+    },
+    {
+      "id": "u-008",
+      "speaker": "narrator",
+      "content_hash": "06ae7475",
+      "wav_path": "audio/network-map/u-008-06ae7475.wav",
+      "duration_seconds": 10.848,
+      "start_frame": 1766,
+      "end_frame": 2092,
+      "audio_end_frame": 2092
+    },
+    {
+      "id": "u-009",
+      "speaker": "narrator",
+      "content_hash": "244228c2",
+      "wav_path": "audio/network-map/u-009-244228c2.wav",
+      "duration_seconds": 11.850666666666667,
+      "start_frame": 2092,
+      "end_frame": 2447,
+      "audio_end_frame": 2447
+    },
+    {
+      "id": "u-010",
+      "speaker": "narrator",
+      "content_hash": "556e2934",
+      "wav_path": "audio/network-map/u-010-556e2934.wav",
+      "duration_seconds": 8.213333333333333,
+      "start_frame": 2447,
+      "end_frame": 2708,
+      "audio_end_frame": 2693
+    },
+    {
+      "id": "u-011",
+      "speaker": "listener",
+      "content_hash": "5b22d5b5",
+      "wav_path": "audio/network-map/u-011-5b22d5b5.wav",
+      "duration_seconds": 3.9146666666666667,
+      "start_frame": 2708,
+      "end_frame": 2826,
+      "audio_end_frame": 2826
+    },
+    {
+      "id": "u-012",
+      "speaker": "narrator",
+      "content_hash": "a111a965",
+      "wav_path": "audio/network-map/u-012-a111a965.wav",
+      "duration_seconds": 14.826666666666666,
+      "start_frame": 2826,
+      "end_frame": 3271,
+      "audio_end_frame": 3271
+    },
+    {
+      "id": "u-013",
+      "speaker": "narrator",
+      "content_hash": "acd3b2aa",
+      "wav_path": "audio/network-map/u-013-acd3b2aa.wav",
+      "duration_seconds": 14.4,
+      "start_frame": 3271,
+      "end_frame": 3703,
+      "audio_end_frame": 3703
+    },
+    {
+      "id": "u-014",
+      "speaker": "listener",
+      "content_hash": "08205ec1",
+      "wav_path": "audio/network-map/u-014-08205ec1.wav",
+      "duration_seconds": 6.08,
+      "start_frame": 3703,
+      "end_frame": 3885,
+      "audio_end_frame": 3885
+    },
+    {
+      "id": "u-015",
+      "speaker": "narrator",
+      "content_hash": "2c21a2c8",
+      "wav_path": "audio/network-map/u-015-2c21a2c8.wav",
+      "duration_seconds": 4.096,
+      "start_frame": 3885,
+      "end_frame": 4023,
+      "audio_end_frame": 4008
+    },
+    {
+      "id": "u-016",
+      "speaker": "narrator",
+      "content_hash": "bb011cb0",
+      "wav_path": "audio/network-map/u-016-bb011cb0.wav",
+      "duration_seconds": 6.741333333333333,
+      "start_frame": 4023,
+      "end_frame": 4225,
+      "audio_end_frame": 4225
+    },
+    {
+      "id": "u-017",
+      "speaker": "narrator",
+      "content_hash": "23379427",
+      "wav_path": "audio/network-map/u-017-23379427.wav",
+      "duration_seconds": 8.970666666666666,
+      "start_frame": 4225,
+      "end_frame": 4494,
+      "audio_end_frame": 4494
+    },
+    {
+      "id": "u-018",
+      "speaker": "listener",
+      "content_hash": "867038e9",
+      "wav_path": "audio/network-map/u-018-867038e9.wav",
+      "duration_seconds": 3.7013333333333334,
+      "start_frame": 4494,
+      "end_frame": 4605,
+      "audio_end_frame": 4605
+    },
+    {
+      "id": "u-019",
+      "speaker": "narrator",
+      "content_hash": "8be08c96",
+      "wav_path": "audio/network-map/u-019-8be08c96.wav",
+      "duration_seconds": 7.658666666666667,
+      "start_frame": 4605,
+      "end_frame": 4850,
+      "audio_end_frame": 4835
+    },
+    {
+      "id": "u-020",
+      "speaker": "listener",
+      "content_hash": "9e59f777",
+      "wav_path": "audio/network-map/u-020-9e59f777.wav",
+      "duration_seconds": 7.488,
+      "start_frame": 4850,
+      "end_frame": 5075,
+      "audio_end_frame": 5075
+    },
+    {
+      "id": "u-021",
+      "speaker": "narrator",
+      "content_hash": "173e5f83",
+      "wav_path": "audio/network-map/u-021-173e5f83.wav",
+      "duration_seconds": 5.1946666666666665,
+      "start_frame": 5075,
+      "end_frame": 5231,
+      "audio_end_frame": 5231
+    },
+    {
+      "id": "u-022",
+      "speaker": "narrator",
+      "content_hash": "5afe4140",
+      "wav_path": "audio/network-map/u-022-5afe4140.wav",
+      "duration_seconds": 12.277333333333333,
+      "start_frame": 5231,
+      "end_frame": 5599,
+      "audio_end_frame": 5599
+    },
+    {
+      "id": "u-023",
+      "speaker": "narrator",
+      "content_hash": "024edc6b",
+      "wav_path": "audio/network-map/u-023-024edc6b.wav",
+      "duration_seconds": 8.501333333333333,
+      "start_frame": 5599,
+      "end_frame": 5854,
+      "audio_end_frame": 5854
+    },
+    {
+      "id": "u-024",
+      "speaker": "listener",
+      "content_hash": "a5113964",
+      "wav_path": "audio/network-map/u-024-a5113964.wav",
+      "duration_seconds": 4.416,
+      "start_frame": 5854,
+      "end_frame": 5986,
+      "audio_end_frame": 5986
+    },
+    {
+      "id": "u-025",
+      "speaker": "narrator",
+      "content_hash": "82a33348",
+      "wav_path": "audio/network-map/u-025-82a33348.wav",
+      "duration_seconds": 8.736,
+      "start_frame": 5986,
+      "end_frame": 6249,
+      "audio_end_frame": 6249
+    },
+    {
+      "id": "u-026",
+      "speaker": "narrator",
+      "content_hash": "4c016110",
+      "wav_path": "audio/network-map/u-026-4c016110.wav",
+      "duration_seconds": 11.093333333333334,
+      "start_frame": 6249,
+      "end_frame": 6581,
+      "audio_end_frame": 6581
+    },
+    {
+      "id": "u-027",
+      "speaker": "narrator",
+      "content_hash": "a63e082f",
+      "wav_path": "audio/network-map/u-027-a63e082f.wav",
+      "duration_seconds": 12.117333333333333,
+      "start_frame": 6581,
+      "end_frame": 6945,
+      "audio_end_frame": 6945
+    },
+    {
+      "id": "u-028",
+      "speaker": "listener",
+      "content_hash": "553c6a08",
+      "wav_path": "audio/network-map/u-028-553c6a08.wav",
+      "duration_seconds": 4.341333333333333,
+      "start_frame": 6945,
+      "end_frame": 7075,
+      "audio_end_frame": 7075
+    },
+    {
+      "id": "u-029",
+      "speaker": "narrator",
+      "content_hash": "0cc9109e",
+      "wav_path": "audio/network-map/u-029-0cc9109e.wav",
+      "duration_seconds": 11.306666666666667,
+      "start_frame": 7075,
+      "end_frame": 7429,
+      "audio_end_frame": 7414
+    },
+    {
+      "id": "u-030",
+      "speaker": "listener",
+      "content_hash": "1737f4df",
+      "wav_path": "audio/network-map/u-030-1737f4df.wav",
+      "duration_seconds": 5.248,
+      "start_frame": 7429,
+      "end_frame": 7587,
+      "audio_end_frame": 7587
+    },
+    {
+      "id": "u-031",
+      "speaker": "narrator",
+      "content_hash": "72c4ff27",
+      "wav_path": "audio/network-map/u-031-72c4ff27.wav",
+      "duration_seconds": 12.394666666666666,
+      "start_frame": 7587,
+      "end_frame": 7959,
+      "audio_end_frame": 7959
+    },
+    {
+      "id": "u-032",
+      "speaker": "narrator",
+      "content_hash": "d5268519",
+      "wav_path": "audio/network-map/u-032-d5268519.wav",
+      "duration_seconds": 7.434666666666667,
+      "start_frame": 7959,
+      "end_frame": 8182,
+      "audio_end_frame": 8182
+    },
+    {
+      "id": "u-033",
+      "speaker": "narrator",
+      "content_hash": "aeb100e6",
+      "wav_path": "audio/network-map/u-033-aeb100e6.wav",
+      "duration_seconds": 11.146666666666667,
+      "start_frame": 8182,
+      "end_frame": 8516,
+      "audio_end_frame": 8516
+    },
+    {
+      "id": "u-034",
+      "speaker": "narrator",
+      "content_hash": "00e1033d",
+      "wav_path": "audio/network-map/u-034-00e1033d.wav",
+      "duration_seconds": 11.189333333333334,
+      "start_frame": 8516,
+      "end_frame": 8852,
+      "audio_end_frame": 8852
+    },
+    {
+      "id": "u-035",
+      "speaker": "listener",
+      "content_hash": "5864bb1e",
+      "wav_path": "audio/network-map/u-035-5864bb1e.wav",
+      "duration_seconds": 4.085333333333334,
+      "start_frame": 8852,
+      "end_frame": 8974,
+      "audio_end_frame": 8974
+    },
+    {
+      "id": "u-036",
+      "speaker": "narrator",
+      "content_hash": "9e1b60d5",
+      "wav_path": "audio/network-map/u-036-9e1b60d5.wav",
+      "duration_seconds": 6.058666666666666,
+      "start_frame": 8974,
+      "end_frame": 9171,
+      "audio_end_frame": 9156
+    },
+    {
+      "id": "u-037",
+      "speaker": "narrator",
+      "content_hash": "6676647e",
+      "wav_path": "audio/network-map/u-037-6676647e.wav",
+      "duration_seconds": 11.850666666666667,
+      "start_frame": 9171,
+      "end_frame": 9527,
+      "audio_end_frame": 9527
+    },
+    {
+      "id": "u-038",
+      "speaker": "narrator",
+      "content_hash": "0c6f184d",
+      "wav_path": "audio/network-map/u-038-0c6f184d.wav",
+      "duration_seconds": 11.541333333333334,
+      "start_frame": 9527,
+      "end_frame": 9873,
+      "audio_end_frame": 9873
+    },
+    {
+      "id": "u-039",
+      "speaker": "listener",
+      "content_hash": "9dfdd897",
+      "wav_path": "audio/network-map/u-039-9dfdd897.wav",
+      "duration_seconds": 6.762666666666667,
+      "start_frame": 9873,
+      "end_frame": 10076,
+      "audio_end_frame": 10076
+    },
+    {
+      "id": "u-040",
+      "speaker": "narrator",
+      "content_hash": "729f454c",
+      "wav_path": "audio/network-map/u-040-729f454c.wav",
+      "duration_seconds": 5.6,
+      "start_frame": 10076,
+      "end_frame": 10244,
+      "audio_end_frame": 10244
+    },
+    {
+      "id": "u-041",
+      "speaker": "narrator",
+      "content_hash": "3bec298d",
+      "wav_path": "audio/network-map/u-041-3bec298d.wav",
+      "duration_seconds": 11.072,
+      "start_frame": 10244,
+      "end_frame": 10576,
+      "audio_end_frame": 10576
+    },
+    {
+      "id": "u-042",
+      "speaker": "narrator",
+      "content_hash": "322a9842",
+      "wav_path": "audio/network-map/u-042-322a9842.wav",
+      "duration_seconds": 10.048,
+      "start_frame": 10576,
+      "end_frame": 10877,
+      "audio_end_frame": 10877
+    },
+    {
+      "id": "u-043",
+      "speaker": "listener",
+      "content_hash": "6717caf5",
+      "wav_path": "audio/network-map/u-043-6717caf5.wav",
+      "duration_seconds": 4.938666666666666,
+      "start_frame": 10877,
+      "end_frame": 11025,
+      "audio_end_frame": 11025
+    },
+    {
+      "id": "u-044",
+      "speaker": "narrator",
+      "content_hash": "08bf8ac0",
+      "wav_path": "audio/network-map/u-044-08bf8ac0.wav",
+      "duration_seconds": 10.869333333333334,
+      "start_frame": 11025,
+      "end_frame": 11351,
+      "audio_end_frame": 11351
+    },
+    {
+      "id": "u-045",
+      "speaker": "narrator",
+      "content_hash": "8af49852",
+      "wav_path": "audio/network-map/u-045-8af49852.wav",
+      "duration_seconds": 11.946666666666667,
+      "start_frame": 11351,
+      "end_frame": 11710,
+      "audio_end_frame": 11710
+    },
+    {
+      "id": "u-046",
+      "speaker": "narrator",
+      "content_hash": "98e431ec",
+      "wav_path": "audio/network-map/u-046-98e431ec.wav",
+      "duration_seconds": 9.109333333333334,
+      "start_frame": 11710,
+      "end_frame": 11998,
+      "audio_end_frame": 11983
+    },
+    {
+      "id": "u-047",
+      "speaker": "listener",
+      "content_hash": "14f271a3",
+      "wav_path": "audio/network-map/u-047-14f271a3.wav",
+      "duration_seconds": 2.9226666666666667,
+      "start_frame": 11998,
+      "end_frame": 12086,
+      "audio_end_frame": 12086
+    },
+    {
+      "id": "u-048",
+      "speaker": "narrator",
+      "content_hash": "4e8bfb5f",
+      "wav_path": "audio/network-map/u-048-4e8bfb5f.wav",
+      "duration_seconds": 9.397333333333334,
+      "start_frame": 12086,
+      "end_frame": 12368,
+      "audio_end_frame": 12368
+    },
+    {
+      "id": "u-049",
+      "speaker": "narrator",
+      "content_hash": "8ca94adb",
+      "wav_path": "audio/network-map/u-049-8ca94adb.wav",
+      "duration_seconds": 11.861333333333333,
+      "start_frame": 12368,
+      "end_frame": 12724,
+      "audio_end_frame": 12724
+    },
+    {
+      "id": "u-050",
+      "speaker": "narrator",
+      "content_hash": "7550482b",
+      "wav_path": "audio/network-map/u-050-7550482b.wav",
+      "duration_seconds": 9.92,
+      "start_frame": 12724,
+      "end_frame": 13021,
+      "audio_end_frame": 13021
+    },
+    {
+      "id": "u-051",
+      "speaker": "listener",
+      "content_hash": "2b45dd46",
+      "wav_path": "audio/network-map/u-051-2b45dd46.wav",
+      "duration_seconds": 6.453333333333333,
+      "start_frame": 13021,
+      "end_frame": 13215,
+      "audio_end_frame": 13215
+    },
+    {
+      "id": "u-052",
+      "speaker": "narrator",
+      "content_hash": "846570e2",
+      "wav_path": "audio/network-map/u-052-846570e2.wav",
+      "duration_seconds": 4.992,
+      "start_frame": 13215,
+      "end_frame": 13365,
+      "audio_end_frame": 13365
+    },
+    {
+      "id": "u-053",
+      "speaker": "narrator",
+      "content_hash": "7ea15c60",
+      "wav_path": "audio/network-map/u-053-7ea15c60.wav",
+      "duration_seconds": 13.482666666666667,
+      "start_frame": 13365,
+      "end_frame": 13769,
+      "audio_end_frame": 13769
+    },
+    {
+      "id": "u-054",
+      "speaker": "narrator",
+      "content_hash": "4f78bc04",
+      "wav_path": "audio/network-map/u-054-4f78bc04.wav",
+      "duration_seconds": 11.605333333333334,
+      "start_frame": 13769,
+      "end_frame": 14117,
+      "audio_end_frame": 14117
+    },
+    {
+      "id": "u-055",
+      "speaker": "narrator",
+      "content_hash": "6040eeb0",
+      "wav_path": "audio/network-map/u-055-6040eeb0.wav",
+      "duration_seconds": 9.28,
+      "start_frame": 14117,
+      "end_frame": 14411,
+      "audio_end_frame": 14396
+    },
+    {
+      "id": "u-056",
+      "speaker": "listener",
+      "content_hash": "8160ac32",
+      "wav_path": "audio/network-map/u-056-8160ac32.wav",
+      "duration_seconds": 3.2746666666666666,
+      "start_frame": 14411,
+      "end_frame": 14509,
+      "audio_end_frame": 14509
+    },
+    {
+      "id": "u-057",
+      "speaker": "narrator",
+      "content_hash": "ae871551",
+      "wav_path": "audio/network-map/u-057-ae871551.wav",
+      "duration_seconds": 16.832,
+      "start_frame": 14509,
+      "end_frame": 15023,
+      "audio_end_frame": 15014
+    },
+    {
+      "id": "u-058",
+      "speaker": "narrator",
+      "content_hash": "88fdc312",
+      "wav_path": "audio/network-map/u-058-88fdc312.wav",
+      "duration_seconds": 17.621333333333332,
+      "start_frame": 15023,
+      "end_frame": 15551,
+      "audio_end_frame": 15551
+    },
+    {
+      "id": "u-059",
+      "speaker": "listener",
+      "content_hash": "265e9a0d",
+      "wav_path": "audio/network-map/u-059-265e9a0d.wav",
+      "duration_seconds": 3.5733333333333333,
+      "start_frame": 15551,
+      "end_frame": 15659,
+      "audio_end_frame": 15659
+    }
+  ],
+  "slide_events": [
+    {
+      "id": "ev-001",
+      "slide": "slide-title",
+      "start_frame": 0
+    },
+    {
+      "id": "ev-002",
+      "slide": "slide-views",
+      "start_frame": 179
+    },
+    {
+      "id": "ev-003",
+      "slide": "slide-switching",
+      "start_frame": 918
+    },
+    {
+      "id": "ev-004",
+      "slide": "slide-arpanet",
+      "start_frame": 2092
+    },
+    {
+      "id": "ev-005",
+      "slide": "slide-fiber",
+      "start_frame": 2708
+    },
+    {
+      "id": "ev-006",
+      "slide": "slide-means",
+      "start_frame": 3271
+    },
+    {
+      "id": "ev-007",
+      "slide": "slide-lanwan",
+      "start_frame": 4023
+    },
+    {
+      "id": "ev-008",
+      "slide": "slide-ipv4",
+      "start_frame": 5075
+    },
+    {
+      "id": "ev-009",
+      "slide": "slide-local-global",
+      "start_frame": 6249
+    },
+    {
+      "id": "ev-010",
+      "slide": "slide-dns",
+      "start_frame": 7429
+    },
+    {
+      "id": "ev-011",
+      "slide": "slide-url",
+      "start_frame": 8182
+    },
+    {
+      "id": "ev-012",
+      "slide": "slide-layers",
+      "start_frame": 9171
+    },
+    {
+      "id": "ev-013",
+      "slide": "slide-tcp-udp",
+      "start_frame": 10244
+    },
+    {
+      "id": "ev-014",
+      "slide": "slide-app",
+      "start_frame": 11025
+    },
+    {
+      "id": "ev-015",
+      "slide": "slide-home",
+      "start_frame": 11998
+    },
+    {
+      "id": "ev-016",
+      "slide": "slide-wifi",
+      "start_frame": 13021
+    },
+    {
+      "id": "ev-017",
+      "slide": "slide-summary",
+      "start_frame": 14411
+    },
+    {
+      "id": "ev-018",
+      "slide": "slide-next",
+      "start_frame": 15023
+    }
+  ],
+  "slides": [
+    {
+      "id": "slide-title",
+      "type": "title",
+      "title": "ネットワークの地図",
+      "subtitle": "データの運び方・住所と名前・約束事・家の機器"
+    },
+    {
+      "id": "slide-views",
+      "type": "custom",
+      "component": "CompareTable",
+      "props": {
+        "title": "今日の地図：4 つの見方",
+        "columns": [
+          "何を見るか",
+          "読むところ"
+        ],
+        "rows": [
+          {
+            "label": "1 運び方",
+            "cells": [
+              "パケット・ルータ・LAN と WAN",
+              "教科書 p.148〜149・補助資料 1〜2"
+            ]
+          },
+          {
+            "label": "2 住所と名前",
+            "cells": [
+              "IP アドレス・ドメイン名・DNS",
+              "教科書 p.150〜151・補助資料 3"
+            ]
+          },
+          {
+            "label": "3 約束事",
+            "cells": [
+              "プロトコル・TCP/IP の 4 層",
+              "教科書 p.149・151・補助資料 4"
+            ]
+          },
+          {
+            "label": "4 家の機器",
+            "cells": [
+              "ONU・ルータ・ハブ・無線 LAN",
+              "教科書 p.149・151・補助資料 5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-switching",
+      "type": "image",
+      "src": "images/network-map/01-switching.png",
+      "source": {
+        "source_url": "self",
+        "license": "self",
+        "author": "この授業の補助資料の図",
+        "modifications": "none"
+      },
+      "caption": "回線交換とパケット交換"
+    },
+    {
+      "id": "slide-arpanet",
+      "type": "image",
+      "src": "images/network-map/arpanet-1977.png",
+      "source": {
+        "source_url": "https://commons.wikimedia.org/wiki/File:Arpanet_logical_map,_march_1977.png",
+        "license": "PD",
+        "author": "ARPANET（Computer History Museum 所蔵の資料）",
+        "modifications": "none"
+      },
+      "caption": "ARPANET の地図（1977 年）"
+    },
+    {
+      "id": "slide-fiber",
+      "type": "image",
+      "src": "images/network-map/fiber.jpg",
+      "source": {
+        "source_url": "https://commons.wikimedia.org/wiki/File:Optical_patchcord.jpg",
+        "license": "CC-BY-4.0",
+        "author": "Sunmosk",
+        "modifications": "切り抜き・縮小"
+      },
+      "caption": "光ファイバの中を進むレーザーの光（写真は切り抜き・縮小）"
+    },
+    {
+      "id": "slide-means",
+      "type": "custom",
+      "component": "CompareTable",
+      "props": {
+        "title": "通信手段の使い分け",
+        "columns": [
+          "主な使い道",
+          "特徴"
+        ],
+        "rows": [
+          {
+            "label": "光ファイバ",
+            "cells": [
+              "家や会社の回線・海底ケーブル",
+              "光で信号を送る線"
+            ]
+          },
+          {
+            "label": "携帯電話",
+            "cells": [
+              "スマホ（4G・5G）",
+              "電話会社の電波"
+            ]
+          },
+          {
+            "label": "無線 LAN",
+            "cells": [
+              "家・学校・駅やお店",
+              "Wi-Fi のこと"
+            ]
+          },
+          {
+            "label": "Bluetooth",
+            "cells": [
+              "イヤホン・マウス",
+              "近くの機器と"
+            ]
+          },
+          {
+            "label": "LPWA",
+            "cells": [
+              "IoT のセンサ",
+              "遅いが遠く・省電力"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-lanwan",
+      "type": "bullets",
+      "items": [
+        "**LAN**：学校や家など、限られた範囲のネットワーク",
+        "**WAN**：離れた LAN どうしをつなぐ、広い範囲のネットワーク",
+        "**インターネット**：LAN や WAN が世界中でつながったもの"
+      ],
+      "title": "LAN・WAN・インターネット"
+    },
+    {
+      "id": "slide-ipv4",
+      "type": "image",
+      "src": "images/network-map/04-ipv4.png",
+      "source": {
+        "source_url": "self",
+        "license": "self",
+        "author": "この授業の補助資料の図",
+        "modifications": "none"
+      },
+      "caption": "IPv4 は 32 ビット（IPv6 は 128 ビット）"
+    },
+    {
+      "id": "slide-local-global",
+      "type": "image",
+      "src": "images/network-map/05-local-global.png",
+      "source": {
+        "source_url": "self",
+        "license": "self",
+        "author": "この授業の補助資料の図",
+        "modifications": "none"
+      },
+      "caption": "ローカル IP アドレスとグローバル IP アドレス"
+    },
+    {
+      "id": "slide-dns",
+      "type": "bullets",
+      "items": [
+        "**ドメイン名**：人が覚えやすい名前",
+        "**DNS**：名前を IP アドレスに直す（電話帳のしくみ）",
+        "ブラウザは DNS に番号を聞いてから、相手と通信する"
+      ],
+      "title": "名前から番号へ：DNS"
+    },
+    {
+      "id": "slide-url",
+      "type": "bullets",
+      "items": [
+        "**https**：スキーム名（どの約束事で通信するか）",
+        "**www.○○○.go.jp**：ドメイン名（右から読む。jp＝日本、go＝政府機関）",
+        "**/about/**：パス名（どのページか）"
+      ],
+      "title": "URL を読む（https://www.○○○.go.jp/about/）"
+    },
+    {
+      "id": "slide-layers",
+      "type": "image",
+      "src": "images/network-map/06-tcpip-layers.png",
+      "source": {
+        "source_url": "self",
+        "license": "self",
+        "author": "この授業の補助資料の図",
+        "modifications": "none"
+      },
+      "caption": "TCP/IP の 4 つの層"
+    },
+    {
+      "id": "slide-tcp-udp",
+      "type": "custom",
+      "component": "CompareTable",
+      "props": {
+        "title": "トランスポート層の 2 つのやり方",
+        "columns": [
+          "TCP",
+          "UDP"
+        ],
+        "rows": [
+          {
+            "label": "しくみ",
+            "cells": [
+              "届いたか確かめ、送り直す",
+              "確かめない・送り直さない"
+            ]
+          },
+          {
+            "label": "よい点",
+            "cells": [
+              "確実に届く",
+              "遅れが少ない"
+            ]
+          },
+          {
+            "label": "使う所",
+            "cells": [
+              "Web・メール",
+              "音声通話・ビデオ通話"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-app",
+      "type": "bullets",
+      "items": [
+        "**HTTP**：Web を見る（**HTTPS** は暗号化したもの）",
+        "**SMTP** でメールを送り、**POP** か **IMAP** で受け取る",
+        "鍵マークがあっても偽サイトのことがある → ドメイン名も見る"
+      ],
+      "title": "アプリケーション層の例"
+    },
+    {
+      "id": "slide-home",
+      "type": "image",
+      "src": "images/network-map/07-home-network.png",
+      "source": {
+        "source_url": "self",
+        "license": "self",
+        "author": "この授業の補助資料の図",
+        "modifications": "none"
+      },
+      "caption": "家のネットワーク機器の並び"
+    },
+    {
+      "id": "slide-wifi",
+      "type": "bullets",
+      "items": [
+        "**DHCP**：つないだ機器に IP アドレスを自動で配る",
+        "**SSID**（名前）とパスワードでつなぐ。暗号化は **WPA2 か WPA3**（**WEP は使わない**）",
+        "無料の Wi-Fi には偽物もある。大事な情報は入力しない"
+      ],
+      "title": "つなぐ設定と、無線 LAN の安全"
+    },
+    {
+      "id": "slide-summary",
+      "type": "bullets",
+      "items": [
+        "データは**パケット**に分けて運ばれ、**ルータ**が道を選ぶ",
+        "住所（**IP アドレス**）と名前（**ドメイン名**）を **DNS** がつなぐ",
+        "約束事（**プロトコル**）は層に分かれ、家の機器もその上で動く"
+      ],
+      "title": "まとめ"
+    },
+    {
+      "id": "slide-next",
+      "type": "bullets",
+      "items": [
+        "教科書 p.148〜151 と補助資料（4 ページ）を読む",
+        "復習問題を解く（通信速度の計算は補助資料 6、パリティは教科書 p.162〜163 の実習 14）",
+        "問 21 は、自分の端末の設定画面で IP アドレスを見る"
+      ],
+      "title": "このあとやること"
+    }
+  ],
+  "speakers": {
+    "listener": {
+      "portrait_asset_key": "listener-default",
+      "display_name": "ずんだもん"
+    },
+    "narrator": {
+      "portrait_asset_key": "narrator-default",
+      "display_name": "玄野武宏"
+    }
+  },
+  "credits": [
+    "VOICEVOX:ずんだもん",
+    "VOICEVOX:玄野武宏(CV:ガロ)",
+    "立ち絵：Laterna オリジナル（FLUX.2 [klein] 4B で生成。記録は materials/portraits/）",
+    "画像「回線交換とパケット交換」 出典：この授業の補助資料の図／自作／self",
+    "画像「ARPANET の地図（1977 年）」 出典：ARPANET（Computer History Museum 所蔵の資料）／パブリックドメイン／https://commons.wikimedia.org/wiki/File:Arpanet_logical_map,_march_1977.png",
+    "画像「光ファイバの中を進むレーザーの光（写真は切り抜き・縮小）」 出典：Sunmosk／CC BY 4.0／https://commons.wikimedia.org/wiki/File:Optical_patchcord.jpg",
+    "画像「IPv4 は 32 ビット（IPv6 は 128 ビット）」 出典：この授業の補助資料の図／自作／self",
+    "画像「ローカル IP アドレスとグローバル IP アドレス」 出典：この授業の補助資料の図／自作／self",
+    "画像「TCP/IP の 4 つの層」 出典：この授業の補助資料の図／自作／self",
+    "画像「家のネットワーク機器の並び」 出典：この授業の補助資料の図／自作／self"
+  ],
+  "total_duration_frames": 15749
+}

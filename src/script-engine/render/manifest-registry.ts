@@ -23,6 +23,8 @@ import pythonRuns from "../../../public/manifests/python-runs.manifest.json";
 import pythonRunsPdf from "../../../public/manifests/python-runs.pdf-manifest.json";
 import webFlask from "../../../public/manifests/web-flask.manifest.json";
 import webFlaskPdf from "../../../public/manifests/web-flask.pdf-manifest.json";
+import networkMap from "../../../public/manifests/network-map.manifest.json";
+import networkMapPdf from "../../../public/manifests/network-map.pdf-manifest.json";
 import type { TimelineManifest } from "../schema/timeline-manifest";
 import type { PdfManifest } from "../pdf/script-pdf-manifest";
 
@@ -32,6 +34,7 @@ export const manifestRegistry: Record<string, TimelineManifest> = {
   "about-c": aboutC as TimelineManifest,
   "python-runs": pythonRuns as TimelineManifest,
   "web-flask": webFlask as TimelineManifest,
+  "network-map": networkMap as TimelineManifest,
 };
 
 /** design §8.1: `public/manifests/<script-id>.pdf-manifest.json` の直接 import マップ。 */
@@ -41,6 +44,7 @@ export const pdfManifestRegistry: Record<string, PdfManifest> = {
   "about-c": aboutCPdf as PdfManifest,
   "python-runs": pythonRunsPdf as PdfManifest,
   "web-flask": webFlaskPdf as PdfManifest,
+  "network-map": networkMapPdf as PdfManifest,
 };
 
 /**
