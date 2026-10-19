@@ -307,12 +307,12 @@
     {
       "id": "u-031",
       "speaker": "narrator",
-      "content_hash": "72c4ff27",
-      "wav_path": "audio/network-map/u-031-72c4ff27.wav",
-      "duration_seconds": 12.394666666666666,
+      "content_hash": "ac8f291a",
+      "wav_path": "audio/network-map/u-031-ac8f291a.wav",
+      "duration_seconds": 17.173333333333332,
       "start_frame": 7587,
-      "end_frame": 7959,
-      "audio_end_frame": 7959
+      "end_frame": 8102,
+      "audio_end_frame": 8102
     },
     {
       "id": "u-032",
@@ -320,9 +320,9 @@
       "content_hash": "d5268519",
       "wav_path": "audio/network-map/u-032-d5268519.wav",
       "duration_seconds": 7.434666666666667,
-      "start_frame": 7959,
-      "end_frame": 8182,
-      "audio_end_frame": 8182
+      "start_frame": 8102,
+      "end_frame": 8325,
+      "audio_end_frame": 8325
     },
     {
       "id": "u-033",
@@ -330,9 +330,9 @@
       "content_hash": "aeb100e6",
       "wav_path": "audio/network-map/u-033-aeb100e6.wav",
       "duration_seconds": 11.146666666666667,
-      "start_frame": 8182,
-      "end_frame": 8516,
-      "audio_end_frame": 8516
+      "start_frame": 8325,
+      "end_frame": 8659,
+      "audio_end_frame": 8659
     },
     {
       "id": "u-034",
@@ -340,9 +340,9 @@
       "content_hash": "00e1033d",
       "wav_path": "audio/network-map/u-034-00e1033d.wav",
       "duration_seconds": 11.189333333333334,
-      "start_frame": 8516,
-      "end_frame": 8852,
-      "audio_end_frame": 8852
+      "start_frame": 8659,
+      "end_frame": 8995,
+      "audio_end_frame": 8995
     },
     {
       "id": "u-035",
@@ -350,9 +350,9 @@
       "content_hash": "5864bb1e",
       "wav_path": "audio/network-map/u-035-5864bb1e.wav",
       "duration_seconds": 4.085333333333334,
-      "start_frame": 8852,
-      "end_frame": 8974,
-      "audio_end_frame": 8974
+      "start_frame": 8995,
+      "end_frame": 9118,
+      "audio_end_frame": 9118
     },
     {
       "id": "u-036",
@@ -360,9 +360,9 @@
       "content_hash": "9e1b60d5",
       "wav_path": "audio/network-map/u-036-9e1b60d5.wav",
       "duration_seconds": 6.058666666666666,
-      "start_frame": 8974,
-      "end_frame": 9171,
-      "audio_end_frame": 9156
+      "start_frame": 9118,
+      "end_frame": 9314,
+      "audio_end_frame": 9299
     },
     {
       "id": "u-037",
@@ -370,9 +370,9 @@
       "content_hash": "6676647e",
       "wav_path": "audio/network-map/u-037-6676647e.wav",
       "duration_seconds": 11.850666666666667,
-      "start_frame": 9171,
-      "end_frame": 9527,
-      "audio_end_frame": 9527
+      "start_frame": 9314,
+      "end_frame": 9670,
+      "audio_end_frame": 9670
     },
     {
       "id": "u-038",
@@ -380,9 +380,9 @@
       "content_hash": "0c6f184d",
       "wav_path": "audio/network-map/u-038-0c6f184d.wav",
       "duration_seconds": 11.541333333333334,
-      "start_frame": 9527,
-      "end_frame": 9873,
-      "audio_end_frame": 9873
+      "start_frame": 9670,
+      "end_frame": 10016,
+      "audio_end_frame": 10016
     },
     {
       "id": "u-039",
@@ -390,9 +390,9 @@
       "content_hash": "9dfdd897",
       "wav_path": "audio/network-map/u-039-9dfdd897.wav",
       "duration_seconds": 6.762666666666667,
-      "start_frame": 9873,
-      "end_frame": 10076,
-      "audio_end_frame": 10076
+      "start_frame": 10016,
+      "end_frame": 10219,
+      "audio_end_frame": 10219
     },
     {
       "id": "u-040",
@@ -400,9 +400,9 @@
       "content_hash": "729f454c",
       "wav_path": "audio/network-map/u-040-729f454c.wav",
       "duration_seconds": 5.6,
-      "start_frame": 10076,
-      "end_frame": 10244,
-      "audio_end_frame": 10244
+      "start_frame": 10219,
+      "end_frame": 10387,
+      "audio_end_frame": 10387
     },
     {
       "id": "u-041",
@@ -410,9 +410,9 @@
       "content_hash": "3bec298d",
       "wav_path": "audio/network-map/u-041-3bec298d.wav",
       "duration_seconds": 11.072,
-      "start_frame": 10244,
-      "end_frame": 10576,
-      "audio_end_frame": 10576
+      "start_frame": 10387,
+      "end_frame": 10719,
+      "audio_end_frame": 10719
     },
     {
       "id": "u-042",
@@ -420,9 +420,9 @@
       "content_hash": "322a9842",
       "wav_path": "audio/network-map/u-042-322a9842.wav",
       "duration_seconds": 10.048,
-      "start_frame": 10576,
-      "end_frame": 10877,
-      "audio_end_frame": 10877
+      "start_frame": 10719,
+      "end_frame": 11021,
+      "audio_end_frame": 11021
     },
     {
       "id": "u-043",
@@ -430,9 +430,9 @@
       "content_hash": "6717caf5",
       "wav_path": "audio/network-map/u-043-6717caf5.wav",
       "duration_seconds": 4.938666666666666,
-      "start_frame": 10877,
-      "end_frame": 11025,
-      "audio_end_frame": 11025
+      "start_frame": 11021,
+      "end_frame": 11169,
+      "audio_end_frame": 11169
     },
     {
       "id": "u-044",
@@ -440,9 +440,9 @@
       "content_hash": "08bf8ac0",
       "wav_path": "audio/network-map/u-044-08bf8ac0.wav",
       "duration_seconds": 10.869333333333334,
-      "start_frame": 11025,
-      "end_frame": 11351,
-      "audio_end_frame": 11351
+      "start_frame": 11169,
+      "end_frame": 11495,
+      "audio_end_frame": 11495
     },
     {
       "id": "u-045",
@@ -450,9 +450,9 @@
       "content_hash": "8af49852",
       "wav_path": "audio/network-map/u-045-8af49852.wav",
       "duration_seconds": 11.946666666666667,
-      "start_frame": 11351,
-      "end_frame": 11710,
-      "audio_end_frame": 11710
+      "start_frame": 11495,
+      "end_frame": 11853,
+      "audio_end_frame": 11853
     },
     {
       "id": "u-046",
@@ -460,9 +460,9 @@
       "content_hash": "98e431ec",
       "wav_path": "audio/network-map/u-046-98e431ec.wav",
       "duration_seconds": 9.109333333333334,
-      "start_frame": 11710,
-      "end_frame": 11998,
-      "audio_end_frame": 11983
+      "start_frame": 11853,
+      "end_frame": 12142,
+      "audio_end_frame": 12127
     },
     {
       "id": "u-047",
@@ -470,9 +470,9 @@
       "content_hash": "14f271a3",
       "wav_path": "audio/network-map/u-047-14f271a3.wav",
       "duration_seconds": 2.9226666666666667,
-      "start_frame": 11998,
-      "end_frame": 12086,
-      "audio_end_frame": 12086
+      "start_frame": 12142,
+      "end_frame": 12229,
+      "audio_end_frame": 12229
     },
     {
       "id": "u-048",
@@ -480,9 +480,9 @@
       "content_hash": "4e8bfb5f",
       "wav_path": "audio/network-map/u-048-4e8bfb5f.wav",
       "duration_seconds": 9.397333333333334,
-      "start_frame": 12086,
-      "end_frame": 12368,
-      "audio_end_frame": 12368
+      "start_frame": 12229,
+      "end_frame": 12511,
+      "audio_end_frame": 12511
     },
     {
       "id": "u-049",
@@ -490,9 +490,9 @@
       "content_hash": "8ca94adb",
       "wav_path": "audio/network-map/u-049-8ca94adb.wav",
       "duration_seconds": 11.861333333333333,
-      "start_frame": 12368,
-      "end_frame": 12724,
-      "audio_end_frame": 12724
+      "start_frame": 12511,
+      "end_frame": 12867,
+      "audio_end_frame": 12867
     },
     {
       "id": "u-050",
@@ -500,9 +500,9 @@
       "content_hash": "7550482b",
       "wav_path": "audio/network-map/u-050-7550482b.wav",
       "duration_seconds": 9.92,
-      "start_frame": 12724,
-      "end_frame": 13021,
-      "audio_end_frame": 13021
+      "start_frame": 12867,
+      "end_frame": 13165,
+      "audio_end_frame": 13165
     },
     {
       "id": "u-051",
@@ -510,9 +510,9 @@
       "content_hash": "2b45dd46",
       "wav_path": "audio/network-map/u-051-2b45dd46.wav",
       "duration_seconds": 6.453333333333333,
-      "start_frame": 13021,
-      "end_frame": 13215,
-      "audio_end_frame": 13215
+      "start_frame": 13165,
+      "end_frame": 13358,
+      "audio_end_frame": 13358
     },
     {
       "id": "u-052",
@@ -520,9 +520,9 @@
       "content_hash": "846570e2",
       "wav_path": "audio/network-map/u-052-846570e2.wav",
       "duration_seconds": 4.992,
-      "start_frame": 13215,
-      "end_frame": 13365,
-      "audio_end_frame": 13365
+      "start_frame": 13358,
+      "end_frame": 13508,
+      "audio_end_frame": 13508
     },
     {
       "id": "u-053",
@@ -530,9 +530,9 @@
       "content_hash": "7ea15c60",
       "wav_path": "audio/network-map/u-053-7ea15c60.wav",
       "duration_seconds": 13.482666666666667,
-      "start_frame": 13365,
-      "end_frame": 13769,
-      "audio_end_frame": 13769
+      "start_frame": 13508,
+      "end_frame": 13912,
+      "audio_end_frame": 13912
     },
     {
       "id": "u-054",
@@ -540,9 +540,9 @@
       "content_hash": "4f78bc04",
       "wav_path": "audio/network-map/u-054-4f78bc04.wav",
       "duration_seconds": 11.605333333333334,
-      "start_frame": 13769,
-      "end_frame": 14117,
-      "audio_end_frame": 14117
+      "start_frame": 13912,
+      "end_frame": 14261,
+      "audio_end_frame": 14261
     },
     {
       "id": "u-055",
@@ -550,9 +550,9 @@
       "content_hash": "6040eeb0",
       "wav_path": "audio/network-map/u-055-6040eeb0.wav",
       "duration_seconds": 9.28,
-      "start_frame": 14117,
-      "end_frame": 14411,
-      "audio_end_frame": 14396
+      "start_frame": 14261,
+      "end_frame": 14554,
+      "audio_end_frame": 14539
     },
     {
       "id": "u-056",
@@ -560,9 +560,9 @@
       "content_hash": "8160ac32",
       "wav_path": "audio/network-map/u-056-8160ac32.wav",
       "duration_seconds": 3.2746666666666666,
-      "start_frame": 14411,
-      "end_frame": 14509,
-      "audio_end_frame": 14509
+      "start_frame": 14554,
+      "end_frame": 14652,
+      "audio_end_frame": 14652
     },
     {
       "id": "u-057",
@@ -570,9 +570,9 @@
       "content_hash": "ae871551",
       "wav_path": "audio/network-map/u-057-ae871551.wav",
       "duration_seconds": 16.832,
-      "start_frame": 14509,
-      "end_frame": 15023,
-      "audio_end_frame": 15014
+      "start_frame": 14652,
+      "end_frame": 15166,
+      "audio_end_frame": 15157
     },
     {
       "id": "u-058",
@@ -580,9 +580,9 @@
       "content_hash": "88fdc312",
       "wav_path": "audio/network-map/u-058-88fdc312.wav",
       "duration_seconds": 17.621333333333332,
-      "start_frame": 15023,
-      "end_frame": 15551,
-      "audio_end_frame": 15551
+      "start_frame": 15166,
+      "end_frame": 15695,
+      "audio_end_frame": 15695
     },
     {
       "id": "u-059",
@@ -590,9 +590,9 @@
       "content_hash": "265e9a0d",
       "wav_path": "audio/network-map/u-059-265e9a0d.wav",
       "duration_seconds": 3.5733333333333333,
-      "start_frame": 15551,
-      "end_frame": 15659,
-      "audio_end_frame": 15659
+      "start_frame": 15695,
+      "end_frame": 15802,
+      "audio_end_frame": 15802
     }
   ],
   "slide_events": [
@@ -649,42 +649,42 @@
     {
       "id": "ev-011",
       "slide": "slide-url",
-      "start_frame": 8182
+      "start_frame": 8325
     },
     {
       "id": "ev-012",
       "slide": "slide-layers",
-      "start_frame": 9171
+      "start_frame": 9314
     },
     {
       "id": "ev-013",
       "slide": "slide-tcp-udp",
-      "start_frame": 10244
+      "start_frame": 10387
     },
     {
       "id": "ev-014",
       "slide": "slide-app",
-      "start_frame": 11025
+      "start_frame": 11169
     },
     {
       "id": "ev-015",
       "slide": "slide-home",
-      "start_frame": 11998
+      "start_frame": 12142
     },
     {
       "id": "ev-016",
       "slide": "slide-wifi",
-      "start_frame": 13021
+      "start_frame": 13165
     },
     {
       "id": "ev-017",
       "slide": "slide-summary",
-      "start_frame": 14411
+      "start_frame": 14554
     },
     {
       "id": "ev-018",
       "slide": "slide-next",
-      "start_frame": 15023
+      "start_frame": 15166
     }
   ],
   "slides": [
@@ -860,7 +860,7 @@
       "type": "bullets",
       "items": [
         "**ドメイン名**：人が覚えやすい名前",
-        "**DNS**：名前を IP アドレスに直す（電話帳のしくみ）",
+        "**DNS**：名前を IP アドレスに直す（スマホの連絡先と同じ考え方）",
         "ブラウザは DNS に番号を聞いてから、相手と通信する"
       ],
       "title": "名前から番号へ：DNS"
@@ -997,5 +997,5 @@
     "画像「TCP/IP の 4 つの層」 出典：この授業の補助資料の図／自作／self",
     "画像「家のネットワーク機器の並び」 出典：この授業の補助資料の図／自作／self"
   ],
-  "total_duration_frames": 15749
+  "total_duration_frames": 15892
 }

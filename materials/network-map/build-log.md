@@ -46,8 +46,26 @@
 | 6 | 10:4x | `grep -F -c -f <scratchpad>/problem-values.txt content/scripts/network-map.script.yaml <scratchpad>/network-map-pdf.txt` | 1 | 0 件（goal.md Wave 7 の完了条件 7） |
 | 6 | 10:4x | `grep -F -i -c -f /d/work8/Laterna-private/names.txt <scratchpad>/network-map-pdf.txt materials/network-map/description.md materials/network-map/images.md materials/network-map/build-log.md` | 1 | 氏名 0 件 |
 | 6 | 10:4x | `grep -c "都城\|コア学園" content/scripts/network-map.script.yaml materials/network-map/description.md <scratchpad>/network-map-pdf.txt` | 1 | 学校名 0 件 |
-| 7 | 10:44 | `sha256sum out/script-engine/network-map.mp4 deliver/network-map/network-map.mp4 out/script-engine/network-map.pdf deliver/network-map/network-map.pdf` | 0 | MP4 `1489ff0f…f1a4`・PDF `524cedd1…d6b5`。`out/` と `deliver/` が一致 |
+| 7 | 10:44 | `sha256sum out/script-engine/network-map.mp4 deliver/network-map/network-map.mp4 out/script-engine/network-map.pdf deliver/network-map/network-map.pdf` | 0 | MP4 `1489ff0f…f1a4`・PDF `524cedd1…d6b5`。`out/` と `deliver/` が一致。主人の試写に出した版 |
+
+**試写の後の直し（15:1x〜）**：主人の試写で「DNS と電話帳のたとえが学生の年代に分からない」と言われ、u-031 とスライド `slide-dns` のたとえをスマホの連絡先に替えた（`outline.md` の「試写の後に変えた所」）。
+
+| 手順 | 日時 | コマンド | 終了コード | 備考 |
+|---|---|---|---|---|
+| 4 | 15:18 | `curl -s -m 3 http://127.0.0.1:50021/version` | 0 | `"0.25.2"` |
+| 4 | 15:18 | `npm run compile:script -- network-map` | 0 | 再合成 1 件（u-031）・skip 58 件、prune 1 件。15892 frames（約 529.7 秒）。PDF manifest 18 ページ。ログは `out/compile-network-map-3.log` |
+| 4 | 15:1x | `node <scratchpad>/kana-all.mjs network-map` | 0 | `<scratchpad>/kana-network-map-3.txt`。u-031 の読みが正しいことを見た |
+| 5 | 15:2x | `npm run render:all:script -- network-map` | 0 | 3 回目（たとえを直した後）。15:27 までに終わった。終了コードはログの最後の行 `render_exit=0`。ログは `out/render-network-map-3.log` |
+| 6 | 15:27 | `ffprobe -v error -show_entries stream=codec_type,codec_name -show_entries format=duration -of default=nw=1 out/script-engine/network-map.mp4` | 0 | h264・aac、529.792 秒（manifest 15892/30 = 529.73 秒） |
+| 6 | 15:27 | `node -e "…pdf-lib…getPageCount()"` | 0 | 18 ページ（pdf-manifest の total_pages 18） |
+| 6 | 15:27 | `ffmpeg -v error -y -ss 262.57 -i out/script-engine/network-map.mp4 -frames:v 1 <scratchpad>/r3-dns.png` | 0 | スライド `slide-dns` に「スマホの連絡先と同じ考え方」が出ていることを目視した |
+| 6 | 15:2x | `pdftotext -enc UTF-8 out/script-engine/network-map.pdf <scratchpad>/network-map-pdf-3.txt` | 0 | 「連絡先」2 件、「電話帳」0 件 |
+| 6 | 15:2x | `grep -F -c -f <scratchpad>/problem-values.txt content/scripts/network-map.script.yaml <scratchpad>/network-map-pdf-3.txt` | 1 | 復習問題の数値 0 件 |
+| 6 | 15:2x | `grep -F -i -c -f /d/work8/Laterna-private/names.txt <scratchpad>/network-map-pdf-3.txt materials/network-map/description.md materials/network-map/outline.md` | 1 | 氏名 0 件 |
+| 6 | 15:2x | `grep -c "都城\|コア学園" <scratchpad>/network-map-pdf-3.txt materials/network-map/description.md` | 1 | 学校名 0 件 |
+| 6 | 15:2x | `sha256sum out/script-engine/network-map.mp4 out/script-engine/network-map.pdf` | 0 | MP4 `0a4740b5…2cdb`・PDF `5e464157…7c09`。主人の 2 回目の試写に出す版 |
 
 ## 終了コードを取っていない実行
 
 - 08:1x〜08:2x：Commons の検索（`<scratchpad>/commons-search.mjs`、光ファイバと最初の Web サーバ）、出典の文の確かめ（`<scratchpad>/check-phrases.mjs`・`excerpt.mjs`）、総務省のページの PDF の一覧（`links.mjs`）と取得（`fetch-file.mjs`）、追加の出典の取得（`fetch-texts.mjs` に `sources2.txt`・`sources3.txt`）、VOICEVOX の語ごとの読み（`kana.mjs`）。どれも出力を見て判断に使ったが、終了コードは取っていない。
+- 15:1x：案 A と案 B の文の読み（`<scratchpad>/kana.mjs 11 <scratchpad>/terms4.txt` を `sed` にパイプした）。どちらも正しく読んだが、終了コードは取っていない。
