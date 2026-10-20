@@ -1,7 +1,7 @@
 # images.md ── 「ネットワークの地図」の画像の出典の記録（Wave 7）
 
 台本 `content/scripts/network-map.script.yaml` の `type: image` のスライドで使う画像の記録。契約は `goal.md` の Wave 7 節。
-ファイルは `public/images/network-map/` に置く。CC BY-SA の画像は使わない（brief D7）。
+ファイルは `public/images/network-map/` に置く。継承（SA）の条件が付いた CC の画像は使わない（brief D7）。
 
 ## 1. 補助資料の自作の図 5 枚（`license: self`）
 
@@ -31,7 +31,7 @@
 
 ## 3. 光ファイバの写真（`fiber.jpg`、スライド `slide-fiber`）
 
-依頼書が挙げた CC BY-SA 3.0 の写真（光ケーブル）の代わり。G0 の答え（問 2「代わりになる画像を軽く探す」）で、Commons を CC0・PD・CC BY に限って探して選んだ。
+依頼書が挙げた、継承（SA）の条件が付いた CC 3.0 の写真（光ケーブル）の代わり。G0 の答え（問 2「代わりになる画像を軽く探す」）で、Commons を CC0・PD・CC BY に限って探して選んだ。
 
 | 項目 | 内容 |
 |---|---|

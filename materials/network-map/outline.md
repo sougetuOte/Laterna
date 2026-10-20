@@ -56,6 +56,7 @@
 | 無線 LAN は家や職場のほか、多くの施設で使われている | https://www.soumu.go.jp/main_sosiki/cybersecurity/wi-fi/index.html | 「無線LANは自宅や職場だけではなく、多くの施設等で利用されています。」 |
 | Bluetooth は、ケーブルの代わりとして考えられた、近い距離・少ない電力の無線 | https://www.bluetooth.com/blog/from-handsets-to-hands-free/ | "Originally conceived as a wireless alternative to RS-232 data cables, Bluetooth® technology has become the global wireless standard for short-range, low-power wireless co" |
 | LPWA は、遅いが、少ない電力で長く動き、数 km〜数十 km 届く | https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd114110.html | 「LPWAの通信速度は数kbpsから数百kbps程度と携帯電話システムと比較して低速なものの、一般的な電池で数年以上運用可能な省電力性や、数kmから数十kmもの通信が可能な広域性を有している。」 |
+| 携帯電話の通信は世代で呼ばれ、今のスマホは 4G（第 4 世代）と 5G（第 5 世代）（スライド `slide-means` の表） | https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd111210.html・https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd111220.html | 「1979年に第1世代となるサービスが開始されて以降、本年に開始された第5世代に至るまで、約10年周期で世代交代が行われていった」、「商用開始されたのが第4世代移動通信システム（4G）である」 |
 | LAN・WAN・インターネットの意味 | 教科書 p.148 の本文、p.149 の 2 番の図 | （教科書。写真で確認） |
 | IPv4 のアドレスは 32 ビット | https://www.rfc-editor.org/rfc/rfc791 | "Addresses are fixed length of four octets (32 bits)." |
 | 32 ビットを 8 ビットずつ 10 進数で書く（例 192.168.10.3。11000000＝192） | 教科書 p.150 の側注（IPv4 の 2 進数と 10 進数の例） | （教科書。写真で確認。例の数は補助資料の図 04 と同じ。2 進数の計算） |
@@ -73,6 +74,7 @@
 | TCP は確実に、順番どおりに届ける（届かなければ送り直す） | https://www.rfc-editor.org/rfc/rfc9293 | "TCP provides a reliable, in-order, byte-stream service to applications."、"retransmission" |
 | UDP は、届くことを保証しない | https://www.rfc-editor.org/rfc/rfc768 | "delivery and duplicate protection are not guaranteed" |
 | 音声通話・ビデオ通話（RTP）は、ふつう UDP の上で動く | https://www.rfc-editor.org/rfc/rfc3550 | "Applications typically run RTP on top of UDP" |
+| 音声通話は今の声を相手に届ける通信なので、1 秒前の声を送り直されても役に立たない（u-043。「1 秒」はたとえの数で、決まった値ではない） | https://www.rfc-editor.org/rfc/rfc3550 | "end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data"（上の UDP と RTP の行と合わせて読む） |
 | HTTPS は、HTTP の通信を TLS で暗号化した物 | https://www.rfc-editor.org/rfc/rfc9110 | "The "https" URI scheme"、"capable of establishing a TLS ( [ TLS13 ] ) connection that has been secured for HTTP communication" |
 | 鍵マークが出ていても、フィッシングサイトのことがある | https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/basic/risk/04/ | 「WebブラウザのURLに鍵マークが表示されているにもかかわらず、フィッシングサイトであるケースが増えています。」 |
 | メールは SMTP で送り、POP か IMAP で受け取る | 教科書 p.151 の 4 番の図 | （教科書。写真で確認） |
@@ -83,6 +85,7 @@
 | WEP は解読の方法が知られているので使わない | https://www.soumu.go.jp/main_content/000989912.pdf（自宅 Wi-Fi 利用者向け 簡易マニュアル） | 「WEPなどの古いセキュリティ方式は、暗号の解／読方法が知られているため、WPA2やWPA3などの新しいセキュリティ方式を選ぶようにしましょう」 |
 | WPA3 は、Wi-Fi CERTIFIED の機器で必須の新しい方式 | https://www.wi-fi.org/discover-wi-fi/security | "WPA3 is mandatory for Wi-Fi CERTIFIED devices" |
 | 偽の公衆 Wi-Fi が、ID やパスワードをだまし取る例がある | https://www.soumu.go.jp/main_content/000989921.pdf（公衆 Wi-Fi 利用者向け 簡易マニュアル） | 「偽の公衆Wi-Fiが、SNSのログイン画面を模した偽の入／力画面に誘導して、ID・パスワードなどの入力情報をだ／まし取る例が報告されています」 |
+| 補助資料は 4 ページ（スライド `slide-next`） | 依頼のフォルダの `補助資料_後期第3週_ネットワークのしくみ.pdf` | （pdf-lib で数えたページ数 4。2026-10-20） |
 | 復習問題 問 21 は、端末の設定画面で IP アドレスを見る | 教科書 p.151 の EXERCISE 1、補助資料 3 | （教科書。写真で確認。見方の手順は補助資料に任せる） |
 
 ## 行き先の対応
